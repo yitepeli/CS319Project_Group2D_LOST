@@ -1,6 +1,6 @@
 #Project Name: LOST:runner:
 
-##Description:
+##Description
 You wake up to the sounds of the owls, in a dark forest. The parts of the plane you were on are scattered around you. As you try to remember the last night’s accident, you try to understand whether you are on a stranded island or not.
 
 LOST is a text based survival game, where player needs to survive in the wilderness while interacting with objects around him/her. The player’s health, hunger, thirst, and items in inventory will change whether he succeeds in meeting his needs, by hunting or gathering items. Player will be in a specific part of the island at each time. These parts will vary such as lake, forest, hill, shore, and etc. 
