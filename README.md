@@ -1,4 +1,4 @@
-#Project Name: LOST
+#Project Name: LOST:runner:
 
 ##Description:
 You wake up to the sounds of the owls, in a dark forest. The parts of the plane you were on are scattered around you. As you try to remember the last night’s accident, you try to understand whether you are on a stranded island or not.
