@@ -7,7 +7,7 @@ LOST is a text based survival game, where player needs to survive in the wildern
 
 Player will be able to choose to navigate through these parts by choosing according text options in the screen. Based on his/her decisions the player will either survive the island, or end up dead in some wild part of the mysterious land. Additionally, the ends will be varying according to the player’s decisions. Player’s score will be based on his survival duration. The interactions will include common objects found in the wilderness, such as lakes, wood, animals, and plants. Also, hostile or friendly creatures will be appearing in the game, allowing player to interact as he wishes. 
 
-##Similar Games:
+##Similar Games
 **Stanley Parable:** A game, where story is developed by user's decisions and interactions with the objects around him
 link:https://www.stanleyparable.com/
 
