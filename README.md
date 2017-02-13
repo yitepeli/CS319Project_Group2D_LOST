@@ -9,9 +9,9 @@ Player will be able to choose to navigate through these parts by choosing accord
 
 ##Group Members (Group 2D):octocat:
 
-* Eren Bilaloğlu - 21401603
-* Gunduz Huseynli - 21402821 
-* Onur Sönmez - 21300749
-* Yasin İlkağan Tepeli - 21301707
+* @erenbilaloglu - 21401603
+* @Gunduz Huseynli - 21402821 
+* @Onur Sönmez - 21300749
+* @Yasin İlkağan Tepeli - 21301707
 
 
