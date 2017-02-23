@@ -19,3 +19,10 @@
 * Gameplay improvements
 * Analysis Report Discussion
 * Analysis Report Task Distribution
+
+### Meeting 4: (23.02.2017/Thursday)
+* All members participated.
+* Completed tasks are combined and integrated.
+* New Task Scheduling and Distribution.
+* Discussing the basic requirements and improve in gameplay.
+* Analysis Report Discussion
