@@ -26,3 +26,9 @@
 * New Task Scheduling and Distribution.
 * Discussing the basic requirements and improve in gameplay.
 * Analysis Report Discussion
+
+### Meeting 5: (25.02.2017/Saturday)
+* All members participated.
+* Game ending scenarios are discussed.
+* Completed tasks are combined and integrated.
+* Finalizing Analysis Report (Part 1).
