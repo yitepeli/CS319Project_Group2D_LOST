@@ -32,3 +32,26 @@
 * Game ending scenarios are discussed.
 * Completed tasks are combined and integrated.
 * Finalizing Analysis Report (Part 1).
+
+### Meeting 6: (02.02.2017/Thursday)
+* All members participated.
+* Game ending scenarios are specified.
+* The path for Analysis Report(Part 2) are discussed. 
+
+### Meeting 7: (04.02.2017/Saturday)
+* All members participated.
+* Due to the intensity of other courses, a brief meeting is conducted.
+* Decided to overwork and think about object-class design considering all possible scenarios.
+* Tasks are distributed.
+
+### Meeting 8: (09.02.2017/Thursday)
+* All members participated.
+* Object-modelling is completed.
+* Other parts of Analysis Report are determined and distributed.
+* Expected all members to complete tasks using Visual Paradigm and mockup tools before next meeting time.
+
+### Meeting 9: (11.02.2017/Saturday)
+* All members participated.
+* Last modifications about diagrams are completed.
+* Diagrams and user interface are integrated.
+* Finalizing Analysis Report(Part 2).
