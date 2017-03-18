@@ -27,7 +27,8 @@ Group Members (Group 2D):octocat:
 Project Reports
 -
 * [Analysis Report Part1](Reports/Submissions/Analysis Report/Project_Analysis_Report_Part1.pdf)
-* [Analysis Report Complete](Reports/Project Analysis Report Completed.docx), [Analysis Report Completed / Better Formatted PDF Version](Reports/Project Analysis Report Completed Better Formatted.pdf)
+
+* [Analysis Report Complete](Reports/Submissions/Project Analysis Report Completed.docx), [Analysis Report Completed / Better Formatted PDF Version](Reports/Project Analysis Report Completed Better Formatted.pdf)
 
 Meeting Hours
 -
