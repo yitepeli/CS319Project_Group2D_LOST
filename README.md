@@ -18,6 +18,7 @@ link:https://www.stanleyparable.com/
 link:http://play.textadventures.co.uk/Play.aspx?id=tlyonyiifuux_tanbhaslq
 
 Group Members (Group 2D):octocat:
+-
 * Eren Bilaloğlu - 21401603
 * Gunduz Huseynli - 21402821 
 * Onur Sönmez - 21300749
