@@ -17,17 +17,17 @@ link:https://www.stanleyparable.com/
 **Survival Island:** A basic game, where user uses simple text based interface to move around the game and interact with objects to survive.
 link:http://play.textadventures.co.uk/Play.aspx?id=tlyonyiifuux_tanbhaslq
 
-##Group Members (Group 2D):octocat:
+Group Members (Group 2D):octocat:
 * Eren Bilaloğlu - 21401603
 * Gunduz Huseynli - 21402821 
 * Onur Sönmez - 21300749
 * Yasin İlkağan Tepeli - 21301707
 
-##Project Reports
+Project Reports
 -
 * [Analysis Report Part1](Reports/Submissions/Analysis Report/Project_Analysis_Report_Part1.pdf)
 * [Analysis Report Complete](Reports/Project Analysis Report Completed.docx), [Analysis Report Completed / Better Formatted PDF Version](Reports/Project Analysis Report Completed Better Formatted.pdf)
 
-##Meeting Hours
+Meeting Hours
 * Saturday 13.30-15.30
 * Thursday 17.30-19.30
