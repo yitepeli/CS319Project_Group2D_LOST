@@ -55,3 +55,14 @@
 * Last modifications about diagrams are completed.
 * Diagrams and user interface are integrated.
 * Finalizing Analysis Report(Part 2).
+
+### Meeting 10: (21.03.2017/Tuesday)
+* All members participated.
+* High level design is discussed.
+* Architecture sytle is decided.
+* Tasks for design report are allocated.
+
+### Meeting 11: (25.03.2017/Saturday)
+* All members participated.
+* Subsystem decomposition is discussed.
+* Design Report Part 1 is finalized.
