@@ -30,7 +30,7 @@ Project Reports
 * [Analysis Report Final](Reports/Submissions/Analysis%20Report/Project%20Analysis%20Report%20Completed.docx)
 * [Analysis Report PDF and Better Formatted](Reports/Submissions/Analysis%20Report/Project%20Analysis%20Report%20Completed%20Better%20Formatted.pdf)
 * [Design Report Part 1](Reports/Submissions/DesignReport/Design_Report_Part1.pdf)
-* [Design Report Part 2](Reports/Submissions/DesignReport/Design_Report_Final.pdf)
+* [Design Report Final](Reports/Submissions/DesignReport/Design_Report_Final.pdf)
 
 Meeting Hours
 -
