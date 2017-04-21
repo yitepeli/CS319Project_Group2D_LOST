@@ -17,7 +17,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class SoundEffect {
 
     private Clip clip;
-    private String url;
     private AtomicBoolean isActive;//atomic variables for synchronization
 
     /**
@@ -27,13 +26,12 @@ public class SoundEffect {
      */
 
     public SoundEffect(String url){
-        this.url = url;
         isActive = new AtomicBoolean(false);//initial
         try{
             clip = AudioSystem.getClip();
         }
         catch (Exception e){}
-        createSound();
+        createSound(url);
     }
 
     /**
@@ -41,7 +39,7 @@ public class SoundEffect {
      * @throws java.util.FileNotFoundException
      */
 
-    private synchronized void createSound(){
+    private synchronized void createSound(String url){
         new Thread(()->{
             if(isActive.get()){
                 try{
