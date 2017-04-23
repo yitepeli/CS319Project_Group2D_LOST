@@ -69,5 +69,4 @@ public class SoundEffect {
         isActive.getAndSet(false);
         clip.close();
     }
-    
 }
