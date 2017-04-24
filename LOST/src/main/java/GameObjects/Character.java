@@ -62,11 +62,11 @@ public class Character extends GameObject {
 	}
 	
 	public void removeItem(String itemName){
-		
+		inventory.removeItem(itemName);
 	}
 	
 	public void addItem(String itemName){
-		
+		inventory.addItem(itemName);
 	}
 	
 	public void updateHealth(int health){
@@ -74,6 +74,6 @@ public class Character extends GameObject {
 	}
 	
 	public boolean hasItem(String itemName){
-		return true;
+		return inventory.hasItem(itemName);
 	}
 }
