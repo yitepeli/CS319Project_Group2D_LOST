@@ -12,6 +12,8 @@ package GameManager;
 import GameObjects.Map;
 import Helper.PixelPair;
 
+
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +29,7 @@ public class MapManager {
      */
 
     MapManager(){
-        islandMap = new Map("/Users/onursonmez/Desktop/Map_Last.jpg");//initial root image
+        islandMap = new Map("images/map.jpg");//initial root image
         hashmap = new HashMap<>();
         init();
     }
