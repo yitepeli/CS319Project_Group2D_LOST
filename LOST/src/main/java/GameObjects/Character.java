@@ -1,3 +1,5 @@
+package GameObjects;
+
 
 public class Character extends GameObject {
 	private int health;
