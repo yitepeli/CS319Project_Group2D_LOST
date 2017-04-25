@@ -1,7 +1,7 @@
 package Helper;
 
 /**
- * Created by onursonmez on 19/02/17.
+ * Created by onursonmez on 19/04/17.
  */
 public class PixelPair extends Pair {
 
