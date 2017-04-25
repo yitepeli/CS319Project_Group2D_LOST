@@ -8,8 +8,15 @@ public class Player extends AggresiveCharacter {
 	private int energy;
 	private int thirst;
 	private int hunger;
-	
+
 	public Player() {
+		setEnergy(60);
+		updateThirst(15);
+		updateHunger(15);
+	}
+	
+	public Player(String name) {
+		this.setName(name);
 		setEnergy(60);
 		updateThirst(15);
 		updateHunger(15);
@@ -22,7 +29,11 @@ public class Player extends AggresiveCharacter {
 	}
 	
 	public void craft(String itemName){
-		//this.getInventory().getRequiredItemList();
+		CraftableItem aimedItem = this.getInventory().getItem();
+		ArrayList<Item> requiredItem = aimedItem.getRequiredItemList();
+		for(int i=0; i<requiredItem.size(); i++){
+			this.getInventory().removeItem(requiredItem.get(i).getName());
+		}
 		this.addItem(itemName);
 	}
 	
