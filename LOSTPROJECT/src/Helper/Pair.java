@@ -1,7 +1,7 @@
 package Helper;
 
 /**
- * Created by onursonmez on 16/02/17.
+ * Created by onursonmez 
  */
 public class Pair{
 
