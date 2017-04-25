@@ -1,11 +1,14 @@
 package Helper;
 
-/**
- * Created by onursonmez on 19/04/17.
- */
 public class PixelPair extends Pair {
 
     private int pixel;
+
+    /**
+     * Construct.
+     * @param row
+     * @param column
+     */
 
     public PixelPair(int row, int column){
         super(row,column);
@@ -18,6 +21,4 @@ public class PixelPair extends Pair {
     public int getPixel(){
         return pixel;
     }
-
-
 }
