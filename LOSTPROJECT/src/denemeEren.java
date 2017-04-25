@@ -3,6 +3,7 @@ public class denemeEren {
 
 	public denemeEren(){
 		
-		System.out.println("eren");
+		System.out.println("ereneren");
+		System.out.println("ereneren");
 	}
 }
