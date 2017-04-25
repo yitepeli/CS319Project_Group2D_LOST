@@ -4,7 +4,7 @@
 **
 ** Author: Gunduz Huseyn Lee
 ** File created:  13.04.2017
-** Last modified: 24.04.2017
+** Last modified: 25.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
 
@@ -67,6 +67,10 @@ public class Item extends GameObject{
 
 	public boolean isVisible(){
 		return this.visible;
+	}
+
+	public void setVisible(boolean visible){
+		this.visible = visible;
 	}
 
 	@Override
