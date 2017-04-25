@@ -1,3 +1,5 @@
+package GameObjects;
+
 
 public class Record extends GameObject {
 
@@ -6,6 +8,8 @@ public class Record extends GameObject {
 	private String accomplishedStoryEvent;
 	private boolean isAccomplished;
 	private int currentGameTime;
+
+	
 	
 	public String getAccomplishedTime(){
 		
