@@ -1,5 +1,7 @@
+package ItemManagement;
 /*
 ** Inventory Class
+
 ** inventory class is where player's and the area's items are kept.
 ** 
 **

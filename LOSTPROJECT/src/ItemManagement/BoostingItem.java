@@ -1,3 +1,4 @@
+package ItemManagement;
 /*
 ** BoostingItem Class
 ** BoostingItem class represents all the items that effects the player's fighting abilities.
@@ -8,7 +9,7 @@
 ** Last modified: 25.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
-
+import java.util.*;
 public class BoostingItem extends Item{
 	//Properties
 	private int attackPointBonus;
