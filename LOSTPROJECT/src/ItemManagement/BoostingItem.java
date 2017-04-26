@@ -10,6 +10,7 @@ package ItemManagement;
 ** Last modified by: Gunduz Huseyn Lee
 */
 import java.util.*;
+
 public class BoostingItem extends Item{
 	//Properties
 	private int attackPointBonus;
