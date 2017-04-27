@@ -5,7 +5,7 @@
 **
 ** Author: Gunduz Huseyn Lee
 ** File created:  25.04.2017
-** Last modified: 25.04.2017
+** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
 
@@ -42,5 +42,10 @@ public class Food extends Item{
 
 	public int getHealthPoints(){
 		return this.healthPoints;
+	}
+
+	@Override
+	public String toString(){
+		return super.toString() + "You will gain this much food from this Item: " + this.hungerPoints + "\nYou will gain this much liquid from this Item: " + this.thirstPoints + "\nYou will gain this much health from this Item: " + this.healthPoints + "\n";
 	}
 }

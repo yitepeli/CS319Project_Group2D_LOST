@@ -75,7 +75,7 @@ public class Item extends GameObject{
 
 	@Override
 	public String toString(){
-		return super.toString() + "\nDebugging information:\nWeight of the item is: " + weight + "\nVisibility: " + visible + this.console_displayInteractions();
+		return super.toString() + "\nWeight of the item is: " + weight + "\nVisibility: " + visible + this.console_displayInteractions();
 	}
 
 

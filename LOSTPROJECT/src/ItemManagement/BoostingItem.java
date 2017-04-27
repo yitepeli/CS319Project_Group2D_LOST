@@ -5,7 +5,7 @@
 **
 ** Author: Gunduz Huseyn Lee
 ** File created:  25.04.2017
-** Last modified: 25.04.2017
+** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
 
@@ -35,6 +35,11 @@ public class BoostingItem extends Item{
 
 	public int getDefensePointBonus(){
 		return this.defensePointBonus;
+	}
+
+	@Override
+	public String toString(){
+		return super.toString() + "The item's attack bonus is: " + this.attackPointBonus + "\nThe item's defense bonus is: " + this.defensePointBonus + "\n";
 	}
 
 }

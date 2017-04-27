@@ -1,3 +1,14 @@
+/*
+** ItemDriver class
+** This class is used to test the Item classes
+** 
+**
+** Author: Gunduz Huseyn Lee
+** File created:  24.04.2017
+** Last modified: 25.04.2017
+** Last modified by: Gunduz Huseyn Lee
+*/
+
 import java.util.*;
 
 public class ItemDriver{

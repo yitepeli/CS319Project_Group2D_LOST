@@ -1,0 +1,30 @@
+Item types:
+0.Item
+1.Crafatable
+2.Boosting
+3.Tool
+4.Food
+
+************************
+new Item 1
+name::Rock
+desc::It is a simple rock. Nothing really interesting!
+weight::0.2
+renewalTime::10
+renewable::true
+visible::true
+actions::take, craft
+CList::axe, spear
+RList::empty
+
+************************
+new Item 1
+name::Tree
+desc::A very huge tree. What if you could take it?
+weight::12
+renewalTime::10
+renewable::true
+visible::true
+actions::take, craft
+CList::wood
+RList::empty

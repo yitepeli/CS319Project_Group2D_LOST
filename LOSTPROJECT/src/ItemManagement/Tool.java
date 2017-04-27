@@ -6,7 +6,7 @@
 **
 ** Author: Gunduz Huseyn Lee
 ** File created:  25.04.2017
-** Last modified: 25.04.2017
+** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
 
@@ -36,5 +36,26 @@ public class Tool extends BoostingItem{
 
 	public ArrayList<Item> getRequiredItemsList(){
 		return this.requiredItemsList;
+	}
+
+	@Override
+	public String toString(){
+		String result = super.toString();
+
+		if(this.craftableItemsList != null){
+			result = result + "\nHere is what you can craft from this Item:\n";
+			for(Item item : this.craftableItemsList)
+				result = result + item.getName() + "   ";
+			result = result + "\n";
+		}
+
+		if(this.requiredItemsList != null){
+			result = result + "\nHere is what you need to craft this item:\n";
+			for(Item item : this.requiredItemsList)
+				result = result + item.getName() + "   ";
+			result = result + "\n";
+		}
+
+		return result;
 	}
 }
