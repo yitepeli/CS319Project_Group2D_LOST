@@ -8,7 +8,7 @@
 ** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
-
+package ItemManagement;
 import java.util.*;
 
 public class CraftableItem extends Item{

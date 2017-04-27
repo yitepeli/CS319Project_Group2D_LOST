@@ -8,7 +8,7 @@
 ** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
-
+package ItemManagement;
 public class Food extends Item{
 	//Properties
 	private int hungerPoints;

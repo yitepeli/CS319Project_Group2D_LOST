@@ -1,4 +1,6 @@
+package ItemManagement;
 /*
+
 ** Tool Class
 ** Tool class represents all the items that can be crafted, which also affects the player's fighting mechanism. 
 ** For example, spear is a tool, which icreases the attackPoint of the player, when equipped.
@@ -9,6 +11,7 @@
 ** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
+import java.util.*;
 
 public class Tool extends BoostingItem{
 	//Properties

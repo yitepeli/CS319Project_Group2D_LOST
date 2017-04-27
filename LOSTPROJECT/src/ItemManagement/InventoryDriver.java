@@ -14,6 +14,7 @@ import java.util.*;
 public class InventoryDriver{
 
 	public static void main(String[] args){
-
+		ArrayList<Item> items = new ArrayList<Item>();
+		Item item = new Item("Rock", "");
 	}
 }
