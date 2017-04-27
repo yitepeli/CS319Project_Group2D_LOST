@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 ** ItemDriver class
 ** This class is used to test the Item classes
@@ -9,6 +10,9 @@
 ** Last modified by: Gunduz Huseyn Lee
 */
 
+=======
+package ItemManagement;
+>>>>>>> e204829b43dc6e8461eaffb1534834330610acb7
 import java.util.*;
 
 public class ItemDriver{
