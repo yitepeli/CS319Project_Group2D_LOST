@@ -17,6 +17,8 @@ import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -93,6 +95,23 @@ public class SettingsPanel extends JPanel {
 		
 		Component verticalGlue_4 = Box.createVerticalGlue();
 		add(verticalGlue_4);
+		
+		JButton returnMainBtn = new JButton("Main Menu");
+		returnMainBtn.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 JFrame mainFrame= (JFrame) SwingUtilities.getRoot(returnMainBtn.getParent());
+				 mainFrame.getContentPane().removeAll();
+				 mainFrame.getContentPane().add(new mainPanel());
+				 mainFrame.validate();
+				 mainFrame.setVisible(true);
+			}
+		});
+		returnMainBtn.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		returnMainBtn.setForeground(Color.WHITE);
+		returnMainBtn.setContentAreaFilled(false);
+		returnMainBtn.setBackground(Color.BLACK);
+		returnMainBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+		add(returnMainBtn);
 		
 		Component verticalGlue_3 = Box.createVerticalGlue();
 		add(verticalGlue_3);
