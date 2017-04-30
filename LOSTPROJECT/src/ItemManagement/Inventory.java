@@ -180,7 +180,7 @@ public class Inventory{
 	public String console_listItems(){
 		String result = "Here is the items inside the Inventory:\n";
 		for(Item item : this.storedItemList)
-			if(item.isVisible)
+			if(item.isVisible())
 				result = result + item.getName() + "\n";
 
 		return result;
@@ -189,7 +189,7 @@ public class Inventory{
 	public String console_listItemsDetailed(){
 		String result = "Here is the items inside the Inventory:\n";
 		for(Item item : this.storedItemList)
-			if(item.isVisible)
+			if(item.isVisible())
 				result = result + item.toString() + "\n";
 
 		return result;

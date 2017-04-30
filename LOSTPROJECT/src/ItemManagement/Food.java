@@ -9,6 +9,9 @@
 ** Last modified by: Gunduz Huseyn Lee
 */
 package ItemManagement;
+
+import java.util.*;
+
 public class Food extends Item{
 	//Properties
 	private int hungerPoints;
