@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -87,13 +88,24 @@ public class MMenu extends JFrame {
                 g.drawImage(image, 0, 0, null);
             }
 		};
-		//panel.setBackground(Color.BLACK);
+		panel.setBackground(Color.BLACK);
 		panel.setBorder(null);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
+		Component verticalGlue_7 = Box.createVerticalGlue();
+		panel.add(verticalGlue_7);
+		
+		JLabel nameLabel = new JLabel("LOST");
+		nameLabel.setForeground(Color.WHITE);
+		nameLabel.setFont(new Font("Chiller", Font.BOLD, 150));
+		nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panel.add(nameLabel);
+		
 		Component verticalGlue_4 = Box.createVerticalGlue();
 		panel.add(verticalGlue_4);
+		
+		
 		Font font = new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20);
 		JButton newGameBtn = new JButton("New Game");
 		newGameBtn.setForeground(Color.WHITE);
@@ -104,8 +116,8 @@ public class MMenu extends JFrame {
 		newGameBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(newGameBtn);
 		
-		Component verticalGlue = Box.createVerticalGlue();
-		panel.add(verticalGlue);
+		//Component verticalGlue = Box.createVerticalGlue();
+		//panel.add(verticalGlue);
 		
 		JButton loadGameBtn = new JButton("Load Game");
 		loadGameBtn.setForeground(Color.WHITE);
@@ -116,8 +128,8 @@ public class MMenu extends JFrame {
 		loadGameBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(loadGameBtn);
 		
-		Component verticalGlue_1 = Box.createVerticalGlue();
-		panel.add(verticalGlue_1);
+		//Component verticalGlue_1 = Box.createVerticalGlue();
+		//panel.add(verticalGlue_1);
 		
 		JButton settingsBtn = new JButton("Settings");
 		settingsBtn.setForeground(Color.WHITE);
@@ -128,12 +140,17 @@ public class MMenu extends JFrame {
 		settingsBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		settingsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				contentPane.removeAll();
+				contentPane.add(new SettingsPanel());
+				validate();
+		          setVisible(true);
+				
 			}
 		});
 		panel.add(settingsBtn);
 		
-		Component verticalGlue_5 = Box.createVerticalGlue();
-		panel.add(verticalGlue_5);
+		//Component verticalGlue_5 = Box.createVerticalGlue();
+		//panel.add(verticalGlue_5);
 		
 		JButton recordsBtn = new JButton("Records");
 		recordsBtn.setForeground(Color.WHITE);
@@ -144,8 +161,8 @@ public class MMenu extends JFrame {
 		recordsBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(recordsBtn);
 		
-		Component verticalGlue_6 = Box.createVerticalGlue();
-		panel.add(verticalGlue_6);
+		//Component verticalGlue_6 = Box.createVerticalGlue();
+		//panel.add(verticalGlue_6);
 		
 		JButton creditsBtn = new JButton("Credits");
 		creditsBtn.setForeground(Color.WHITE);
@@ -156,8 +173,8 @@ public class MMenu extends JFrame {
 		creditsBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(creditsBtn);
 		
-		Component verticalGlue_2 = Box.createVerticalGlue();
-		panel.add(verticalGlue_2);
+		//Component verticalGlue_2 = Box.createVerticalGlue();
+		//panel.add(verticalGlue_2);
 		
 		JButton helpBtn = new JButton("Help");
 		helpBtn.setForeground(Color.WHITE);
@@ -171,8 +188,8 @@ public class MMenu extends JFrame {
 		Component verticalGlue_3 = Box.createVerticalGlue();
 		panel.add(verticalGlue_3);
 		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.NORTH);
+		//JPanel panel_1 = new JPanel();
+		//contentPane.add(panel_1, BorderLayout.NORTH);
 		
 	}
 	
