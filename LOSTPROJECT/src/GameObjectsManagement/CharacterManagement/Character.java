@@ -3,7 +3,7 @@
  */
 package GameObjectsManagement.CharacterManagement;
 
-import GameObjects.SoundEffect;
+import GameObjectsManagement.SoundEffect;
 import ItemManagement.GameObject;
 import ItemManagement.Inventory;
 
