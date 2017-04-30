@@ -3,6 +3,9 @@ package GameObjects;
 import CharacterManagement.Player;
 
 public abstract class Event extends GameObject {
-
-	 public abstract void playStory(Area a, Player p);
+		
+	 protected boolean missionCompleted;
+	 protected String successMsg = "Congratulations, you completed the story event and survived from the island!";
+	 protected String failureMsg = "You failed, try next time!";
+	 public abstract String playStory(Area a, Player p);
 }

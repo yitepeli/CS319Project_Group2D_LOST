@@ -130,7 +130,8 @@ public class Area extends GameObject {//will be updated!
 	
 	public void addEvent(Event e){
 		
-		eventList.add(e);
-		
+		eventList.add(e);	
 	}
+	
+	public void setCharacter
 }

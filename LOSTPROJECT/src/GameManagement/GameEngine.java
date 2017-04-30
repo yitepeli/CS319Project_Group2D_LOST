@@ -19,6 +19,8 @@ import GameObjects.DragonLiar;
 import GameObjects.RadioTower;
 import DatabaseManagement.DatabaseManager;
 import CharacterManagement.Player;
+import ItemManagement.Item;
+import ItemManagement.CraftableItem;
 import java.util.*;
 import javax.swing.*;
 
@@ -29,6 +31,10 @@ public class GameEngine {
 	Area currentArea;
 	List <Area> areas;
 	Player player;
+	RadioTower radioTower;
+	DragonLiar dragonLiar;
+	SailingAway sailingAway;
+	OldWiseMan oldWiseMan;
 	
 	public GameEngine(){
 		
@@ -48,15 +54,43 @@ public class GameEngine {
 				
 	}
 	
-	public List<String> getCraftableItems(String itemName){
+	public ArrayList<String> getCraftableItems(String itemName){
 		
+		CraftableItem item = (CraftableItem)player.getInventory().getItem(itemName);
+		ArrayList<String> itemListString = new ArrayList<String>();
+		ArrayList<Item> itemListObject = item.getCraftableItemsList();
+			
+		if(player.hasItem(itemName)){
+			
+			for(int i=0; i<itemListObject.size(); i++)
+				itemListString.add(itemListObject.get(i).getName());
+		}
+			return itemListString;	
+	}
+	
+	public ArrayList<String> getRequiredItems(String itemName){
+		          
+		CraftableItem item = (CraftableItem)player.getInventory().getItem(itemName);
+		ArrayList<String> itemListString = new ArrayList<String>();
+		ArrayList<Item> itemListObject = item.getRequiredItemsList();
+			
+		for(int i=0; i<itemListObject.size(); i++)
+			itemListString.add(itemListObject.get(i).getName());
+		
+		return itemListString;	
 	}
 	
 	public boolean craft(String craftedItemName){
 		
-		if(player.hasItem(craftedItemName))
-			player.craft(craftedItemName);
-			
+		ArrayList<String> requiredItems = getRequiredItems(craftedItemName);
+		
+		for(int i=0; i<requiredItems.size(); i++)
+			if(!player.hasItem(requiredItems.get(i)))
+				return false;
+		
+		player.craft(craftedItemName);
+		return true;
+		
 	}
 	
 	public boolean use(String itemName){
@@ -64,6 +98,7 @@ public class GameEngine {
 	}
 	
 	public boolean fight(Character character){
+		
 		
 	}
 	
@@ -108,6 +143,13 @@ public class GameEngine {
 	
 	public boolean buildShelter(){
 		
+		if(!currentArea.isShelterExists() && player.hasItem("Wood") && player.hasItem("Branch")
+				&& player.hasItem("Stone") && player.hasItem("Ropes")){
+			currentArea.setShelterExists(true);
+			return true;
+		}
+		
+		return false;		
 		
 	}
 	
@@ -127,17 +169,7 @@ public class GameEngine {
 	public String enterEvent(String eventName){
 		
 		if(eventName.equals("Old Wise Man"))
-			events.get(0).playStory(currentArea, player);
-			
-		if(eventName.equals("Sailing Away"))
-			events.get(1).playStory(currentArea, player);
-		
-		if(eventName.equals("Radio Tower"))
-			events.get(2).playStory(currentArea, player);
-		
-		if(eventName.equals("Dragon Liar"))
-			events.get(3).playStory(currentArea, player);
-		
+			oldWiseMan.playStory(currentArea, player);
 		
 	}
 	

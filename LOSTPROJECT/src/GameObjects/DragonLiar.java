@@ -4,7 +4,7 @@ import CharacterManagement.Player;
 
 public class DragonLiar extends Event{
 	
-	public void playStory(Area a, Player p){
+	public String playStory(Area a, Player p){
 		
 		
 	}
