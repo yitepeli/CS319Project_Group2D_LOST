@@ -1,4 +1,4 @@
-package CharacterManagement;
+package GameObjectsManagement.CharacterManagement;
 
 import java.util.*;
 import java.io.*;

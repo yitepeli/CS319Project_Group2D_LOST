@@ -1,7 +1,7 @@
 /**
  * 
  */
-package CharacterManagement;
+package GameObjectsManagement.CharacterManagement;
 
 import java.util.ArrayList;
 

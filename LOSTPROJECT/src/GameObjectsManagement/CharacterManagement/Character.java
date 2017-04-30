@@ -1,7 +1,7 @@
 /**
  * 
  */
-package CharacterManagement;
+package GameObjectsManagement.CharacterManagement;
 
 import GameObjects.SoundEffect;
 import ItemManagement.GameObject;
