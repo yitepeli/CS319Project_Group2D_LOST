@@ -1,4 +1,4 @@
-package ItemManagement;
+//package ItemManagement;
 /*
 
 ** Tool Class
@@ -19,15 +19,15 @@ public class Tool extends BoostingItem{
 	private ArrayList<Item> requiredItemsList;
 
 	//Constructors
-	public CraftableItem(String name){
+	public Tool(String name){
 		super(name);
 
 		craftableItemsList = null;
 		requiredItemsList = null;
 	}
 
-	public CraftableItem(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList, int hungerPoints, int thirstPoints, int healthPoints, ArrayList<Item> craftableItemsList, ArrayList<Item> requiredItemsList){
-		super(id, name, description, weight, renewalTime, renewable, visible, actionList, hungerPoints, thirstPoints, healthPoints);
+	public Tool(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList, int attackPointBonus, int defensePointBonus, ArrayList<Item> craftableItemsList, ArrayList<Item> requiredItemsList){
+		super(id, name, description, weight, renewalTime, renewable, visible, actionList, attackPointBonus, defensePointBonus);
 		this.craftableItemsList = craftableItemsList;
 		this.requiredItemsList = requiredItemsList;
 	}

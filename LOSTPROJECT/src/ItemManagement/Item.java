@@ -7,7 +7,7 @@
 ** Last modified: 25.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
-package ItemManagement;
+//package ItemManagement;
 import java.util.*;
 
 public class Item extends GameObject{

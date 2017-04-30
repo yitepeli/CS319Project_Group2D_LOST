@@ -8,7 +8,7 @@
 ** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
-package ItemManagement;
+//package ItemManagement;
 
 import java.util.*;
 
@@ -27,7 +27,7 @@ public class Food extends Item{
 		healthPoints = 0;
 	}
 
-	public BoostingItem(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList, int hungerPoints, int thirstPoints, int healthPoints){
+	public Food(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList, int hungerPoints, int thirstPoints, int healthPoints){
 		super(id, name, description, weight, renewalTime, renewable, visible, actionList);
 		this.hungerPoints = hungerPoints;
 		this.thirstPoints = thirstPoints;
