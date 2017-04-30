@@ -1,11 +1,8 @@
-package enums;
 /**
- * Author: Onur Sönmez
+ * Created by onursonmez 
  *
- * Github: @sonmezonur
- *
- * Description: EnumSet
  */
+
 
 //EnumSet
 
