@@ -13,8 +13,8 @@ import java.util.*;
 
 public class CraftableItem extends Item{
 	//Properties
-	private List<Item> craftableItemsList;
-	private List<Item> requiredItemsList;
+	private ArrayList<Item> craftableItemsList;
+	private ArrayList<Item> requiredItemsList;
 
 	//Constructors
 	public CraftableItem(String name){
