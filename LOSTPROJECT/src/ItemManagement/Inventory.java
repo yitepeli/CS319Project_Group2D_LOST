@@ -1,4 +1,4 @@
-package ItemManagement;
+
 /*
 ** Inventory Class
 
@@ -10,6 +10,8 @@ package ItemManagement;
 ** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
+//package ItemManagement;
+
 import java.util.*;
 
 
@@ -155,6 +157,16 @@ public class Inventory{
 				count++;
 
 		return count;
+	}
+
+	public int getCount(String itemName){
+		int index = this.getItemIndex(itemName);
+		return this.getCount(index);
+	}
+
+	public int getCount(Item item){
+		int index = this.getItemIndex(item.getName());
+		return this.getCount(index);
 	}
 
 	private int getItemIndex(String itemName){
