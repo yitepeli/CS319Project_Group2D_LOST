@@ -6,6 +6,7 @@ package CharacterManagement;
 import java.util.ArrayList;
 
 import ItemManagement.CraftableItem;
+import ItemManagement.Tool;
 import ItemManagement.Item;
 
 /**
@@ -42,14 +43,26 @@ public class Player extends AggresiveCharacter {
 		return false;
 	}
 	
+	public boolean boilWater(){
+		
+		if(this.hasItem("Fire") && this.hasItem("Water"))
+			return true;
+		return false;
+	}
+	
 	public void craft(String itemName){
 		CraftableItem aimedItem = (CraftableItem)this.getInventory().getItem(itemName);
 		ArrayList<Item> requiredItem = aimedItem.getRequiredItemsList();
 		for(int i=0; i<requiredItem.size(); i++){
-			this.getInventory().removeItem(requiredItem.get(i).getName());
+			if(requiredItem.get(i) instanceof Tool){
+				return;
+			}
+			else
+				this.getInventory().removeItem(requiredItem.get(i).getName());
 		}
 		this.addItem(itemName);
 	}
+	
 	
 	/**
 	 * @return the energy

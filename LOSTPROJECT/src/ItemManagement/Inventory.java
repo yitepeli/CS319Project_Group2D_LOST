@@ -1,4 +1,4 @@
-package ItemManagement;
+
 /*
 ** Inventory Class
 
@@ -10,6 +10,8 @@ package ItemManagement;
 ** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
+//package ItemManagement;
+
 import java.util.*;
 
 
@@ -157,6 +159,16 @@ public class Inventory{
 		return count;
 	}
 
+	public int getCount(String itemName){
+		int index = this.getItemIndex(itemName);
+		return this.getCount(index);
+	}
+
+	public int getCount(Item item){
+		int index = this.getItemIndex(item.getName());
+		return this.getCount(index);
+	}
+
 	private int getItemIndex(String itemName){
 		int size = this.storedItemList.size();
 		for(int i = 0; i < size; i++)
@@ -180,7 +192,7 @@ public class Inventory{
 	public String console_listItems(){
 		String result = "Here is the items inside the Inventory:\n";
 		for(Item item : this.storedItemList)
-			if(item.isVisible)
+			if(item.isVisible())
 				result = result + item.getName() + "\n";
 
 		return result;
@@ -189,7 +201,7 @@ public class Inventory{
 	public String console_listItemsDetailed(){
 		String result = "Here is the items inside the Inventory:\n";
 		for(Item item : this.storedItemList)
-			if(item.isVisible)
+			if(item.isVisible())
 				result = result + item.toString() + "\n";
 
 		return result;

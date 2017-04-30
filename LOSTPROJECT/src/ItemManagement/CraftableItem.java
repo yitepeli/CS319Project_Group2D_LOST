@@ -8,7 +8,7 @@
 ** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
-package ItemManagement;
+//package ItemManagement;
 import java.util.*;
 
 public class CraftableItem extends Item{
@@ -24,7 +24,7 @@ public class CraftableItem extends Item{
 		requiredItemsList = null;
 	}
 
-	public CraftableItem(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList, ArrayList<Item> craftableItemsList, ArrayList<Item> requiredItemsList){
+	public CraftableItem(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList, int  ArrayList<Item> craftableItemsList, ArrayList<Item> requiredItemsList){
 		super(id, name, description, weight, renewalTime, renewable, visible, actionList);
 		this.craftableItemsList = craftableItemsList;
 		this.requiredItemsList = requiredItemsList;

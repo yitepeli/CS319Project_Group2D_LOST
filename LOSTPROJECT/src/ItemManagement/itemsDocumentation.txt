@@ -6,25 +6,81 @@ Item types:
 4.Food
 
 ************************
-new Item 1
+type::1
 name::Rock
 desc::It is a simple rock. Nothing really interesting!
 weight::0.2
 renewalTime::10
 renewable::true
-visible::true
 actions::take, craft
-CList::axe, spear
+CList::Axe, Spear
 RList::empty
+attackBonus::0
+defenseBonus::0
+hungerPoints::0
+thirstPoints::0
+healthPoints::0
 
 ************************
-new Item 1
+type::1
 name::Tree
 desc::A very huge tree. What if you could take it?
 weight::12
 renewalTime::10
-renewable::true
-visible::true
+renewable::false
 actions::take, craft
-CList::wood
+CList::Wood
 RList::empty
+attackBonus::0
+defenseBonus::0
+hungerPoints::0
+thirstPoints::0
+healthPoints::0
+
+************************
+type::1
+name::Apple
+desc::A shiny apple! Red one it is! Maybe try eat it?
+weight::1
+renewalTime::0
+renewable::false
+actions::eat
+CList::empty
+RList::empty
+attackBonus::0
+defenseBonus::0
+hungerPoints::10
+thirstPoints::2
+healthPoints::1
+
+************************
+type::1
+name::Wood
+desc::A piece of wood.
+weight::1
+renewalTime::0
+renewable::false
+actions::eat
+CList::Axe, Spear
+RList::Tree, Axe
+attackBonus::0
+defenseBonus::0
+hungerPoints::10
+thirstPoints::2
+healthPoints::1
+
+************************
+type::1
+name::Spear
+desc::A very primitive weapon. Still better that your bare hands!
+weight::
+renewalTime::0
+renewable::false
+actions::eat
+CList::empty
+RList::Wood, Wood, Rock
+attackBonus::10
+defenseBonus::10
+hungerPoints::10
+thirstPoints::2
+healthPoints::1

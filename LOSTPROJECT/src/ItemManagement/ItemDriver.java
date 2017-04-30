@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 /*
 ** ItemDriver class
 ** This class is used to test the Item classes
@@ -11,7 +9,7 @@
 ** Last modified by: Gunduz Huseyn Lee
 */
 
-package ItemManagement;
+//package ItemManagement;
 
 import java.util.*;
 

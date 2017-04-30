@@ -1,4 +1,4 @@
-package ItemManagement;
+//package ItemManagement;
 /*
 ** BoostingItem Class
 ** BoostingItem class represents all the items that effects the player's fighting abilities.

@@ -1,15 +1,20 @@
 package GameObjects;
 
 import enums.AreaType;
+import ItemManagement.Inventory;
+import java.util.*;
 /**
  * Created by onursonmez
+ * Last update: Eren Bilaloglu (inventory instance and inventory methods have been added)
  */
-public class Area {//will be updated!
+public class Area extends GameObject {//will be updated!
 
     private AreaType areaType;
     private Area leftNeighbour,rightNeighbour, upNeighbour, downNeighbour;
     private boolean visited, campFireExists, shelterExists;
     private String description;
+    private Inventory inventory;
+    private List<Event> eventList;
 
     public Area(AreaType areaType){
         this.areaType = areaType;
@@ -104,4 +109,29 @@ public class Area {//will be updated!
     public boolean isShelterExists(){
         return shelterExists;
     }
+    
+	public Inventory getInventory() {
+		return inventory;
+	}
+	/**
+	 * @param inventory the inventory to set
+	 */
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+	}
+	
+	public void removeItem(String itemName){
+		inventory.removeItem(itemName);
+	}
+	
+	public void addItem(String itemName){
+		inventory.addItem(itemName);
+	}
+	
+	public void addEvent(Event e){
+		
+		eventList.add(e);	
+	}
+	
+	public void setCharacter
 }

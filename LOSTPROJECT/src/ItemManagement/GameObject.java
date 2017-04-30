@@ -1,4 +1,4 @@
-package ItemManagement;
+//package ItemManagement;
 /*
 ** GameObject Class
 ** A general class for representing the objects in the game universe.
