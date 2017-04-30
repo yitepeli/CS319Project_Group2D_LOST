@@ -127,4 +127,10 @@ public class Area extends GameObject {//will be updated!
 	public void addItem(String itemName){
 		inventory.addItem(itemName);
 	}
+	
+	public void addEvent(Event e){
+		
+		eventList.add(e);
+		
+	}
 }

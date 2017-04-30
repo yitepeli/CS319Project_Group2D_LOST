@@ -28,20 +28,12 @@ public class GameEngine {
 	MapManager mapManager;
 	Area currentArea;
 	List <Area> areas;
-	List <Event> events;
 	Player player;
 	
 	public GameEngine(){
-		//this may change since area class have eventList
-		Event event1 = new OldWiseMan();
-		Event event2 = new SailingAway();
-		Event event3 = new RadioTower();
-		Event event4 = new DragonLiar();
 		
-		events.add(event1);
-		events.add(event2);
-		events.add(event3);
-		events.add(event4);
+		
+			
 	}
 	
 	public List<Map<String,ImageIcon>> getAreaObjects(){
@@ -62,6 +54,9 @@ public class GameEngine {
 	
 	public boolean craft(String craftedItemName){
 		
+		if(player.hasItem(craftedItemName))
+			player.craft(craftedItemName);
+			
 	}
 	
 	public boolean use(String itemName){
@@ -70,18 +65,22 @@ public class GameEngine {
 	
 	public boolean fight(Character character){
 		
-		
 	}
 	
 	public boolean isCampfireLit(){
 		
-	
+		return currentArea.isCampFireExists();
 		
 	}
 	
 	public boolean makeCampfire(){
 		
+		if(!currentArea.isCampFireExists() && player.hasItem("Fire") && player.hasItem("Wood")){
+			currentArea.setCampFireExists(true);
+			return true;
+		}
 		
+		return false;
 	}
 	
 	public boolean cookMeat(){
@@ -91,24 +90,24 @@ public class GameEngine {
 	
 	public boolean boilWater(){
 		
-		if(player.hasItem("Water") && player.hasItem("Fire")){
-			player.addItem("Boiled Water");
-			player.removeItem("Water");
-			player.removeItem("Fire");
-			return true;
-		}
-			
-		return false;
+		return player.boilWater();
 		
 	}
 	
 	public void rest(int duration){
 		
-		player.setEnergy(player.getEnergy()+duration*2);
+		if(duration == 1)
+			player.setEnergy(player.getEnergy()+10);
 		
+		if(duration == 4)
+			player.setEnergy(player.getEnergy()+40);
+			
+		if(duration == 8)
+			player.setEnergy(player.getEnergy()+80);
 	}
 	
 	public boolean buildShelter(){
+		
 		
 	}
 	

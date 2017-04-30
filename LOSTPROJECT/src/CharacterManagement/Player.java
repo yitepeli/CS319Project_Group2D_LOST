@@ -42,6 +42,13 @@ public class Player extends AggresiveCharacter {
 		return false;
 	}
 	
+	public boolean boilWater(){
+		
+		if(this.hasItem("Fire") && this.hasItem("Water"))
+			return true;
+		return false;
+	}
+	
 	public void craft(String itemName){
 		CraftableItem aimedItem = (CraftableItem)this.getInventory().getItem(itemName);
 		ArrayList<Item> requiredItem = aimedItem.getRequiredItemsList();
@@ -50,6 +57,7 @@ public class Player extends AggresiveCharacter {
 		}
 		this.addItem(itemName);
 	}
+	
 	
 	/**
 	 * @return the energy
