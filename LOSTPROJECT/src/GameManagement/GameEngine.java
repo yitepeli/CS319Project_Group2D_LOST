@@ -76,7 +76,7 @@ public class GameEngine {
 	public ArrayList<String> getRequiredItems(String itemName){
 		          
 		CraftableItem item = (CraftableItem)player.getInventory().getItem(itemName);
-		ArrayList<String> itemListString = new ArrayList<String>();
+		ArrayList<String> itemListString = new ArrayList<>();
 		ArrayList<Item> itemListObject = item.getRequiredItemsList();
 			
 		for(int i=0; i<itemListObject.size(); i++)

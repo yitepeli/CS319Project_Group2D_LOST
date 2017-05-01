@@ -1,0 +1,16 @@
+{
+  "objectName" : "Tree",
+  "objecId" : "2",
+  "description" : "A very huge tree. What if you could take it?",
+  "weight" : "12.0",
+  "renewalTime": "10",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take","craft"],
+  "craftableItemList" : [
+    {
+      "objectName" : "Wood"
+    }
+  ],
+  "requiredItemList" : []
+}

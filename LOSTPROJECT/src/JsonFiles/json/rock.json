@@ -1,0 +1,20 @@
+{
+  "objectName" : "Rock",
+  "objecId" : "1",
+  "description" : "It is a simple rock. Nothing really interesting!",
+  "weight" : "10.0",
+  "renewalTime": "10",
+  "renewable" : "true",
+  "visible" : "true",
+  "actionList" : ["take,craft"],
+  "craftableItemList" : [ 
+    {
+      "objectName" : "Axe"
+    },
+    {
+      "objectName" : "Spear"
+    }
+  ],
+  "requiredItemList" : []
+}
+
