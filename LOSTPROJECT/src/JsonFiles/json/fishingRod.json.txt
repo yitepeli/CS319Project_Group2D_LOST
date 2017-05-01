@@ -1,0 +1,21 @@
+{
+  "objectName" : "Fishing rod",
+  "objecId" : "25",
+  "description" : "Self-explanatory, you can catch fish by using this.",
+  "weight" : "3.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take", "drop"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Stone pieces"
+	},
+
+	{
+		"objectName" : "Rope"
+	}
+
+	]
+	
+}
