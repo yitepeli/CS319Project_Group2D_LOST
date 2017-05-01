@@ -9,6 +9,8 @@
 ** Last modified: 26.04.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
+package GameObjectsManagement.ItemManagement;
+
 import java.util.*;
 
 public class BoostingItem extends Item{

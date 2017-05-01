@@ -11,6 +11,10 @@
 ** Last modified by: Gunduz Huseyn Lee
 */
 //package ItemManagement;
+package GameObjectsManagement.ObjectManagement;
+
+import GameObjectsManagement.ItemManagement.*;
+
 
 import java.util.*;
 

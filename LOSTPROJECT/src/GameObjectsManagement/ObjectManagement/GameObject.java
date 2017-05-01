@@ -14,34 +14,42 @@
 ** To Dos:
 ** 1. Add image property, and add/modify related functions. Can be done after the beta version.
 */
-
+package GameObjectsManagement.ObjectManagement;
 
 public class GameObject{
-	private int id;
-	private String name;
-	private String description;	
+
+	protected long cloudId;
+	protected String objectName;
+	protected String description;
+	protected boolean onCloud;
+	protected int objectId;
+
 
 	/**
 	* Default constructor for the GameObject class
 	*/
 	public GameObject(){
-		this.id = 0;
-		this.name ="";
+		this.objectId = 0;
+		this.objectName ="";
 		this.description = "";
 	}
 
 	public GameObject(int id, String name, String description){
-		this.id = id;
-		this.name = name;
+		this.objectId = id;
+		this.objectName = name;
 		this.description = description;
 	}
 
+	//For database querying...
+	public final static String OBJECT_NAME = "OBJECT_NAME";
+	public final static String OBJECT_ID = "OBJECT_ID";
+
 	public int getId(){
-		return this.id;
+		return this.objectId;
 	}
 
 	public String getName(){
-		return this.name;
+		return this.objectName;
 	}
 
 	public String getDescription(){
@@ -49,11 +57,11 @@ public class GameObject{
 	}
 	
 	public void setId(int id){
-		this.id = id;
+		this.objectId = id;
 	}
 
 	public void setName(String name){
-		this.name = name;
+		this.objectName = name;
 	}
 
 	public void setDescription(String description){
@@ -62,6 +70,23 @@ public class GameObject{
 
 	@Override
 	public String toString(){
-		return "This is a " + this.name + ".\n" + this.description + "\nIts id is " + this.id + ".\n";
+		return "This is a " + this.objectName + ".\n" + this.description + "\nIts id is " + this.objectId + ".\n";
 	}
+
+	public void setCloudId(long cloudId){
+		this.cloudId = cloudId;
+	}
+
+	public long getCloudId(){
+		return cloudId;
+	}
+
+	public void setOnCloud(boolean onCloud){
+		this.onCloud = onCloud;
+	}
+
+	public boolean isOnCloud(){
+		return onCloud;
+	}
+
 }

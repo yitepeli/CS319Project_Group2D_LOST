@@ -1,4 +1,4 @@
-package GameObjects;
+package GameObjectsManagement.ObjectManagement;
 
 /**
  * Author: Onur Sönmez

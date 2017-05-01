@@ -1,5 +1,5 @@
 
-package GameObjects;
+package GameObjectsManagement.MapManagement;
 /**
  * Author: Onur Sönmez
  *

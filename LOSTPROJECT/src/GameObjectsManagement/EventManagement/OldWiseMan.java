@@ -1,6 +1,7 @@
-package GameObjects;
+package GameObjectsManagement.EventManagement;
 
-import CharacterManagement.Player;
+import GameObjectsManagement.AreaManagement.*;
+import GameObjectsManagement.CharacterManagement.*;
 
 public class OldWiseMan extends Event{
 

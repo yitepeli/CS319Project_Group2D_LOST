@@ -1,6 +1,8 @@
-package GameObjects;
+package GameObjectsManagement.EventManagement;
 
-import CharacterManagement.Player;
+import GameObjectsManagement.ObjectManagement.*;
+import GameObjectsManagement.AreaManagement.*;
+import GameObjectsManagement.CharacterManagement.*;
 
 public abstract class Event extends GameObject {
 		

@@ -8,6 +8,10 @@
 ** Last modified by: Gunduz Huseyn Lee
 */
 //package ItemManagement;
+package GameObjectsManagement.ItemManagement;
+
+import GameObjectsManagement.ObjectManagement.*;
+
 import java.util.*;
 
 public class Item extends GameObject{
@@ -17,6 +21,10 @@ public class Item extends GameObject{
 	private boolean renewable;	
 	private boolean visible;	
 	private ArrayList<String> actionList;
+
+	//for database querying
+	public static final String VISIBLE = "VISIBLE";
+
 
 	//Constructors
 	public Item(String name){

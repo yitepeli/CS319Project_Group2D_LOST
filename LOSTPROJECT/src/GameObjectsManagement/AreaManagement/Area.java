@@ -1,7 +1,10 @@
-package GameObjects;
+package GameObjectsManagement.AreaManagement;
 
-import enums.AreaType;
-import ItemManagement.Inventory;
+//external packages
+import GameObjectsManagement.ObjectManagement.*;
+import GameObjectsManagement.EventManagement.*;
+
+
 import java.util.*;
 /**
  * Created by onursonmez

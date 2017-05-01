@@ -2,6 +2,7 @@
  * Created by onursonmez 
  *
  */
+package GameObjectsManagement.AreaManagement;
 
 
 //EnumSet

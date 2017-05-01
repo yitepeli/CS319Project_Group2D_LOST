@@ -9,6 +9,7 @@
 ** Last modified by: Gunduz Huseyn Lee
 */
 //package ItemManagement;
+package GameObjectsManagement.ItemManagement;
 
 import java.util.*;
 

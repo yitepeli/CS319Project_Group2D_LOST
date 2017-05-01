@@ -1,4 +1,4 @@
-package Helper;
+package GameObjectsManagement.MapManagement;
 
 public class Pair{
 
