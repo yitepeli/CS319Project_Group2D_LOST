@@ -3,8 +3,8 @@ package GameManagement;
 /**
  * Created by onursonmez on 23/04/2017.
  */
-import enums.AreaType;
-import GameObjects.Area;
+import GameObjectsManagement.AreaManagement.*;
+
 
 public class UpdateManager {
 

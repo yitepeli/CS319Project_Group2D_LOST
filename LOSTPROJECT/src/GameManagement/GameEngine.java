@@ -11,16 +11,12 @@ package GameManagement;
 ** Last modified by: Eren Bilaloglu
 */
 
-import GameObjects.Area;
-import GameObjects.Event;
-import GameObjects.OldWiseMan;
-import GameObjects.SailingAway;
-import GameObjects.DragonLiar;
-import GameObjects.RadioTower;
+import GameObjectsManagement.AreaManagement.*;
+import GameObjectsManagement.EventManagement.*;
+import GameObjectsManagement.CharacterManagement.*;
+
 import DatabaseManagement.DatabaseManager;
-import CharacterManagement.Player;
-import ItemManagement.Item;
-import ItemManagement.CraftableItem;
+
 import java.util.*;
 import javax.swing.*;
 

@@ -9,9 +9,8 @@ package GameManagement;
  */
 
 //importing external files
-import GameObjects.Map;
-import GameObjects.Area;
-import Helper.PixelPair;
+import GameObjectsManagement.MapManagement.*;
+import GameObjectsManagement.AreaManagement.*;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
