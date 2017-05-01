@@ -1,12 +1,12 @@
 {
   "objectName" : "Apple",
-  "objecId" : "2",
+  "objecId" : "1",
   "description" : "A shiny apple! Red one it is! Maybe try eat it?",
   "weight" : "10.0",
-  "renewalTime": "10",
-  "renewable" : "false",
+  "renewalTime": "8",
+  "renewable" : "true",
   "visible" : "true",
-  "actionList" : ["eat"],
+  "actionList" : ["eat","take","drop"],
   "hungerPoints" : 10,
   "thirstPoints" : 2,
   "healthPoints" : 1

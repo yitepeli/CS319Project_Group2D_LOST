@@ -1,0 +1,24 @@
+{
+  "objectName" : "Axe",
+  "objectId" : "19",
+  "description" : "Primitive tool that helps to craft wood pieces from tree!",
+  "weight" : "5.7",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take","craft","drop"],
+  "attackPointBonus" : 3,
+  "defensePointBonus" : 5,
+  "craftableItemList" : [ 
+    {
+      "objectName" : "Wood"
+    }
+  ],
+  "requiredItemList" : [
+    {
+      "objectName" : "Stone"
+    },
+    {
+      "objectName" : "Wood"
+    }
+  ]
+}

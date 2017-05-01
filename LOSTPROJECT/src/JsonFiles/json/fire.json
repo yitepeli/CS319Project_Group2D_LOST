@@ -1,0 +1,22 @@
+{
+  "objectName" : "Fire!",
+  "objectId" : "13",
+  "description" : "Fire can heal you...!",
+  "weight" : "0.0",
+  "renewalTime": "3",
+  "renewable" : "false",
+  "visible" : "false",
+  "actionList" : [],
+  "craftableItemList" : [ ],
+  "requiredItemList" : [
+    {
+      "objectName" : "Sand"
+    },
+    {
+      "objectName" : "Metal Pieces"
+    },
+    {
+      "objectName" : "Branch"
+    }
+  ]
+}

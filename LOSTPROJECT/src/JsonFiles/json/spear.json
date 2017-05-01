@@ -1,13 +1,21 @@
 {
   "objectName" : "Spear",
-  "onCloud" : "false",
-  "objecId" : "1",
+  "objectId" : "3",
   "description" : "A very primitive weapon. Still better that your bare hands!",
-  "weight" : "10.0",
+  "weight" : "5.2",
   "renewalTime": "10",
-  "renewable" : "true",
-  "visible" : "true",
+  "renewable" : "false",
+  "visible" : "false",
   "actionList" : ["take,craft"],
   "attackPointBonus" : 10,
-  "defensePointBonus" : 20
+  "defensePointBonus" : 20,
+  "craftableItemList" : [ ],
+  "requiredItemList" : [
+    {
+      "objectName" : "Wood"
+    },
+    {
+      "objectName" : "Rock"
+    }
+  ]
 }

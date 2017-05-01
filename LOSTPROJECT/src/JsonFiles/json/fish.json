@@ -1,0 +1,22 @@
+{
+  "objectName" : "Fish",
+  "objectId" : "14",
+  "description" : "You are in seaside. What about catching fish!",
+  "weight" : "1.0",
+  "renewalTime": "2",
+  "renewable" : "true",
+  "visible" : "true",
+  "actionList" : ["take","craft","drop"],
+  "craftableItemList" : [
+    {
+      "objectName" : "Fish Meat"
+    }
+  ],
+  "requiredItemList" : [
+    {
+      "objectName" : "Fishing Road"
+    }
+  ]
+}
+
+

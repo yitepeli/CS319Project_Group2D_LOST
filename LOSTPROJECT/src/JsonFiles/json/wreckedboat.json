@@ -1,0 +1,16 @@
+{
+  "objectName" : "Wrecked Boat",
+  "objectId" : "15",
+  "description" : "Wrecked boat... What if you could take it?",
+  "weight" : "13.0",
+  "renewalTime": "10",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take","craft","drop"],
+  "craftableItemList" : [
+    {
+      "objectName" : "Boot"
+    }
+  ],
+  "requiredItemList" : []
+}

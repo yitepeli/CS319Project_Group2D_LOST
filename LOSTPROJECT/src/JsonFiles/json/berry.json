@@ -1,0 +1,13 @@
+{
+  "objectName" : "Berry",
+  "objectId" : "10",
+  "description" : "A fresh berry! A little bit sweety!",
+  "weight" : "10.0",
+  "renewalTime": "5",
+  "renewable" : "true",
+  "visible" : "true",
+  "actionList" : ["take","eat","drop"],
+  "hungerPoints" : 4,
+  "thirstPoints" : 3,
+  "healthPoints" : 1
+}
