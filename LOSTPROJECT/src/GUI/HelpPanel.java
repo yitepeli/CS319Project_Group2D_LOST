@@ -2,8 +2,10 @@ package GUI;
 
 import javax.swing.JPanel;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -21,6 +23,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class HelpPanel extends JPanel {
 
@@ -48,12 +57,29 @@ public class HelpPanel extends JPanel {
 		Component verticalGlue_1 = Box.createVerticalGlue();
 		add(verticalGlue_1);
 		
-		JLabel lblNewLabel = new JLabel("Open Online Wiki for taking guidelines about game");
-		lblNewLabel.setIcon(new ImageIcon(HelpPanel.class.getResource("/GUI/link-512.png")));
-		lblNewLabel.setBackground(Color.BLACK);
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(lblNewLabel);
+		JLabel wikiLabel = new JLabel("Open Online Wiki for taking guidelines about game");
+		wikiLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://www.google.com").toURI());
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		wikiLabel.setIcon(new ImageIcon(HelpPanel.class.getResource("/GUI/link-512.png")));
+		wikiLabel.setBackground(Color.BLACK);
+		wikiLabel.setForeground(Color.WHITE);
+		wikiLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		add(wikiLabel);
 		
 		Component verticalGlue_4 = Box.createVerticalGlue();
 		add(verticalGlue_4);
@@ -65,8 +91,8 @@ public class HelpPanel extends JPanel {
 		returnMainBtn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
 				 JFrame mainFrame= (JFrame) SwingUtilities.getRoot(returnMainBtn.getParent());
-				 mainFrame.getContentPane().removeAll();
-				 mainFrame.getContentPane().add(new mainPanel());
+				 CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+					layout.show(mainFrame.getContentPane(), "main");
 				 mainFrame.validate();
 				 mainFrame.setVisible(true);
 			}

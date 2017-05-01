@@ -5,6 +5,7 @@ package GUI;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
+import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Color;
@@ -70,13 +71,13 @@ public class SettingsPanel extends JPanel {
 		soundBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		soundBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(isMuted){
+				if(isMuted==false){
 					soundBtn.setIcon(new ImageIcon(SettingsPanel.class.getResource("/GUI/mutedspeaker.png")));
-					isMuted=false;
+					isMuted=true;
 				}
 				else{
 					soundBtn.setIcon(new ImageIcon(SettingsPanel.class.getResource("/GUI/speaker1.png")));
-					isMuted=true;
+					isMuted=false;
 				}
 			}
 		});
@@ -99,11 +100,11 @@ public class SettingsPanel extends JPanel {
 		JButton returnMainBtn = new JButton("Main Menu");
 		returnMainBtn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 JFrame mainFrame= (JFrame) SwingUtilities.getRoot(returnMainBtn.getParent());
-				 mainFrame.getContentPane().removeAll();
-				 mainFrame.getContentPane().add(new mainPanel());
-				 mainFrame.validate();
-				 mainFrame.setVisible(true);
+				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(returnMainBtn.getParent());
+				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+				layout.show(mainFrame.getContentPane(), "main");
+				mainFrame.validate();
+				mainFrame.setVisible(true);
 			}
 		});
 		returnMainBtn.setFont(new Font("Sitka Text", Font.BOLD, 15));
