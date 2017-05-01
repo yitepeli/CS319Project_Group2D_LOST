@@ -5,9 +5,7 @@ package GameObjectsManagement.CharacterManagement;
 
 import java.util.ArrayList;
 
-import ItemManagement.CraftableItem;
-import ItemManagement.Tool;
-import ItemManagement.Item;
+import GameObjectsManagement.ItemManagement.*;
 
 /**
  * @author Yasin

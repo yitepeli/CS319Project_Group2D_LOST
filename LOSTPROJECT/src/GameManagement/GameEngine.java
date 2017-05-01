@@ -13,7 +13,10 @@ package GameManagement;
 
 import GameObjectsManagement.AreaManagement.*;
 import GameObjectsManagement.EventManagement.*;
+import GameObjectsManagement.CharacterManagement.Character;
 import GameObjectsManagement.CharacterManagement.*;
+
+import GameObjectsManagement.ItemManagement.*;
 
 import DatabaseManagement.DatabaseManager;
 
@@ -22,20 +25,26 @@ import javax.swing.*;
 
 public class GameEngine {
 
-	DatabaseManager databaseManager;
-	MapManager mapManager;
-	Area currentArea;
-	List <Area> areas;
-	Player player;
+	private DatabaseManager databaseManager;
+	private MapManager mapManager;
+	private UpdateManager updateManager;
+	private Area positionOfUser;
+	private Player player;
 	RadioTower radioTower;
 	DragonLiar dragonLiar;
 	SailingAway sailingAway;
 	OldWiseMan oldWiseMan;
 	
 	public GameEngine(){
-		
-		
-			
+		String uniqueID = UUID.randomUUID().toString();
+		databaseManager = new DatabaseManager(uniqueID);
+		updateManager = new UpdateManager();
+		mapManager = new MapManager();
+	}
+
+	public void navigate(String direction){
+
+
 	}
 	
 	public List<Map<String,ImageIcon>> getAreaObjects(){
@@ -100,14 +109,14 @@ public class GameEngine {
 	
 	public boolean isCampfireLit(){
 		
-		return currentArea.isCampFireExists();
+		return positionOfUser.isCampFireExists();
 		
 	}
 	
 	public boolean makeCampfire(){
 		
-		if(!currentArea.isCampFireExists() && player.hasItem("Fire") && player.hasItem("Wood")){
-			currentArea.setCampFireExists(true);
+		if(!positionOfUser.isCampFireExists() && player.hasItem("Fire") && player.hasItem("Wood")){
+			positionOfUser.setCampFireExists(true);
 			return true;
 		}
 		
@@ -139,20 +148,16 @@ public class GameEngine {
 	
 	public boolean buildShelter(){
 		
-		if(!currentArea.isShelterExists() && player.hasItem("Wood") && player.hasItem("Branch")
+		if(!positionOfUser.isShelterExists() && player.hasItem("Wood") && player.hasItem("Branch")
 				&& player.hasItem("Stone") && player.hasItem("Ropes")){
-			currentArea.setShelterExists(true);
+			positionOfUser.setShelterExists(true);
 			return true;
 		}
 		
 		return false;		
 		
 	}
-	
-	public boolean navigate(String direction){
-		
 
-	}
 	
 	public boolean isGameOver(){
 		
@@ -165,7 +170,7 @@ public class GameEngine {
 	public String enterEvent(String eventName){
 		
 		if(eventName.equals("Old Wise Man"))
-			oldWiseMan.playStory(currentArea, player);
+			oldWiseMan.playStory(positionOfUser, player);
 		
 	}
 	
