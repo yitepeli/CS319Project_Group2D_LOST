@@ -1,9 +1,0 @@
-{
-  "objectName" : "Metal wires",
-  "objecId" : "30",
-  "description" : "Radio tower's missing pieces!",
-  "weight" : "12.0",
-  "renewable" : "false",
-  "visible" : "true",
-  "actionList" : ["take", "drop"]	
-}
