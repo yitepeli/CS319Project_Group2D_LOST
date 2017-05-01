@@ -1,0 +1,16 @@
+{
+  "objectName" : "Grass",
+  "objectId" : "8",
+  "description" : "Grass! Close to sailing...",
+  "weight" : "0.5",
+  "renewalTime": "7",
+  "renewable" : "true",
+  "visible" : "true",
+  "actionList" : ["take","craft","drop"],
+  "craftableItemList" : [ 
+    {
+      "objectName" : "Sail"
+    }
+  ],
+  "requiredItemList" : []
+}

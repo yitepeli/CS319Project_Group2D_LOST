@@ -1,0 +1,15 @@
+{
+  "objectName" : "Metal Pieces",
+  "objectId" : "11",
+  "description" : "Metal pieces can be used for creating swords!",
+  "weight" : "2.1",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take","craft","drop"],
+  "craftableItemList" : [
+    {
+      "objectName" : "Sword"
+    }
+  ],
+  "requiredItemList" : []
+}

@@ -1,0 +1,19 @@
+{
+  "objectName" : "Hammer",
+  "objectId" : "17",
+  "description" : "Hammer! Not provide much attack contribution, still can be used in some special cases! Search..",
+  "weight" : "11.0",
+  "renewable" : "false",
+  "visible" : "false",
+  "actionList" : ["take","craft","drop"],
+  "attackPointBonus" : 1,
+  "defensePointBonus" : 5,
+  "requiredItemList" : [
+    {
+      "objectName" : "Stone"
+    },
+    {
+      "objectName" : "Wood"
+    }
+  ]
+}

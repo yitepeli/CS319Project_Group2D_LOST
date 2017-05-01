@@ -1,0 +1,16 @@
+{
+  "objectName" : "Sand",
+  "objectId" : "12",
+  "description" : "You are in beach and sand can be observed in every piece of land!",
+  "weight" : "0.0",
+  "renewalTime": "20",
+  "renewable" : "true",
+  "visible" : "true",
+  "actionList" : ["take","drop"],
+  "craftableItemList" : [
+    {
+      "objectName" : "Fire"
+    }
+  ],
+  "requiredItemList" : []
+}
