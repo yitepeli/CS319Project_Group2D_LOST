@@ -9,6 +9,7 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
+import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -79,22 +80,24 @@ public class creditsPanel extends JPanel {
 		Component verticalGlue_3 = Box.createVerticalGlue();
 		add(verticalGlue_3);
 		
-		JButton returnMainBtn = new JButton("Main Menu");
-		returnMainBtn.addActionListener(new ActionListener() {
+		JButton mainBtn = new JButton("Main Menu");
+		mainBtn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 JFrame mainFrame= (JFrame) SwingUtilities.getRoot(returnMainBtn.getParent());
-				 mainFrame.getContentPane().removeAll();
-				 mainFrame.getContentPane().add(new mainPanel());
+				 JFrame mainFrame= (JFrame) SwingUtilities.getRoot(mainBtn.getParent());
+				 CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+					layout.show(mainFrame.getContentPane(), "main");
 				 mainFrame.validate();
 				 mainFrame.setVisible(true);
 			}
 		});
-		returnMainBtn.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		returnMainBtn.setForeground(Color.WHITE);
-		returnMainBtn.setContentAreaFilled(false);
-		returnMainBtn.setBackground(Color.BLACK);
-		returnMainBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(returnMainBtn);
+		
+		//asdasdsadsadadasd
+		mainBtn.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		mainBtn.setForeground(Color.WHITE);
+		mainBtn.setContentAreaFilled(false);
+		mainBtn.setBackground(Color.BLACK);
+		mainBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+		add(mainBtn);
 		
 		Component verticalGlue_2 = Box.createVerticalGlue();
 		add(verticalGlue_2);

@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -66,6 +67,17 @@ public class mainPanel extends JPanel {
 		newGameBtn.setContentAreaFilled(false);
 		newGameBtn.setBorderPainted(false);
 		newGameBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+		newGameBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(newGameBtn.getParent());
+				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+				layout.show(mainFrame.getContentPane(), "game");
+				mainFrame.validate();
+				mainFrame.setVisible(true);
+				
+			}
+		});
 		add(newGameBtn);
 		
 		//Component verticalGlue = Box.createVerticalGlue();
@@ -93,8 +105,8 @@ public class mainPanel extends JPanel {
 		settingsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(settingsBtn.getParent());
-				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new SettingsPanel());
+				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+				layout.show(mainFrame.getContentPane(), "settings");
 				mainFrame.validate();
 				mainFrame.setVisible(true);
 				
@@ -112,6 +124,16 @@ public class mainPanel extends JPanel {
 		recordsBtn.setContentAreaFilled(false);
 		recordsBtn.setBorderPainted(false);
 		recordsBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+		recordsBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(recordsBtn.getParent());
+				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+				layout.show(mainFrame.getContentPane(), "records");
+				mainFrame.validate();
+		        mainFrame.setVisible(true);
+				
+			}
+		});
 		add(recordsBtn);
 		
 		//Component verticalGlue_6 = Box.createVerticalGlue();
@@ -127,8 +149,8 @@ public class mainPanel extends JPanel {
 		creditsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(creditsBtn.getParent());
-				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new creditsPanel());
+				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+				layout.show(mainFrame.getContentPane(), "credits");
 				mainFrame.validate();
 		        mainFrame.setVisible(true);
 				
@@ -149,8 +171,8 @@ public class mainPanel extends JPanel {
 		helpBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(helpBtn.getParent());
-				mainFrame.getContentPane().removeAll();
-				mainFrame.getContentPane().add(new HelpPanel());
+				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+				layout.show(mainFrame.getContentPane(), "help");
 				mainFrame.validate();
 		        mainFrame.setVisible(true);
 				
