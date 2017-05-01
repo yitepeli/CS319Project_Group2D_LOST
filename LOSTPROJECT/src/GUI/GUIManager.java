@@ -4,6 +4,7 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -45,7 +46,12 @@ public class GUIManager extends JFrame {
 	private CardLayout cards;
 	private boolean isSoundActive;
 	private JPanel contentPane;
-
+	private mainPanel mainPanel;
+	private HelpPanel helpPanel;
+	private SettingsPanel settingsPanel;
+	private gamePanel gamePanel;
+	private recordsPanel recordsPanel;
+	private creditsPanel creditsPanel;
 	/**
 	 * Launch the application.
 	 */
@@ -66,27 +72,29 @@ public class GUIManager extends JFrame {
 	 * Create the frame.
 	 */
 	public GUIManager() {
-
+		setName("mainFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
+		setMinimumSize(new Dimension(800,600));
 		contentPane = new JPanel();
 		cards = new CardLayout(0, 0);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setLayout(cards);
 		
-		mainPanel mainPanel = new mainPanel();
-		HelpPanel helpPanel = new HelpPanel();
-		SettingsPanel settingsPanel = new SettingsPanel();
-		gamePanel gamePanel = new gamePanel();
-		recordsPanel recordsPanel = new recordsPanel();
-		creditsPanel creditsPanel = new creditsPanel();
+		mainPanel = new mainPanel();
+		helpPanel = new HelpPanel();
+		settingsPanel = new SettingsPanel();
+		gamePanel = new gamePanel();
+		recordsPanel = new recordsPanel();
+		creditsPanel = new creditsPanel();
 		contentPane.add(mainPanel, "main");
 		contentPane.add(settingsPanel, "settings");
 		contentPane.add(gamePanel, "game");
 		contentPane.add(helpPanel, "help");
 		contentPane.add(recordsPanel, "records");
 		contentPane.add(creditsPanel, "credits");
+		//gamePanel.setSize();
 		
 		cards.show(contentPane, "main");
 		
@@ -100,6 +108,30 @@ public class GUIManager extends JFrame {
 		//JPanel panel_1 = new JPanel();
 		//contentPane.add(panel_1, BorderLayout.NORTH);
 		
+	}
+
+	public mainPanel getMainPanel() {
+		return mainPanel;
+	}
+
+	public HelpPanel getHelpPanel() {
+		return helpPanel;
+	}
+
+	public SettingsPanel getSettingsPanel() {
+		return settingsPanel;
+	}
+
+	public gamePanel getGamePanel() {
+		return gamePanel;
+	}
+
+	public recordsPanel getRecordsPanel() {
+		return recordsPanel;
+	}
+
+	public creditsPanel getCreditsPanel() {
+		return creditsPanel;
 	}
 
 	/**

@@ -97,14 +97,19 @@ public class SettingsPanel extends JPanel {
 		Component verticalGlue_4 = Box.createVerticalGlue();
 		add(verticalGlue_4);
 		
-		JButton returnMainBtn = new JButton("Main Menu");
+		JButton returnMainBtn = new JButton("Go Back");
 		returnMainBtn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
 				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(returnMainBtn.getParent());
-				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
-				layout.show(mainFrame.getContentPane(), "main");
-				mainFrame.validate();
-				mainFrame.setVisible(true);
+				if(mainFrame.getName()=="popUpFrame"){
+					mainFrame.dispose();
+				}
+				else{
+					CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+					layout.show(mainFrame.getContentPane(), "main");
+					mainFrame.validate();
+					mainFrame.setVisible(true);
+				}
 			}
 		});
 		returnMainBtn.setFont(new Font("Sitka Text", Font.BOLD, 15));

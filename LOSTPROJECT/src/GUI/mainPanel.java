@@ -90,6 +90,17 @@ public class mainPanel extends JPanel {
 		loadGameBtn.setContentAreaFilled(false);
 		loadGameBtn.setBorderPainted(false);
 		loadGameBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+		loadGameBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(newGameBtn.getParent());
+				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+				layout.show(mainFrame.getContentPane(), "new");
+				mainFrame.validate();
+				mainFrame.setVisible(true);
+				
+			}
+		});
 		add(loadGameBtn);
 		
 		//Component verticalGlue_1 = Box.createVerticalGlue();

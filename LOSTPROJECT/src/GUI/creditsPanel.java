@@ -80,14 +80,19 @@ public class creditsPanel extends JPanel {
 		Component verticalGlue_3 = Box.createVerticalGlue();
 		add(verticalGlue_3);
 		
-		JButton mainBtn = new JButton("Main Menu");
+		JButton mainBtn = new JButton("Go Back");
 		mainBtn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 JFrame mainFrame= (JFrame) SwingUtilities.getRoot(mainBtn.getParent());
-				 CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(mainBtn.getParent());
+				if(mainFrame.getName()=="popUpFrame"){
+					mainFrame.dispose();
+				}
+				else{
+					CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
 					layout.show(mainFrame.getContentPane(), "main");
-				 mainFrame.validate();
-				 mainFrame.setVisible(true);
+					mainFrame.validate();
+					mainFrame.setVisible(true);
+				}
 			}
 		});
 		
