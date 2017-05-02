@@ -71,13 +71,13 @@ public class UpdateManager {
 
                 ArrayList<Item> itemList = databaseManager.listItems(isNewGame);
 
-                ArrayList<Character> characterList = databaseManager.listCharacters(isNewGame);
+         //       ArrayList<Character> characterList = databaseManager.listCharacters(isNewGame);
 
                 Inventory areaInventory = new Inventory();
                 areaInventory.setStoredItemList(itemList);
 
                 area.setInventory(areaInventory);
-                area.setCharacterList(characterList);
+             //   area.setCharacterList(characterList);
 
 
                 if (area.getRightNeighbour() != null) {

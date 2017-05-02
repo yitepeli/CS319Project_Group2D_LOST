@@ -1,3 +1,0 @@
-Pig.json
-Rabbit.json
-Rabbit.json

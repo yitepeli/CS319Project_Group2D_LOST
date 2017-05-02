@@ -1,8 +1,8 @@
 {
-  "objectName":"Boar",
-  "objectId" : "122",
-  "description" : "Boar! Aggresive animal that attacks all strangers in the island...  ",
+  "objectName":"Deer",
+  "objectId" : "103",
+  "description" : "More than monster! This animal is one of the robust animal of island environment. May have excellent defense point",
   "health" : "90",
-  "defense" : "120",
-  "attack" : "55"
+  "attack" : "22",
+  "defense" : "42"
 }
