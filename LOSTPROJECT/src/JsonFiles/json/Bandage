@@ -1,0 +1,22 @@
+{
+  "objectName" : "Bandage",
+  "objecId" : "33",
+  "description" : "Heals your wounds",
+  "weight" : "2.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take", "drop"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Moss"
+	},
+
+	{
+		"objectName" : "Moss"
+	}
+
+	],	
+  "healthPoints" : "15"
+
+}
