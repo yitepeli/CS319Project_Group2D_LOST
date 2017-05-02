@@ -1,0 +1,8 @@
+{
+  "objectName":"Polar Bear",
+  "objectId" : "102",
+  "description" : "Wildest animal of iceland! Better not to come any closer :)",
+  "health" : "100",
+  "attack" : "68",
+  "defense" : "21"
+}

@@ -1,0 +1,8 @@
+{
+  "objectName":"Exotic Bird",
+  "objectId" : "111",
+  "description" : "Exotic Bird! Seems like you are closer to the volcano zone! Take careful.",
+  "health" : "80",
+  "attack" : "30",
+  "defense" : "40"
+}

@@ -1,0 +1,7 @@
+{
+  "objectName":"Pig",
+  "objectId" : "104",
+  "description" : "Harmless animal, even they are not supplier!",
+  "health" : "5",
+  "defense" : "10"
+}

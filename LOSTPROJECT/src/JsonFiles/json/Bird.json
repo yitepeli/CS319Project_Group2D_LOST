@@ -1,0 +1,7 @@
+{
+  "objectName":"Bird",
+  "objectId" : "110",
+  "description" : "Birds take advantage of their capabilities! Never easy to hunt flying animal... ",
+  "health" : "10",
+  "defense" : "30"
+}

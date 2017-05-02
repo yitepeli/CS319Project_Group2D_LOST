@@ -1,0 +1,8 @@
+{
+  "objectName":"Seal",
+  "objectId" : "108",
+  "description" : "Do not believe the illusions, these animals are stronger than whay they are seen. Better do not close",
+  "health" : "90",
+  "attack" : "40",
+  "defense" : "30"
+}
