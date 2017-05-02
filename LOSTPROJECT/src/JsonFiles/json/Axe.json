@@ -1,0 +1,18 @@
+{
+  "objectName" : "Axe",
+  "objectId" : "5",
+  "description" : "Camfire is near on you! Hint: Branch can be used for sitting shelter... ",
+  "weight" : "0.8",
+  "renewalTime": "2",
+  "renewable" : "true",
+  "visible" : "true",
+  "actionList" : ["take","craft","drop"],
+  "attackPointBonus" : 10,
+  "defensePointBonus" : 20,
+  "craftableItemList" : [ 
+    {
+      "objectName" : "Shelter"
+    }
+  ],
+  "requiredItemList" : []
+}
