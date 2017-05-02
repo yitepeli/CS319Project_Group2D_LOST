@@ -19,7 +19,6 @@ import GameObjectsManagement.CharacterManagement.*;
 import GameObjectsManagement.ItemManagement.*;
 
 import DatabaseManagement.DatabaseManager;
-import com.sun.org.apache.regexp.internal.RE;
 
 import java.util.*;
 import javax.swing.*;
@@ -108,6 +107,65 @@ public class GameEngine {
 		player.craft(craftedItemName);
 		return true;
 		
+	}
+	
+	
+	public boolean fight(Character character){
+		
+		if(player.getHealth() <= 0 || character.getHealth() <= 0)
+			return false;
+	
+		else{
+			
+			Random randomGen = new Random();
+			int escapeChance = randomGen.nextInt(3)+1;
+			
+			if(escapeChance == 1){				
+				System.out.println("You missed your shot! " + character.getName() + " did not get any damage!");
+				
+				if(character instanceof AggresiveCharacter){
+					if(player.getAttack() == character.getDefense())
+						player.updateHealth(-10);
+					
+					if(player.getAttack() < character.getDefense())
+						player.updateHealth(-Math.abs((player.getAttack()-character.getDefense()))/2);
+					
+					if(player.getAttack() > character.getDefense())
+						player.updateHealth(-player.getAttack());			
+					}	
+				}
+			
+			else{
+				
+				if(player.getAttack() == character.getDefense())
+					character.updateHealth(-10);
+				
+				if(player.getAttack() < character.getDefense())
+					character.updateHealth(-Math.abs((player.getAttack()-character.getDefense()))/2);
+				
+				if(player.getAttack() > character.getDefense())
+					character.updateHealth(-player.getAttack());
+				
+				if(character instanceof AggresiveCharacter){
+					if(player.getAttack() == character.getDefense())
+						player.updateHealth(-10);
+					
+					if(player.getAttack() < character.getDefense())
+						player.updateHealth(-Math.abs((player.getAttack()-character.getDefense()))/2);
+					
+					if(player.getAttack() > character.getDefense())
+						player.updateHealth(-player.getAttack());			
+					}	
+				}
+		
+			//if character dies, player gets all of its items
+			if(character.getHealth() <= 0){
+				ArrayList<Item> characterItems = character.getInventory().getStoredItems();
+				for(int i=0; i<characterItems.size(); i++)
+					player.addItem(characterItems.get(i).getName());			
+			}	
+			return true;		
+		}	
 	}
 
 	
