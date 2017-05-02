@@ -1,6 +1,6 @@
 {
   "objectName" : "Fishing rod",
-  "objecId" : "25",
+  "objectId" : "25",
   "description" : "Self-explanatory, you can catch fish by using this.",
   "weight" : "3.0",
   "renewable" : "false",

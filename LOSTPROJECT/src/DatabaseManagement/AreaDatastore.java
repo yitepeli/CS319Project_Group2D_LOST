@@ -1,8 +1,12 @@
 package DatabaseManagement;
 import com.google.cloud.datastore.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import GameObjectsManagement.ItemManagement.*;
+import GameObjectsManagement.ObjectManagement.*;
+import GameObjectsManagement.CharacterManagement.Character;
 /**
  * Created by onursonmez
  */
@@ -10,14 +14,15 @@ public class AreaDatastore extends ParentDatastore{
 
     //avoiding both methods have same erasure!
 
-    private static ItemDatastore itemDatastore;
-    private static CharacterDatastore characterDatastore;
+    private static CloudStorageDao<Item> itemDatastore;
+    private static CloudStorageDao<Character> characterDatastore;
     private KeyFactory characterKeyFactory;
+    private String key;
 
 
     public AreaDatastore(String uniqueId,String areaName){
         super();
-        String key = uniqueId + "/" + areaName;
+        key = uniqueId + "/" + areaName;
         characterKeyFactory = datastore.newKeyFactory().setKind(key + "/Character");
         itemDatastore = new ItemDatastore(key + "/Item",datastore);
         characterDatastore = new CharacterDatastore();
@@ -47,8 +52,15 @@ public class AreaDatastore extends ParentDatastore{
 
     private class CharacterDatastore implements CloudStorageDao<Character>{
 
-        private Character entityToItem(Entity entity){
-            return null;//insert
+        private Character entityToCharacter(Entity entity){
+
+            Character character = new Character((int)entity.getLong(Character.OBJECT_ID),
+                                  entity.getString(Character.OBJECT_NAME),
+                                 entity.getString(Character.DESCRIPTION));
+
+            character.setDefense((int)entity.getLong(Character.DEFENSE));
+            character.setHealth((int)entity.getLong(Character.HEALTH));
+            return character;
         }
         //insert here
 
@@ -57,6 +69,11 @@ public class AreaDatastore extends ParentDatastore{
             IncompleteKey key = characterKeyFactory.newKey();//assign new key for storing in the cloud
 
             FullEntity<IncompleteKey> incItemEntity = Entity.newBuilder(key)
+                    .set(Character.OBJECT_NAME,character.getName())
+                    .set(Character.OBJECT_ID,character.getId())
+                    .set(Character.HEALTH,character.getHealth())
+                    .set(Character.DEFENSE,character.getDefense())
+                    .set(Character.DESCRIPTION,character.getDefense())
                     .build();
 
             //insert object mapping here!
@@ -67,14 +84,18 @@ public class AreaDatastore extends ParentDatastore{
 
         public Character read(long id){
             Entity entity = datastore.get(characterKeyFactory.newKey(id));//getting entity from the GAE
-            return entityToItem(entity);
+            return entityToCharacter(entity);
         }
 
-
-        public void update(Character obj){
-            Key key = characterKeyFactory.newKey(0);//insert item key here
+        public void update(Character character){
+            Key key = characterKeyFactory.newKey(character.getCloudId());//insert item key here
 
             Entity entity = Entity.newBuilder(key)
+                    .set(Character.OBJECT_NAME,character.getName())
+                    .set(Character.OBJECT_ID,character.getId())
+                    .set(Character.HEALTH,character.getHealth())
+                    .set(Character.DEFENSE,character.getDefense())
+                    .set(Character.DESCRIPTION,character.getDefense())
                     .build();
 
             datastore.update(entity);
@@ -85,9 +106,22 @@ public class AreaDatastore extends ParentDatastore{
         }
 
         public List<Character> listContent(){
-            return null;
-        }
+            //query entities
+            Query<Entity>  query = Query.newEntityQueryBuilder()
+                    .setKind(key + "/Character")
+                    .setStartCursor(null)
+                    .build();
 
+            //Running query and searching matching pairs!
+            QueryResults<Entity> queryResults = datastore.run(query);//running query
+            ArrayList<Character> characterList = new ArrayList<>();
+
+            //converts all entities to the root object
+            while(queryResults.hasNext()){
+                characterList.add(entityToCharacter(queryResults.next()));
+            }
+            return characterList;
+        }
     }
 
     public enum WriteAction{
@@ -97,7 +131,10 @@ public class AreaDatastore extends ParentDatastore{
                     itemDatastore.update((Item)gameObject);
                 }
                 else{
-                    itemDatastore.create((Item)gameObject);
+
+                    long cloudId = itemDatastore.create((Item)gameObject);
+                    gameObject.setOnCloud(true);
+                    gameObject.setCloudId(cloudId);
                 }
             }
         },
@@ -107,13 +144,15 @@ public class AreaDatastore extends ParentDatastore{
                     characterDatastore.update((Character)gameObject);
                 }
                 else{
-                    characterDatastore.create((Character)gameObject);
+                    long cloudId = characterDatastore.create((Character)gameObject);
+                    gameObject.setOnCloud(true);
+                    gameObject.setCloudId(cloudId);
+                    System.out.println(cloudId + " CHARACTER ID");
                 }
             }
         };
         abstract void writeDataIntoCloud(GameObject gameObject);
     }
-
 
     public enum ReadAction{
         READ_ITEM{
@@ -143,5 +182,4 @@ public class AreaDatastore extends ParentDatastore{
         };
         abstract void clearDataInCloud(long id);
     }
-
 }

@@ -1,6 +1,6 @@
 {
   "objectName" : "Knife",
-  "objecId" : "36",
+  "objectId" : "36",
   "description" : "It is just a knife for cutting things.",
   "weight" : "5.0",
   "renewable" : "false",

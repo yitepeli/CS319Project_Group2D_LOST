@@ -1,5 +1,3 @@
 Rock.json
 Stone.json
-Tree.json
-Tree.json
 Branch.json

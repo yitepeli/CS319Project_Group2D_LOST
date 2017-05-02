@@ -1,7 +1,7 @@
 
 {
   "objectName" : "Sword",
-  "objecId" : "31",
+  "objectId" : "31",
   "description" : "Self-explanatory, it is just a sword to fight with island's dangers.",
   "weight" : "15.0",
   "renewable" : "false",

@@ -1,3 +1,0 @@
-rock.json
-stone.json
-branch.json

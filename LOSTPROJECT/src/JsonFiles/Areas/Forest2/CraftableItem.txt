@@ -1,4 +1,4 @@
-rock.json
-tree.json
-tree.json
-grass.json
+Rock.json
+Tree.json
+Tree.json
+Grass.json

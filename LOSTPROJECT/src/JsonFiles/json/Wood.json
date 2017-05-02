@@ -1,6 +1,6 @@
 {
   "objectName" : "Wood",
-  "objecId" : "23",
+  "objectId" : "23",
   "description" : "Useful basic material for crafting objects.",
   "weight" : "3.0",
   "renewable" : "false",
@@ -40,6 +40,5 @@
 		"objectName" : "Boat"
 	}
 
-	],
- 
+	]
 }

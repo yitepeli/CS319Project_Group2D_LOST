@@ -19,6 +19,7 @@ import GameObjectsManagement.CharacterManagement.*;
 import GameObjectsManagement.ItemManagement.*;
 
 import DatabaseManagement.DatabaseManager;
+import com.sun.org.apache.regexp.internal.RE;
 
 import java.util.*;
 import javax.swing.*;
@@ -30,11 +31,7 @@ public class GameEngine {
 	private UpdateManager updateManager;
 	private Area positionOfUser;
 	private Player player;
-	RadioTower radioTower;
-	DragonLiar dragonLiar;
-	SailingAway sailingAway;
-	OldWiseMan oldWiseMan;
-	
+
 	public GameEngine(){
 		String uniqueID = UUID.randomUUID().toString();
 		databaseManager = new DatabaseManager(uniqueID);
@@ -42,22 +39,37 @@ public class GameEngine {
 		mapManager = new MapManager();
 	}
 
+
+	public void createGameEnvironment(boolean isNewGame){
+
+		updateManager.createGameEnvironment(isNewGame,databaseManager);//creating areas
+		positionOfUser = updateManager.getPositionOfUser();//initial position of user
+
+	}
+
 	public void navigate(String direction){
 
+		if(direction.equals("left")){
+			positionOfUser = positionOfUser.getLeftNeighbour();
+		}
+		else if(direction.equals("right")){
+			positionOfUser = positionOfUser.getRightNeighbour();
 
+		}
+		else if(direction.equals("up")){
+			positionOfUser = positionOfUser.getUpNeighbour();
+
+		}
+		else if(direction.equals("down")){
+			positionOfUser = positionOfUser.getDownNeighbour();
+		}
+		String currentAreaName = positionOfUser.getAreaType().getAreaName();
+		player.setCurrentPosition(currentAreaName);
+		databaseManager.setWorkingArea(currentAreaName);
+		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);
+		mapManager.processMapp(positionOfUser);//updating map
 	}
-	
-	public List<Map<String,ImageIcon>> getAreaObjects(){
-			
-	}
-	
-	public List<Map<String,ImageIcon>> getPlayerObjects(){
-		
-	}
-	
-	public List<String> getInteractions(String objectName, boolean isArea){
-				
-	}
+
 	
 	public ArrayList<String> getCraftableItems(String itemName){
 		
@@ -97,15 +109,7 @@ public class GameEngine {
 		return true;
 		
 	}
-	
-	public boolean use(String itemName){
-		
-	}
-	
-	public boolean fight(Character character){
-		
-		
-	}
+
 	
 	public boolean isCampfireLit(){
 		
@@ -166,12 +170,20 @@ public class GameEngine {
 		
 		return false;
 	}
+
+	public DatabaseManager getDatabaseManager(){
+		return databaseManager;
+	}
+
+	public Area getPositionOfUser(){
+		return positionOfUser;
+	}
 	
-	public String enterEvent(String eventName){
+/*	public String enterEvent(String eventName){
 		
 		if(eventName.equals("Old Wise Man"))
 			oldWiseMan.playStory(positionOfUser, player);
 		
-	}
+	}*/
 	
 }

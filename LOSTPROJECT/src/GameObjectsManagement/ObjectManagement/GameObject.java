@@ -43,6 +43,7 @@ public class GameObject{
 	//For database querying...
 	public final static String OBJECT_NAME = "OBJECT_NAME";
 	public final static String OBJECT_ID = "OBJECT_ID";
+	public final static String DESCRIPTION ="DESCRIPTION";
 
 	public int getId(){
 		return this.objectId;

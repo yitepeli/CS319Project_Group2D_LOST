@@ -1,6 +1,6 @@
 {
   "objectName" : "Dragon Armor",
-  "objecId" : "21",
+  "objectId" : "21",
   "description" : "A special strong armor resistant to dragon fire",
   "weight" : "30.0",
   "renewable" : "false",

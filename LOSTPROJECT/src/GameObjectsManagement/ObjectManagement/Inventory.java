@@ -145,7 +145,7 @@ public class Inventory{
 	}
 
 	public ArrayList<Item> getStoredItems(){
-		return this.storedItemList;
+		return storedItemList;
 	}
 
 	public double getCurrentCapacity(){
@@ -209,6 +209,10 @@ public class Inventory{
 				result = result + item.toString() + "\n";
 
 		return result;
+	}
+
+	public void setStoredItemList(ArrayList<Item> itemList ){
+		this.storedItemList = itemList;
 	}
 
 

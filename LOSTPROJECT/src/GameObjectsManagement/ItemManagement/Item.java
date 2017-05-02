@@ -22,9 +22,6 @@ public class Item extends GameObject{
 	private boolean visible;	
 	private ArrayList<String> actionList;
 
-	//for database querying
-	public static final String VISIBLE = "VISIBLE";
-
 
 	//Constructors
 	public Item(String name){
@@ -43,6 +40,10 @@ public class Item extends GameObject{
 		this.renewable = renewable;
 		this.visible = visible;
 		this.actionList = actionList;
+	}
+
+	public Item(int id, String name, String description){
+		super(id,name,description);
 	}
 
 	//Methods

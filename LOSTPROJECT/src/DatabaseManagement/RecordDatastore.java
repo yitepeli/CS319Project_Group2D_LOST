@@ -2,6 +2,7 @@ package DatabaseManagement;
 
 import com.google.cloud.datastore.*;
 import java.util.ArrayList;
+import GameObjectsManagement.ObjectManagement.*;
 
 /**
  * Created by onursonmez 
@@ -34,7 +35,7 @@ public class RecordDatastore extends ParentDatastore implements CloudStorageDao<
         IncompleteKey key = keyFactory.newKey();//assign new key for storing in the cloud
 
         FullEntity<IncompleteKey> incScoreEntity = Entity.newBuilder(key)
-                .set(Record.OBJECT_NAME,record.getObjectName())
+                .set(Record.OBJECT_NAME,record.getName())
                 .set(Record.OBJECT_ID,record.getId())
                 .set(Record.IS_ACCOMPLISHED,record.isAccomplished())
                 .set(Record.DESCRIPTION,record.getDescription())
@@ -56,7 +57,7 @@ public class RecordDatastore extends ParentDatastore implements CloudStorageDao<
     public void update(Record record){
         Key key = keyFactory.newKey(record.getCloudId());
         Entity entity = Entity.newBuilder(key)
-                .set(Record.OBJECT_NAME,record.getObjectName())
+                .set(Record.OBJECT_NAME,record.getName())
                 .set(Record.DESCRIPTION,record.getId())
                 .set(Record.ACCOMPLISHED_STORY_EVENT,record.getAccomplishedStoryEvent())
                 .set(Record.OBJECT_ID,record.getId())

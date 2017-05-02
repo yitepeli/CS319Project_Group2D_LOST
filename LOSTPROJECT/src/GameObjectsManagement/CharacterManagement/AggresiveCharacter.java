@@ -9,10 +9,13 @@ package GameObjectsManagement.CharacterManagement;
  */
 public class AggresiveCharacter extends Character {
 
-	private int attack;
+	protected int attack;
 	/**
 	 * 
 	 */
+
+	public static final String ATTACK = "attack";
+
 	public AggresiveCharacter() {
 		attack=10;
 	}

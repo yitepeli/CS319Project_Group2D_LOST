@@ -1,6 +1,6 @@
 {
   "objectName" : "Armor",
-  "objecId" : "29",
+  "objectId" : "29",
   "description" : "A metal armor that increases defense",
   "weight" : "25.0",
   "renewable" : "false",

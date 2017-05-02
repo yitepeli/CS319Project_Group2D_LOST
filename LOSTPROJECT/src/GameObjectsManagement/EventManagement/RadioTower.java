@@ -9,7 +9,7 @@ public class RadioTower extends Event {
 	
 	public String playStory(Area a, Player p){
 		
-		System.out.println("Welcome to Radio Tower story event. You need to accomplish several tasks to"
+		/*System.out.println("Welcome to Radio Tower story event. You need to accomplish several tasks to"
 				+ "complete this adventure and finally survive from the island. If you don't have enough"
 				+ "determination, you can always exit from event and continue your boring life in the island");
 		
@@ -34,7 +34,8 @@ public class RadioTower extends Event {
 		if(missionCompleted)
 				return successMsg;
 		else
-			return failureMsg;
+			return failureMsg;*/
+		return "";
 		
 		
 	}

@@ -1,2 +1,2 @@
-grass.json
-fish.json
+Grass.json
+Fish.json

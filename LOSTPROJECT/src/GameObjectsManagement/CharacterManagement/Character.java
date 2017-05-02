@@ -11,14 +11,19 @@ import GameObjectsManagement.ObjectManagement.*;
  */
 public class Character extends GameObject {
 	
-	private int health;
-	private int defense;
+	protected int health;
+	protected int defense;
 	private SoundEffect sound;
 	private Inventory inventory;
 	
 	/**
 	 * 
 	 */
+
+
+	public static final String HEALTH = "health";
+	public static final String DEFENSE = "defense";
+
 	public Character() {
 		// TODO Auto-generated constructor stub
 	}

@@ -6,6 +6,12 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
+
+import GameObjectsManagement.ObjectManagement.*;
+import GameObjectsManagement.ItemManagement.*;
+import GameObjectsManagement.CharacterManagement.Character;
+import GameObjectsManagement.CharacterManagement.*;
 
 /**
  * Created by onursonmez on 22/04/2017.
@@ -16,26 +22,24 @@ public class DatabaseManager {
     private static Map<String,AreaDatastore> areaDAOContainer;//access object for area datastore
     private static AreaDatastore areaDAO;
     private static PlayerDatastore playerDAO;//access object for player datastore
-    private Map<GameObject, WriteAction> addedCacheList;
-    private Map<Long, DeleteAction> deletedCacheList;
     private ConnectionStatus lastConnectionStatus;
     private String uniqueId;
+    private LocalStorageDao localStorageDao;
+    private String workingArea;
 
-
-    public enum ConnectionStatus{ CONNECTED, DISCONNECTED }
 
     public DatabaseManager(String uniqueId){
         this.uniqueId = uniqueId;
         lastConnectionStatus = ConnectionStatus.CONNECTED;//initial
-        addedCacheList = new HashMap<>();
-        deletedCacheList = new HashMap<>();
         recordDAO = new RecordDatastore();
         playerDAO = new PlayerDatastore(uniqueId);
         areaDAOContainer = new HashMap<>();
         areaDAO = null;
+        localStorageDao = new LocalStorageDao();
     }
 
     public void setWorkingArea(String areaName){
+        workingArea = areaName;
         areaDAO = areaDAOContainer.get(areaName);
     }//set current working area
 
@@ -45,90 +49,71 @@ public class DatabaseManager {
 
     public void processData(GameObject gameObject, WriteAction writeAction){
 
-        switch (getConnectionStatus()){
-
-            case CONNECTED:
-
-                if(lastConnectionStatus == ConnectionStatus.DISCONNECTED){
-                    addedCacheList.forEach((key,value)->value.writeDataIntoCloud(key));
-                    addedCacheList.clear();
-                }
-                writeAction.writeDataIntoCloud(gameObject);
-                lastConnectionStatus = ConnectionStatus.CONNECTED;
-                break;
-
-            case DISCONNECTED:
-                addedCacheList.put(gameObject,writeAction);
-                lastConnectionStatus = ConnectionStatus.DISCONNECTED;
-                break;
-        }
+        writeAction.writeDataIntoCloud(gameObject);
     }
 
     public GameObject readData(long id, ReadAction readAction){
 
-        switch (getConnectionStatus()){
-            case CONNECTED:
-                return readAction.readDataInCloud(id);
+        return readAction.readDataInCloud(id);
 
-            case DISCONNECTED:
-                return null;
-        }
-        return null;
     }
 
     public void clearData(long id, DeleteAction deleteAction){
 
-        switch (getConnectionStatus()){
-            case CONNECTED:
-                if(lastConnectionStatus == ConnectionStatus.DISCONNECTED){
-                    deletedCacheList.forEach((key,value)->value.clearDataInCloud(key));
-                    deletedCacheList.clear();
-                }
-                deleteAction.clearDataInCloud(id);
-                lastConnectionStatus = ConnectionStatus.CONNECTED;
-                break;
+        deleteAction.clearDataInCloud(id);
 
-            case DISCONNECTED:
-                deletedCacheList.put(id,deleteAction);
-                lastConnectionStatus = ConnectionStatus.DISCONNECTED;
-                break;
-        }
     }
 
-    public List<Character> listCharacters(){
+    public ArrayList<Character> listCharacters(boolean isNewGame){
 
-        switch (getConnectionStatus()){
-            case CONNECTED:
-                return areaDAO.listCharactersInArea();
+        ArrayList<Character> characterList;
 
-            case DISCONNECTED:
-                return null;
+        if(isNewGame){
+            characterList= localStorageDao.parseJSONFiles(workingArea).getCharacterList();
         }
-        return null;
+        else{
+            characterList = new ArrayList<>();
+            List<Character> cloudList = areaDAO.listCharactersInArea();
+
+            cloudList.stream()
+                    .filter(e->e instanceof AggresiveCharacter)
+                    .forEach(e ->{
+                        AggresiveCharacter character = (AggresiveCharacter)localStorageDao.readJSONElement(e.getName(),e.getClass());
+                        ((AggresiveCharacter)e).setAttack(character.getAttack());
+                    });
+        }
+        return characterList;
     }
 
-    public List<Item> listItems(){
+    public ArrayList<Item> listItems(boolean isNewGame){
 
-        switch (getConnectionStatus()){
-            case CONNECTED:
-                return areaDAO.listItemsInArea();
+        ArrayList<Item> itemList;
 
-            case DISCONNECTED:
-                return null;
+        if(isNewGame){
+            itemList= localStorageDao.parseJSONFiles(workingArea).getItemList();
         }
-        return null;
+        else{
+            itemList = new ArrayList<>();
+            List<Item> cloudList = areaDAO.listItemsInArea();
+
+            cloudList.forEach(e-> {
+                itemList.add((Item)localStorageDao.readJSONElement(e.getName(),e.getClass()));
+            });
+        }
+        return itemList;
     }
 
     public List<Record> listRecords(){
-        switch (getConnectionStatus()){
+
+        return recordDAO.listContent();
+      /*  switch (getConnectionStatus()){
             case CONNECTED:
                 return recordDAO.listContent();
 
             case DISCONNECTED:
                 return null;
         }
-        return null;
-
+        return null;*/
     }
 
     private ConnectionStatus getConnectionStatus(){
@@ -245,7 +230,12 @@ public class DatabaseManager {
         abstract void clearDataInCloud(long id);
     }
 
+
     public boolean isConnectionAvailable(){
         return (getConnectionStatus() == ConnectionStatus.CONNECTED);
     }
+
+    public enum ConnectionStatus{ CONNECTED, DISCONNECTED }
 }
+
+

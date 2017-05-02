@@ -1,9 +1,12 @@
 package DatabaseManagement;
 
 import com.google.cloud.datastore.*;
-
-import java.util.Arrays;
 import java.util.List;
+
+
+import GameObjectsManagement.ObjectManagement.*;
+import GameObjectsManagement.ItemManagement.*;
+import GameObjectsManagement.CharacterManagement.*;
 
 /**
  * Author:Onur Sönmez
@@ -11,8 +14,8 @@ import java.util.List;
 public class PlayerDatastore extends ParentDatastore{
 
     private KeyFactory playerKeyFactory;
-    private static ItemDatastore itemDatastore;
-    private static PlayerStat playerStat;
+    private static CloudStorageDao<Item> itemDatastore;
+    private static CloudStorageDao<Player> playerStat;
 
     public PlayerDatastore(String uniqueId){
         super();
@@ -40,15 +43,31 @@ public class PlayerDatastore extends ParentDatastore{
 
     private class PlayerStat implements CloudStorageDao<Player>{
         private Player entityToPlayer(Entity entity){
-            //insert here
-            return null;
+
+            return new Player.Builder()
+                    .userName(entity.getString(Player.OBJECT_NAME))
+                    .currentArea(entity.getString(Player.CURRENT_AREA))
+                    .defense((int)entity.getLong(Player.DEFENSE))
+                    .attack((int)entity.getLong(Player.ATTACK))
+                    .energy((int)entity.getLong(Player.ENERGY))
+                    .health((int)entity.getLong(Player.HEALTH))
+                    .hunger((int)entity.getLong(Player.HUNGER))
+                    .thirst((int)entity.getLong(Player.THIRST))
+                    .build();
         }
 
-        public long create(Player obj){
+        public long create(Player player){
             IncompleteKey key = playerKeyFactory.newKey();//assign new key for storing in the cloud
 
             FullEntity<IncompleteKey> incItemEntity = Entity.newBuilder(key)
-                    //.set(Player.OBJECT_NAME,player.getName())
+                    .set(Player.OBJECT_NAME,player.getName())
+                    .set(Player.CURRENT_AREA, player.getCurrentPositionOfUser())
+                    .set(Player.DEFENSE,player.getDefense())
+                    .set(Player.ATTACK,player.getAttack())
+                    .set(Player.ENERGY,player.getEnergy())
+                    .set(Player.HEALTH,player.getHealth())
+                    .set(Player.HUNGER,player.getHunger())
+                    .set(Player.THIRST,player.getThirst())
                     .build();
 
             //insert object mapping here!
@@ -62,11 +81,19 @@ public class PlayerDatastore extends ParentDatastore{
             return entityToPlayer(entity);
         }
 
-        public void update(Player obj){
+        public void update(Player player){
 
-            Key key = playerKeyFactory.newKey(0);//insert item key here
+            Key key = playerKeyFactory.newKey(player.getCloudId());//insert item key here
 
             Entity entity = Entity.newBuilder(key)
+                    .set(Player.OBJECT_NAME,player.getName())
+                    .set(Player.CURRENT_AREA, player.getCurrentPositionOfUser())
+                    .set(Player.DEFENSE,player.getDefense())
+                    .set(Player.ATTACK,player.getAttack())
+                    .set(Player.ENERGY,player.getEnergy())
+                    .set(Player.HEALTH,player.getHealth())
+                    .set(Player.HUNGER,player.getHunger())
+                    .set(Player.THIRST,player.getThirst())
                     .build();
 
             datastore.update(entity);
@@ -77,13 +104,8 @@ public class PlayerDatastore extends ParentDatastore{
         }
 
 
-        public Result<Player> listContent(String cursor){
-
-            return null;
-        }
-
         public List<Player> listContent(){
-            return null;
+            return null;//no player list enabled in this point!
         }
     }
 
@@ -95,7 +117,9 @@ public class PlayerDatastore extends ParentDatastore{
                     itemDatastore.update((Item)gameObject);
                 }
                 else{
-                    itemDatastore.create((Item)gameObject);
+                    long cloudId = itemDatastore.create((Item)gameObject);
+                    gameObject.setCloudId(cloudId);
+                    gameObject.setOnCloud(true);
                 }
             }
         },
@@ -105,15 +129,14 @@ public class PlayerDatastore extends ParentDatastore{
                     playerStat.update((Player)gameObject);
                 }
                 else{
-                    playerStat.create((Player)gameObject);
+                    long cloudId = playerStat.create((Player)gameObject);
+                    gameObject.setCloudId(cloudId);
+                    gameObject.setOnCloud(true);
                 }
             }
         };
         abstract void writeDataIntoCloud(GameObject gameObject);
     }
-
-
-
     public enum ReadAction{
         READ_ITEM{
             GameObject readDataInCloud(long id){
@@ -146,3 +169,6 @@ public class PlayerDatastore extends ParentDatastore{
 
 
 }
+
+
+

@@ -3,6 +3,7 @@ package GameObjectsManagement.AreaManagement;
 //external packages
 import GameObjectsManagement.ObjectManagement.*;
 import GameObjectsManagement.EventManagement.*;
+import GameObjectsManagement.CharacterManagement.Character;
 
 
 import java.util.*;
@@ -18,6 +19,7 @@ public class Area extends GameObject {//will be updated!
     private String description;
     private Inventory inventory;
     private List<Event> eventList;
+    private ArrayList<Character> characterList;
 
     public Area(AreaType areaType){
         this.areaType = areaType;
@@ -135,6 +137,15 @@ public class Area extends GameObject {//will be updated!
 		
 		eventList.add(e);	
 	}
-	
-	public void setCharacter
+
+    public void setCharacterList(ArrayList<Character> characterList){
+	    this.characterList = characterList;
+    }
+
+    public ArrayList<Character> getCharacterList(){
+        return characterList;
+    }
+
+
+    
 }

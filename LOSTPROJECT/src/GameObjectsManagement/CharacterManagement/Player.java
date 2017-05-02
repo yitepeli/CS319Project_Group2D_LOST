@@ -16,6 +16,14 @@ public class Player extends AggresiveCharacter {
 	private int energy;
 	private int thirst;
 	private int hunger;
+	private String currentArea;
+
+
+	//For database querying..
+	public static final String ENERGY = "energy";
+	public static final String HUNGER = "hunger";
+	public static final String THIRST = "thirst";
+	public static final String CURRENT_AREA = "currentArea";
 	
 	public Player() {
 		setEnergy(60);
@@ -102,6 +110,75 @@ public class Player extends AggresiveCharacter {
 	 */
 	public void updateHunger(int hungerAmount) {
 		this.hunger += hunger;
+	}
+
+
+	public void setCurrentPosition(String areaName){
+		this.currentArea = areaName;
+	}
+
+	public String getCurrentPositionOfUser(){
+		return currentArea;
+	}
+
+	private Player(Builder builder){
+		currentArea = builder.curArea;
+		energy = builder.energy;
+		hunger = builder.hunger;
+		attack = builder.attack;
+		defense = builder.defense;
+		health = builder.health;
+		thirst = builder.thirst;
+		objectName = builder.userName;
+	}
+
+	public static class Builder{
+		private String curArea,userName;
+		private int energy, health, hunger, attack, defense,thirst;
+
+		public Builder energy(int energy){
+			this.energy = energy;
+			return this;
+		}
+
+		public Builder userName(String userName){
+			this.userName = userName;
+			return this;
+		}
+
+		public Builder thirst(int thirst){
+			this.thirst = thirst;
+			return this;
+		}
+
+		public Builder health(int health){
+			this.health = health;
+			return this;
+		}
+
+		public Builder hunger(int hunger){
+			this.hunger = hunger;
+			return this;
+		}
+
+		public Builder attack(int attack){
+			this.attack = attack;
+			return this;
+		}
+
+		public Builder defense(int defense){
+			this.defense = defense;
+			return this;
+		}
+
+		public Builder currentArea(String curArea){
+			this.curArea = curArea;
+			return this;
+		}
+
+		public Player build(){
+			return new Player(this);
+		}
 	}
 
 }

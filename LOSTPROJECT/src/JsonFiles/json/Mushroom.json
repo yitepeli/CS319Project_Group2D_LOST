@@ -1,6 +1,6 @@
 {
   "objectName" : "Mushroom",
-  "objecId" : "35",
+  "objectId" : "35",
   "description" : "Yummy forest mushroom",
   "weight" : "1.0",
   "renewable" : "true",

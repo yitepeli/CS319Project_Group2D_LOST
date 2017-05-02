@@ -1,6 +1,6 @@
 {
   "objectName" : "Sail Machine",
-  "objecId" : "27",
+  "objectId" : "27",
   "description" : "This will be helpful for crafting sail!",
   "weight" : "7.0",
   "renewable" : "false",

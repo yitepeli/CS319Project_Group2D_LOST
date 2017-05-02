@@ -1,4 +1,4 @@
-rock.json
-stone.json
-branch.json
-metalpieces.json
+Rock.json
+Stone.json
+Branch.json
+MetalPieces.json

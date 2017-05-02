@@ -10,6 +10,9 @@ import com.google.cloud.datastore.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import GameObjectsManagement.ItemManagement.*;
+
+
 public class ItemDatastore implements CloudStorageDao<Item>{
 
     private Datastore datastore;
@@ -24,7 +27,9 @@ public class ItemDatastore implements CloudStorageDao<Item>{
 
     private Item entityToItem(Entity entity){
 
-        return null;//will be updated!
+        return new Item((int)entity.getLong(Item.OBJECT_ID),
+                entity.getString(Item.OBJECT_NAME),
+                entity.getString(Item.DESCRIPTION));
     }
 
 
@@ -32,9 +37,9 @@ public class ItemDatastore implements CloudStorageDao<Item>{
         IncompleteKey key = itemKeyFactory.newKey();//assign new key for storing in the cloud
 
         FullEntity<IncompleteKey> incItemEntity = Entity.newBuilder(key)
-                .set(Item.OBJECT_NAME,item.getObjectName())
+                .set(Item.OBJECT_NAME,item.getName())
                 .set(Item.OBJECT_ID,item.getId())
-                .set(Item.VISIBLE,item.isVisible())
+                .set(Item.DESCRIPTION,item.getDescription())
                 .build();
 
         //insert object mapping here!
@@ -54,9 +59,9 @@ public class ItemDatastore implements CloudStorageDao<Item>{
         Key key = itemKeyFactory.newKey(item.getCloudId());//insert item key here
 
         Entity entity = Entity.newBuilder(key)
-                .set(Item.OBJECT_NAME,item.getObjectName())
+                .set(Item.OBJECT_NAME,item.getName())
                 .set(Item.OBJECT_ID,item.getId())
-                .set(Item.VISIBLE,item.isVisible())
+                .set(Item.DESCRIPTION,item.getDescription())
                 .build();
 
         datastore.update(entity);
@@ -76,13 +81,13 @@ public class ItemDatastore implements CloudStorageDao<Item>{
         //Running query and searching matching pairs!
 
         QueryResults<Entity> queryResults = datastore.run(query);//running query
-        ArrayList<Item> recordList = new ArrayList<>();
+        ArrayList<Item> itemList = new ArrayList<>();
 
         //converts all entities to the root object
         while(queryResults.hasNext()){
-            recordList.add(entityToItem(queryResults.next()));
+            itemList.add(entityToItem(queryResults.next()));
         }
-        return recordList;
+        return itemList;
     }
 
 }

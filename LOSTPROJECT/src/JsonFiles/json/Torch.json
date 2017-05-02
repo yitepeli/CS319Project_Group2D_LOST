@@ -1,6 +1,6 @@
 {
   "objectName" : "Torch",
-  "objecId" : "32",
+  "objectId" : "32",
   "description" : "Keeps you away from dangerous animals, gives defense points",
   "weight" : "3.0",
   "renewable" : "false",
