@@ -40,6 +40,8 @@ public class HelpPanel extends JPanel {
 		setForeground(Color.WHITE);
 		setBackground(Color.BLACK);
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+		String userDir = System.getProperty("user.dir");
 		
 		Component verticalGlue = Box.createVerticalGlue();
 		add(verticalGlue);
@@ -75,7 +77,7 @@ public class HelpPanel extends JPanel {
 				}
 			}
 		});
-		wikiLabel.setIcon(new ImageIcon(HelpPanel.class.getResource("/GUI/link-512.png")));
+		wikiLabel.setIcon(new ImageIcon(userDir + "/src/GUI/link-512.png"));
 		wikiLabel.setBackground(Color.BLACK);
 		wikiLabel.setForeground(Color.WHITE);
 		wikiLabel.setAlignmentX(Component.CENTER_ALIGNMENT);

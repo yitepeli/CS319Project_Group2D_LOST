@@ -30,12 +30,7 @@ public class Map {
     public Map (final String url) {
         map = null;
         try {
-    		String userDirectory = System.getProperty("user.dir");
-    		String path=userDirectory+"/src/images/map.jpg";
-            map = ImageIO.read(new File(path));
-            System.out.println(map.getHeight());
-
-            System.out.println(map.getWidth());
+            map = ImageIO.read(new File(System.getProperty("user.dir") + "/src/images/map.jpg"));
             height = map.getHeight();
             width  = map.getWidth();
         }

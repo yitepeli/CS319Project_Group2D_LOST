@@ -36,8 +36,11 @@ public class SettingsPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public SettingsPanel() {
+
+		String userDir = System.getProperty("user.dir");
 		setBackground(Color.BLACK);
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
 		
 		Component verticalGlue = Box.createVerticalGlue();
 		add(verticalGlue);
@@ -67,16 +70,16 @@ public class SettingsPanel extends JPanel {
 		soundBtn.setOpaque(false);
 		soundBtn.setForeground(new Color(255, 255, 255));
 		soundBtn.setBackground(new Color(0, 0, 0));
-		soundBtn.setIcon(new ImageIcon(SettingsPanel.class.getResource("/GUI/speaker1.png")));
+		soundBtn.setIcon(new ImageIcon(userDir + "/src/GUI/speaker1.png"));
 		soundBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		soundBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(isMuted==false){
-					soundBtn.setIcon(new ImageIcon(SettingsPanel.class.getResource("/GUI/mutedspeaker.png")));
+					soundBtn.setIcon(new ImageIcon(userDir + "/src/GUI/mutedspeaker.png"));
 					isMuted=true;
 				}
 				else{
-					soundBtn.setIcon(new ImageIcon(SettingsPanel.class.getResource("/GUI/speaker1.png")));
+					soundBtn.setIcon(new ImageIcon(userDir + "/src/GUI/speaker1.png"));
 					isMuted=false;
 				}
 			}

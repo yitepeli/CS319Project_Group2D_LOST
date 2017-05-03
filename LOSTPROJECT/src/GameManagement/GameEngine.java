@@ -134,7 +134,7 @@ public class GameEngine {
 	}
 	
 	
-	public String fight(String characterName){
+	/*public String fight(String characterName){
 		Character character=null;
 		for(int i=0;i<getPositionOfUser().getCharacterList().size();i++){
 			if(getPositionOfUser().getCharacterList().get(i).equals(characterName))
@@ -226,7 +226,7 @@ public class GameEngine {
 				}
 			}					
 		}	
-	}
+	}*/
 
 	
 	public boolean isCampfireLit(){

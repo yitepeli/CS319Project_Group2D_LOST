@@ -27,7 +27,7 @@ public class MapManager {
      */
 
     public MapManager(){
-        islandMap = new Map("/images/Map.png");//initial root image
+        islandMap = new Map("/images/map.png");//initial root image
         hashmap = new HashMap<>();
         init();
     }

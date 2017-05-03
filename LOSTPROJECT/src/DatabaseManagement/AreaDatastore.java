@@ -147,7 +147,6 @@ public class AreaDatastore extends ParentDatastore{
                     long cloudId = characterDatastore.create((Character)gameObject);
                     gameObject.setOnCloud(true);
                     gameObject.setCloudId(cloudId);
-                    System.out.println(cloudId + " CHARACTER ID");
                 }
             }
         };
