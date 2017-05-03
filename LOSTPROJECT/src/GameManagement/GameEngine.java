@@ -134,8 +134,12 @@ public class GameEngine {
 	}
 	
 	
-	public String fight(Character character){
-		
+	public String fight(String characterName){
+		Character character=null;
+		for(int i=0;i<getPositionOfUser().getCharacterList().size();i++){
+			if(getPositionOfUser().getCharacterList().get(i).equals(characterName))
+				character = getPositionOfUser().getCharacterList().get(i);
+		}
 		//just in case
 		if(player.getHealth() <= 0 || character.getHealth() <= 0)
 			return "Dead man cannot fight";
