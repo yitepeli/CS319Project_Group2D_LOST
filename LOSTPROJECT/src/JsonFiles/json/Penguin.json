@@ -1,0 +1,7 @@
+{
+  "objectName":"Penguin",
+  "objectId" : "109",
+  "description" : "Pengiuns are rare animals of iceland! Can easily catch.",
+  "health" : "40",
+  "defense" : "60"
+}

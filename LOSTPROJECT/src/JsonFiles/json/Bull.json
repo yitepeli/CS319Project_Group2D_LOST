@@ -1,0 +1,8 @@
+{
+  "objectName":"Bull",
+  "objectId" : "122",
+  "description" : "Bull!",
+  "health" : "110",
+  "defense" : "200",
+  "attack" : "50"
+}

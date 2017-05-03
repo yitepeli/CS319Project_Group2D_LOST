@@ -1,0 +1,8 @@
+{
+  "objectName":"Rhino",
+  "objectId" : "113",
+  "description" : "Rhino! No explanation enough for demontrating the wilderness of rhino! This monster is completely unbeatable!",
+  "health" : "130",
+  "attack" : "50",
+  "defense" : "70"
+}

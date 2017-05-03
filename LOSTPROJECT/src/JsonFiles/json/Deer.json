@@ -1,0 +1,7 @@
+{
+  "objectName":"Deer",
+  "objectId" : "100",
+  "description" : "Deer is a harmless animal which is sponging around the area! They are rare animals and easy to hunt.",
+  "health" : "30",
+  "defense" : "5"
+}

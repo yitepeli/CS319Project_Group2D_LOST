@@ -1,0 +1,16 @@
+{
+  "objectName" : "Stone",
+  "objectId" : "6",
+  "description" : "Stone! A little bit heavy, but umm can be always used in crafting...",
+  "weight" : "3.3",
+  "renewalTime": "9",
+  "renewable" : "true",
+  "visible" : "true",
+  "actionList" : ["take","craft","drop"],
+  "craftableItemList" : [ 
+    {
+      "objectName" : "Rock Pieces"
+    }
+  ],
+  "requiredItemList" : []
+}

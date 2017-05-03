@@ -1,0 +1,8 @@
+{
+  "objectName":"Boar",
+  "objectId" : "122",
+  "description" : "Boar! Aggresive animal that attacks all strangers in the island...  ",
+  "health" : "90",
+  "defense" : "120",
+  "attack" : "55"
+}

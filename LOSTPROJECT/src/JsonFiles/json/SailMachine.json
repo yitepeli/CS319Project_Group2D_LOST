@@ -1,9 +1,0 @@
-{
-  "objectName" : "Sail Machine",
-  "objectId" : "27",
-  "description" : "This will be helpful for crafting sail!",
-  "weight" : "7.0",
-  "renewable" : "false",
-  "visible" : "true",
-  "actionList" : ["take", "drop"]	
-}

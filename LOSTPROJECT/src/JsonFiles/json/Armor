@@ -1,0 +1,31 @@
+{
+  "objectName" : "Armor",
+  "objecId" : "29",
+  "description" : "A metal armor that increases defense",
+  "weight" : "25.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take", "drop"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Cloth pieces"
+	},
+
+	{
+		"objectName" : "Metal pieces"
+	},
+
+	{
+		"objectName" : "Metal pieces"
+	},
+
+	{
+		"objectName" : "Stone"
+	}
+
+	],
+	
+  "attackPointBonus" : 0,
+  "defensePointBonus" : 25
+}

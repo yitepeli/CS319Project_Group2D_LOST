@@ -13,7 +13,6 @@ import GameObjectsManagement.ItemManagement.Item;
 
 import GameObjectsManagement.ObjectManagement.*;
 import GameObjectsManagement.CharacterManagement.Character;
-import com.sun.tools.classfile.Annotation;
 
 
 /**
@@ -35,18 +34,18 @@ public class LocalStorageDao {
      * Json mapping for java root objects,
      * @return Result<itemList,characterList> seperate list of game objects in area!
      */
-
     public Result parseJSONFiles(String areaName){
 
         File folder = new File(path + "/Areas/" + areaName +"/");
         ArrayList<Item> itemList = new ArrayList<>();
         ArrayList<Character> characterList = new ArrayList<>();
-        //.DS_STORE JUST FOR MACBOOK TESTING,(dir, name) -> !name.equals(".DS_Store")
+
         for (File file: folder.listFiles()) {
             String className = file.getName().replace(".txt","");
             Class<?> cls;//class names are in convenient class name form, so directly convert name to Class!
             try {
-                cls = Class.forName("GameObjectsManagement.ItemManagement." + className);//@return BoostingItem, CraftableItem, Item, Character, AggressiveCharacter
+                cls = Class.forName("GameObjectsManagement." + className);
+                //@return BoostingItem, CraftableItem, Item, Character, AggressiveCharacter
                 Stream<String> stream = Files.lines(Paths.get(file.getAbsolutePath()));
 
                 stream.filter(e->!e.equals("")).forEach(e->{//Override predicate
@@ -54,7 +53,6 @@ public class LocalStorageDao {
                     try{
                         object = gson.fromJson(new FileReader(path + "json/" + e),cls);//map json object into root object
                     }catch (IOException exception){ exception.printStackTrace();}
-
 
                     if(object instanceof Item) {
                         itemList.add((Item) object);
