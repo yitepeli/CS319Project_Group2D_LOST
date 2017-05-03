@@ -32,22 +32,30 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class gamePanel extends JPanel {
-	//GameEngine newGame;
+	GameEngine newGame;
+	private boolean isFromArea;
+	private int order;
+	private String currentItemName;
 	/**
 	 * Create the panel.
 	 */
 	private PopUpFrame popFrame;
 	
 	public gamePanel() {
-		
+		currentItemName="";
+		order=0;
+		isFromArea = false;
 		popFrame = null;
 		//popFrame.setVisible(false);
-		//newGame = new GameEngine();
+		newGame = new GameEngine();
+		newGame.createGameEnvironment(true);
 		Object[][] areaItems = {
 				{"Item1", new ImageIcon(gamePanel.class.getResource("/images/armor.png"))},
 				{"Item2", new ImageIcon(gamePanel.class.getResource("/images/axe.png"))},
@@ -177,14 +185,50 @@ public class gamePanel extends JPanel {
 		midPanel.add(midLeftPanel);
 		midLeftPanel.setLayout(new BorderLayout(0, 0));
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		midLeftPanel.add(textArea, BorderLayout.SOUTH);
-		
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		midLeftPanel.add(textPane, BorderLayout.CENTER);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		midLeftPanel.add(textArea, BorderLayout.SOUTH);
+		textArea.addKeyListener(new KeyListener(){
+		    @Override
+		    public void keyPressed(KeyEvent e){
+		        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+		        	e.consume();
+		        	if(currentItemName=="")
+		        		textPane.setText("You didn't choose anything");
+		        	else if(order ==0 && isFromArea==true){
+		        		if(textArea.getText().equals("1"))
+		        			textPane.setText(currentItemName);
+		        		else
+		        			textPane.setText("You took the item \""+currentItemName+"\" and put it in your bag.");
+		        	textArea.setText("");
+		        	currentItemName ="";
+		        	}
+		        	else if(isFromArea==false){
+		        		
+		        	}
+		        	
+		        	
+		        	
+		        	setVisible(true);
+		        	
+		        }
+		    }
+
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		    }
+
+		    @Override
+		    public void keyReleased(KeyEvent e) {
+		    }
+		});
+		
+
 		
 		
 		
@@ -248,7 +292,10 @@ public class gamePanel extends JPanel {
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					isFromArea = false;
+					order=0;
 					System.out.println(tempItem.getName());
+					currentItemName = tempItem.getName();
 					textPane.setText("Choose for " + tempItem.getName()+"\n1. Information\n2.Take\n" );
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
@@ -289,7 +336,10 @@ public class gamePanel extends JPanel {
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					order = 0;
+					isFromArea = true;
 					System.out.println(tempItem.getName());
+					currentItemName = tempItem.getName();
 					textPane.setText("Choose for " + tempItem.getName()+"\n1. Information\n2.Take\n" );
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
@@ -322,6 +372,7 @@ public class gamePanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					System.out.println(tempItem.getName());
+					currentItemName = tempItem.getName();
 					textPane.setText("Choose for " + tempItem.getName()+"\n1. Fight\n2.Run\n" );
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
@@ -369,7 +420,7 @@ public class gamePanel extends JPanel {
 		upLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//newGame.navigate("up");
+				newGame.navigate("up");
 				System.out.println("up");
 			}
 		});
@@ -382,7 +433,7 @@ public class gamePanel extends JPanel {
 		downLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//newGame.navigate("down");
+				newGame.navigate("down");
 				System.out.println("down");
 			}
 		});
@@ -394,7 +445,7 @@ public class gamePanel extends JPanel {
 		leftLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//newGame.navigate("left");
+				newGame.navigate("left");
 				System.out.println("left");
 			}
 		});
@@ -406,7 +457,7 @@ public class gamePanel extends JPanel {
 		rightLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//newGame.navigate("right");
+				newGame.navigate("right");
 				System.out.println("right");
 			}
 		});

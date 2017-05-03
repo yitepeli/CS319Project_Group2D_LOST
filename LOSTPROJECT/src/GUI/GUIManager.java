@@ -41,6 +41,8 @@ import java.net.URL;
 import javax.swing.Box;
 import javax.swing.SwingConstants;
 
+import GameManagement.GameEngine;
+
 public class GUIManager extends JFrame {
 
 	private CardLayout cards;
