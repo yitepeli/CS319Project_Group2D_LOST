@@ -1,16 +1,45 @@
 {
-  "objectName" : "Wrecked Boat",
-  "objectId" : "15",
-  "description" : "Wrecked boat... What if you could take it?",
-  "weight" : "13.0",
-  "renewalTime": "10",
+  "objectName" : "Wood",
+  "objecId" : "23",
+  "description" : "Useful basic material for crafting objects.",
+  "weight" : "3.0",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take","craft","drop"],
+  "actionList" : ["take", "drop", "craft"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Tree"
+	},
+
+	{
+		"objectName" : "Axe"
+	}
+
+	],
+	
   "craftableItemList" : [
-    {
-      "objectName" : "Boot"
-    }
-  ],
-  "requiredItemList" : []
+
+	{
+		"objectName" : "Spear"
+	},
+
+	{
+		"objectName" : "Axe"
+	},
+
+	{
+		"objectName" : "Hammer"
+	},
+
+	{
+		"objectName" : "Torch"
+	},
+
+	{
+		"objectName" : "Boat"
+	}
+
+	],
+ 
 }

@@ -6,39 +6,12 @@
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take", "drop", "craft"],
-  "requiredItemsList" : [
-
-	{
-		"objectName" : "Tree"
-	},
-
-	{
-		"objectName" : "Axe"
-	}
-
-	],
 	
   "craftableItemList" : [
 
 	{
-		"objectName" : "Spear"
+		"objectName" : "Water"
 	},
-
-	{
-		"objectName" : "Axe"
-	},
-
-	{
-		"objectName" : "Hammer"
-	},
-
-	{
-		"objectName" : "Torch"
-	},
-
-	{
-		"objectName" : "Boat"
-	}
 
 	],
  

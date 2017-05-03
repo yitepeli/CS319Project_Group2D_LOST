@@ -1,20 +1,19 @@
 {
   "objectName" : "Rock",
-  "objectId" : "2",
-  "description" : "It is a simple rock. Nothing really interesting!",
-  "weight" : "10.0",
-  "renewalTime": "10",
+  "objecId" : "12122",
+  "description" : "It is a rock.",
+  "weight" : "8.0",
+  "renewalTime": "3",
   "renewable" : "true",
   "visible" : "true",
-  "actionList" : ["take","craft","drop"],
-  "craftableItemList" : [ 
-    {
-      "objectName" : "Axe"
-    },
-    {
-      "objectName" : "Spear"
-    }
-  ],
-  "requiredItemList" : []
-}
+  "actionList" : ["drop", "craft"],
+	
+  "craftableItemList" : [
 
+	{
+		"objectName" : "Rock Pieces"
+	}
+
+	]
+ 
+}

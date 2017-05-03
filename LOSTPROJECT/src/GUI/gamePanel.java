@@ -27,6 +27,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 import GameManagement.GameEngine;
+import GameObjectsManagement.ItemManagement.BoostingItem;
+import GameObjectsManagement.ItemManagement.Item;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -36,13 +38,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public class gamePanel extends JPanel {
 	GameEngine newGame;
 	private boolean isFromArea;
 	private int order;
+	private int areaChosen;
 	private String currentItemName;
+	private String areaDescription;
+	private int playerItemChosen;
+	private ArrayList<Item> areaItems;
 	/**
 	 * Create the panel.
 	 */
@@ -53,12 +60,20 @@ public class gamePanel extends JPanel {
 		order=0;
 		isFromArea = false;
 		popFrame = null;
+		areaChosen = -1; //0 is item, 1 is character, 2 is special event
+		playerItemChosen = -1; //0 Boosting, 1 is Craftable, 2 is none
 		//popFrame.setVisible(false);
 		newGame = new GameEngine();
 		newGame.createGameEnvironment(true);
-		Object[][] areaItems = {
+		
+		areaItems = newGame.getPositionOfUser().getInventory().getStoredItems();
+
+		System.out.println(newGame.getPositionOfUser().getName());
+
+		areaDescription = "You are currently in the area " +newGame.getPositionOfUser().getName()+"\n"+newGame.getPositionOfUser().getDescription();
+		Object[][] playerItems = {
 				{"Item1", new ImageIcon(gamePanel.class.getResource("/images/armor.png"))},
-				{"Item2", new ImageIcon(gamePanel.class.getResource("/images/axe.png"))},
+				{"Axe", new ImageIcon(gamePanel.class.getResource("/images/axe.png"))},
 				{"Item3", new ImageIcon(gamePanel.class.getResource("/images/bandage.png"))},
 				{"Item4", new ImageIcon(gamePanel.class.getResource("/images/boat.png"))},
 				{"Item5", new ImageIcon(gamePanel.class.getResource("/images/bush.png"))},
@@ -186,6 +201,7 @@ public class gamePanel extends JPanel {
 		midLeftPanel.setLayout(new BorderLayout(0, 0));
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setText(areaDescription);
 		textPane.setEditable(false);
 		textPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		midLeftPanel.add(textPane, BorderLayout.CENTER);
@@ -198,18 +214,92 @@ public class gamePanel extends JPanel {
 		    public void keyPressed(KeyEvent e){
 		        if(e.getKeyCode() == KeyEvent.VK_ENTER){
 		        	e.consume();
-		        	if(currentItemName=="")
+		        	if(currentItemName==""){
 		        		textPane.setText("You didn't choose anything");
-		        	else if(order ==0 && isFromArea==true){
-		        		if(textArea.getText().equals("1"))
-		        			textPane.setText(currentItemName);
-		        		else
-		        			textPane.setText("You took the item \""+currentItemName+"\" and put it in your bag.");
-		        	textArea.setText("");
-		        	currentItemName ="";
+		        	}
+		        	else if(isFromArea==true){
+		        		if(areaChosen==0){
+		        			if(textArea.getText().equals("1"))
+			        			textPane.setText(currentItemName+"\n"+areaDescription);
+			        		else
+			        			textPane.setText("You took the item \""+currentItemName+"\" and put it in your bag.\n"+areaDescription);
+
+			        		currentItemName ="";
+		        		}
+		        		else if(areaChosen==1){
+		        			if(textArea.getText().equals("1"))
+			        			textPane.setText("You fought with the animal\n"+areaDescription);
+			        		else
+			        			textPane.setText(areaDescription);
+
+			        		currentItemName ="";
+		        		}
+		        		else if(areaChosen==2){
+		        			if(order==0){
+		        				if(textArea.getText().equals("1"))
+				        			textPane.setText("You go into event "+currentItemName);
+				        		else if(textArea.getText().equals("2"))
+				        			textPane.setText(areaDescription);
+		        				order++;
+		        			}
+		        			else if(order==1){
+				        		currentItemName ="";
+		        			}
+
+		        		}
+		        		textArea.setText("");
+		        		
 		        	}
 		        	else if(isFromArea==false){
-		        		
+		        		if(order==0){
+		        			if(playerItemChosen == 0){
+		        				if(textArea.getText().equals("1")){
+				        			textPane.setText("Info");
+		        				}
+				        		else if(textArea.getText().equals("2")){
+				        			textPane.setText("Drop");
+				        		}
+				        		else if(textArea.getText().equals("3")){
+				        			textPane.setText("Use");
+				        		}
+		        				currentItemName="";
+		        			}
+		        			else if(playerItemChosen == 1){
+		        				if(textArea.getText().equals("1")){
+				        			textPane.setText("Info");
+				        			currentItemName="";
+		        				}
+				        		else if(textArea.getText().equals("2")){
+				        			textPane.setText("Drop");
+				        			currentItemName="";
+				        		}
+				        		else if(textArea.getText().equals("3")){
+				        			textPane.setText("Craft");
+			        				order++;
+				        		}
+		        			}
+		        			else if(playerItemChosen == 2){
+		        				if(textArea.getText().equals("1")){
+				        			textPane.setText("Info");
+		        				}
+				        		else if(textArea.getText().equals("2")){
+				        			textPane.setText("Drop");
+				        		}
+		        				currentItemName="";
+		        			}
+		        		}	
+		        		else if(order==1 && playerItemChosen ==2){
+		        			ArrayList<String> craftableItemList = newGame.getCraftableItems(currentItemName);
+		        			String s = "Choose the item which you want to craft\n";
+		        			for(int i = 0 ; i<craftableItemList.size();i++){
+		        				s += i+". "+craftableItemList.get(i)+"\n";
+		        			}
+		        			textPane.setText(s);
+		        		}
+		        		else if(order==2){
+		        			;
+		        		}
+		        		textArea.setText("");
 		        	}
 		        	
 		        	
@@ -285,10 +375,10 @@ public class gamePanel extends JPanel {
 		playerItemsPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		playerPanel.add(playerItemsPanel);
 		playerItemsPanel.setLayout(new GridLayout(0, 2, 0, 0));
-		for(int i = 0; i< areaItems.length;i++){
+		for(int i = 0; i< playerItems.length;i++){
 			JLabel tempItem = new JLabel(/*(String)areaItems[i][0]*/);
-			tempItem.setName((String)areaItems[i][0]);
-			tempItem.setIcon(new ImageIcon(((ImageIcon)areaItems[i][1]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+			tempItem.setName((String)playerItems[i][0]);
+			tempItem.setIcon(new ImageIcon(((ImageIcon)playerItems[i][1]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -296,7 +386,19 @@ public class gamePanel extends JPanel {
 					order=0;
 					System.out.println(tempItem.getName());
 					currentItemName = tempItem.getName();
-					textPane.setText("Choose for " + tempItem.getName()+"\n1. Information\n2.Take\n" );
+					/*if(newGame.getPlayer().getInventory().getItem(tempItem.getName()) instanceof BoostingItem){
+						textPane.setText("Choose for " + tempItem.getName()+"\n1. Information\n2.Drop\n3.Use" );
+						playerItemChosen = 0;
+					}
+					else if(newGame.getCraftableItems(tempItem.getName())==null){
+						textPane.setText("Choose for " + tempItem.getName()+"\n1. Information\n2.Drop" );
+						playerItemChosen = 2;
+					}
+					else{
+						textPane.setText("Choose for " + tempItem.getName()+"\n1. Information\n2.Drop\n3.Craft" );
+						playerItemChosen = 1;
+					}*/
+					
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
 			});
@@ -329,13 +431,16 @@ public class gamePanel extends JPanel {
 		areaItemsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		areaObjectsPanel.add(areaItemsPanel);
 		
-		for(int i = 0; i< areaItems.length;i++){
+		for(int i = 0; i< areaItems.size();i++){
 			JLabel tempItem = new JLabel(/*(String)areaItems[i][0]*/);
-			tempItem.setName((String)areaItems[i][0]);
-			tempItem.setIcon(new ImageIcon(((ImageIcon)areaItems[i][1]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+			tempItem.setName(areaItems.get(i).getName());
+			String iconString = "/images/"+areaItems.get(i).getName().toLowerCase()+".png";
+			System.out.println(iconString);
+			tempItem.setIcon(new ImageIcon((new ImageIcon(gamePanel.class.getResource(iconString))).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					areaChosen = 0;
 					order = 0;
 					isFromArea = true;
 					System.out.println(tempItem.getName());
@@ -371,6 +476,9 @@ public class gamePanel extends JPanel {
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					areaChosen = 1;
+					order = 0;
+					isFromArea = true;
 					System.out.println(tempItem.getName());
 					currentItemName = tempItem.getName();
 					textPane.setText("Choose for " + tempItem.getName()+"\n1. Fight\n2.Run\n" );
@@ -395,8 +503,12 @@ public class gamePanel extends JPanel {
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					areaChosen = 2;
+					order = 0;
+					isFromArea = true;
 					System.out.println(tempItem.getName());
-					textPane.setText("Choose for " + tempItem.getName()+"\n1. Fight\n2.Run\n" );
+					currentItemName = tempItem.getName();
+					textPane.setText("Choose for " + tempItem.getName()+"\n1. Description\n2.Go into special Event\n" );
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
 			});
@@ -462,6 +574,14 @@ public class gamePanel extends JPanel {
 			}
 		});
 		directionPanel.add(rightLabel, BorderLayout.EAST );
+		
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				if(newGame.isGameOver())
+					System.out.println("Game is over");
+			}
+		});
 
 	}
 

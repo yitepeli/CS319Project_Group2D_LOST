@@ -1,0 +1,18 @@
+{
+  "objectName" : "Meat",
+  "objecId" : "23",
+  "description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  "weight" : "7.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["drop", "craft"],
+	
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Cooked Meat"
+	}
+
+	],
+ 
+}

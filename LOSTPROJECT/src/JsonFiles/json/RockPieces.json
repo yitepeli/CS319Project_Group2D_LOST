@@ -1,0 +1,25 @@
+{
+  "objectName" : "Rock Pieces",
+  "objecId" : "232",
+  "description" : "Many little rock pieces.",
+  "weight" : "4.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["drop", "craft"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Rock"
+	},
+
+	],
+	
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Knife"
+	},
+
+	],
+ 
+}

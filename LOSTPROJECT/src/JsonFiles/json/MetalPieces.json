@@ -1,15 +1,26 @@
 {
   "objectName" : "Metal Pieces",
-  "objectId" : "11",
-  "description" : "Metal pieces can be used for creating swords!",
-  "weight" : "2.1",
+  "objecId" : "23",
+  "description" : "Little but many metal pieces. I may survive with these.",
+  "weight" : "7.0",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take","craft","drop"],
+  "actionList" : ["drop", "craft"],
+	
   "craftableItemList" : [
-    {
-      "objectName" : "Sword"
-    }
-  ],
-  "requiredItemList" : []
+
+	{
+		"objectName" : "Sword"
+	},
+
+	{
+		"objectName" : "Armor"
+	},
+
+	{
+		"objectName" : "Nails"
+	},
+
+	]
+ 
 }

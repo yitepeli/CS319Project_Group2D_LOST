@@ -1,16 +1,19 @@
 {
   "objectName" : "Sand",
-  "objectId" : "12",
-  "description" : "You are in beach and sand can be observed in every piece of land!",
-  "weight" : "0.0",
-  "renewalTime": "20",
+  "objecId" : "23",
+  "description" : "Useful basic material for crafting objects.",
+  "weight" : "2.0",
+  "renewalTime" : "2",
   "renewable" : "true",
   "visible" : "true",
-  "actionList" : ["take","drop"],
+  "actionList" : ["take", "drop", "craft"],
+	
   "craftableItemList" : [
-    {
-      "objectName" : "Fire"
-    }
-  ],
-  "requiredItemList" : []
+
+	{
+		"objectName" : "Glass Pieces"
+	}
+
+	]
+ 
 }

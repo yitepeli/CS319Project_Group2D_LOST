@@ -1,0 +1,30 @@
+{
+  "objectName" : "Shelter",
+  "objecId" : "36",
+  "description" : "It is a shelter to gain energy.",
+  "weight" : "5.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["drop", "use"],
+  "requiredItemsList" : [
+
+  {
+    "objectName" : "Wood"
+  },
+
+  {
+    "objectName" : "Branch"
+  },
+
+  {
+    "objectName" : "Stone"
+  },
+
+  {
+    "objectName" : "Rope"
+  }
+
+  ],
+  
+  "attackPointBonus" : 15
+}

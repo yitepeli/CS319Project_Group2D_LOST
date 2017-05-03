@@ -1,0 +1,10 @@
+{
+  "objectName" : "CookedMeat",
+  "objecId" : "156",
+  "description" : "It is an delicious warm meat",
+  "weight" : "5.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["drop", "eat"],
+  "hungerPoints" : 15
+}

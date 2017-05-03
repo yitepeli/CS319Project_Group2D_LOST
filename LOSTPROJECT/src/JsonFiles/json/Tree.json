@@ -1,16 +1,19 @@
 {
   "objectName" : "Tree",
-  "objecId" : "4",
-  "description" : "A very huge tree. What if you could take it?",
-  "weight" : "12.0",
-  "renewalTime": "30",
+  "objecId" : "23",
+  "description" : "It is a tiny but useful tree.",
+  "weight" : "25.0",
+  "renewalTime" : "2",
   "renewable" : "true",
   "visible" : "true",
-  "actionList" : ["take","craft","drop"],
+  "actionList" : ["drop", "craft"],
+	
   "craftableItemList" : [
-    {
-      "objectName" : "Wood"
-    }
-  ],
-  "requiredItemList" : []
+
+	{
+		"objectName" : "Wood"
+	}
+
+	]
+ 
 }

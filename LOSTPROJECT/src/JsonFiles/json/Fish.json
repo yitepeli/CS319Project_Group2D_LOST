@@ -1,22 +1,12 @@
 {
   "objectName" : "Fish",
-  "objectId" : "14",
-  "description" : "You are in seaside. What about catching fish!",
-  "weight" : "1.0",
-  "renewalTime": "2",
+  "objecId" : "35",
+  "description" : "A Fresh Fish from the sea. Mmmm looks delicious",
+  "weight" : "7.0",
   "renewable" : "true",
+  "renewalTime": "3",
   "visible" : "true",
-  "actionList" : ["take","craft","drop"],
-  "craftableItemList" : [
-    {
-      "objectName" : "Fish Meat"
-    }
-  ],
-  "requiredItemList" : [
-    {
-      "objectName" : "Fishing Road"
-    }
-  ]
+  "actionList" : ["information", "drop", "eat"],	
+  "hungerPoints" : "10"
+
 }
-
-

@@ -1,16 +1,23 @@
 {
   "objectName" : "Moss",
-  "objectId" : "9",
-  "description" : "Moss! Can be crafted into Rope.",
+  "objecId" : "234",
+  "description" : "Well it is a bit disgusting but one can use moss to make something useful.",
   "weight" : "0.5",
-  "renewalTime": "7",
+  "renewalTime" : "2",
   "renewable" : "true",
-  "visible" : "false",
-  "actionList" : ["take","craft","drop"],
-  "craftableItemList" : [ 
-    {
-      "objectName" : "Rope"
-    }
-  ],
-  "requiredItemList" : []
+  "visible" : "true",
+  "actionList" : ["drop", "craft"],
+	
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Rope"
+	},
+
+	{
+		"objectName" : "Bandage"
+	}
+
+	]
+ 
 }

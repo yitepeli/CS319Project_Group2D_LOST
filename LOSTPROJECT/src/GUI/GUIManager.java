@@ -26,6 +26,9 @@ import javax.swing.BoxLayout;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.border.LineBorder;
@@ -102,7 +105,7 @@ public class GUIManager extends JFrame {
 		
 		
 		setContentPane(contentPane);
-		
+
 		//mainPanel mainPanel = new mainPanel();
 		//contentPane.add(mainPanel, BorderLayout.CENTER);
 		

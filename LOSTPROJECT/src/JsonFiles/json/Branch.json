@@ -1,16 +1,22 @@
 {
   "objectName" : "Branch",
-  "objectId" : "5",
-  "description" : "Camfire is near on you! Hint: Branch can be used for sitting shelter... ",
-  "weight" : "0.8",
-  "renewalTime": "2",
-  "renewable" : "true",
+  "objecId" : "213",
+  "description" : "Branches from trees, might help with something.",
+  "weight" : "8.0",
+  "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take","craft","drop"],
-  "craftableItemList" : [ 
-    {
-      "objectName" : "Shelter"
-    }
-  ],
-  "requiredItemList" : []
+  "actionList" : ["drop", "craft"],
+	
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Shelter"
+	},
+
+	{
+		"objectName" : "Fire"
+	}
+
+	]
+ 
 }

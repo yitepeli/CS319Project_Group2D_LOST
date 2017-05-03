@@ -1,16 +1,43 @@
 {
   "objectName" : "Stone",
-  "objectId" : "6",
-  "description" : "Stone! A little bit heavy, but umm can be always used in crafting...",
-  "weight" : "3.3",
-  "renewalTime": "9",
+  "objecId" : "1212",
+  "description" : "It is a stone.",
+  "weight" : "15.0",
+  "renewalTime": "3",
   "renewable" : "true",
   "visible" : "true",
-  "actionList" : ["take","craft","drop"],
-  "craftableItemList" : [ 
-    {
-      "objectName" : "Rock Pieces"
-    }
-  ],
-  "requiredItemList" : []
+  "actionList" : ["drop", "craft"],
+	
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Knife"
+	},
+
+	{
+		"objectName" : "Axe"
+	},
+
+	{
+		"objectName" : "Hammer"
+	},
+
+	{
+		"objectName" : "Sword"
+	},
+
+	{
+		"objectName" : "Shelter"
+	},
+	
+	{
+		"objectName" : "Stone Pieces"
+	},
+	
+	{
+		"objectName" : "Armor"
+	}
+
+	]
+ 
 }

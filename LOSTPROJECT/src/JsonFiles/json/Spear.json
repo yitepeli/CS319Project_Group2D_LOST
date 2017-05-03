@@ -1,21 +1,22 @@
 {
   "objectName" : "Spear",
-  "objectId" : "3",
-  "description" : "A very primitive weapon. Still better that your bare hands!",
-  "weight" : "5.2",
-  "renewalTime": "10",
+  "objecId" : "36",
+  "description" : "Hmmm. It is the most powerful thing I have ever seen in this island.",
+  "weight" : "12.0",
   "renewable" : "false",
-  "visible" : "false",
-  "actionList" : ["take,craft"],
-  "attackPointBonus" : 10,
-  "defensePointBonus" : 20,
-  "craftableItemList" : [ ],
-  "requiredItemList" : [
-    {
-      "objectName" : "Wood"
-    },
-    {
-      "objectName" : "Rock"
-    }
-  ]
+  "visible" : "true",
+  "actionList" : ["drop"],
+  "requiredItemsList" : [
+
+  {
+    "objectName" : "Stone Pieces"
+  },
+
+  {
+    "objectName" : "Wood"
+  }
+
+  ],
+  
+  "attackPointBonus" : "25"
 }

@@ -1,13 +1,12 @@
 {
   "objectName" : "Apple",
-  "objecId" : "1",
-  "description" : "A shiny apple! Red one it is! Maybe try eat it?",
-  "weight" : "10.0",
-  "renewalTime": "8",
+  "objecId" : "39",
+  "description" : "It's the reddest Apple ever",
+  "weight" : "4.0",
+  "renewalTime": "3",
   "renewable" : "true",
   "visible" : "true",
-  "actionList" : ["eat","take","drop"],
-  "hungerPoints" : 10,
-  "thirstPoints" : 2,
-  "healthPoints" : 1
+  "actionList" : ["drop", "eat"],	
+  "hungerPoints" : "7"
+
 }
