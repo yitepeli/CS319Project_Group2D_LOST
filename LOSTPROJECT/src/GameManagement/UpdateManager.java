@@ -64,26 +64,17 @@ public class UpdateManager {
                         positionOfUser = area;
                 } //arranging initial position of user (linked list)
 
-
                 databaseManager.setAreasInCloud(area.getAreaType().getAreaName());//creating datasets in database manager!
                 databaseManager.setWorkingArea(area.getAreaType().getAreaName());
 
                 ArrayList<Item> itemList = databaseManager.listItems(isNewGame);
-
-                itemList.forEach(e->databaseManager.processData(e, DatabaseManager.WriteAction.WRITE_ITEM_INTO_AREA));
-
-                System.out.println("writing...");
                 ArrayList<Character> characterList = databaseManager.listCharacters(isNewGame);
-
-                characterList.forEach(e->databaseManager.processData(e, DatabaseManager.WriteAction.WRITE_CHARACTER));
 
                 Inventory areaInventory = new Inventory();
                 areaInventory.setStoredItemList(itemList);
 
                 area.setInventory(areaInventory);
                 area.setCharacterList(characterList);
-
-
 
                 if (area.getRightNeighbour() != null) {
                     area = area.getRightNeighbour();
