@@ -5,6 +5,8 @@ package GameManagement;
  */
 
 import java.util.ArrayList;
+
+
 import GameObjectsManagement.AreaManagement.*;
 import DatabaseManagement.*;
 import GameObjectsManagement.ObjectManagement.*;
@@ -85,6 +87,10 @@ public class UpdateManager {
                 area = base.getDownNeighbour(); // down column
         }
     }
+
+
+
+
 
     public Area getPositionOfUser(){
         return positionOfUser;

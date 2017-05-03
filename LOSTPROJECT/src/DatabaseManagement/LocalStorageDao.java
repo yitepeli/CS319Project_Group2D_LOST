@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.stream.Stream;
+import java.util.prefs.*;
 
 import GameObjectsManagement.ItemManagement.Item;
 
@@ -78,6 +79,37 @@ public class LocalStorageDao {
         return gameObject;
     }
 
+    /**
+     * For Windows
+     * systemRoot -> HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Prefs
+     * userRoot -> HKEY_CURRENT_USER\Software\JavaSoft\Prefs.
+     * For Unix
+     * systemRoot -> /etc/.java
+     * userRoot -> ${user.home}/.java/.userPrefs
+     */
+
+    public void recordUserUniqueId(String userUniqueId,long cloudId){
+        Preferences userPrefs = Preferences.userRoot().node("lost/custom/user");//user preferences node
+        userPrefs.put(Constants.USER_PREFS,userUniqueId);//putting user unique id into user preferences package
+        userPrefs.putLong(Constants.USER_ID,cloudId);
+    }
+
+    public static String getUserUniqueId(){
+        Preferences userPrefs = Preferences.userRoot().node("lost/custom/user");
+        return userPrefs.get(Constants.USER_PREFS,Constants.INVALID_USER);
+    }
+
+    public void recordSettings(boolean isSoundActive, int panelOption){
+        Preferences systemPrefs = Preferences.systemRoot().node("lost/custom/settings");
+        systemPrefs.putBoolean(Constants.SYSTEM_PREFS_SOUND,isSoundActive);
+        systemPrefs.putInt(Constants.SYSTEM_PREFS_PANEL,panelOption);
+    }
+
+    public boolean isSoundActive(){ return Preferences.systemRoot().getBoolean(Constants.SYSTEM_PREFS_SOUND,true);}
+
+    public int getLastPanelOption(){ return Preferences.systemRoot().getInt(Constants.SYSTEM_PREFS_PANEL,0);}
+
+    public long getUserId(){return Preferences.systemRoot().getLong(Constants.USER_ID,0);}
 
 
 }
