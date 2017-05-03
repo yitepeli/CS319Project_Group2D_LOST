@@ -1,4 +1,4 @@
-//GUI Yasin
+//GUI Yasin Tepeli
 
 package GUI;
 
