@@ -18,13 +18,6 @@ public class Player extends AggresiveCharacter {
 	private int hunger;
 	private String currentArea;
 
-
-	//For database querying..
-	public static final String ENERGY = "energy";
-	public static final String HUNGER = "hunger";
-	public static final String THIRST = "thirst";
-	public static final String CURRENT_AREA = "currentArea";
-	
 	public Player() {
 		setEnergy(60);
 		updateThirst(15);

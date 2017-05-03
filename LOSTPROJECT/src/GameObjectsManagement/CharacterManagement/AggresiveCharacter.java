@@ -13,9 +13,6 @@ public class AggresiveCharacter extends Character {
 	/**
 	 * 
 	 */
-
-	public static final String ATTACK = "attack";
-
 	public AggresiveCharacter() {
 		attack=10;
 	}

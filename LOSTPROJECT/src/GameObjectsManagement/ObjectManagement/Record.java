@@ -16,13 +16,6 @@ public class Record extends GameObject {
     private boolean isAccomplished;
     private long playerId;
 
-    //For Database Querying...
-    public static final String ACCOMPLISHED_STORY_EVENT = "accomplishedStoryEvent";
-    public static final String DESCRIPTION = "description"; //make updatable elements as enum
-    public static final String ACCOMPLISHED_GAME_TIME = "accomplishedGameTime";
-    public static final String IS_ACCOMPLISHED = "isAccomplished";
-    public static final String REAL_TIME = "realTime";
-
     private Record(Builder builder){
 
         onCloud = builder.onCloud;

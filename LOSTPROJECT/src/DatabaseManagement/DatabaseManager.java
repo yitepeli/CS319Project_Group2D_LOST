@@ -219,12 +219,12 @@ public class DatabaseManager {
 
         DELETE_ITEM_FROM_PLAYER{
             void clearDataInCloud(long id){
-                playerDAO.clearDataInPlayeer(id,PlayerDatastore.DeleteAction.DELETE_PLAYER);
+                playerDAO.clearDataInPlayer(id,PlayerDatastore.DeleteAction.DELETE_PLAYER);
             }
         },
         DELETE_PLAYER{
             void clearDataInCloud(long id){
-                playerDAO.clearDataInPlayeer(id,PlayerDatastore.DeleteAction.DELETE_ITEM);
+                playerDAO.clearDataInPlayer(id,PlayerDatastore.DeleteAction.DELETE_ITEM);
             }
         };
         abstract void clearDataInCloud(long id);

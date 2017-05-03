@@ -32,7 +32,7 @@ public class PlayerDatastore extends ParentDatastore{
         return readAction.readDataInCloud(id);
     }
 
-    public void clearDataInPlayeer(long id, DeleteAction deleteAction){
+    public void clearDataInPlayer(long id, DeleteAction deleteAction){
         deleteAction.clearDataInCloud(id);
     }
 
@@ -45,14 +45,14 @@ public class PlayerDatastore extends ParentDatastore{
         private Player entityToPlayer(Entity entity){
 
             return new Player.Builder()
-                    .userName(entity.getString(Player.OBJECT_NAME))
-                    .currentArea(entity.getString(Player.CURRENT_AREA))
-                    .defense((int)entity.getLong(Player.DEFENSE))
-                    .attack((int)entity.getLong(Player.ATTACK))
-                    .energy((int)entity.getLong(Player.ENERGY))
-                    .health((int)entity.getLong(Player.HEALTH))
-                    .hunger((int)entity.getLong(Player.HUNGER))
-                    .thirst((int)entity.getLong(Player.THIRST))
+                    .userName(entity.getString(Constants.OBJECT_NAME))
+                    .currentArea(entity.getString(Constants.CURRENT_AREA))
+                    .defense((int)entity.getLong(Constants.DEFENSE))
+                    .attack((int)entity.getLong(Constants.ATTACK))
+                    .energy((int)entity.getLong(Constants.ENERGY))
+                    .health((int)entity.getLong(Constants.HEALTH))
+                    .hunger((int)entity.getLong(Constants.HUNGER))
+                    .thirst((int)entity.getLong(Constants.THIRST))
                     .build();
         }
 
@@ -60,14 +60,14 @@ public class PlayerDatastore extends ParentDatastore{
             IncompleteKey key = playerKeyFactory.newKey();//assign new key for storing in the cloud
 
             FullEntity<IncompleteKey> incItemEntity = Entity.newBuilder(key)
-                    .set(Player.OBJECT_NAME,player.getName())
-                    .set(Player.CURRENT_AREA, player.getCurrentPositionOfUser())
-                    .set(Player.DEFENSE,player.getDefense())
-                    .set(Player.ATTACK,player.getAttack())
-                    .set(Player.ENERGY,player.getEnergy())
-                    .set(Player.HEALTH,player.getHealth())
-                    .set(Player.HUNGER,player.getHunger())
-                    .set(Player.THIRST,player.getThirst())
+                    .set(Constants.OBJECT_NAME,player.getName())
+                    .set(Constants.CURRENT_AREA, player.getCurrentPositionOfUser())
+                    .set(Constants.DEFENSE,player.getDefense())
+                    .set(Constants.ATTACK,player.getAttack())
+                    .set(Constants.ENERGY,player.getEnergy())
+                    .set(Constants.HEALTH,player.getHealth())
+                    .set(Constants.HUNGER,player.getHunger())
+                    .set(Constants.THIRST,player.getThirst())
                     .build();
 
             //insert object mapping here!
@@ -86,14 +86,14 @@ public class PlayerDatastore extends ParentDatastore{
             Key key = playerKeyFactory.newKey(player.getCloudId());//insert item key here
 
             Entity entity = Entity.newBuilder(key)
-                    .set(Player.OBJECT_NAME,player.getName())
-                    .set(Player.CURRENT_AREA, player.getCurrentPositionOfUser())
-                    .set(Player.DEFENSE,player.getDefense())
-                    .set(Player.ATTACK,player.getAttack())
-                    .set(Player.ENERGY,player.getEnergy())
-                    .set(Player.HEALTH,player.getHealth())
-                    .set(Player.HUNGER,player.getHunger())
-                    .set(Player.THIRST,player.getThirst())
+                    .set(Constants.OBJECT_NAME,player.getName())
+                    .set(Constants.CURRENT_AREA, player.getCurrentPositionOfUser())
+                    .set(Constants.DEFENSE,player.getDefense())
+                    .set(Constants.ATTACK,player.getAttack())
+                    .set(Constants.ENERGY,player.getEnergy())
+                    .set(Constants.HEALTH,player.getHealth())
+                    .set(Constants.HUNGER,player.getHunger())
+                    .set(Constants.THIRST,player.getThirst())
                     .build();
 
             datastore.update(entity);

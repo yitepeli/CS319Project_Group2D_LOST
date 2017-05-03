@@ -19,11 +19,6 @@ public class Character extends GameObject {
 	/**
 	 * 
 	 */
-
-
-	public static final String HEALTH = "health";
-	public static final String DEFENSE = "defense";
-
 	public Character() {
 		// TODO Auto-generated constructor stub
 	}

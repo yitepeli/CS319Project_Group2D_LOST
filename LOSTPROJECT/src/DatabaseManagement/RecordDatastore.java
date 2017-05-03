@@ -20,12 +20,12 @@ public class RecordDatastore extends ParentDatastore implements CloudStorageDao<
     public Record entityToRecord(Entity entity){
 
         return new Record.Builder()
-                .acquiredBy(entity.getString(Record.OBJECT_NAME))
-                .acquiredById(entity.getLong(Record.OBJECT_ID))
-                .accomplishedStoryEvent(entity.getString(Record.ACCOMPLISHED_STORY_EVENT))
-                .description(entity.getString(Record.DESCRIPTION))
-                .accomplishmentDay((int)entity.getLong(Record.ACCOMPLISHED_GAME_TIME))
-                .isAccomplished(entity.getBoolean(Record.IS_ACCOMPLISHED))
+                .acquiredBy(entity.getString(Constants.OBJECT_NAME))
+                .acquiredById(entity.getLong(Constants.OBJECT_ID))
+                .accomplishedStoryEvent(entity.getString(Constants.ACCOMPLISHED_STORY_EVENT))
+                .description(entity.getString(Constants.DESCRIPTION))
+                .accomplishmentDay((int)entity.getLong(Constants.ACCOMPLISHED_GAME_TIME))
+                .isAccomplished(entity.getBoolean(Constants.IS_ACCOMPLISHED))
                 .build();
     }
 
@@ -35,13 +35,13 @@ public class RecordDatastore extends ParentDatastore implements CloudStorageDao<
         IncompleteKey key = keyFactory.newKey();//assign new key for storing in the cloud
 
         FullEntity<IncompleteKey> incScoreEntity = Entity.newBuilder(key)
-                .set(Record.OBJECT_NAME,record.getName())
-                .set(Record.OBJECT_ID,record.getId())
-                .set(Record.IS_ACCOMPLISHED,record.isAccomplished())
-                .set(Record.DESCRIPTION,record.getDescription())
-                .set(Record.ACCOMPLISHED_STORY_EVENT,record.getAccomplishedStoryEvent())
-                .set(Record.ACCOMPLISHED_GAME_TIME,record.getAccomplishmentDay())
-                .set(Record.REAL_TIME, record.getRealTimeFormatted())
+                .set(Constants.OBJECT_NAME,record.getName())
+                .set(Constants.OBJECT_ID,record.getId())
+                .set(Constants.IS_ACCOMPLISHED,record.isAccomplished())
+                .set(Constants.DESCRIPTION,record.getDescription())
+                .set(Constants.ACCOMPLISHED_STORY_EVENT,record.getAccomplishedStoryEvent())
+                .set(Constants.ACCOMPLISHED_GAME_TIME,record.getAccomplishmentDay())
+                .set(Constants.REAL_TIME, record.getRealTimeFormatted())
                 .build();
 
         Entity entity = datastore.add(incScoreEntity);//now adding completed entity into datastore
@@ -57,13 +57,13 @@ public class RecordDatastore extends ParentDatastore implements CloudStorageDao<
     public void update(Record record){
         Key key = keyFactory.newKey(record.getCloudId());
         Entity entity = Entity.newBuilder(key)
-                .set(Record.OBJECT_NAME,record.getName())
-                .set(Record.DESCRIPTION,record.getId())
-                .set(Record.ACCOMPLISHED_STORY_EVENT,record.getAccomplishedStoryEvent())
-                .set(Record.OBJECT_ID,record.getId())
-                .set(Record.IS_ACCOMPLISHED,record.isAccomplished())
-                .set(Record.ACCOMPLISHED_GAME_TIME,record.getAccomplishmentDay())
-                .set(Record.REAL_TIME,record.getRealTimeFormatted())
+                .set(Constants.OBJECT_NAME,record.getName())
+                .set(Constants.DESCRIPTION,record.getId())
+                .set(Constants.ACCOMPLISHED_STORY_EVENT,record.getAccomplishedStoryEvent())
+                .set(Constants.OBJECT_ID,record.getId())
+                .set(Constants.IS_ACCOMPLISHED,record.isAccomplished())
+                .set(Constants.ACCOMPLISHED_GAME_TIME,record.getAccomplishmentDay())
+                .set(Constants.REAL_TIME,record.getRealTimeFormatted())
                 .build();
         datastore.update(entity);//update existed one!
 
@@ -80,7 +80,7 @@ public class RecordDatastore extends ParentDatastore implements CloudStorageDao<
                 .setKind("Record")
                 .setLimit(10)
                 .setStartCursor(null)
-                .setOrderBy(StructuredQuery.OrderBy.desc(Record.ACCOMPLISHED_GAME_TIME))//fix this one
+                .setOrderBy(StructuredQuery.OrderBy.desc(Constants.ACCOMPLISHED_GAME_TIME))//fix this one
                 .build();
 
         //Running query and searching matching pairs!

@@ -236,6 +236,12 @@ public class GameEngine {
 	public Area getPositionOfUser(){
 		return positionOfUser;
 	}
+
+
+	public boolean isLeftAvailable(){return positionOfUser.hasLeftNeighbour(); }
+	public boolean isRightAvailable(){return positionOfUser.hasRightNeighbour(); }
+	public boolean isUpAvailable(){return positionOfUser.hasUpNeighbour();}
+	public boolean isDownAvailable(){return positionOfUser.hasDownNeighbour();}
 	
 /*	public String enterEvent(String eventName){
 		

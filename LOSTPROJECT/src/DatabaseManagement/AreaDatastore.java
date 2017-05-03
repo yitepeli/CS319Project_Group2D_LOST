@@ -54,12 +54,12 @@ public class AreaDatastore extends ParentDatastore{
 
         private Character entityToCharacter(Entity entity){
 
-            Character character = new Character((int)entity.getLong(Character.OBJECT_ID),
-                                  entity.getString(Character.OBJECT_NAME),
-                                 entity.getString(Character.DESCRIPTION));
+            Character character = new Character((int)entity.getLong(Constants.OBJECT_ID),
+                                  entity.getString(Constants.OBJECT_NAME),
+                                 entity.getString(Constants.DESCRIPTION));
 
-            character.setDefense((int)entity.getLong(Character.DEFENSE));
-            character.setHealth((int)entity.getLong(Character.HEALTH));
+            character.setDefense((int)entity.getLong(Constants.DEFENSE));
+            character.setHealth((int)entity.getLong(Constants.HEALTH));
             return character;
         }
         //insert here
@@ -69,11 +69,11 @@ public class AreaDatastore extends ParentDatastore{
             IncompleteKey key = characterKeyFactory.newKey();//assign new key for storing in the cloud
 
             FullEntity<IncompleteKey> incItemEntity = Entity.newBuilder(key)
-                    .set(Character.OBJECT_NAME,character.getName())
-                    .set(Character.OBJECT_ID,character.getId())
-                    .set(Character.HEALTH,character.getHealth())
-                    .set(Character.DEFENSE,character.getDefense())
-                    .set(Character.DESCRIPTION,character.getDefense())
+                    .set(Constants.OBJECT_NAME,character.getName())
+                    .set(Constants.OBJECT_ID,character.getId())
+                    .set(Constants.HEALTH,character.getHealth())
+                    .set(Constants.DEFENSE,character.getDefense())
+                    .set(Constants.DESCRIPTION,character.getDefense())
                     .build();
 
             //insert object mapping here!
@@ -91,11 +91,11 @@ public class AreaDatastore extends ParentDatastore{
             Key key = characterKeyFactory.newKey(character.getCloudId());//insert item key here
 
             Entity entity = Entity.newBuilder(key)
-                    .set(Character.OBJECT_NAME,character.getName())
-                    .set(Character.OBJECT_ID,character.getId())
-                    .set(Character.HEALTH,character.getHealth())
-                    .set(Character.DEFENSE,character.getDefense())
-                    .set(Character.DESCRIPTION,character.getDefense())
+                    .set(Constants.OBJECT_NAME,character.getName())
+                    .set(Constants.OBJECT_ID,character.getId())
+                    .set(Constants.HEALTH,character.getHealth())
+                    .set(Constants.DEFENSE,character.getDefense())
+                    .set(Constants.DESCRIPTION,character.getDefense())
                     .build();
 
             datastore.update(entity);

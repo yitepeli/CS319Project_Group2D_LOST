@@ -5,12 +5,14 @@ package DatabaseManagement;
  */
 //Static Nested class requires less memory space!
 
+import GameObjectsManagement.ItemManagement.*;
+import GameObjectsManagement.ObjectManagement.Constants;
+
+
 import com.google.cloud.datastore.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import GameObjectsManagement.ItemManagement.*;
 
 
 public class ItemDatastore implements CloudStorageDao<Item>{
@@ -27,9 +29,9 @@ public class ItemDatastore implements CloudStorageDao<Item>{
 
     private Item entityToItem(Entity entity){
 
-        return new Item((int)entity.getLong(Item.OBJECT_ID),
-                entity.getString(Item.OBJECT_NAME),
-                entity.getString(Item.DESCRIPTION));
+        return new Item((int)entity.getLong(Constants.OBJECT_ID),
+                entity.getString(Constants.OBJECT_NAME),
+                entity.getString(Constants.DESCRIPTION));
     }
 
 
@@ -37,9 +39,9 @@ public class ItemDatastore implements CloudStorageDao<Item>{
         IncompleteKey key = itemKeyFactory.newKey();//assign new key for storing in the cloud
 
         FullEntity<IncompleteKey> incItemEntity = Entity.newBuilder(key)
-                .set(Item.OBJECT_NAME,item.getName())
-                .set(Item.OBJECT_ID,item.getId())
-                .set(Item.DESCRIPTION,item.getDescription())
+                .set(Constants.OBJECT_NAME,item.getName())
+                .set(Constants.OBJECT_ID,item.getId())
+                .set(Constants.DESCRIPTION,item.getDescription())
                 .build();
 
         //insert object mapping here!
@@ -59,9 +61,9 @@ public class ItemDatastore implements CloudStorageDao<Item>{
         Key key = itemKeyFactory.newKey(item.getCloudId());//insert item key here
 
         Entity entity = Entity.newBuilder(key)
-                .set(Item.OBJECT_NAME,item.getName())
-                .set(Item.OBJECT_ID,item.getId())
-                .set(Item.DESCRIPTION,item.getDescription())
+                .set(Constants.OBJECT_NAME,item.getName())
+                .set(Constants.OBJECT_ID,item.getId())
+                .set(Constants.DESCRIPTION,item.getDescription())
                 .build();
 
         datastore.update(entity);

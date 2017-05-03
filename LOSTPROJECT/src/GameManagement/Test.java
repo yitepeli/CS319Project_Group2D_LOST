@@ -30,6 +30,24 @@ public class Test {
         System.out.println("Characters in " + area.getAreaType().getAreaName());
         characters.forEach(e->System.out.println(e.getName()));
 
+        area = area.getRightNeighbour();
+
+        characters = area.getCharacterList();
+        itemList = area.getInventory().getStoredItems();
+
+        System.out.println();
+
+
+        System.out.println("Items in " + area.getAreaType().getAreaName());
+        itemList.forEach(e->System.out.println(e.getName()));/*Printing all items in  area!*/
+
+        System.out.println();
+
+        System.out.println("Characters in " + area.getAreaType().getAreaName());
+        characters.forEach(e->System.out.println(e.getName()));
+
+
+
 
     }
 }
