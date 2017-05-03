@@ -110,33 +110,47 @@ public class GameEngine {
 	}
 	
 	
-	public boolean fight(Character character){
+	public String fight(Character character){
 		
+		//just in case
 		if(player.getHealth() <= 0 || character.getHealth() <= 0)
-			return false;
+			return "Dead man cannot fight";
 	
-		else{
-			
+		else{			
 			Random randomGen = new Random();
-			int escapeChance = randomGen.nextInt(3)+1;
+			int missedShotPlayer = randomGen.nextInt(1+(int)(1-character.getEscapeChance())*10)+1; //character's chance of escape from attack
+			int missedShotCharacter = randomGen.nextInt(1+(int)(1-player.getEscapeChance())*10)+1; //player's chance of escape from attack
 			
-			if(escapeChance == 1){				
-				System.out.println("You missed your shot! " + character.getName() + " did not get any damage!");
-				
-				if(character instanceof AggresiveCharacter){
-					if(player.getAttack() == character.getDefense())
-						player.updateHealth(-10);
+			if(missedShotPlayer == 1){							
+				if(character instanceof AggresiveCharacter){			
+					if(missedShotCharacter == 1)
+						return "You missed your shot! " + character.getName() + " did not get any damage!\n"
+								+ character.getName() + "missed its shot! You did not get any damage!";
 					
-					if(player.getAttack() < character.getDefense())
-						player.updateHealth(-Math.abs((player.getAttack()-character.getDefense()))/2);
-					
-					if(player.getAttack() > character.getDefense())
-						player.updateHealth(-player.getAttack());			
+					else{
+						if(player.getDefense() == ((AggresiveCharacter)character).getAttack())
+							player.updateHealth(-10);
+						
+						if(player.getDefense() > ((AggresiveCharacter)character).getAttack())
+							player.updateHealth(-Math.abs((((AggresiveCharacter)character).getAttack()-player.getDefense()))/2);
+						
+						if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
+							player.updateHealth(-((AggresiveCharacter)character).getAttack());		
+						
+						if(player.getHealth() > 0)
+							return "You missed your shot! " + character.getName() + " did not get any damage!\n"
+									+ "You got wounded!";				
+						else
+							return "You missed your shot! " + character.getName() + " did not get any damage!\n"
+									+ "You got killed...";			
+						}
 					}	
+				
+				else
+					return "You missed your shot! " + character.getName() + " did not get any damage!";
 				}
 			
-			else{
-				
+			else{			
 				if(player.getAttack() == character.getDefense())
 					character.updateHealth(-10);
 				
@@ -146,25 +160,43 @@ public class GameEngine {
 				if(player.getAttack() > character.getDefense())
 					character.updateHealth(-player.getAttack());
 				
-				if(character instanceof AggresiveCharacter){
-					if(player.getAttack() == character.getDefense())
-						player.updateHealth(-10);
+				//if character dies, player gets all of its items
+				if(character.getHealth() <= 0){
+					ArrayList<Item> characterItems = character.getInventory().getStoredItems();
+					for(int i=0; i<characterItems.size(); i++)
+						player.addItem(characterItems.get(i).getName());	
 					
-					if(player.getAttack() < character.getDefense())
-						player.updateHealth(-Math.abs((player.getAttack()-character.getDefense()))/2);
-					
-					if(player.getAttack() > character.getDefense())
-						player.updateHealth(-player.getAttack());			
-					}	
+					return "You killed " + character.getName();
 				}
-		
-			//if character dies, player gets all of its items
-			if(character.getHealth() <= 0){
-				ArrayList<Item> characterItems = character.getInventory().getStoredItems();
-				for(int i=0; i<characterItems.size(); i++)
-					player.addItem(characterItems.get(i).getName());			
-			}	
-			return true;		
+				
+				else{			
+					if(character instanceof AggresiveCharacter){						
+						if(missedShotCharacter == 1)
+							return "You wounded  " + character.getName() + "!\n"
+							+ character.getName() + "missed its shot! You did not get any damage!";
+						
+						else{						
+							if(player.getDefense() == ((AggresiveCharacter)character).getAttack())
+								player.updateHealth(-10);
+							
+							if(player.getDefense() > ((AggresiveCharacter)character).getAttack())
+								player.updateHealth(-Math.abs((((AggresiveCharacter)character).getAttack()-player.getDefense()))/2);
+							
+							if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
+								player.updateHealth(-((AggresiveCharacter)character).getAttack());		
+							
+							if(player.getHealth() > 0)
+								return "You wounded  " + character.getName() + "!\n" + "You got wounded!";	
+							
+							else
+								return "You wounded  " + character.getName() + "!\n" + "You got killed...";	
+						}
+					}	
+				
+					else
+						return "You wounded  " + character.getName() + "!\n";
+				}
+			}					
 		}	
 	}
 
