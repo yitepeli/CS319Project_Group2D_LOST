@@ -25,5 +25,10 @@ public class Constants {
     public final static String HUNGER = "hunger";
     public final static String THIRST = "thirst";
     public final static String CURRENT_AREA = "currentArea";
+    public final static String USER_PREFS = "lostUserPreferences";
+    public final static String SYSTEM_PREFS_SOUND = "systemPreferencesSound";
+    public final static String SYSTEM_PREFS_PANEL = "systemPreferencesPanel";
+    public final static String INVALID_USER = "invalidUser";
+    public final static String USER_ID = "cloudId";
 
 }

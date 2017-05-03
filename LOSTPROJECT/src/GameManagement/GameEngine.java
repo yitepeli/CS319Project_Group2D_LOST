@@ -19,9 +19,13 @@ import GameObjectsManagement.CharacterManagement.*;
 import GameObjectsManagement.ItemManagement.*;
 
 import DatabaseManagement.DatabaseManager;
+import GameObjectsManagement.ObjectManagement.Constants;
 
+import javax.print.attribute.standard.PrinterLocation;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.util.*;
-import javax.swing.*;
+
 
 public class GameEngine {
 
@@ -32,19 +36,39 @@ public class GameEngine {
 	private Player player;
 
 	public GameEngine(){
-		String uniqueID = UUID.randomUUID().toString();
-		databaseManager = new DatabaseManager(uniqueID);
-		updateManager = new UpdateManager();
-		mapManager = new MapManager();
+
+	}
+
+
+	public static boolean isUserExists(){
+		return DatabaseManager.isUserExists();
 	}
 
 
 	public void createGameEnvironment(boolean isNewGame){
 
+		if(isNewGame){
+			DatabaseManager.initUserStaticId();
+		}
+		databaseManager = new DatabaseManager();
+		updateManager = new UpdateManager();
+		mapManager = new MapManager();
 		updateManager.createGameEnvironment(isNewGame,databaseManager);//creating areas
-		positionOfUser = updateManager.getPositionOfUser();//initial position of user
 
+
+		if(!isNewGame){
+			long userId = databaseManager.getUserId();//accessing user preferences and getting user id..
+			player = (Player)databaseManager.readData(userId,DatabaseManager.ReadAction.READ_PLAYER);//cloud based data!
+		}
+		else{
+			player = new Player();//passing default values
+			positionOfUser = updateManager.getPositionOfUser();//initial position of user
+			player.setCurrentPosition(positionOfUser.getAreaType().getAreaName());
+			databaseManager.processData(player, DatabaseManager.WriteAction.WRITE_PLAYER);//creating new player instance in persistency layer
+		}
 	}
+
+
 
 	public void navigate(String direction){
 
@@ -65,7 +89,7 @@ public class GameEngine {
 		String currentAreaName = positionOfUser.getAreaType().getAreaName();
 		player.setCurrentPosition(currentAreaName);
 		databaseManager.setWorkingArea(currentAreaName);
-		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);
+		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);//update player data
 		mapManager.processMapp(positionOfUser);//updating map
 	}
 
@@ -81,7 +105,7 @@ public class GameEngine {
 			for(int i=0; i<itemListObject.size(); i++)
 				itemListString.add(itemListObject.get(i).getName());
 		}
-			return itemListString;	
+		return itemListString;
 	}
 	
 	public ArrayList<String> getRequiredItems(String itemName){
@@ -267,6 +291,12 @@ public class GameEngine {
 
 	public Area getPositionOfUser(){
 		return positionOfUser;
+	}
+
+
+
+	public BufferedImage getMap(){
+		return mapManager.getProcessedMap();
 	}
 
 

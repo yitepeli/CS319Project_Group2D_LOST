@@ -3,10 +3,10 @@ package DatabaseManagement;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import GameObjectsManagement.ObjectManagement.*;
 import GameObjectsManagement.ItemManagement.*;
@@ -22,14 +22,17 @@ public class DatabaseManager {
     private static Map<String,AreaDatastore> areaDAOContainer;//access object for area datastore
     private static AreaDatastore areaDAO;
     private static PlayerDatastore playerDAO;//access object for player datastore
-    private ConnectionStatus lastConnectionStatus;
-    private String uniqueId;
-    private LocalStorageDao localStorageDao;
+    private static String uniqueId;
+    private static LocalStorageDao localStorageDao;
+
+    private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);//Asychronous threadpool service for future task
+
+
     private String workingArea;
+    private ConnectionStatus lastConnectionStatus;
 
 
-    public DatabaseManager(String uniqueId){
-        this.uniqueId = uniqueId;
+    public DatabaseManager(){
         lastConnectionStatus = ConnectionStatus.CONNECTED;//initial
         recordDAO = new RecordDatastore();
         playerDAO = new PlayerDatastore(uniqueId);
@@ -64,12 +67,24 @@ public class DatabaseManager {
 
     }
 
+
+
+
+
     public ArrayList<Character> listCharacters(boolean isNewGame){
 
         ArrayList<Character> characterList;
 
         if(isNewGame){
             characterList= localStorageDao.parseJSONFiles(workingArea).getCharacterList();
+
+            characterList.forEach(e->{
+                Future<Void> characterFutureTask = threadpool.submit(()->{
+                    WriteAction.WRITE_CHARACTER.writeDataIntoCloud(e);
+                    return null;
+                });
+
+            });
         }
         else{
             characterList = new ArrayList<>();
@@ -91,6 +106,13 @@ public class DatabaseManager {
 
         if(isNewGame){
             itemList= localStorageDao.parseJSONFiles(workingArea).getItemList();
+
+            itemList.forEach(e->{
+                Future<Void> characterFutureTask = threadpool.submit(()->{
+                    WriteAction.WRITE_CHARACTER.writeDataIntoCloud(e);
+                    return null;
+                });
+            });
         }
         else{
             itemList = new ArrayList<>();
@@ -106,14 +128,6 @@ public class DatabaseManager {
     public List<Record> listRecords(){
 
         return recordDAO.listContent();
-      /*  switch (getConnectionStatus()){
-            case CONNECTED:
-                return recordDAO.listContent();
-
-            case DISCONNECTED:
-                return null;
-        }
-        return null;*/
     }
 
     private ConnectionStatus getConnectionStatus(){
@@ -230,12 +244,32 @@ public class DatabaseManager {
         abstract void clearDataInCloud(long id);
     }
 
-
     public boolean isConnectionAvailable(){
         return (getConnectionStatus() == ConnectionStatus.CONNECTED);
     }
 
     public enum ConnectionStatus{ CONNECTED, DISCONNECTED }
+
+    public static void initUserStaticId(){
+
+        String userId = localStorageDao.getUserUniqueId();
+
+        switch (userId){
+            case Constants.INVALID_USER:
+                uniqueId =  UUID.randomUUID().toString();
+                break;//user does not exists
+
+            default:
+                uniqueId = userId;
+                break;//user exist
+        }
+    }
+
+    public static boolean isUserExists(){
+        return !localStorageDao.getUserUniqueId().equals(Constants.INVALID_USER);
+    }
+
+    public long getUserId(){ return localStorageDao.getUserId();}
 }
 
 
