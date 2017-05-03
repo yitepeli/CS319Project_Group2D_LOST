@@ -6,7 +6,7 @@
   "renewalTime": "3",
   "renewable" : "true",
   "visible" : "true",
-  "actionList" : ["drop", "eat"],	
+  "actionList" : ["take","drop", "eat"],	
   "hungerPoints" : "7"
 
 }

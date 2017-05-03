@@ -23,7 +23,7 @@ public class creditsPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	/*public creditsPanel() {
+	public creditsPanel() {
 		setForeground(Color.WHITE);
 		setBackground(Color.BLACK);
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -41,11 +41,11 @@ public class creditsPanel extends JPanel {
 		Component verticalGlue_1 = Box.createVerticalGlue();
 		add(verticalGlue_1);
 		
-		JLabel t�tleLabel = new JLabel("Creators of LOST");
-		t�tleLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
-		t�tleLabel.setForeground(Color.CYAN);
-		t�tleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		add(t�tleLabel);
+		JLabel creatorsLabel = new JLabel("Creators of LOST");
+		creatorsLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
+		creatorsLabel.setForeground(Color.CYAN);
+		creatorsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		add(creatorsLabel);
 		
 		Component verticalGlue_5 = Box.createVerticalGlue();
 		add(verticalGlue_5);
@@ -107,6 +107,6 @@ public class creditsPanel extends JPanel {
 		Component verticalGlue_2 = Box.createVerticalGlue();
 		add(verticalGlue_2);
 
-	}*/
+	}
 
 }

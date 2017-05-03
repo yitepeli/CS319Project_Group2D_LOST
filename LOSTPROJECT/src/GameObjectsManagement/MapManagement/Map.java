@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 public class Map {
@@ -29,7 +30,12 @@ public class Map {
     public Map (final String url) {
         map = null;
         try {
-            map = ImageIO.read(new File(url));
+    		String userDirectory = System.getProperty("user.dir");
+    		String path=userDirectory+"/src/images/map.jpg";
+            map = ImageIO.read(new File(path));
+            System.out.println(map.getHeight());
+
+            System.out.println(map.getWidth());
             height = map.getHeight();
             width  = map.getWidth();
         }

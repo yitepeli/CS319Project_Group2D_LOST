@@ -31,15 +31,16 @@ public class mainPanel extends JPanel {
 
 		image = null;
 
+		String userDirectory = System.getProperty("user.dir");
+		String path=userDirectory+"/src/GUI/bg.jpg";
 		try {
-			image = ImageIO.read(new File(getClass().getResource("bg.jpg").toURI()));
+			image = ImageIO.read(new File(path));
+			//image = ImageIO.read(new File(getClass().getResource("bg.jpg").toURI()));
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} catch (URISyntaxException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		} 
+		
 		
 		setBackground(Color.BLACK);
 		setBorder(null);

@@ -5,7 +5,7 @@
   "weight" : "6.0",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["drop", "craft"],
+  "actionList" : ["take","drop", "craft"],
   "requiredItemsList" : [
 
 	{
