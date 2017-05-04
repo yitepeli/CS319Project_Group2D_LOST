@@ -53,13 +53,17 @@ public class gamePanel extends JPanel {
 	private int playerItemChosen;
 	private ArrayList<Item> areaItems;
 	private ArrayList<Character> charList;
+	private String textResult;
+	private boolean isNameDefined;
 	/**
 	 * Create the panel.
 	 */
 	private PopUpFrame popFrame;
 	private PopUpFrame mapFrame;
 
-	public gamePanel(GameEngine game) {
+	public gamePanel(GameEngine game, String s) {
+		isNameDefined=true;
+		textResult=s;
 		this.newGame=game;
 		String userDir = System.getProperty("user.dir");
 		currentObjectName="";
@@ -72,6 +76,8 @@ public class gamePanel extends JPanel {
 		if(newGame==null){
 			newGame = new GameEngine();
 			newGame.createGameEnvironment(true);
+			isNameDefined=false;
+			textResult = "Please enter your name: \n";
 		}
 
 		areaItems = newGame.getPositionOfUser().getInventory().getStoredItems();
@@ -79,6 +85,8 @@ public class gamePanel extends JPanel {
 		System.out.println(newGame.getPositionOfUser().getName());
 
 		areaDescription = "You are currently in the area " +newGame.getPositionOfUser().getAreaType().getAreaName()+"\nYou can collect the items or fight with animals!!!\n\n";
+		
+		
 		Object[][] playerItems = {
 
 		};
@@ -160,10 +168,23 @@ public class gamePanel extends JPanel {
 		homeBtn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
 				 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
-				 mainFrame.goMain();	
+				 mainFrame.goMain(textResult);	
 			}
 		});
 		headLeftPanel.add(homeBtn);
+		
+		JButton saveBtn = new JButton("");
+		saveBtn.setBorderPainted(false);
+		saveBtn.setContentAreaFilled(false);
+		saveBtn.setCursor(cursor);
+		saveBtn.setIcon(new ImageIcon(userDir + "/src/GUI/save.png"));
+		saveBtn.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(saveBtn.getParent());
+				 mainFrame.goMain(textResult);	
+			}
+		});
+		headLeftPanel.add(saveBtn);
 
 		JButton mapBtn = new JButton("");
 		mapBtn.setBorderPainted(false);
@@ -178,6 +199,7 @@ public class gamePanel extends JPanel {
 				 mapPanel mappanel= new mapPanel(newGame);
 
 				 popFrame.setContentPane(mappanel);
+				 popFrame.setSize(new Dimension(800,900));
 				 popFrame.setVisible(true);
 			}
 		});
@@ -209,7 +231,7 @@ public class gamePanel extends JPanel {
 		midLeftPanel.setLayout(new BorderLayout(0, 0));
 
 		JTextPane textPane = new JTextPane();
-		textPane.setText(areaDescription);
+		textPane.setText(textResult);
 		textPane.setEditable(false);
 		textPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		midLeftPanel.add(textPane, BorderLayout.CENTER);
@@ -222,116 +244,165 @@ public class gamePanel extends JPanel {
 		    public void keyPressed(KeyEvent e){
 		        if(e.getKeyCode() == KeyEvent.VK_ENTER){
 		        	e.consume();
-		        	if(currentObjectName==""){
-		        		textPane.setText(areaDescription+"You didn't choose anything");
-		        	}
-		        	else if(isFromArea==true){
-		        		if(areaChosen==0){
-		        			if(textArea.getText().equals("0"))
-			        			textPane.setText(areaDescription+"You took the item \""+currentObjectName+"\" and put it in your bag.\n");
-			        		else
-			        			textPane.setText(areaDescription+"It is not a valid choice.");
+		        	if(isNameDefined){
+		        		if(currentObjectName==""){
+			        		textResult = areaDescription+"You didn't choose anything";
+			        		textPane.setText(textResult);
+			        	}
+			        	else if(isFromArea==true){
+			        		if(areaChosen==0){
+			        			if(textArea.getText().equals("0")){
+			        				textResult = areaDescription+"You took the item \""+currentObjectName+"\" and put it in your bag.\n";
+				        			textPane.setText(textResult);
+			        			}
+				        		else{
+				        			textResult = areaDescription+"It is not a valid choice.";
+				        			textPane.setText(textResult);
+				        		}
+				        			
 
-			        		currentObjectName ="";
-		        		}
-		        		else if(areaChosen==1){
-		        			if(textArea.getText().equals("0")){
-		        				String result="";
-	        					while(!result.equals("You wounded  " + currentObjectName + "!\n" + "You got killed...") &&
-		        						!result.equals("You killed " + currentObjectName) &&
-		        						!result.equals("You missed your shot! " + currentObjectName + " did not get any damage!\n"
-		        								+ "You got killed...")
-		        								&& !result.equals("Dead man cannot fight")){
-		        					result = newGame.fight(currentObjectName);
-		        					
-		        					System.out.println(result);
-				        			textPane.setText(areaDescription+result);
-		        				}
-		        				if(newGame.isGameOver()){
-		        					textPane.setText(areaDescription+result+"\n Oyun Bitti. Kaybettiniz.");
-		        				}
-
-		        			}
-		        			else if(textArea.getText().equals("1")){
-		        				textPane.setText(areaDescription+"You run away from the animal...");
-		        			}
-		        			else
-		        				textPane.setText(areaDescription+"Invalid input");
-
-			        		currentObjectName ="";
-		        		}
-		        		else if(areaChosen==2){
-		        			if(order==0){
-		        				if(textArea.getText().equals("1"))
-				        			textPane.setText(areaDescription+"You go into event "+currentObjectName);
-				        		else if(textArea.getText().equals("2"))
-				        			textPane.setText(areaDescription);
-		        				order++;
-		        			}
-		        			else if(order==1){
 				        		currentObjectName ="";
-		        			}
+			        		}
+			        		else if(areaChosen==1){
+			        			if(textArea.getText().equals("0")){
+			        				//fightResult="";
+			        				String result="";
+		        					while(!result.equals("You wounded  " + currentObjectName + "!\n" + "You got killed...") &&
+			        						!result.equals("You killed " + currentObjectName) &&
+			        						!result.equals("You missed your shot! " + currentObjectName + " did not get any damage!\n"
+			        								+ "You got killed...")
+			        								&& !result.equals("Dead man cannot fight")){
+			        					result = newGame.fight(currentObjectName);
+			        					
+			        					System.out.println(result);
+			        					textResult = areaDescription+result;
+					        			textPane.setText(textResult);
+					        			
+			        				}
+			        				if(newGame.isGameOver()){
+			        					textResult = areaDescription+result+"\n Oyun Bitti. Kaybettiniz.";
+			        					if(newGame.isGameOver())
+			        						System.out.println("bitti");
+			        					else
+			        						System.out.println("devam");
+					        			textPane.setText(textResult);
+			        				}
 
-		        		}
-		        		textArea.setText("");
+			        			}
+			        			else if(textArea.getText().equals("1")){
+			        				textResult = areaDescription+"You run away from the animal...";
+				        			textPane.setText(textResult);
+			        			}
+			        			else{
+			        				textResult = areaDescription+"Invalid input";
+				        			textPane.setText(textResult);
+			        			}
 
-		        	}
-		        	else if(isFromArea==false){
-		        		if(order==0){
-		        			if(playerItemChosen == 0){
-		        				if(textArea.getText().equals("1")){
-				        			textPane.setText("Info");
-		        				}
-				        		else if(textArea.getText().equals("2")){
-				        			textPane.setText("Drop");
-				        		}
-				        		else if(textArea.getText().equals("3")){
-				        			textPane.setText("Use");
-				        		}
-		        				currentObjectName="";
-		        			}
-		        			else if(playerItemChosen == 1){
-		        				if(textArea.getText().equals("1")){
-				        			textPane.setText("Info");
-				        			currentObjectName="";
-		        				}
-				        		else if(textArea.getText().equals("2")){
-				        			textPane.setText("Drop");
-				        			currentObjectName="";
-				        		}
-				        		else if(textArea.getText().equals("3")){
-				        			textPane.setText("Craft");
+				        		currentObjectName ="";
+			        		}
+			        		else if(areaChosen==2){
+			        			if(order==0){
+			        				if(textArea.getText().equals("1")){
+			        					textResult = areaDescription+"You go into event "+currentObjectName;
+					        			textPane.setText(textResult);
+					        		}
+					        		else if(textArea.getText().equals("2")){
+					        			textResult = areaDescription;
+					        			textPane.setText(textResult);
+					        		}
 			        				order++;
-				        		}
-		        			}
-		        			else if(playerItemChosen == 2){
-		        				if(textArea.getText().equals("1")){
-				        			textPane.setText("Info");
-		        				}
-				        		else if(textArea.getText().equals("2")){
-				        			textPane.setText("Drop");
-				        		}
-		        				currentObjectName="";
-		        			}
+			        			}
+			        			else if(order==1){
+					        		currentObjectName ="";
+			        			}
+
+			        		}
+			        		textArea.setText("");
+
+			        	}
+			        	else if(isFromArea==false){
+			        		if(order==0){
+			        			if(playerItemChosen == 0){
+			        				if(textArea.getText().equals("1")){
+			        					textResult = "Info";
+					        			textPane.setText(textResult);
+			        				}
+					        		else if(textArea.getText().equals("2")){
+					        			textResult = "Drop";
+					        			textPane.setText(textResult);
+					        		}
+					        		else if(textArea.getText().equals("3")){
+					        			textResult = "Use";
+					        			textPane.setText(textResult);
+					        		}
+			        				currentObjectName="";
+			        			}
+			        			else if(playerItemChosen == 1){
+			        				if(textArea.getText().equals("1")){
+			        					textResult = "Info";
+					        			textPane.setText(textResult);
+					        			currentObjectName="";
+			        				}
+					        		else if(textArea.getText().equals("2")){
+					        			textResult = "Drop";
+					        			textPane.setText(textResult);
+					        			currentObjectName="";
+					        		}
+					        		else if(textArea.getText().equals("3")){
+					        			textResult = "Craft";
+					        			textPane.setText(textResult);
+				        				order++;
+					        		}
+			        			}
+			        			else if(playerItemChosen == 2){
+			        				if(textArea.getText().equals("1")){
+			        					textResult = "Info";
+					        			textPane.setText(textResult);
+			        				}
+					        		else if(textArea.getText().equals("2")){
+					        			textResult = "Drop";
+					        			textPane.setText(textResult);
+					        		}
+			        				currentObjectName="";
+			        			}
+			        		}
+			        		else if(order==1 && playerItemChosen ==2){
+			        			ArrayList<String> craftableItemList = newGame.getCraftableItems(currentObjectName);
+			        			String s = areaDescription+"Choose the item which you want to craft\n";
+			        			for(int i = 0 ; i<craftableItemList.size();i++){
+			        				s += i+". "+craftableItemList.get(i)+"\n";
+			        			}
+			        			textResult = s;
+			        			textPane.setText(textResult);
+			        		}
+			        		else if(order==2){
+			        			;
+			        		}
+			        		textArea.setText("");
+			        	}
+		        	}
+		        	else{
+		        		if(!textArea.getText().equals("")){
+		        			textResult = "Please enter a name to start the game:\n";
+		        			textPane.setText(textResult);
+		        		}else if(!currentObjectName.equals("")){
+		        			textResult = "Please enter a name to start the game:\n";
+		        			textPane.setText(textResult);
+		        			currentObjectName="";
 		        		}
-		        		else if(order==1 && playerItemChosen ==2){
-		        			ArrayList<String> craftableItemList = newGame.getCraftableItems(currentObjectName);
-		        			String s = areaDescription+"Choose the item which you want to craft\n";
-		        			for(int i = 0 ; i<craftableItemList.size();i++){
-		        				s += i+". "+craftableItemList.get(i)+"\n";
-		        			}
-		        			textPane.setText(s);
+		        		else{
+		        			newGame.getPlayer().setName(textArea.getText());
+		        			isNameDefined=true;
+		        			textResult = areaDescription;
+		        			textPane.setText("Your name is defined succesfully.\n"+textResult);
 		        		}
-		        		else if(order==2){
-		        			;
-		        		}
-		        		textArea.setText("");
 		        	}
 
 
 
 		        	setVisible(true);
-
+		        	GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(textArea.getParent());
+					mainFrame.updateGamePanel(newGame,textResult);
 		        }
 		    }
 
@@ -476,7 +547,8 @@ public class gamePanel extends JPanel {
 					for(int j=0; j<1;j++){
 						s+=j+") "+item.getInteractions().get(j);
 					}
-					textPane.setText(s);
+					textResult = s;
+					textPane.setText(textResult);
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
 			});
@@ -516,7 +588,8 @@ public class gamePanel extends JPanel {
 					System.out.println(tempChar.getName());
 					currentObjectName = tempChar.getName();
 					String s = areaDescription+"Choose(Option number) an interaction for " + tempChar.getName()+":\n0) Fight\n1) Run away";
-					textPane.setText(s);
+					textResult = s;
+					textPane.setText(textResult);
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
 			});
@@ -543,7 +616,8 @@ public class gamePanel extends JPanel {
 					isFromArea = true;
 					System.out.println(tempItem.getName());
 					currentObjectName = tempItem.getName();
-					textPane.setText(areaDescription+"Choose for " + tempItem.getName()+"\n1) Description\n2) Go into special Event\n" );
+					textResult = areaDescription+"Choose for " + tempItem.getName()+"\n1) Description\n2) Go into special Event\n";
+					textPane.setText(textResult );
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
 			});
@@ -570,9 +644,14 @@ public class gamePanel extends JPanel {
 				newGame.navigate("up");
 				System.out.println("up");
 				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
-				mainFrame.updateGamePanel(newGame);
+				mainFrame.updateGamePanel(newGame,textResult);
 			}
 		});
+		if(!newGame.isUpAvailable()){
+			upLabel.setVisible(false);
+		}
+		else
+			upLabel.setVisible(true);
 		directionPanel.add(upLabel, BorderLayout.NORTH );
 
 		JLabel downLabel = new JLabel();
@@ -585,9 +664,14 @@ public class gamePanel extends JPanel {
 				newGame.navigate("down");
 				System.out.println("down");
 				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
-				mainFrame.updateGamePanel(newGame);
+				mainFrame.updateGamePanel(newGame,textResult);
 			}
 		});
+		if(!newGame.isDownAvailable()){
+			downLabel.setVisible(false);
+		}
+		else
+			downLabel.setVisible(true);
 		directionPanel.add(downLabel, BorderLayout.SOUTH );
 
 		JLabel leftLabel = new JLabel();
@@ -599,9 +683,14 @@ public class gamePanel extends JPanel {
 				newGame.navigate("left");
 				System.out.println("left");
 				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
-				mainFrame.updateGamePanel(newGame);
+				mainFrame.updateGamePanel(newGame,textResult);
 			}
 		});
+		if(!newGame.isLeftAvailable()){
+			leftLabel.setVisible(false);
+		}
+		else
+			leftLabel.setVisible(true);
 		directionPanel.add(leftLabel, BorderLayout.WEST );
 
 		JLabel rightLabel = new JLabel();
@@ -613,10 +702,15 @@ public class gamePanel extends JPanel {
 				newGame.navigate("right");
 				System.out.println("right");
 				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
-				mainFrame.updateGamePanel(newGame);
+				mainFrame.updateGamePanel(newGame,textResult);
 				
 			}
 		});
+		if(!newGame.isRightAvailable()){
+			rightLabel.setVisible(false);
+		}
+		else
+			rightLabel.setVisible(true);
 		directionPanel.add(rightLabel, BorderLayout.EAST );
 
 		addMouseListener(new MouseAdapter() {

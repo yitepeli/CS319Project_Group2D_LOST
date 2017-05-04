@@ -58,6 +58,12 @@ public class GUIManager extends JFrame {
 	private recordsPanel recordsPanel;
 	private creditsPanel creditsPanel;
 	private boolean isGameExist;
+	private boolean isGameLoaded;
+
+
+	private String result;
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -78,6 +84,8 @@ public class GUIManager extends JFrame {
 	 * Create the frame.
 	 */
 	public GUIManager() {
+			isGameLoaded=true;
+		result="";
 		isGameExist=false;
 		//newGame = new GameEngine();
 		//newGame.createGameEnvironment(true);
@@ -91,7 +99,7 @@ public class GUIManager extends JFrame {
 		//contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setLayout(cards);
 		
-		mainPanel = new mainPanel(false);
+		mainPanel = new mainPanel(false,isGameLoaded);
 		helpPanel = new HelpPanel();
 		settingsPanel = new SettingsPanel();
 		//gamePanel = new gamePanel(null);
@@ -143,21 +151,22 @@ public class GUIManager extends JFrame {
 		return creditsPanel;
 	}
 	
-	public void updateGamePanel(GameEngine game){
+	public void updateGamePanel(GameEngine game, String result){
 		//newGame = game;
-		gamePanel = new gamePanel(game);
+		setResult(result);
+		gamePanel = new gamePanel(game, result);
 		contentPane.add(gamePanel, "game");
 		cards.show(contentPane, "game");
 	}
 	
 	public void getNewGame(){
 		isGameExist=true;
-		gamePanel = new gamePanel(null);
+		gamePanel = new gamePanel(null,"");
 		contentPane.add(gamePanel, "game");
 		cards.show(contentPane, "game");
 	}
-	public void goMain(){
-		mainPanel = new mainPanel(isGameExist);
+	public void goMain(String result){
+		mainPanel = new mainPanel(isGameExist,isGameLoaded);
 		contentPane.add(mainPanel, "main");
 		cards.show(contentPane, "main");
 	}
@@ -166,6 +175,9 @@ public class GUIManager extends JFrame {
 		return isGameExist;
 	}
 	
+	public boolean isGameLoaded() {
+		return isGameLoaded;
+	}
 
 	/**
 	 * @return the isSoundActive
@@ -179,6 +191,14 @@ public class GUIManager extends JFrame {
 	 */
 	public void setSoundActive(boolean isSoundActive) {
 		this.isSoundActive = isSoundActive;
+	}
+	
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 	
 	

@@ -91,10 +91,29 @@ public class SettingsPanel extends JPanel {
 		add(verticalGlue_2);
 		
 		JComboBox SizeComboBox = new JComboBox();
+		SizeComboBox.addItem("800-600");
+		SizeComboBox.addItem("1200-900");
 		SizeComboBox.setRequestFocusEnabled(false);
 		SizeComboBox.setBackground(Color.WHITE);
 		SizeComboBox.setMaximumSize(new Dimension(100, 200));
 		SizeComboBox.setPreferredSize(new Dimension(26, 20));
+		SizeComboBox.addActionListener(new ActionListener() {
+			 
+		    @Override
+		    public void actionPerformed(ActionEvent event) {
+		        JComboBox combo = (JComboBox) event.getSource();
+		        String selectedSize = (String) combo.getSelectedItem();
+
+	        	JFrame mainFrame= (JFrame) SwingUtilities.getRoot(SizeComboBox.getParent());
+		        if (selectedSize.equals("800-600")) {
+		        	mainFrame.setSize(new Dimension(800,600));
+		        } else if (selectedSize.equals("1200-900")) {
+		        	mainFrame.setSize(new Dimension(1200,900));
+		        }
+		        else
+		        	mainFrame.setSize(new Dimension(800,600));
+		    }
+		});
 		add(SizeComboBox);
 		
 		Component verticalGlue_4 = Box.createVerticalGlue();

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -29,7 +30,7 @@ public class mainPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public mainPanel(boolean isGameExist) {
+	public mainPanel(boolean isGameExist,boolean isGameSaved) {
 
 		image = null;
 		System.out.println(GameEngine.isUserExists());
@@ -69,6 +70,7 @@ public class mainPanel extends JPanel {
 		continueBtn.setForeground(Color.WHITE);
 		continueBtn.setFont(font);
 		continueBtn.setOpaque(false);
+		continueBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		continueBtn.setContentAreaFilled(false);
 		continueBtn.setBorderPainted(false);
 		continueBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -93,6 +95,7 @@ public class mainPanel extends JPanel {
 		newGameBtn.setForeground(Color.WHITE);
 		newGameBtn.setFont(font);
 		newGameBtn.setOpaque(false);
+		newGameBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		newGameBtn.setContentAreaFilled(false);
 		newGameBtn.setBorderPainted(false);
 		newGameBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -112,20 +115,21 @@ public class mainPanel extends JPanel {
 		loadGameBtn.setForeground(Color.WHITE);
 		loadGameBtn.setFont(font);
 		loadGameBtn.setOpaque(false);
+		loadGameBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		loadGameBtn.setContentAreaFilled(false);
 		loadGameBtn.setBorderPainted(false);
 		loadGameBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		loadGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(newGameBtn.getParent());
-				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
-				layout.show(mainFrame.getContentPane(), "new");
-				mainFrame.validate();
-				mainFrame.setVisible(true);
-				
+				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(newGameBtn.getParent());
+				mainFrame.updateGamePanel(null, "");
 			}
 		});
+		if(!isGameSaved)
+			loadGameBtn.setVisible(false);
+		else
+			loadGameBtn.setVisible(true);
 		add(loadGameBtn);
 		
 		//Component verticalGlue_1 = Box.createVerticalGlue();
@@ -135,6 +139,7 @@ public class mainPanel extends JPanel {
 		settingsBtn.setForeground(Color.WHITE);
 		settingsBtn.setFont(font);
 		settingsBtn.setOpaque(false);
+		settingsBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		settingsBtn.setContentAreaFilled(false);
 		settingsBtn.setBorderPainted(false);
 		settingsBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -157,6 +162,7 @@ public class mainPanel extends JPanel {
 		recordsBtn.setForeground(Color.WHITE);
 		recordsBtn.setFont(font);
 		recordsBtn.setOpaque(false);
+		recordsBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		recordsBtn.setContentAreaFilled(false);
 		recordsBtn.setBorderPainted(false);
 		recordsBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -179,6 +185,7 @@ public class mainPanel extends JPanel {
 		creditsBtn.setForeground(Color.WHITE);
 		creditsBtn.setFont(font);
 		creditsBtn.setOpaque(false);
+		creditsBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		creditsBtn.setContentAreaFilled(false);
 		creditsBtn.setBorderPainted(false);
 		creditsBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -201,6 +208,7 @@ public class mainPanel extends JPanel {
 		helpBtn.setForeground(Color.WHITE);
 		helpBtn.setFont(font);
 		helpBtn.setOpaque(false);
+		helpBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		helpBtn.setContentAreaFilled(false);
 		helpBtn.setBorderPainted(false);
 		helpBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
