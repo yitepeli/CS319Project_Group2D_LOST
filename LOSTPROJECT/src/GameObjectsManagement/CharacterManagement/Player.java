@@ -13,6 +13,8 @@ import GameObjectsManagement.ItemManagement.*;
  */
 public class Player extends AggresiveCharacter {
 
+
+
 	private int energy;
 	private int thirst;
 	private int hunger;
@@ -20,6 +22,11 @@ public class Player extends AggresiveCharacter {
 
 	public Player() {
 		setEnergy(60);
+		setHealth(60);
+		setAttack(15);
+		setDefense(10);
+		this.thirst=0;
+		this.hunger=0;
 		updateThirst(15);
 		updateHunger(15);
 	}
@@ -30,9 +37,13 @@ public class Player extends AggresiveCharacter {
 		updateThirst(15);
 		updateHunger(15);
 	}
-
-	public Player(int id, String name, String description) {
-		super(id, name, description);
+	
+	public Player(int id, String name, String description, int health,
+			int defense, int attack, int energy, int thirst, int hunger) {
+		super(id, name, description, health, defense, attack);
+		this.energy = energy;
+		this.thirst = thirst;
+		this.hunger = hunger;
 		// TODO Auto-generated constructor stub
 	}
 

@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.BorderLayout;
@@ -42,6 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class gamePanel extends JPanel {
+	JPanel thisPanel = this;
 	GameEngine newGame;
 	private boolean isFromArea;
 	private int order;
@@ -57,7 +59,8 @@ public class gamePanel extends JPanel {
 	private PopUpFrame popFrame;
 	private PopUpFrame mapFrame;
 
-	public gamePanel() {
+	public gamePanel(GameEngine game) {
+		this.newGame=game;
 		String userDir = System.getProperty("user.dir");
 		currentObjectName="";
 		order=0;
@@ -66,8 +69,10 @@ public class gamePanel extends JPanel {
 		areaChosen = -1; //0 is item, 1 is character, 2 is special event
 		playerItemChosen = -1; //0 Boosting, 1 is Craftable, 2 is none
 		//popFrame.setVisible(false);
-		newGame = new GameEngine();
-		newGame.createGameEnvironment(true);
+		if(newGame==null){
+			newGame = new GameEngine();
+			newGame.createGameEnvironment(true);
+		}
 
 		areaItems = newGame.getPositionOfUser().getInventory().getStoredItems();
 		charList = newGame.getPositionOfUser().getCharacterList();
@@ -154,11 +159,8 @@ public class gamePanel extends JPanel {
 		homeBtn.setIcon(new ImageIcon(userDir + "/src/GUI/home.png"));
 		homeBtn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 JFrame mainFrame= (JFrame) SwingUtilities.getRoot(helpBtn.getParent());
-					CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
-					layout.show(mainFrame.getContentPane(), "main");
-					mainFrame.validate();
-			        mainFrame.setVisible(true);
+				 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
+				 mainFrame.goMain();	
 			}
 		});
 		headLeftPanel.add(homeBtn);
@@ -173,10 +175,10 @@ public class gamePanel extends JPanel {
 					 popFrame = new PopUpFrame();
 					 popFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				 }
-				// mapPanel mappanel= new mapPanel(newGame.getPositionOfUser());
+				 mapPanel mappanel= new mapPanel(newGame);
 
-				 //popFrame.setContentPane(mappanel);
-				// popFrame.setVisible(true);
+				 popFrame.setContentPane(mappanel);
+				 popFrame.setVisible(true);
 			}
 		});
 		mapBtn.setIcon(new ImageIcon(userDir + "/src/GUI/map.png"));
@@ -235,11 +237,14 @@ public class gamePanel extends JPanel {
 		        		else if(areaChosen==1){
 		        			if(textArea.getText().equals("0")){
 		        				String result="";
-		        				while(!result.equals("You wounded  " + currentObjectName + "!\n" + "You got killed...") &&
+	        					while(!result.equals("You wounded  " + currentObjectName + "!\n" + "You got killed...") &&
 		        						!result.equals("You killed " + currentObjectName) &&
 		        						!result.equals("You missed your shot! " + currentObjectName + " did not get any damage!\n"
-		        								+ "You got killed...")){
-		        					//result = newGame.fight(currentObjectName);
+		        								+ "You got killed...")
+		        								&& !result.equals("Dead man cannot fight")){
+		        					result = newGame.fight(currentObjectName);
+		        					
+		        					System.out.println(result);
 				        			textPane.setText(areaDescription+result);
 		        				}
 		        				if(newGame.isGameOver()){
@@ -365,25 +370,25 @@ public class gamePanel extends JPanel {
 		playerPanel.add(statBarPanel);
 		statBarPanel.setLayout(new BoxLayout(statBarPanel, BoxLayout.Y_AXIS));
 
-		JLabel healthLabel = new JLabel("60");
+		JLabel healthLabel = new JLabel(""+newGame.getPlayer().getHealth());
 		ImageIcon healthIcon = new ImageIcon(new ImageIcon(userDir + "/src/GUI/heart.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		healthLabel.setIcon(healthIcon);
 		healthLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statBarPanel.add(healthLabel);
 
-		JLabel energyLabel = new JLabel("55");
+		JLabel energyLabel = new JLabel(""+newGame.getPlayer().getEnergy());
 		ImageIcon energyIcon = new ImageIcon(new ImageIcon(userDir + "/src/GUI/energy.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		energyLabel.setIcon(energyIcon);
 		energyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statBarPanel.add(energyLabel);
 
-		JLabel hungerLabel = new JLabel("15");
+		JLabel hungerLabel = new JLabel(""+newGame.getPlayer().getHunger());
 		ImageIcon hungerIcon = new ImageIcon(new ImageIcon(userDir + "/src/GUI/hunger.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		hungerLabel.setIcon(hungerIcon);
 		hungerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statBarPanel.add(hungerLabel);
 
-		JLabel thirstLabel = new JLabel("8");
+		JLabel thirstLabel = new JLabel(""+newGame.getPlayer().getThirst());
 		ImageIcon thirstIcon = new ImageIcon(new ImageIcon(userDir + "/src/GUI/thirst.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
 		thirstLabel.setIcon(thirstIcon);
 		thirstLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -564,7 +569,8 @@ public class gamePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				newGame.navigate("up");
 				System.out.println("up");
-				setVisible(true);
+				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
+				mainFrame.updateGamePanel(newGame);
 			}
 		});
 		directionPanel.add(upLabel, BorderLayout.NORTH );
@@ -578,7 +584,8 @@ public class gamePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				newGame.navigate("down");
 				System.out.println("down");
-				setVisible(true);
+				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
+				mainFrame.updateGamePanel(newGame);
 			}
 		});
 		directionPanel.add(downLabel, BorderLayout.SOUTH );
@@ -591,7 +598,8 @@ public class gamePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				newGame.navigate("left");
 				System.out.println("left");
-				setVisible(true);
+				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
+				mainFrame.updateGamePanel(newGame);
 			}
 		});
 		directionPanel.add(leftLabel, BorderLayout.WEST );
@@ -604,7 +612,9 @@ public class gamePanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				newGame.navigate("right");
 				System.out.println("right");
-				setVisible(true);
+				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
+				mainFrame.updateGamePanel(newGame);
+				
 			}
 		});
 		directionPanel.add(rightLabel, BorderLayout.EAST );
@@ -612,6 +622,7 @@ public class gamePanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
+				repaint();
 				if(newGame.isGameOver())
 					System.out.println("Game is over");
 			}

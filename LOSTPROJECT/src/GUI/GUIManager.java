@@ -57,6 +57,7 @@ public class GUIManager extends JFrame {
 	private gamePanel gamePanel;
 	private recordsPanel recordsPanel;
 	private creditsPanel creditsPanel;
+	private boolean isGameExist;
 	/**
 	 * Launch the application.
 	 */
@@ -77,6 +78,9 @@ public class GUIManager extends JFrame {
 	 * Create the frame.
 	 */
 	public GUIManager() {
+		isGameExist=false;
+		//newGame = new GameEngine();
+		//newGame.createGameEnvironment(true);
 		setName("mainFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -87,15 +91,15 @@ public class GUIManager extends JFrame {
 		//contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setLayout(cards);
 		
-		mainPanel = new mainPanel();
+		mainPanel = new mainPanel(false);
 		helpPanel = new HelpPanel();
 		settingsPanel = new SettingsPanel();
-		gamePanel = new gamePanel();
+		//gamePanel = new gamePanel(null);
 		recordsPanel = new recordsPanel();
 		creditsPanel = new creditsPanel();
 		contentPane.add(mainPanel, "main");
 		contentPane.add(settingsPanel, "settings");
-		contentPane.add(gamePanel, "game");
+		//contentPane.add(gamePanel, "game");
 		contentPane.add(helpPanel, "help");
 		contentPane.add(recordsPanel, "records");
 		contentPane.add(creditsPanel, "credits");
@@ -138,6 +142,30 @@ public class GUIManager extends JFrame {
 	public creditsPanel getCreditsPanel() {
 		return creditsPanel;
 	}
+	
+	public void updateGamePanel(GameEngine game){
+		//newGame = game;
+		gamePanel = new gamePanel(game);
+		contentPane.add(gamePanel, "game");
+		cards.show(contentPane, "game");
+	}
+	
+	public void getNewGame(){
+		isGameExist=true;
+		gamePanel = new gamePanel(null);
+		contentPane.add(gamePanel, "game");
+		cards.show(contentPane, "game");
+	}
+	public void goMain(){
+		mainPanel = new mainPanel(isGameExist);
+		contentPane.add(mainPanel, "main");
+		cards.show(contentPane, "main");
+	}
+	
+	public boolean isGameExist(){
+		return isGameExist;
+	}
+	
 
 	/**
 	 * @return the isSoundActive

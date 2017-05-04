@@ -22,14 +22,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import GameManagement.GameEngine;
+
 public class mainPanel extends JPanel {
 	Image image;
 	/**
 	 * Create the panel.
 	 */
-	public mainPanel() {
+	public mainPanel(boolean isGameExist) {
 
 		image = null;
+		System.out.println(GameEngine.isUserExists());
 
 		String userDirectory = System.getProperty("user.dir");
 		String path=userDirectory+"/src/GUI/bg.jpg";
@@ -56,11 +59,36 @@ public class mainPanel extends JPanel {
 		nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(nameLabel);
 		
+		
 		Component verticalGlue_4 = Box.createVerticalGlue();
 		add(verticalGlue_4);
 		
 		
 		Font font = new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20);
+		JButton continueBtn = new JButton("Continue Game");
+		continueBtn.setForeground(Color.WHITE);
+		continueBtn.setFont(font);
+		continueBtn.setOpaque(false);
+		continueBtn.setContentAreaFilled(false);
+		continueBtn.setBorderPainted(false);
+		continueBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+		continueBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(continueBtn.getParent());
+				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
+				layout.show(mainFrame.getContentPane(), "game");
+				mainFrame.validate();
+				mainFrame.setVisible(true);
+				
+			}
+		});
+		if(!isGameExist)
+			continueBtn.setVisible(false);
+			
+		add(continueBtn);
+		
+		
 		JButton newGameBtn = new JButton("New Game");
 		newGameBtn.setForeground(Color.WHITE);
 		newGameBtn.setFont(font);
@@ -70,12 +98,8 @@ public class mainPanel extends JPanel {
 		newGameBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		newGameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				JFrame mainFrame= (JFrame) SwingUtilities.getRoot(newGameBtn.getParent());
-				CardLayout layout = (CardLayout)mainFrame.getContentPane().getLayout();
-				layout.show(mainFrame.getContentPane(), "game");
-				mainFrame.validate();
-				mainFrame.setVisible(true);
+				GUIManager mainFrame= (GUIManager)SwingUtilities.getRoot(newGameBtn.getParent());
+				mainFrame.getNewGame();
 				
 			}
 		});

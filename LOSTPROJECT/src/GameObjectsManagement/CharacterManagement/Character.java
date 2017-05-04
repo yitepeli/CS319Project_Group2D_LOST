@@ -28,8 +28,10 @@ public class Character extends GameObject {
 	 * @param name
 	 * @param description
 	 */
-	public Character(int id, String name, String description) {
+	public Character(int id, String name, String description, int health, int defense) {
 		super(id, name, description);
+		this.health=health;
+		this.defense = defense;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -100,13 +102,17 @@ public class Character extends GameObject {
 		if(this.health+health>100)
 			this.health=100;
 		else if(this.health+health<0)
-			this.health +=0;
+			this.health =0;
 		else
 			this.health+=health;
 	}
 	
 	public boolean hasItem(String itemName){
 		return inventory.hasItem(itemName);
+	}
+	
+	public double getEscapeChance(){
+		return 0.1;
 	}
 
 }

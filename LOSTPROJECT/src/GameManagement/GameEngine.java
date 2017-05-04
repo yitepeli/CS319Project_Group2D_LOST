@@ -35,6 +35,9 @@ public class GameEngine {
 	private Area positionOfUser;
 	private Player player;
 
+
+
+
 	public GameEngine(){
 
 	}
@@ -66,24 +69,25 @@ public class GameEngine {
 			player.setCurrentPosition(positionOfUser.getAreaType().getAreaName());
 			databaseManager.processData(player, DatabaseManager.WriteAction.WRITE_PLAYER);//creating new player instance in persistency layer
 		}
+		mapManager.processMapp(positionOfUser);
 	}
 
 
 
 	public void navigate(String direction){
 
-		if(direction.equals("left")){
+		if(direction.equals("left") && positionOfUser.getLeftNeighbour()!=null){
 			positionOfUser = positionOfUser.getLeftNeighbour();
 		}
-		else if(direction.equals("right")){
+		else if(direction.equals("right") && positionOfUser.getRightNeighbour()!=null){
 			positionOfUser = positionOfUser.getRightNeighbour();
 
 		}
-		else if(direction.equals("up")){
+		else if(direction.equals("up") && positionOfUser.getUpNeighbour()!=null){
 			positionOfUser = positionOfUser.getUpNeighbour();
 
 		}
-		else if(direction.equals("down")){
+		else if(direction.equals("down") && positionOfUser.getDownNeighbour()!=null){
 			positionOfUser = positionOfUser.getDownNeighbour();
 		}
 		String currentAreaName = positionOfUser.getAreaType().getAreaName();
@@ -133,21 +137,30 @@ public class GameEngine {
 		
 	}
 	
+	public Player getPlayer() {
+		return player;
+	}
 	
-	/*public String fight(String characterName){
+	public String fight(String characterName){
 		Character character=null;
 		for(int i=0;i<getPositionOfUser().getCharacterList().size();i++){
-			if(getPositionOfUser().getCharacterList().get(i).equals(characterName))
+			//System.out.println(getPositionOfUser().getCharacterList().get(i));
+			if(getPositionOfUser().getCharacterList().get(i).getName().equals(characterName)){
 				character = getPositionOfUser().getCharacterList().get(i);
+				
+			}
+				
 		}
+		System.out.println(player.getHealth());
+		System.out.println(character.getHealth());
 		//just in case
 		if(player.getHealth() <= 0 || character.getHealth() <= 0)
 			return "Dead man cannot fight";
 	
 		else{			
 			Random randomGen = new Random();
-			int missedShotPlayer = randomGen.nextInt(1+(int)(1-character.getEscapeChance())*10)+1; //character's chance of escape from attack
-			int missedShotCharacter = randomGen.nextInt(1+(int)(1-player.getEscapeChance())*10)+1; //player's chance of escape from attack
+			int missedShotPlayer = randomGen.nextInt(1+(int)((1-character.getEscapeChance())*10))+1; //character's chance of escape from attack
+			int missedShotCharacter = randomGen.nextInt(1+(int)((1-player.getEscapeChance())*10))+1; //player's chance of escape from attack
 			
 			if(missedShotPlayer == 1){							
 				if(character instanceof AggresiveCharacter){			
@@ -158,25 +171,25 @@ public class GameEngine {
 					else{
 						if(player.getDefense() == ((AggresiveCharacter)character).getAttack())
 							player.updateHealth(-10);
-						
+					
 						if(player.getDefense() > ((AggresiveCharacter)character).getAttack())
 							player.updateHealth(-Math.abs((((AggresiveCharacter)character).getAttack()-player.getDefense()))/2);
-						
+							
 						if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
 							player.updateHealth(-((AggresiveCharacter)character).getAttack());		
-						
+							
 						if(player.getHealth() > 0)
 							return "You missed your shot! " + character.getName() + " did not get any damage!\n"
 									+ "You got wounded!";				
-						else
-							return "You missed your shot! " + character.getName() + " did not get any damage!\n"
-									+ "You got killed...";			
-						}
-					}	
+							else
+								return "You missed your shot! " + character.getName() + " did not get any damage!\n"
+										+ "You got killed...";			
+					}
+				}	
 				
-				else
-					return "You missed your shot! " + character.getName() + " did not get any damage!";
-				}
+			else
+				return "You missed your shot! " + character.getName() + " did not get any damage!";
+			}
 			
 			else{			
 				if(player.getAttack() == character.getDefense())
@@ -226,7 +239,7 @@ public class GameEngine {
 				}
 			}					
 		}	
-	}*/
+	}
 
 	
 	public boolean isCampfireLit(){
