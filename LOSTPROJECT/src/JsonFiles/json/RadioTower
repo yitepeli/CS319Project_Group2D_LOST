@@ -1,0 +1,20 @@
+{
+  "objectName" : "Radio Tower",
+  "objecId" : "0",
+  "description" : "A working radio tower. All you need is a radiotelephone to send your signal",
+  "weight" : "40.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "requiredItemList" : [
+
+  	{
+  		"objectName" : "Broken Radio Tower"
+  	},
+
+    {
+      "objectName" : "Metal Wires"
+    }
+
+	]
+ 
+}
