@@ -105,8 +105,8 @@ public class Character extends GameObject {
 		inventory.removeItem(item);
 	}
 	
-	public void addItem(Item item){
-		inventory.addItem(item);
+	public boolean addItem(Item item){
+		return this.inventory.addItem(item);
 	}
 	
 	public void updateHealth(int health){

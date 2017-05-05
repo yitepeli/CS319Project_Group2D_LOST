@@ -2,6 +2,7 @@ package GameObjectsManagement.AreaManagement;
 
 //external packages
 import GameObjectsManagement.ObjectManagement.*;
+import GameObjectsManagement.ItemManagement.*;
 import GameObjectsManagement.CharacterManagement.Character;
 
 
@@ -124,13 +125,22 @@ public class Area extends GameObject {//will be updated!
 		this.inventory = inventory;
 	}
 
-	/*
-	public void removeItem(String itemName){
-		inventory.removeItem(itemName);
-	}*/
 	
-	public void addItem(String itemName){
+	public void removeItem(Item item){
+		this.inventory.removeItem(item);
 	}
+	
+	public void addItem(Item item){
+        this.inventory.addItem(item);
+	}
+
+    public boolean hasItem(String itemName, int amount){
+        return this.inventory.hasItem(itemName, amount);
+    }
+
+    public Item getItem(String itemName){
+        return this.inventory.getItem(itemName);
+    }
 
 /*	public void addEvent(Event e){
 		

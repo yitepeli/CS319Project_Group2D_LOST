@@ -35,6 +35,25 @@ public class GameEngine {
 
 	}
 
+	public void dropItem(String itemName){
+		Item item = this.player.getItem(itemName);
+		this.player.removeItem(item);
+		this.positionOfUser.addItem(item);
+
+		assert this.positionOfUser.hasItem(itemName, 1);
+	}
+
+	public boolean takeItem(String itemName){
+		Item item = this.positionOfUser.getItem(itemName);
+		if(!this.player.addItem(item))
+			return false;
+
+		assert this.player.hasItem(itemName, 1);
+		
+		this.positionOfUser.removeItem(item);
+		return true;
+	}
+
 
 	public static boolean isUserExists(){
 		return DatabaseManager.isUserExists();
