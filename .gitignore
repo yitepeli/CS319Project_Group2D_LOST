@@ -50,3 +50,5 @@ LOSTPROJECT/.metadata/.log
 *.xmi
 
 LOSTPROJECT/src/test/TESTS_HERE.txt
+
+*.java

@@ -40,7 +40,6 @@ public class Player extends AggresiveCharacter {
 	
 	public Player(int id, String name, String description, int health,
 			int defense, int attack, int energy, int thirst, int hunger) {
-		super(id, name, description, health, defense, attack);
 		this.energy = energy;
 		this.thirst = thirst;
 		this.hunger = hunger;

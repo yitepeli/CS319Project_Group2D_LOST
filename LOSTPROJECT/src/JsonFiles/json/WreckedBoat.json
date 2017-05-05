@@ -11,12 +11,12 @@
 
 	{
 		"objectName" : "Tree",
-    "quantity" : "20"
+        "quantity" : "20"
 	},
 
 	{
 		"objectName" : "Axe",
-    "quantity" : "1"
+        "quantity" : "1"
 	}
 
 	],
