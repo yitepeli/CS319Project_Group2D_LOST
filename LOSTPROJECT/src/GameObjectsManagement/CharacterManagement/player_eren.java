@@ -6,7 +6,6 @@ package GameObjectsManagement.CharacterManagement;
 import java.util.ArrayList;
 
 import GameObjectsManagement.ItemManagement.*;
-import GameObjectsManagement.ObjectManagement.Record;
 
 /**
  * @author Yasin
@@ -14,24 +13,25 @@ import GameObjectsManagement.ObjectManagement.Record;
  */
 public class Player extends AggresiveCharacter {
 
-
-
 	private int energy;
 	private int thirst;
 	private int hunger;
 	private String currentArea;
-	private Record userRecord;
-    private double gameTime;
+	private int dayCount;
+	private double hourCount;
 
+	//For database querying..
+	public static final String ENERGY = "energy";
+	public static final String HUNGER = "hunger";
+	public static final String THIRST = "thirst";
+	public static final String CURRENT_AREA = "currentArea";
+	
 	public Player() {
-		setEnergy(100);
-		setHealth(100);
-		setAttack(15);
-		setDefense(10);
-		this.thirst=0;
-		this.hunger=0;
+		setEnergy(60);
 		updateThirst(15);
 		updateHunger(15);
+		dayCount = 0;
+		hourCount = 0;
 	}
 	
 	public Player(String name) {
@@ -39,44 +39,39 @@ public class Player extends AggresiveCharacter {
 		setEnergy(60);
 		updateThirst(15);
 		updateHunger(15);
+		dayCount = 0;
+		hourCount = 0;
 	}
-	
-	public Player(int id, String name, String description, int health,
-			int defense, int attack, int energy, int thirst, int hunger) {
-		this.energy = energy;
-		this.thirst = thirst;
-		this.hunger = hunger;
+
+	public Player(int id, String name, String description) {
+		super(id, name, description);
 		// TODO Auto-generated constructor stub
 	}
 
 	public boolean cookMeat(){
-		
+		if(this.hasItem("Fire") && this.hasItem("Raw Meat"))
+			return true;
 		return false;
-	}
-	public void updateGameTime(double incAmount){
-		this.gameTime += incAmount;
-	}
-	public double getGameTime(){
-		return gameTime;
 	}
 	
 	public boolean boilWater(){
 		
-		
+		if(this.hasItem("Fire") && this.hasItem("Water"))
+			return true;
 		return false;
 	}
 	
-	public void craft(CraftableItem item, int amount){
-		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
-
-		for(Item tmpItem : requiredItemsList)
-			for(int i = 0; i < tmpItem.getQuantity(); i++)
-				this.removeItem(tmpItem);
-
-		for(int i = 0; i < amount; i++)
-			this.addItem(item);
-
-		assert this.getInventory().hasItem(item.getName(), 1);
+	public void craft(String itemName){
+		CraftableItem aimedItem = (CraftableItem)this.getInventory().getItem(itemName);
+		ArrayList<Item> requiredItem = aimedItem.getRequiredItemsList();
+		for(int i=0; i<requiredItem.size(); i++){
+			if(requiredItem.get(i) instanceof Tool){
+				return;
+			}
+			else
+				this.getInventory().removeItem(requiredItem.get(i).getName());
+		}
+		this.addItem(itemName);
 	}
 	
 	
@@ -122,14 +117,6 @@ public class Player extends AggresiveCharacter {
 		this.hunger += hunger;
 	}
 
-	public void setRecord(Record record){
-		this.userRecord = record;
-	}
-
-	public Record getUserRecord(){
-		return userRecord;
-	}
-
 
 	public void setCurrentPosition(String areaName){
 		this.currentArea = areaName;
@@ -137,6 +124,16 @@ public class Player extends AggresiveCharacter {
 
 	public String getCurrentPositionOfUser(){
 		return currentArea;
+	}
+	
+	public void updateHourCount(double actionTime){
+		
+		hourCount = hourCount + actionTime;
+		
+		if(hourCount == 24){
+			hourCount = 0;
+			dayCount++;
+		}	
 	}
 
 	private Player(Builder builder){
@@ -152,7 +149,7 @@ public class Player extends AggresiveCharacter {
 
 	public static class Builder{
 		private String curArea,userName;
-		private int energy, health, hunger, attack, defense,thirst;
+		private int energy, health, hunger, attack, defense, thirst;
 
 		public Builder energy(int energy){
 			this.energy = energy;

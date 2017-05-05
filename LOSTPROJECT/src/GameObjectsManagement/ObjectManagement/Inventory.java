@@ -7,10 +7,9 @@
 **
 ** Author: Gunduz Huseyn Lee
 ** File created:  25.04.2017
-** Last modified: 26.04.2017
+** Last modified: 05.05.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
-//package ItemManagement;
 package GameObjectsManagement.ObjectManagement;
 
 import GameObjectsManagement.ItemManagement.*;
@@ -40,109 +39,62 @@ public class Inventory{
 
 	//Methods
 	//Removing the item from the list
-	public void removeItem(String itemName){		
-		int index = this.getItemIndex(itemName);
-		this.removeItem(index);		
-	}
-
 	public void removeItem(Item item){
-		int index = this.getItemIndex(item.getName());
-		this.removeItem(index);
-	}
+		//item must be in the stored item list
+		assert this.hasItem(item.getName(), 1);
 
-	public void removeItems(ArrayList<Item> items){
-		int index = 0;
+		this.storedItemList.remove(this.getItemIndex(item.getName()));
 
-		for(Item item : items){	
-			index = this.getItemIndex(item.getName());
-			this.removeItem(index);
-		}
+		this.currentCapacity = this.currentCapacity - item.getWeight();
 
-	}
-
-	private void removeItem(int index){
-		int count = this.getCount(index);
-
-		assert this.storedItemList.get(index).isVisible();
-		assert count > 0;
-		assert index != -1;
-		
-		//updating the capacity
-		//at this point assuming the remove was successfull
-		this.currentCapacity -= this.storedItemList.get(index).getWeight();
-
-		if(count > 1)
-			this.storedItemList.remove(index);
-		//count is 1
-		else{
-			this.storedItemList.get(index).setVisible(false);
-		}
+		//capacity should never be below 0
+		assert this.currentCapacity >= 0;
 	}
 
 
 	//Methods for adding an item
-	public boolean addItem(String itemName){
-		int index = this.getItemIndex(itemName);
-		return this.addItem(index);
-	}
-
 	public boolean addItem(Item item){
-		int index = this.getItemIndex(item.getName());
-		return this.addItem(index);
-	}
-
-
-	public boolean addItems(ArrayList<Item> items){
-		int index = 0;
-		boolean check = true;
-		for(Item item : items){
-			index = this.getItemIndex(item.getName());
-			if(!this.addItem(index))
-				return false;
-		}
-
-		return true;
-	}
-
-	private boolean addItem(int index){
-		Item item = this.storedItemList.get(index);
-		double weight = item.getWeight();
-
-		if( (this.currentCapacity + weight) > this.maxCapacity)
+		if(this.maxCapacity < this.currentCapacity + item.getWeight())
 			return false;
 
-		this.currentCapacity = this.currentCapacity + weight;
+		this.storedItemList.add(item);
+		this.currentCapacity = this.currentCapacity + item.getWeight();
 
-		if(!item.isVisible())
-			item.setVisible(true);
-		else
-			this.storedItemList.add(item);
-
-		//Check if the item is added to the list, (visibility of the item should be true)
-		assert this.getItem(item.getName()).isVisible();
-
+		assert this.maxCapacity >= this.currentCapacity;
 		return true;
+
 	}
+
 
 	//hasitem methods
-	public boolean hasItem(String itemName){
-		return this.getItem(itemName).isVisible();
+	public boolean hasItem(String itemName, int amount){
+		for(Item tmpItem : this.storedItemList)
+			if(itemName.equals(tmpItem.getName()) && amount <= this.getCount(itemName))
+				return true;
+		return false;
 	}
 
-	public boolean hasItem(Item item){
-		return this.getItem(item.getName()).isVisible();
+	/*
+	public boolean hasItems(ArrayList<Item> items){
+		for(Item item : items)
+			if(!this.hasItem(item))
+				return false;
+		return true;
 	}
-
+	*/
 
 	/**
 	**getItem method with String
 	*/
+
+	
 	public Item getItem(String itemName){
 		for(Item item : this.storedItemList)
 			if(item.getName().equals(itemName))
 				return item;
 		return null;
 	}
+	
 
 	public ArrayList<Item> getStoredItems(){
 		return storedItemList;
@@ -153,25 +105,15 @@ public class Inventory{
 	}
 
 	//Private methods
-	private int getCount(int index){
-		String name = this.storedItemList.get(index).getName();
+	private int getCount(String itemName){
 		int count = 0;
 		for(Item tmpItem : this.storedItemList)
-			if(tmpItem.getName().equals(name))
+			if(itemName.equals(tmpItem.getName()))
 				count++;
 
 		return count;
 	}
 
-	public int getCount(String itemName){
-		int index = this.getItemIndex(itemName);
-		return this.getCount(index);
-	}
-
-	public int getCount(Item item){
-		int index = this.getItemIndex(item.getName());
-		return this.getCount(index);
-	}
 
 	private int getItemIndex(String itemName){
 		int size = this.storedItemList.size();
@@ -185,8 +127,7 @@ public class Inventory{
 	private double calculateCurrentCapacity(){
 		double capacity = 0.0;
 		for(Item item : this.storedItemList)
-			if(item.isVisible())
-				capacity = capacity + item.getWeight();
+			capacity = capacity + item.getWeight();
 
 		return capacity;
 	}
@@ -196,8 +137,7 @@ public class Inventory{
 	public String console_listItems(){
 		String result = "Here is the items inside the Inventory:\n";
 		for(Item item : this.storedItemList)
-			if(item.isVisible())
-				result = result + item.getName() + "\n";
+			result = result + item.getName() + "\n";
 
 		return result;
 	}
@@ -205,16 +145,9 @@ public class Inventory{
 	public String console_listItemsDetailed(){
 		String result = "Here is the items inside the Inventory:\n";
 		for(Item item : this.storedItemList)
-			if(item.isVisible())
-				result = result + item.toString() + "\n";
+			result = result + item.toString() + "\n";
 
 		return result;
 	}
-
-	public void setStoredItemList(ArrayList<Item> itemList ){
-		this.storedItemList = itemList;
-	}
-
-
 }
 

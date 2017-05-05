@@ -4,6 +4,7 @@
 package GameObjectsManagement.CharacterManagement;
 
 import GameObjectsManagement.ObjectManagement.*;
+import GameObjectsManagement.ItemManagement.*;
 
 /**
  * @author Yasin
@@ -83,6 +84,9 @@ public class Character extends GameObject {
 		this.sound = sound;
 	}
 	
+	public Item getItem(String itemName){
+		return this.inventory.getItem(itemName);
+	}
 	
 	/**
 	 * @return the inventory
@@ -97,12 +101,12 @@ public class Character extends GameObject {
 		this.inventory = inventory;
 	}
 	
-	public void removeItem(String itemName){
-		inventory.removeItem(itemName);
+	public void removeItem(Item item){
+		inventory.removeItem(item);
 	}
 	
-	public void addItem(String itemName){
-		inventory.addItem(itemName);
+	public void addItem(Item item){
+		inventory.addItem(item);
 	}
 	
 	public void updateHealth(int health){
@@ -114,8 +118,8 @@ public class Character extends GameObject {
 			this.health+=health;
 	}
 	
-	public boolean hasItem(String itemName){
-		return inventory.hasItem(itemName);
+	public boolean hasItem(String itemName, int amount){
+		return inventory.hasItem(itemName, amount);
 	}
 
 	public double getEscapeChance() {

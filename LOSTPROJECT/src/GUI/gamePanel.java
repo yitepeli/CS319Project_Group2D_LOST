@@ -380,20 +380,39 @@ public class gamePanel extends JPanel {
 					        			textResult = "Drop";
 					        			textPane.setText(textResult);
 					        		}
+					        		order=0;
 			        				currentObjectName="";
 			        			}
 			        		}
 			        		else if(order==1 && playerItemChosen ==2){
-			        			ArrayList<String> craftableItemList = newGame.getCraftableItems(currentObjectName);
+			        			ArrayList<Item> craftableItemList = newGame.getCraftableItems(currentObjectName);
 			        			String s = areaDescription+"Choose the item which you want to craft\n";
-			        			for(int i = 0 ; i<craftableItemList.size();i++){
-			        				s += i+". "+craftableItemList.get(i)+"\n";
+			        			int size = craftableItemList.size();
+			        			for(int i = 0 ; i < size; i++){
+			        				s += (i + 1) + ". "+craftableItemList.get(i).getName() + " (" + craftableItemList.get(i).getQuantity() + ")\n";
 			        			}
 			        			textResult = s;
 			        			textPane.setText(textResult);
+			        			order++;
 			        		}
 			        		else if(order==2){
-			        			;
+			        			int index = Integer.parseInt(textArea.getText());
+			        			ArrayList<Item> craftableItemList = newGame.getCraftableItems(currentObjectName);
+			        			assert (index > 0) && (index <= craftableItemList.size())
+
+			        			Item item = craftableItemList.get(index - 1);
+
+			        			boolean crafted = newGame.craft(item.getName, item.getQuantity, item.getType());
+
+			        			if(crafted){
+			        				String txt = item.getName() + "crafted succesfully!";
+			        				textPane.setText(txt);
+			        				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(saveBtn.getParent());
+			        				mainFrame.updateGamePanel(newGame, txt);
+			        			}
+			        			else
+			        				textPane.setText(item.getName() + "could not be crafted!");
+
 			        		}
 			        		textArea.setText("");
 			        	}

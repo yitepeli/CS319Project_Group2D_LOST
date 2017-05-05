@@ -40,6 +40,10 @@ public class GameEngine {
 		return DatabaseManager.isUserExists();
 	}
 
+	private Item readItem(String itemName, String type){
+		return null;
+	}
+
 
 	public void enterUserName(String name){
 		player.setName(name);
@@ -115,44 +119,42 @@ public class GameEngine {
 		mapManager.processMap(positionOfUser);//updating map
 	}
 
-	
-	public ArrayList<String> getCraftableItems(String itemName){
+	//Crafting methods
+	/*
+	public HashMap<String, Integer> getCraftableItems(String itemName){
+
+
+		//player should have the item in its inventory before attempting to craft it
+		assert this.player.hasItem(itemName, 1);
 		
-		CraftableItem item = (CraftableItem)player.getInventory().getItem(itemName);
-		ArrayList<String> itemListString = new ArrayList<String>();
-		ArrayList<Item> itemListObject = item.getCraftableItemsList();
-			
-		if(player.hasItem(itemName)){
-			
-			for(int i=0; i<itemListObject.size(); i++)
-				itemListString.add(itemListObject.get(i).getName());
-		}
-		return itemListString;
+		ArrayList<Item> craftableItemList = ((CraftableItem)this.player.getItem(itemName)).getCraftableItemsList();
+		HashMap<String, Integer> map = new HashMap<String, Integer>;
+
+		for(Item item : craftableItemList)
+			map.put(item.getName(), item.getQuantity());
+
+		return map;
 	}
-	
-	public ArrayList<String> getRequiredItems(String itemName){
-		          
-		CraftableItem item = (CraftableItem)player.getInventory().getItem(itemName);
-		ArrayList<String> itemListString = new ArrayList<>();
-		ArrayList<Item> itemListObject = item.getRequiredItemsList();
-			
-		for(int i=0; i<itemListObject.size(); i++)
-			itemListString.add(itemListObject.get(i).getName());
-		
-		return itemListString;	
+	*/
+	public ArrayList<Item> getCraftableItems(String itemName){
+		return ((CraftableItem)this.player.getItem(itemName)).getCraftableItemsList();
 	}
-	
-	public boolean craft(String craftedItemName){
+
+
+	public boolean craft(String itemName, int amount, String type){
+		CraftableItem item = (CraftableItem)this.readItem(itemName, type);
+		assert item != null;
+
+		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
 		
-		ArrayList<String> requiredItems = getRequiredItems(craftedItemName);
-		
-		for(int i=0; i<requiredItems.size(); i++)
-			if(!player.hasItem(requiredItems.get(i)))
+		assert requiredItemsList != null;
+		for(Item tmpItem : requiredItemsList)
+			if(!this.player.hasItem(tmpItem.getName(), tmpItem.getQuantity()))
 				return false;
-		
-		player.craft(craftedItemName);
-		return true;
-		
+
+		player.craft(item, amount);
+
+		return true;		
 	}
 	
 	
@@ -218,6 +220,7 @@ public class GameEngine {
 							player.addItem(characterItems.get(i).getName());
 					}
 					//remove from area
+
 					return "You killed " + character.getName();
 				}
 				
@@ -259,24 +262,18 @@ public class GameEngine {
 		
 	}
 	
-	public boolean makeCampfire(){
-		
-		if(!positionOfUser.isCampFireExists() && player.hasItem("Fire") && player.hasItem("Wood")){
-			positionOfUser.setCampFireExists(true);
-			return true;
-		}
-		
+	public boolean makeCampfire(){	
 		return false;
 	}
 	
 	public boolean cookMeat(){
 		
-		return player.cookMeat();
+		return false;
 	}
 	
 	public boolean boilWater(){
 		
-		return player.boilWater();
+		return false;
 		
 	}
 	
@@ -293,13 +290,6 @@ public class GameEngine {
 	}
 	
 	public boolean buildShelter(){
-		
-		if(!positionOfUser.isShelterExists() && player.hasItem("Wood") && player.hasItem("Branch")
-				&& player.hasItem("Stone") && player.hasItem("Ropes")){
-			positionOfUser.setShelterExists(true);
-			return true;
-		}
-		
 		return false;		
 		
 	}
