@@ -28,7 +28,7 @@ public class LocalStorageDao {
     private String path;// File path that includes json libraries
 
     private static Preferences userPrefs = Preferences.userRoot().node("lost/user");//user preferences node
-    private Preferences systemPrefs = Preferences.systemRoot().node("lost/settings");
+    private Preferences systemPrefs = Preferences.userRoot().node("lost/settings");
 
 
     public LocalStorageDao() {
@@ -85,7 +85,6 @@ public class LocalStorageDao {
         }
         catch (ClassNotFoundException e){
             System.out.println("Class not found!");
-
         }
         return cls;
 

@@ -47,29 +47,27 @@ public class Player extends AggresiveCharacter {
 	}
 
 	public boolean cookMeat(){
-		if(this.hasItem("Fire") && this.hasItem("Raw Meat"))
-			return true;
+		
 		return false;
 	}
 	
 	public boolean boilWater(){
 		
-		if(this.hasItem("Fire") && this.hasItem("Water"))
-			return true;
+		
 		return false;
 	}
 	
-	public void craft(String itemName){
-		CraftableItem aimedItem = (CraftableItem)this.getInventory().getItem(itemName);
-		ArrayList<Item> requiredItem = aimedItem.getRequiredItemsList();
-		for(int i=0; i<requiredItem.size(); i++){
-			if(requiredItem.get(i) instanceof Tool){
-				return;
-			}
-			else
-				this.getInventory().removeItem(requiredItem.get(i).getName());
-		}
-		this.addItem(itemName);
+	public void craft(CraftableItem item, int amount){
+		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
+
+		for(Item tmpItem : requiredItemsList)
+			for(int i = 0; i < tmpItem.getQuantity(); i++)
+				this.removeItem(tmpItem);
+
+		for(int i = 0; i < amount; i++)
+			this.addItem(item);
+
+		assert this.getInventory().hasItem(item.getName(), 1);
 	}
 	
 	

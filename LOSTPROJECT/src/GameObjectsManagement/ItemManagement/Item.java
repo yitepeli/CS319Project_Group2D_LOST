@@ -4,10 +4,9 @@
 **
 ** Author: Gunduz Huseyn Lee
 ** File created:  13.04.2017
-** Last modified: 25.04.2017
+** Last modified: 05.05.2017
 ** Last modified by: Gunduz Huseyn Lee
 */
-//package ItemManagement;
 package GameObjectsManagement.ItemManagement;
 
 import GameObjectsManagement.ObjectManagement.*;
@@ -17,9 +16,9 @@ import java.util.*;
 public class Item extends GameObject{
 	//Properties
 	private double weight;
-	private int renewalTime,quantity;
+	private int renewalTime;
+	private int quantity;
 	private boolean renewable;	
-	private boolean visible;	
 	private ArrayList<String> actionList;
 
 
@@ -30,16 +29,14 @@ public class Item extends GameObject{
 		this.weight = 0.0;
 		this.renewalTime = 0;
 		this.renewable = false;
-		this.visible = false;
 		this.actionList = null;
 	}
 
-	public Item(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList){
+	public Item(int id, String name, String description, double weight, int renewalTime, boolean renewable, ArrayList<String> actionList){
 		super(id, name, description);
 		this.weight = weight;
 		this.renewalTime = renewalTime;
 		this.renewable = renewable;
-		this.visible = visible;
 		this.actionList = actionList;
 	}
 
@@ -75,17 +72,13 @@ public class Item extends GameObject{
 		return this.renewalTime;
 	}
 
-	public boolean isVisible(){
-		return this.visible;
-	}
-
-	public void setVisible(boolean visible){
-		this.visible = visible;
+	public int getQuantity(){
+		return this.quantity;
 	}
 
 	@Override
 	public String toString(){
-		return super.toString() + "\nWeight of the item is: " + weight + "\nVisibility: " + visible + this.console_displayInteractions();
+		return super.toString() + "\nWeight of the item is: " + weight + this.console_displayInteractions();
 	}
 
 
