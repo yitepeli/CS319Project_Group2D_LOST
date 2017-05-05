@@ -7,30 +7,25 @@
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take","drop", "craft"],
-  "requiredItemsList" : [
-
+  "requiredItemList" : [
 	{
 		"objectName" : "Stone",
-    "quantity" : "3",
-    "type" : "CraftableItem"
+        "quantity" : "3",
+        "type" : "CraftableItem"
 	},
-
 	{
 		"objectName" : "Wood",
-    "quantity" : "2",
-    "type" : "CraftableItem"
+        "quantity" : "2",
+        "type" : "CraftableItem"
 	}
-
-	],
+  ],
 
   "craftableItemList" : [
-
 	{
 		"objectName" : "Wood",
-    "type" : "CraftableItem",
-    "quantity" : "1"
+        "type" : "CraftableItem",
+        "quantity" : "1"
 	}
-
-	]
+  ]
 
 }

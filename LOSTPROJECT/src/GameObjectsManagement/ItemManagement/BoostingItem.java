@@ -26,8 +26,8 @@ public class BoostingItem extends Item{
 		defensePointBonus = 0;
 	}
 
-	public BoostingItem(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList, int attackPointBonus, int defensePointBonus){
-		super(id, name, description, weight, renewalTime, renewable, visible, actionList);
+	public BoostingItem(int id, String name, String description, double weight, int renewalTime, boolean renewable, ArrayList<String> actionList, int attackPointBonus, int defensePointBonus){
+		super(id, name, description, weight, renewalTime, renewable, actionList);
 		this.attackPointBonus = attackPointBonus;
 		this.defensePointBonus = defensePointBonus;
 	}

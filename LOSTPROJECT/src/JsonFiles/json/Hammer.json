@@ -11,14 +11,14 @@
 
 	{
 		"objectName" : "Tree",
-    "type" : "CraftableItem",
-    "quantity" : "2"
+        "type" : "CraftableItem",
+        "quantity" : "2"
 	},
 
 	{
 		"objectName" : "Axe",
-    "type" : "Tool",
-    "quantity" : "1"
+        "type" : "Tool",
+        "quantity" : "1"
 	}
 
 	],
@@ -27,15 +27,15 @@
 
 	{
 		"objectName" : "Spear",
-    "type" : "Tool",
-    "quantity" : "1"
+        "type" : "Tool",
+        "quantity" : "1"
 	},
 
 	{
 		"objectName" : "Axe",
-    "quantity" : "Tool",
-    "type" : "Tool"
-	},
+        "quantity" : "3",
+        "type" : "Tool"
+	}
 
 	]
 

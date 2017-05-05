@@ -26,7 +26,7 @@ public class Inventory{
 
 	//Constructors
 	public Inventory(){
-		this.storedItemList = null;
+		this.storedItemList = new ArrayList<>();
 		maxCapacity = 50.0;		//Default value
 		currentCapacity = 0.0;
 	}

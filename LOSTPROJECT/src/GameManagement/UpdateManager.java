@@ -77,8 +77,7 @@ public class UpdateManager {
 
                 List<Item> itemList = databaseManager.listItems(isNewGame);
                 List<Character> characterList = databaseManager.listCharacters(isNewGame);
-                Inventory areaInventory = new Inventory();
-                areaInventory.setStoredItemList(new ArrayList<>(itemList));
+                Inventory areaInventory = new Inventory(new ArrayList<>(itemList),10000);
 
                 area.setInventory(areaInventory);
                 area.setCharacterList(new ArrayList<>(characterList));

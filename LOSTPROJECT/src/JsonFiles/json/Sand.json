@@ -7,7 +7,7 @@
   "renewalTime" : "2",
   "renewable" : "true",
   "visible" : "true",
-  "actionList" : ["take", "drop", "craft"],
+  "actionList" : ["take", "drop", "craft"]
 
 
 }

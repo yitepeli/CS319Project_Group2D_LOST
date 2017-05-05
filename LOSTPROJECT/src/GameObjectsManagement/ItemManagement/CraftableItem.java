@@ -17,47 +17,47 @@ import java.util.*;
 
 public class CraftableItem extends Item{
 	//Properties
-	private ArrayList<Item> craftableItemsList;
-	private ArrayList<Item> requiredItemsList;
+	private ArrayList<Item> craftableItemList;
+	private ArrayList<Item> requiredItemList;
 
 
 	//Constructors
 	public CraftableItem(String name){
 		super(name);
 
-		craftableItemsList = null;
-		requiredItemsList = null;
+		craftableItemList = null;
+		requiredItemList = null;
 	}
 
-	public CraftableItem(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList,  ArrayList<Item> craftableItemsList, ArrayList<Item> requiredItemsList){
-		super(id, name, description, weight, renewalTime, renewable, visible, actionList);
-		this.craftableItemsList = craftableItemsList;
-		this.requiredItemsList = requiredItemsList;
+	public CraftableItem(int id, String name, String description, double weight, int renewalTime, boolean renewable, ArrayList<String> actionList,  ArrayList<Item> craftableItemsList, ArrayList<Item> requiredItemsList){
+		super(id, name, description, weight, renewalTime, renewable, actionList);
+		this.craftableItemList = craftableItemsList;
+		this.requiredItemList = requiredItemsList;
 	}
 
 	//Methods
 	public ArrayList<Item> getCraftableItemsList(){
-		return this.craftableItemsList;
+		return this.craftableItemList;
 	}
 
 	public ArrayList<Item> getRequiredItemsList(){
-		return this.requiredItemsList;
+		return this.requiredItemList;
 	}
 
 	@Override
 	public String toString(){
 		String result = super.toString();
 
-		if(this.craftableItemsList != null){
+		if(this.craftableItemList != null){
 			result = result + "\nHere is what you can craft from this Item:\n";
-			for(Item item : this.craftableItemsList)
+			for(Item item : this.craftableItemList)
 				result = result + item.getName() + "   ";
 			result = result + "\n";
 		}
 
-		if(this.requiredItemsList != null){
+		if(this.requiredItemList != null){
 			result = result + "\nHere is what you need to craft this item:\n";
-			for(Item item : this.requiredItemsList)
+			for(Item item : this.requiredItemList)
 				result = result + item.getName() + "   ";
 			result = result + "\n";
 		}

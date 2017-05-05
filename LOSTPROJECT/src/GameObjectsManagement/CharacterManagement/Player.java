@@ -24,6 +24,7 @@ public class Player extends AggresiveCharacter {
     private double gameTime;
 
 	public Player() {
+		super();
 		setEnergy(100);
 		setHealth(100);
 		setAttack(15);
@@ -32,6 +33,7 @@ public class Player extends AggresiveCharacter {
 		this.hunger=0;
 		updateThirst(15);
 		updateHunger(15);
+
 	}
 	
 	public Player(String name) {

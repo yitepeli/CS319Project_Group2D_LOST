@@ -14,6 +14,7 @@ public class AggresiveCharacter extends Character {
 	 * 
 	 */
 	public AggresiveCharacter() {
+		super();
 		attack=10;
 	}
 

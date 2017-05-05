@@ -2,7 +2,6 @@ package GameObjectsManagement.AreaManagement;
 
 //external packages
 import GameObjectsManagement.ObjectManagement.*;
-import GameObjectsManagement.EventManagement.*;
 import GameObjectsManagement.CharacterManagement.Character;
 
 
@@ -18,7 +17,7 @@ public class Area extends GameObject {//will be updated!
     private boolean visited, campFireExists, shelterExists;
     private String description;
     private Inventory inventory;
-    private List<Event> eventList;
+   // private List<Event> eventList;
     private ArrayList<Character> characterList;
 
     public Area(AreaType areaType){
@@ -124,19 +123,19 @@ public class Area extends GameObject {//will be updated!
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
-	
+
+	/*
 	public void removeItem(String itemName){
 		inventory.removeItem(itemName);
-	}
+	}*/
 	
 	public void addItem(String itemName){
-		inventory.addItem(itemName);
 	}
-	
-	public void addEvent(Event e){
+
+/*	public void addEvent(Event e){
 		
 		eventList.add(e);	
-	}
+	}*/
 
     public void setCharacterList(ArrayList<Character> characterList){
 	    this.characterList = characterList;

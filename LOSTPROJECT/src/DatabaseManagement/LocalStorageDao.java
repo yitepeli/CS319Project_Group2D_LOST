@@ -53,8 +53,13 @@ public class LocalStorageDao {
             try {
                 Stream<String> stream = Files.lines(Paths.get(file.getAbsolutePath()));
 
+
+
                 stream.filter(e->!e.equals("")).forEach(e->{//Override predicate
                     Object object = null;
+                    System.out.println("Printing...");
+                    System.out.println(e);
+                    System.out.println("Printing...");
                     try{
                         object = gson.fromJson(new FileReader(path + "json/" + e),typeToClass(Constants.GAME_ROOT + className));//map json object into root object
                     }catch (IOException exception){ exception.printStackTrace();}

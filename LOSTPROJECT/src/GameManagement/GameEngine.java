@@ -68,6 +68,31 @@ public class GameEngine {
 		return databaseManager.listRecords();
 	}
 
+	public void navigate(String direction){
+
+		switch (direction){
+			case "left":
+				positionOfUser = positionOfUser.getLeftNeighbour();
+				break;
+			case "right":
+				positionOfUser = positionOfUser.getRightNeighbour();
+				break;
+			case "down":
+				positionOfUser = positionOfUser.getDownNeighbour();
+				break;
+			case "up":
+				positionOfUser = positionOfUser.getUpNeighbour();
+				break;
+		}
+
+
+		String currentAreaName = positionOfUser.getAreaType().getAreaName();
+		player.setCurrentPosition(currentAreaName);
+		databaseManager.setWorkingArea(currentAreaName);
+		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);//update player data
+		mapManager.processMap(positionOfUser);//updating map
+	}
+
 
 
 
@@ -93,31 +118,14 @@ public class GameEngine {
 		updateManager.createGameEnvironment(isNewGame,databaseManager,player.getCurrentPositionOfUser());
 		positionOfUser = updateManager.getPositionOfUser();
 		mapManager.processMap(positionOfUser);
+
+		player.addItem(databaseManager.readItem("Tree","CraftableItem"));
+		System.out.println("Adding axe");
+		player.addItem(databaseManager.readItem("Axe","Tool"));
+		player.addItem(databaseManager.readItem("Wood","CraftableItem"));
 	}
 
 
-	public void navigate(String direction){
-
-		if(direction.equals("left")){
-			positionOfUser = positionOfUser.getLeftNeighbour();
-		}
-		else if(direction.equals("right")){
-			positionOfUser = positionOfUser.getRightNeighbour();
-
-		}
-		else if(direction.equals("up")){
-			positionOfUser = positionOfUser.getUpNeighbour();
-
-		}
-		else if(direction.equals("down")){
-			positionOfUser = positionOfUser.getDownNeighbour();
-		}
-		String currentAreaName = positionOfUser.getAreaType().getAreaName();
-		player.setCurrentPosition(currentAreaName);
-		databaseManager.setWorkingArea(currentAreaName);
-		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);//update player data
-		mapManager.processMap(positionOfUser);//updating map
-	}
 
 	//Crafting methods
 	/*
@@ -217,7 +225,7 @@ public class GameEngine {
 					if(character.getInventory() != null){
 						ArrayList<Item> characterItems = character.getInventory().getStoredItems();
 						for(int i=0; i<characterItems.size(); i++)
-							player.addItem(characterItems.get(i).getName());
+							player.addItem(characterItems.get(i));
 					}
 					//remove from area
 

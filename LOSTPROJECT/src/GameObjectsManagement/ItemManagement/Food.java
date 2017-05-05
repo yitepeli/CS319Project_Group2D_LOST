@@ -28,8 +28,8 @@ public class Food extends Item{
 		healthPoints = 0;
 	}
 
-	public Food(int id, String name, String description, double weight, int renewalTime, boolean renewable, boolean visible, ArrayList<String> actionList, int hungerPoints, int thirstPoints, int healthPoints){
-		super(id, name, description, weight, renewalTime, renewable, visible, actionList);
+	public Food(int id, String name, String description, double weight, int renewalTime, boolean renewable, ArrayList<String> actionList, int hungerPoints, int thirstPoints, int healthPoints){
+		super(id, name, description, weight, renewalTime, renewable, actionList);
 		this.hungerPoints = hungerPoints;
 		this.thirstPoints = thirstPoints;
 		this.healthPoints = healthPoints;

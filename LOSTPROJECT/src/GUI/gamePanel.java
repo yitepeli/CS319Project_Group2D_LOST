@@ -91,10 +91,7 @@ public class gamePanel extends JPanel {
 		areaDescription = "You are currently in the area " +newGame.getPositionOfUser().getAreaType().getAreaName()+"\nYou can collect the items or fight with animals!!!\n\n";
 		
 		
-		Object[][] playerItems = {
-
-		};
-
+		ArrayList<Item> playerItems = newGame.getPlayer().getInventory().getStoredItems();
 		Object[] characters = {
 				"Canavar",
 				"Canavar2",
@@ -398,11 +395,11 @@ public class gamePanel extends JPanel {
 			        		else if(order==2){
 			        			int index = Integer.parseInt(textArea.getText());
 			        			ArrayList<Item> craftableItemList = newGame.getCraftableItems(currentObjectName);
-			        			assert (index > 0) && (index <= craftableItemList.size())
+			        			assert (index > 0) && (index <= craftableItemList.size());
 
 			        			Item item = craftableItemList.get(index - 1);
 
-			        			boolean crafted = newGame.craft(item.getName, item.getQuantity, item.getType());
+			        			boolean crafted = newGame.craft(item.getName(), item.getQuantity(), item.getType());
 
 			        			if(crafted){
 			        				String txt = item.getName() + "crafted succesfully!";
@@ -511,10 +508,12 @@ public class gamePanel extends JPanel {
 		playerItemsPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		playerPanel.add(playerItemsPanel);
 		playerItemsPanel.setLayout(new GridLayout(0, 2, 0, 0));
-		for(int i = 0; i< playerItems.length;i++){
-			JLabel tempItem = new JLabel(/*(String)areaItems[i][0]*/);
-			tempItem.setName((String)playerItems[i][0]);
-			tempItem.setIcon(new ImageIcon(((ImageIcon)playerItems[i][1]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		for(int i = 0; i< playerItems.size();i++){
+			JLabel tempItem = new JLabel(playerItems.get(i).getName());
+			tempItem.setName(playerItems.get(i).getName());
+			Item pitem = playerItems.get(i);
+			String iconString = userDir + "/src/images/"+areaItems.get(i).getName().toLowerCase()+".png";
+			tempItem.setIcon(new ImageIcon((new ImageIcon(iconString)).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {

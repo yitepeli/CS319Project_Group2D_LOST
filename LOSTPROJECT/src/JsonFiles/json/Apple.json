@@ -9,5 +9,4 @@
   "visible" : "true",
   "actionList" : ["take","drop", "eat"],
   "hungerPoints" : "7"
-
 }
