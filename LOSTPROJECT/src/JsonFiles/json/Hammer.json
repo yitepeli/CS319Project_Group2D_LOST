@@ -1,12 +1,13 @@
 {
   "objectName" : "Wood",
-  "objecId" : "23",
+  "objectId" : "23",
+  "type" : "CraftableItem",
   "description" : "Useful basic material for crafting objects.",
   "weight" : "3.0",
   "renewable" : "false",
-  "visible" : "true",
+  "visible" : "false",
   "actionList" : ["take", "drop", "craft"],
-  "requiredItemsList" : [
+  "requiredItemList" : [
 
 	{
 		"objectName" : "Tree"
@@ -17,7 +18,7 @@
 	}
 
 	],
-	
+
   "craftableItemList" : [
 
 	{
@@ -40,6 +41,6 @@
 		"objectName" : "Boat"
 	}
 
-	],
- 
+	]
+
 }

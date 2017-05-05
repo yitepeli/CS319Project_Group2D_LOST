@@ -1,0 +1,9 @@
+{
+  "objectName" : "Message",
+  "type" : "Item",
+  "objectId" : "230",
+  "description" : "Message from other islands! Maybe you can collect hints about escaping from game!.",
+  "weight" : "0.1",
+  "renewable" : "false",
+  "actionList" : ["drop"]
+}

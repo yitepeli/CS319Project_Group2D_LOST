@@ -7,6 +7,8 @@ package GameObjectsManagement.ObjectManagement;
  *              and do not want to involve them into object-oriented design.
  */
 
+import GameObjectsManagement.CharacterManagement.Character;
+import GameObjectsManagement.CharacterManagement.AggresiveCharacter;
 
 public class Constants {
 
@@ -30,5 +32,13 @@ public class Constants {
     public final static String SYSTEM_PREFS_PANEL = "systemPreferencesPanel";
     public final static String INVALID_USER = "invalidUser";
     public final static String USER_ID = "cloudId";
+    public final static String CHARACTER_TYPE = "characterType";
+    public final static String ITEM_TYPE = "itemType";
+    public final static String GAME_ROOT = "GameObjectsManagement.";
+    public final static String CHARACTER_ROOT = "GameObjectsManagement.CharacterManagement.";
+    public final static String ITEM_ROOT = "GameObjectsManagement.ItemManagement.";
+    public final static Class< AggresiveCharacter> AggresiveCharacter = GameObjectsManagement.CharacterManagement.AggresiveCharacter.class;
+    public final static Class< Character> Character = GameObjectsManagement.CharacterManagement.Character.class;
+
 
 }

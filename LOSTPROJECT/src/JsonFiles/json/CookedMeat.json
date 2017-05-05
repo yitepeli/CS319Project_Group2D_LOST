@@ -1,10 +1,11 @@
 {
   "objectName" : "CookedMeat",
-  "objecId" : "156",
+  "type" : "Food",
+  "objectId" : "156",
   "description" : "It is an delicious warm meat",
   "weight" : "5.0",
   "renewable" : "false",
-  "visible" : "true",
+  "visible" : "false",
   "actionList" : ["take","drop", "eat"],
   "hungerPoints" : 15
 }

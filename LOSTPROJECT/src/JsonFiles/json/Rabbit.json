@@ -1,7 +1,16 @@
 {
   "objectName":"Rabbit",
+  "type" : "Character",
   "objectId" : "114",
   "description" : "Rabbits! They are certain target for all creatures in island. Do not miss the opportunity to feed with delicious rabbit meat!",
   "health" : "15",
-  "defense" : "10"
+  "defense" : "10",
+  "inventory" : {
+    "storedItemList" : [
+      {
+        "objectName" : "Meat",
+        "quantity" : "2"
+      }
+    ]
+  }
 }

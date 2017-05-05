@@ -1,7 +1,20 @@
 {
   "objectName":"Bird",
+  "type" : "Character",
   "objectId" : "110",
   "description" : "Birds take advantage of their capabilities! Never easy to hunt flying animal... ",
   "health" : "10",
-  "defense" : "30"
+  "defense" : "30",
+  "inventory":{
+    "storedItemList" : [
+      {
+        "objectName" : "Message",
+        "quantity" : "1"
+      },
+      {
+        "objectName" : "Meat",
+        "quantity" : "1"
+      }
+    ]
+  }
 }

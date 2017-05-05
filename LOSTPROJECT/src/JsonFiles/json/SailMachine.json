@@ -1,9 +1,10 @@
 {
   "objectName" : "Sail Machine",
-  "objecId" : "27",
+  "type" : "Item",
+  "objectId" : "27",
   "description" : "This will be helpful for crafting sail!",
   "weight" : "7.0",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take", "drop"]	
+  "actionList" : ["take", "drop"]
 }

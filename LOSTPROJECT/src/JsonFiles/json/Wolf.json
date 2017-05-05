@@ -1,5 +1,6 @@
 {
   "objectName":"Wolf",
+  "type" : "AggresiveCharacter",
   "objectId" : "120",
   "description" : "Wolf!",
   "health" : "110",

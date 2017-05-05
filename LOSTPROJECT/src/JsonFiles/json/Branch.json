@@ -1,12 +1,13 @@
 {
   "objectName" : "Branch",
-  "objecId" : "213",
+  "type" : "CraftableItem",
+  "objectId" : "213",
   "description" : "Branches from trees, might help with something.",
-  "weight" : "8.0",
+  "weight" : "1.0",
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take","drop", "craft"],
-	
+
   "craftableItemList" : [
 
 	{
@@ -18,5 +19,5 @@
 	}
 
 	]
- 
+
 }

@@ -20,6 +20,7 @@ public class CraftableItem extends Item{
 	private ArrayList<Item> craftableItemsList;
 	private ArrayList<Item> requiredItemsList;
 
+
 	//Constructors
 	public CraftableItem(String name){
 		super(name);

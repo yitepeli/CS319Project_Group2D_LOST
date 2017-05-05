@@ -1,4 +1,5 @@
 package DatabaseManagement;
+import GameObjectsManagement.CharacterManagement.AggresiveCharacter;
 import com.google.cloud.datastore.*;
 
 import java.util.ArrayList;
@@ -54,10 +55,16 @@ public class AreaDatastore extends ParentDatastore{
 
         private Character entityToCharacter(Entity entity){
 
-            Character character = new Character((int)entity.getLong(Constants.OBJECT_ID),
-                                  entity.getString(Constants.OBJECT_NAME),
-                                 entity.getString(Constants.DESCRIPTION));
-
+            Character character;
+            int attack = (int)entity.getLong(Constants.ATTACK);
+            if(entity.getLong(Constants.ATTACK) != 0){
+                character = new AggresiveCharacter((int)entity.getLong(Constants.OBJECT_ID), entity.getString(Constants.OBJECT_NAME), entity.getString(Constants.DESCRIPTION));
+                ((AggresiveCharacter)character).setAttack(attack);
+            }
+            else{
+                character = new Character((int)entity.getLong(Constants.OBJECT_ID), entity.getString(Constants.OBJECT_NAME), entity.getString(Constants.DESCRIPTION));
+            }
+            character.setType(entity.getString(Constants.CHARACTER_TYPE));
             character.setDefense((int)entity.getLong(Constants.DEFENSE));
             character.setHealth((int)entity.getLong(Constants.HEALTH));
             return character;
@@ -68,12 +75,19 @@ public class AreaDatastore extends ParentDatastore{
         public long create(Character character){
             IncompleteKey key = characterKeyFactory.newKey();//assign new key for storing in the cloud
 
+            int attack = 0;
+            if(character instanceof AggresiveCharacter){
+                attack = ((AggresiveCharacter)character).getAttack();
+            }
+
             FullEntity<IncompleteKey> incItemEntity = Entity.newBuilder(key)
+                    .set(Constants.CHARACTER_TYPE,character.getType())
                     .set(Constants.OBJECT_NAME,character.getName())
                     .set(Constants.OBJECT_ID,character.getId())
                     .set(Constants.HEALTH,character.getHealth())
                     .set(Constants.DEFENSE,character.getDefense())
-                    .set(Constants.DESCRIPTION,character.getDefense())
+                    .set(Constants.ATTACK,attack)
+                    .set(Constants.DESCRIPTION,character.getDescription())
                     .build();
 
             //insert object mapping here!
@@ -90,11 +104,18 @@ public class AreaDatastore extends ParentDatastore{
         public void update(Character character){
             Key key = characterKeyFactory.newKey(character.getCloudId());//insert item key here
 
+            int attack = 0;
+            if(character instanceof AggresiveCharacter){
+                attack = ((AggresiveCharacter)character).getAttack();
+            }
+
             Entity entity = Entity.newBuilder(key)
+                    .set(Constants.CHARACTER_TYPE,character.getType())
                     .set(Constants.OBJECT_NAME,character.getName())
                     .set(Constants.OBJECT_ID,character.getId())
                     .set(Constants.HEALTH,character.getHealth())
                     .set(Constants.DEFENSE,character.getDefense())
+                    .set(Constants.ATTACK,attack)
                     .set(Constants.DESCRIPTION,character.getDefense())
                     .build();
 

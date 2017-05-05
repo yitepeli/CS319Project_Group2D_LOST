@@ -1,9 +1,10 @@
 {
   "objectName" : "Ship Map",
-  "objecId" : "20",
+  "type" : "Item",
+  "objectId" : "20",
   "description" : "This map will show you the exit route from the island!",
   "weight" : "2.0",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take", "drop"]	
+  "actionList" : ["take", "drop"]
 }

@@ -1,9 +1,10 @@
 {
   "objectName" : "Dark Diamond",
-  "objecId" : "22",
+  "type" : "Item",
+  "objectId" : "22",
   "description" : "Mistic dark diamond that old man craves for",
   "weight" : "10.0",
   "renewable" : "false",
-  "visible" : "true",
-  "actionList" : ["take", "drop"]	
+  "visible" : "false",
+  "actionList" : ["take", "drop"]
 }

@@ -1,18 +1,19 @@
 {
-  "objectName" : "Wood",
-  "objecId" : "23",
-  "description" : "Useful basic material for crafting objects.",
+  "objectName" : "Dirty Water",
+  "type" : "CraftableItem",
+  "objetcId" : "23",
+  "description" : "It is a dirty water! You have to boil it!",
   "weight" : "3.0",
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take", "drop", "craft"],
-	
+
   "craftableItemList" : [
 
 	{
 		"objectName" : "Water"
-	},
+	}
 
-	],
- 
+	]
+
 }

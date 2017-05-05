@@ -21,9 +21,11 @@ public class GameObject{
 	protected long cloudId;
 	protected String objectName;
 	protected String description;
+	protected String type;
 	protected boolean onCloud;
 	protected int objectId;
 	protected String imageUrl;
+
 
 
 	/**
@@ -85,5 +87,9 @@ public class GameObject{
 	public boolean isOnCloud(){
 		return onCloud;
 	}
+
+	public String getType(){ return type; }
+
+	public void setType(String type){ this.type = type;}
 
 }

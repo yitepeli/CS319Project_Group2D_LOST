@@ -1,13 +1,14 @@
 {
   "objectName" : "Rock",
-  "objecId" : "12122",
+  "type" : "CraftableItem",
+  "objectId" : "12122",
   "description" : "It is a rock.",
   "weight" : "8.0",
   "renewalTime": "3",
   "renewable" : "true",
   "visible" : "true",
   "actionList" : ["take","drop", "craft"],
-	
+
   "craftableItemList" : [
 
 	{
@@ -15,5 +16,5 @@
 	}
 
 	]
- 
+
 }

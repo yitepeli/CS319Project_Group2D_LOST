@@ -1,6 +1,7 @@
 {
   "objectName" : "Rope",
-  "objecId" : "24",
+  "type" : "CraftableItem",
+  "objectId" : "24",
   "description" : "Just a rope, useful for crafting fishing rod.",
   "weight" : "0.5",
   "renewable" : "false",
@@ -16,14 +17,15 @@
 		"objectName" : "Moss"
 	}
 
-	]
-	
+],
+
   "craftableItemList" : [
 
 	{
-		"objectName" : "Fishing rod"
+		"objectName" : "Fishing Rod",
+    "quantity" : "1"
 	}
 
 	]
- 
+
 }

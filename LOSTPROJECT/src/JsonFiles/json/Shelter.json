@@ -1,10 +1,11 @@
 {
   "objectName" : "Shelter",
-  "objecId" : "36",
+  "type" : "Tool",
+  "objectId" : "36",
   "description" : "It is a shelter to gain energy.",
   "weight" : "5.0",
   "renewable" : "false",
-  "visible" : "true",
+  "visible" : "false",
   "actionList" : ["take","drop", "use"],
   "requiredItemsList" : [
 
@@ -25,6 +26,6 @@
   }
 
   ],
-  
+
   "attackPointBonus" : 15
 }

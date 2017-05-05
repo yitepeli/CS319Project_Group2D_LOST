@@ -1,12 +1,13 @@
 {
   "objectName" : "Metal Pieces",
-  "objecId" : "23",
+  "type" : "CraftableItem",
+  "objectId" : "23",
   "description" : "Little but many metal pieces. I may survive with these.",
   "weight" : "7.0",
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take","drop", "craft"],
-	
+
   "craftableItemList" : [
 
 	{
@@ -19,8 +20,8 @@
 
 	{
 		"objectName" : "Nails"
-	},
+	}
 
 	]
- 
+
 }

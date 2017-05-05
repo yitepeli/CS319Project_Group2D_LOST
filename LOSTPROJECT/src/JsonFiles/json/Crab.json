@@ -1,7 +1,17 @@
 {
   "objectName":"Crab",
+  "type" : "Character",
   "objectId" : "106",
   "description" : "According to the legend stories about LOST island, these crabs are most delicious meal in the world! Do not skip this taste and take a trial...:) ",
   "health" : "17",
-  "defense" : "9"
+  "defense" : "9",
+  "inventory" :{
+    "storedItemList" : [
+      {
+        "objectName" : "Meat",
+        "quantity" : "1"
+      }
+    ]
+  }
+
 }

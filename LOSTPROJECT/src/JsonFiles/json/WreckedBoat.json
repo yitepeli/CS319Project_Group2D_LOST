@@ -1,45 +1,25 @@
 {
-  "objectName" : "Wood",
-  "objecId" : "23",
-  "description" : "Useful basic material for crafting objects.",
+  "objectName" : "Wrecked Boat",
+  "type" : "CraftableItem",
+  "objectId" : "230",
+  "description" : "You can restore and keep away from island with Wrecked Boat!",
   "weight" : "3.0",
   "renewable" : "false",
-  "visible" : "true",
+  "visible" : "false",
   "actionList" : ["take", "drop", "craft"],
   "requiredItemsList" : [
 
 	{
-		"objectName" : "Tree"
+		"objectName" : "Tree",
+    "quantity" : "20"
 	},
 
 	{
-		"objectName" : "Axe"
+		"objectName" : "Axe",
+    "quantity" : "1"
 	}
 
 	],
-	
-  "craftableItemList" : [
+	"craftableItemList" : []
 
-	{
-		"objectName" : "Spear"
-	},
-
-	{
-		"objectName" : "Axe"
-	},
-
-	{
-		"objectName" : "Hammer"
-	},
-
-	{
-		"objectName" : "Torch"
-	},
-
-	{
-		"objectName" : "Boat"
-	}
-
-	],
- 
 }

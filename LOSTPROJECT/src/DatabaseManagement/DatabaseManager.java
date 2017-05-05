@@ -25,8 +25,7 @@ public class DatabaseManager {
     private static String uniqueId;
     private static LocalStorageDao localStorageDao;
 
-    private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);//Asychronous threadpool service for future task
-
+    private static final ExecutorService threadpool = Executors.newCachedThreadPool();
 
     private String workingArea;
     private ConnectionStatus lastConnectionStatus;
@@ -56,7 +55,6 @@ public class DatabaseManager {
     }
 
     public GameObject readData(long id, ReadAction readAction){
-
         return readAction.readDataInCloud(id);
 
     }
@@ -67,40 +65,27 @@ public class DatabaseManager {
 
     }
 
+    public List<Character> listCharacters(boolean isNewGame){
 
-
-
-
-    public ArrayList<Character> listCharacters(boolean isNewGame){
-
-        ArrayList<Character> characterList;
+        List<Character> characterList;
 
         if(isNewGame){
             characterList= localStorageDao.parseJSONFiles(workingArea).getCharacterList();
 
             characterList.forEach(e->{
-                Future<Void> characterFutureTask = threadpool.submit(()->{
-                    WriteAction.WRITE_CHARACTER.writeDataIntoCloud(e);
-                    return null;
+                threadpool.submit(()->{
+                    AreaDatastore.WriteAction.WRITE_CHARACTER.writeDataIntoCloud(e);
                 });
-
             });
         }
         else{
-            characterList = new ArrayList<>();
-            List<Character> cloudList = areaDAO.listCharactersInArea();
-
-            cloudList.stream()
-                    .filter(e->e instanceof AggresiveCharacter)
-                    .forEach(e ->{
-                        AggresiveCharacter character = (AggresiveCharacter)localStorageDao.readJSONElement(e.getName(),e.getClass());
-                        ((AggresiveCharacter)e).setAttack(character.getAttack());
-                    });
+            characterList = areaDAO.listCharactersInArea();
         }
         return characterList;
     }
 
-    public ArrayList<Item> listItems(boolean isNewGame){
+
+    public List<Item> listItems(boolean isNewGame){
 
         ArrayList<Item> itemList;
 
@@ -108,9 +93,8 @@ public class DatabaseManager {
             itemList= localStorageDao.parseJSONFiles(workingArea).getItemList();
 
             itemList.forEach(e->{
-                Future<Void> characterFutureTask = threadpool.submit(()->{
-                    WriteAction.WRITE_CHARACTER.writeDataIntoCloud(e);
-                    return null;
+                threadpool.submit(()->{
+                    AreaDatastore.WriteAction.WRITE_CHARACTER.writeDataIntoCloud(e);
                 });
             });
         }
@@ -119,7 +103,8 @@ public class DatabaseManager {
             List<Item> cloudList = areaDAO.listItemsInArea();
 
             cloudList.forEach(e-> {
-                itemList.add((Item)localStorageDao.readJSONElement(e.getName(),e.getClass()));
+                System.out.println("Obaaa");
+                itemList.add((Item)localStorageDao.readJSONElement(e.getName(),localStorageDao.typeToClass(Constants.ITEM_ROOT + e.getType())));
             });
         }
         return itemList;
@@ -264,6 +249,8 @@ public class DatabaseManager {
                 break;//user exist
         }
     }
+
+    public void createUserLocal(long id){ localStorageDao.recordUserUniqueId(uniqueId,id);}
 
     public static boolean isUserExists(){
         return !localStorageDao.getUserUniqueId().equals(Constants.INVALID_USER);

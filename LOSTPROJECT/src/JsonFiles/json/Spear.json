@@ -1,6 +1,7 @@
 {
   "objectName" : "Spear",
-  "objecId" : "36",
+  "type" : "Tool",
+  "objectId" : "36",
   "description" : "Hmmm. It is the most powerful thing I have ever seen in this island.",
   "weight" : "12.0",
   "renewable" : "false",
@@ -17,6 +18,6 @@
   }
 
   ],
-  
+
   "attackPointBonus" : "25"
 }

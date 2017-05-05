@@ -1,5 +1,7 @@
 package DatabaseManagement;
 
+import GameObjectsManagement.CharacterManagement.AggresiveCharacter;
+import com.google.api.client.json.Json;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.*;
@@ -14,7 +16,7 @@ import GameObjectsManagement.ItemManagement.Item;
 
 import GameObjectsManagement.ObjectManagement.*;
 import GameObjectsManagement.CharacterManagement.Character;
-
+import GameObjectsManagement.CharacterManagement.AggresiveCharacter;
 
 /**
  * Author: Onur Sönmez
@@ -25,10 +27,14 @@ public class LocalStorageDao {
     private String userDirectory;
     private String path;// File path that includes json libraries
 
+    private static Preferences userPrefs = Preferences.userRoot().node("lost/user");//user preferences node
+    private Preferences systemPrefs = Preferences.systemRoot().node("lost/settings");
+
+
     public LocalStorageDao() {
         gson = new GsonBuilder().create();//creating gson
         userDirectory = System.getProperty("user.dir");
-        path = userDirectory+ "/src/JsonFiles/";//path for json files
+        path = userDirectory + "/src/JsonFiles/";//path for json files
     }
 
     /**
@@ -45,7 +51,7 @@ public class LocalStorageDao {
             String className = file.getName().replace(".txt","");
             Class<?> cls;//class names are in convenient class name form, so directly convert name to Class!
             try {
-                cls = Class.forName("GameObjectsManagement." + className);
+                cls = Class.forName(Constants.GAME_ROOT + className);
                 //@return BoostingItem, CraftableItem, Item, Character, AggressiveCharacter
                 Stream<String> stream = Files.lines(Paths.get(file.getAbsolutePath()));
 
@@ -69,14 +75,33 @@ public class LocalStorageDao {
         return new Result(itemList,characterList);
     }
 
+    public Class<?> typeToClass(String className){
 
-    public GameObject readJSONElement(String jsonName,Class<? extends GameObject> cls){
+        System.out.println(className);
+        Class<?> cls = null;
 
-        GameObject gameObject = null;
+        try {
+            cls = Class.forName(className);
+        }
+        catch (ClassNotFoundException e){
+            System.out.println("Class not found!");
+
+        }
+        return cls;
+
+    }
+
+    public GameObject readJSONElement(String jsonName,Class<?> cls){
+
+
+        Object gameObject = null;
+        System.out.println("Inside the readJson! " + jsonName.replaceAll("\\s",""));
+        System.out.println(jsonName);
         try{
+            System.out.println(jsonName);
             gameObject = gson.fromJson(path + "json/" + jsonName.replaceAll("\\s","") + ".json",cls);
         }catch (Exception e){ e.printStackTrace();}
-        return gameObject;
+        return (GameObject) gameObject;
     }
 
     /**
@@ -89,27 +114,30 @@ public class LocalStorageDao {
      */
 
     public void recordUserUniqueId(String userUniqueId,long cloudId){
-        Preferences userPrefs = Preferences.userRoot().node("lost/custom/user");//user preferences node
         userPrefs.put(Constants.USER_PREFS,userUniqueId);//putting user unique id into user preferences package
         userPrefs.putLong(Constants.USER_ID,cloudId);
     }
 
     public static String getUserUniqueId(){
-        Preferences userPrefs = Preferences.userRoot().node("lost/custom/user");
         return userPrefs.get(Constants.USER_PREFS,Constants.INVALID_USER);
     }
 
     public void recordSettings(boolean isSoundActive, int panelOption){
-        Preferences systemPrefs = Preferences.systemRoot().node("lost/custom/settings");
         systemPrefs.putBoolean(Constants.SYSTEM_PREFS_SOUND,isSoundActive);
         systemPrefs.putInt(Constants.SYSTEM_PREFS_PANEL,panelOption);
     }
 
-    public boolean isSoundActive(){ return Preferences.systemRoot().getBoolean(Constants.SYSTEM_PREFS_SOUND,true);}
+    public boolean isSoundActive(){
+        return systemPrefs.getBoolean(Constants.SYSTEM_PREFS_SOUND,true);
+    }
 
-    public int getLastPanelOption(){ return Preferences.systemRoot().getInt(Constants.SYSTEM_PREFS_PANEL,0);}
+    public int getLastPanelOption(){
+        return systemPrefs.getInt(Constants.SYSTEM_PREFS_PANEL,0);
+    }
 
-    public long getUserId(){return Preferences.systemRoot().getLong(Constants.USER_ID,0);}
+    public long getUserId(){
+        return userPrefs.getLong(Constants.USER_ID,0);
+    }
 
 
 }

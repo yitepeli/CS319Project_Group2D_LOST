@@ -1,13 +1,14 @@
 {
   "objectName" : "Tree",
-  "objecId" : "23",
+  "type" : "CraftableItem",
+  "objectId" : "23",
   "description" : "It is a tiny but useful tree.",
   "weight" : "25.0",
   "renewalTime" : "2",
   "renewable" : "true",
   "visible" : "true",
   "actionList" : ["take","drop", "craft"],
-	
+
   "craftableItemList" : [
 
 	{
@@ -15,5 +16,5 @@
 	}
 
 	]
- 
+
 }

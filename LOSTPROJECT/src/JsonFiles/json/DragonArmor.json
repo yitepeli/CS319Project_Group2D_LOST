@@ -1,10 +1,11 @@
 {
   "objectName" : "Dragon Armor",
-  "objecId" : "21",
+  "type": "BoostingItem",
+  "objectId" : "21",
   "description" : "A special strong armor resistant to dragon fire",
   "weight" : "30.0",
   "renewable" : "false",
-  "visible" : "true",
+  "visible" : "false",
   "actionList" : ["take"],
   "attackPointBonus" : 10,
   "defensePointBonus" : 50

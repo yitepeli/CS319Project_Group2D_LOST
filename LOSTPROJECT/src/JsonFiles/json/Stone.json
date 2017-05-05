@@ -1,13 +1,14 @@
 {
   "objectName" : "Stone",
-  "objecId" : "1212",
+  "type" : "CraftableItem",
+  "objectId" : "1212",
   "description" : "It is a stone.",
   "weight" : "15.0",
   "renewalTime": "3",
   "renewable" : "true",
   "visible" : "true",
   "actionList" : ["take","drop", "craft"],
-	
+
   "craftableItemList" : [
 
 	{
@@ -29,15 +30,15 @@
 	{
 		"objectName" : "Shelter"
 	},
-	
+
 	{
 		"objectName" : "Stone Pieces"
 	},
-	
+
 	{
 		"objectName" : "Armor"
 	}
 
 	]
- 
+
 }

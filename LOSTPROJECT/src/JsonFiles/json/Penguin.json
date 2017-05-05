@@ -1,7 +1,17 @@
 {
   "objectName":"Penguin",
+  "type" : "Animal",
   "objectId" : "109",
   "description" : "Pengiuns are rare animals of iceland! Can easily catch.",
   "health" : "40",
-  "defense" : "60"
+  "defense" : "60",
+  "inventory" : {
+    "storedItemList": [
+      {
+        "objectName" : "Meat",
+        "quantity" : "3"
+      }
+
+    ]
+  }
 }

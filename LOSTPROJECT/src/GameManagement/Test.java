@@ -13,10 +13,14 @@ import java.util.ArrayList;
 public class Test {
     public static void main(String args[]){
 
+
+        System.out.println(GameEngine.isUserExists());
         GameEngine gameEngine = new GameEngine();
-        gameEngine.createGameEnvironment(true);//is new game
+        gameEngine.createGameEnvironment(false);//is new game
 
         Area area = gameEngine.getPositionOfUser();
+
+        System.out.println(area.getInventory() == null);
 
         ArrayList<Item> itemList = area.getInventory().getStoredItems();
 
@@ -49,5 +53,9 @@ public class Test {
 
 
 
+
     }
+
+
+
 }

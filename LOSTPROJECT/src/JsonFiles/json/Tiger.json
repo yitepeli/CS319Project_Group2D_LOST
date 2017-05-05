@@ -1,8 +1,17 @@
 {
   "objectName":"Tiger",
+  "type" : "AggresiveCharacter",
   "objectId" : "112",
   "description" : "Take it easy tiger! Looks like real tiger comes behind you, watch your back...",
   "health" : "110",
   "attack" : "40",
-  "defense" : "35"
+  "defense" : "35",
+  "inventory": {
+    "storedItemList": [
+      {
+        "objectName" : "Meat",
+        "quantity" : "3"
+      }
+    ]
+  }
 }

@@ -1,7 +1,16 @@
 {
   "objectName":"Pig",
+  "type" : "Character",
   "objectId" : "104",
   "description" : "Pigs are not attacking human but their endurance should not be underestimated!!",
   "health" : "70",
-  "defense" : "45"
+  "defense" : "45",
+  "inventory": {
+    "storedItemList" : [
+      {
+        "objectName" : "Meat",
+        "quantity" : "5"
+      }
+    ]
+  }
 }

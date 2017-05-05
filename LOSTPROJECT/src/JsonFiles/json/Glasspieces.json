@@ -1,26 +1,29 @@
 {
   "objectName" : "Glass Pieces",
-  "objecId" : "23",
+  "type" : "CraftableItem",
+  "objectId" : "23",
   "description" : "Useful material for fire",
   "weight" : "6.0",
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take", "drop", "craft"],
-  
-  "requiredItemsList" : [
+
+  "requiredItemList" : [
 
 	{
-		"objectName" : "Sand"
+		"objectName" : "Sand",
+    "quantity" : "4"
 	}
 
 	],
-	
+
   "craftableItemList" : [
 
 	{
-		"objectName" : "Fire"
+		"objectName" : "Fire",
+    "quantity" : "1"
 	}
 
-	],
- 
+	]
+
 }

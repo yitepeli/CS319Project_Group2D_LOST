@@ -29,9 +29,11 @@ public class ItemDatastore implements CloudStorageDao<Item>{
 
     private Item entityToItem(Entity entity){
 
-        return new Item((int)entity.getLong(Constants.OBJECT_ID),
-                entity.getString(Constants.OBJECT_NAME),
-                entity.getString(Constants.DESCRIPTION));
+        Item item = new Item((int)entity.getLong(Constants.OBJECT_ID),
+                        entity.getString(Constants.OBJECT_NAME),
+                        entity.getString(Constants.DESCRIPTION));
+        item.setType(entity.getString(Constants.ITEM_TYPE));
+        return item;
     }
 
 
@@ -39,6 +41,7 @@ public class ItemDatastore implements CloudStorageDao<Item>{
         IncompleteKey key = itemKeyFactory.newKey();//assign new key for storing in the cloud
 
         FullEntity<IncompleteKey> incItemEntity = Entity.newBuilder(key)
+                .set(Constants.ITEM_TYPE,item.getType())
                 .set(Constants.OBJECT_NAME,item.getName())
                 .set(Constants.OBJECT_ID,item.getId())
                 .set(Constants.DESCRIPTION,item.getDescription())
@@ -61,6 +64,7 @@ public class ItemDatastore implements CloudStorageDao<Item>{
         Key key = itemKeyFactory.newKey(item.getCloudId());//insert item key here
 
         Entity entity = Entity.newBuilder(key)
+                .set(Constants.ITEM_TYPE,item.getType())
                 .set(Constants.OBJECT_NAME,item.getName())
                 .set(Constants.OBJECT_ID,item.getId())
                 .set(Constants.DESCRIPTION,item.getDescription())

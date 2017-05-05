@@ -1,8 +1,17 @@
 {
   "objectName":"Boar",
+  "type" : "AggresiveCharacter",
   "objectId" : "122",
   "description" : "Boar! Aggresive animal that attacks all strangers in the island...  ",
   "health" : "90",
-  "defense" : "120",
-  "attack" : "55"
+  "defense" : "48",
+  "attack" : "33",
+  "inventory": {
+    "storedItemList" : [
+      {
+        "objectName" : "Meat",
+        "quantity" : "5"
+      }
+    ]
+  }
 }

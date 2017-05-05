@@ -5,6 +5,7 @@ package GameManagement;
  */
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 import GameObjectsManagement.AreaManagement.*;
@@ -17,6 +18,7 @@ import GameObjectsManagement.CharacterManagement.Character;
 public class UpdateManager {
 
     private Area positionOfUser;
+
 
     public UpdateManager(){
         positionOfUser = null;
@@ -66,17 +68,18 @@ public class UpdateManager {
                         positionOfUser = area;
                 } //arranging initial position of user (linked list)
 
+                System.out.println(area.getAreaType().getAreaName());
+
                 databaseManager.setAreasInCloud(area.getAreaType().getAreaName());//creating datasets in database manager!
                 databaseManager.setWorkingArea(area.getAreaType().getAreaName());
 
-                ArrayList<Item> itemList = databaseManager.listItems(isNewGame);
-                ArrayList<Character> characterList = databaseManager.listCharacters(isNewGame);
-
+                List<Item> itemList = databaseManager.listItems(isNewGame);
+                List<Character> characterList = databaseManager.listCharacters(isNewGame);
                 Inventory areaInventory = new Inventory();
-                areaInventory.setStoredItemList(itemList);
+                areaInventory.setStoredItemList(new ArrayList<>(itemList));
 
                 area.setInventory(areaInventory);
-                area.setCharacterList(characterList);
+                area.setCharacterList(new ArrayList<>(characterList));
 
                 if (area.getRightNeighbour() != null) {
                     area = area.getRightNeighbour();

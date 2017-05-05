@@ -1,12 +1,16 @@
 {
-  "objectName" : "Fish",
-  "objecId" : "35",
-  "description" : "A Fresh Fish from the sea. Mmmm looks delicious",
-  "weight" : "7.0",
-  "renewable" : "true",
-  "renewalTime": "3",
-  "visible" : "true",
-  "actionList" : ["take", "drop", "eat"],	
-  "hungerPoints" : "10"
-
+  "objectName":"Fish",
+  "type" : "Character",
+  "objectId" : "35",
+  "description" : "A Fresh Fish from the sea. Mmmm looks delicious ",
+  "health" : "17",
+  "defense" : "9",
+  "inventory" : {
+      "storedItemList" : [
+        {
+          "objectName" : "Meat",
+          "quantity" : "2"
+        }
+      ]
+  }
 }

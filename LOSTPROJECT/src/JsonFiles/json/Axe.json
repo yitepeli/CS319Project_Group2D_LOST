@@ -1,13 +1,14 @@
 {
   "objectName" : "Grass",
-  "objecId" : "223",
+  "objectId" : "223",
+  "type" : "CraftableItem",
   "description" : "Grass can help with many things",
   "weight" : "1.0",
   "renewalTime" : "2",
   "renewable" : "true",
   "visible" : "true",
   "actionList" : ["take","drop", "craft"],
-	
+
   "craftableItemList" : [
 
 	{
@@ -15,5 +16,5 @@
 	}
 
 	]
- 
+
 }

@@ -1,12 +1,13 @@
 {
   "objectName" : "Apple",
-  "objecId" : "39",
+  "type" : "Food",
+  "objectId" : "39",
   "description" : "It's the reddest Apple ever",
   "weight" : "4.0",
   "renewalTime": "3",
   "renewable" : "true",
   "visible" : "true",
-  "actionList" : ["take","drop", "eat"],	
+  "actionList" : ["take","drop", "eat"],
   "hungerPoints" : "7"
 
 }

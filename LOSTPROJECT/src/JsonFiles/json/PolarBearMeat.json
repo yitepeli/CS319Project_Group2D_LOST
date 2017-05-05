@@ -1,9 +1,10 @@
 {
   "objectName" : "Polar Bear Meat",
-  "objecId" : "28",
+  "type" : "Item",
+  "objectId" : "28",
   "description" : "One of old man's desires, he will be cheerful!",
   "weight" : "10.0",
   "renewable" : "false",
-  "visible" : "true",
-  "actionList" : ["take", "drop"]	
+  "visible" : "false",
+  "actionList" : ["take", "drop"]
 }

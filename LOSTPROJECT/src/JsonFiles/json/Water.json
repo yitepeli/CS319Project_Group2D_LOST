@@ -1,12 +1,13 @@
 {
   "objectName" : "Water",
-  "objecId" : "335",
+  "type" : "Food",
+  "objectId" : "335",
   "description" : "Are you thirsty? This is exactly what you are looking for.",
   "weight" : "1.0",
   "renewable" : "true",
   "renewalTime": "3",
   "visible" : "true",
-  "actionList" : ["take","drop", "eat"],	
+  "actionList" : ["take","drop", "eat"],
   "thirstPoints" : "15"
 
 }

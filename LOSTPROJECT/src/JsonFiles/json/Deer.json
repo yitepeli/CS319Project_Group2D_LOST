@@ -1,7 +1,17 @@
 {
   "objectName":"Deer",
+  "type" : "Character",
   "objectId" : "100",
+  "type" : "Character",
   "description" : "Deer is a harmless animal which is sponging around the area! They are rare animals and easy to hunt.",
   "health" : "30",
-  "defense" : "5"
+  "defense" : "5",
+  "inventory" : {
+    "storedItemList":[
+      {
+        "objectName" : "Meat",
+        "quantity" : "4"
+      }
+    ]
+  }
 }

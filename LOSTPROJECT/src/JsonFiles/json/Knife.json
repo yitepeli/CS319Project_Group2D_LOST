@@ -1,22 +1,25 @@
 {
   "objectName" : "Knife",
+  "type" : "Tool",
   "objecId" : "36",
   "description" : "It is just a knife for cutting things.",
   "weight" : "5.0",
   "renewable" : "false",
-  "visible" : "true",
+  "visible" : "false",
   "actionList" : ["take", "drop"],
   "requiredItemsList" : [
 
   {
-    "objectName" : "Stone"
+    "objectName" : "Stone",
+    "quantity" : "4"
   },
 
   {
-    "objectName" : "Metal pieces"
+    "objectName" : "Metal pieces",
+    "quantity" : "3"
   }
 
   ],
-  
+
   "attackPointBonus" : 15
 }

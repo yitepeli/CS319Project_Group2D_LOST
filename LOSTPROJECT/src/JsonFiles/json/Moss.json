@@ -1,13 +1,14 @@
 {
   "objectName" : "Moss",
-  "objecId" : "234",
+  "type" : "Item",
+  "objectId" : "234",
   "description" : "Well it is a bit disgusting but one can use moss to make something useful.",
   "weight" : "0.5",
   "renewalTime" : "2",
   "renewable" : "true",
   "visible" : "true",
   "actionList" : ["take","drop", "craft"],
-	
+
   "craftableItemList" : [
 
 	{
@@ -19,5 +20,5 @@
 	}
 
 	]
- 
+
 }

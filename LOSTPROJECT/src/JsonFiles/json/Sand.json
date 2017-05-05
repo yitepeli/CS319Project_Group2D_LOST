@@ -1,13 +1,14 @@
 {
   "objectName" : "Sand",
-  "objecId" : "23",
+  "type" : "CraftableItem",
+  "objectId" : "23",
   "description" : "Useful basic material for crafting objects.",
   "weight" : "2.0",
   "renewalTime" : "2",
   "renewable" : "true",
   "visible" : "true",
   "actionList" : ["take", "drop", "craft"],
-	
+
   "craftableItemList" : [
 
 	{
@@ -15,5 +16,5 @@
 	}
 
 	]
- 
+
 }

@@ -1,6 +1,7 @@
 {
   "objectName" : "Stone Pieces",
-  "objecId" : "23",
+  "type" : "CraftableItem",
+  "objectId" : "23",
   "description" : "Little but many stone pieces. It may help on something.",
   "weight" : "5.0",
   "renewable" : "false",
@@ -11,9 +12,9 @@
 	{
 		"objectName" : "Stone"
 	}
-	
+
 	],
-	
+
   "craftableItemList" : [
 
 	{
@@ -25,5 +26,5 @@
 	}
 
 	],
- 
+
 }

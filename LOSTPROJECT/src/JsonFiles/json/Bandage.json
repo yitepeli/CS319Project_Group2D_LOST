@@ -1,22 +1,12 @@
 {
   "objectName" : "Bandage",
-  "objecId" : "33",
+  "objectId" : "33",
+  "type" : "Food",
   "description" : "Heals your wounds",
   "weight" : "2.0",
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take", "drop"],
-  "requiredItemsList" : [
-
-	{
-		"objectName" : "Moss"
-	},
-
-	{
-		"objectName" : "Cloth Pieces"
-	}
-
-	],	
   "healthPoints" : "15"
 
 }

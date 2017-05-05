@@ -17,10 +17,11 @@ import java.util.*;
 public class Item extends GameObject{
 	//Properties
 	private double weight;
-	private int renewalTime;
+	private int renewalTime,quantity;
 	private boolean renewable;	
 	private boolean visible;	
 	private ArrayList<String> actionList;
+
 
 
 	//Constructors

@@ -1,6 +1,7 @@
 {
   "objectName" : "Axe",
-  "objecId" : "23",
+  "type" : "Tool",
+  "objectId" : "23",
   "description" : "An axe which can cut through every big object...",
   "weight" : "6.0",
   "renewable" : "false",
@@ -9,15 +10,17 @@
   "requiredItemsList" : [
 
 	{
-		"objectName" : "Stone"
+		"objectName" : "Stone",
+    "quantity" : "3"
 	},
 
 	{
-		"objectName" : "Wood"
+		"objectName" : "Wood",
+    "quantity" : "2"
 	}
 
 	],
-	
+
   "craftableItemList" : [
 
 	{
@@ -25,5 +28,5 @@
 	}
 
 	]
- 
+
 }
