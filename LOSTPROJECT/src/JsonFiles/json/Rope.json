@@ -23,7 +23,8 @@
 
 	{
 		"objectName" : "Fishing Rod",
-    "quantity" : "1"
+    "quantity" : "1",
+    "type" : "CraftableItem"
 	}
 
 	]

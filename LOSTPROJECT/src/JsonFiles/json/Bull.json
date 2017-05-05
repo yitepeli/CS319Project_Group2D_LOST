@@ -9,7 +9,9 @@
   "inventory" : {
     "storedItemList" : [
       {
-          "objectName" : "Meat"
+          "objectName" : "Meat",
+          "quantity" : "10",
+          "type" : "Food"
       }
     ]
   }

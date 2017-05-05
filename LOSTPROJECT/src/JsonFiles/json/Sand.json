@@ -9,12 +9,5 @@
   "visible" : "true",
   "actionList" : ["take", "drop", "craft"],
 
-  "craftableItemList" : [
-
-	{
-		"objectName" : "Glass Pieces"
-	}
-
-	]
 
 }

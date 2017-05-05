@@ -11,12 +11,14 @@
 
 	{
 		"objectName" : "Tree",
-    "quantity" : "1"
+    "quantity" : "1",
+    "type" :"CraftableItem"
 	},
 
 	{
 		"objectName" : "Axe",
-    "quantity" : "1"
+    	"quantity" : "1",
+      "type" : "Food"
 	}
 
 	],
@@ -24,23 +26,31 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Spear"
+		"objectName" : "Spear",
+		"quantity" : "1",
+    "type" : "Tool"
 	},
 
 	{
-		"objectName" : "Axe"
+		"objectName" : "Axe",
+		"quantity" : "1",
+    "type" : "Tool"
 	},
 
 	{
-		"objectName" : "Hammer"
+		"objectName" : "Hammer",
+		"quantity" : "1",
+    "type" : "Tool"
 	},
 
 	{
-		"objectName" : "Torch"
+		"objectName" : "Torch",
+		"quantity" : "1"
 	},
 
 	{
-		"objectName" : "Boat"
+		"objectName" : "Boat",
+		"quantity" : "1"
 	}
 
 	]

@@ -12,7 +12,7 @@ import java.util.Date;
 public class Record extends GameObject {
 
     private String accomplishedStoryEvent,realTimeFormatted;
-    private int accomplishmentDay;
+    private double gameTime;
     private boolean isAccomplished;
     private long playerId;
 
@@ -21,8 +21,7 @@ public class Record extends GameObject {
         onCloud = builder.onCloud;
         objectName = builder.acquiredBy;
         playerId = builder.acquiredById;//comes from parent class
-
-        accomplishmentDay = builder.accomplishmentDay;
+        gameTime = builder.gameTime;
         accomplishedStoryEvent = builder.accomplishedStoryEvent;
         description = builder.description;
         isAccomplished = builder.isAccomplished;
@@ -38,7 +37,7 @@ public class Record extends GameObject {
         private String description;
         private String accomplishedStoryEvent;
         private String realTimeFormatted;
-        private int accomplishmentDay;
+        private double gameTime;
         private long acquiredById;
         private boolean isAccomplished,onCloud;
 
@@ -68,8 +67,8 @@ public class Record extends GameObject {
             return this;
         }
 
-        public Builder accomplishmentDay(int accomplishmentDay){
-            this.accomplishmentDay = accomplishmentDay;
+        public Builder gameTime(double accomplishmentDay){
+            this.gameTime = accomplishmentDay;
             return this;
         }
 
@@ -90,7 +89,7 @@ public class Record extends GameObject {
         }
     }
 
-    public int getAccomplishmentDay(){ return accomplishmentDay;}
+    public double getAccomplishmentDay(){ return gameTime;}
     public String getDescription(){ return description;}
     public String getAccomplishedStoryEvent(){ return accomplishedStoryEvent;}
     public boolean isAccomplished(){return isAccomplished;}

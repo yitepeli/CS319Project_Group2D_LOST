@@ -3,25 +3,27 @@
   "objectId" : "29",
   "type" : "Tool",
   "description" : "A metal armor that increases defense",
-  "weight" : "25.0",
+  "weight" : "15.0",
   "renewable" : "false",
-  "visible" : "false",
   "actionList" : ["take", "drop"],
   "requiredItemsList" : [
 
 	{
-		"objectName" : "Cloth pieces",
-    "quantity" : "6"
+		"objectName" : "Cloth Pieces",
+    "quantity" : "6",
+    "type" : "CraftableItem"
 	},
 
 	{
-		"objectName" : "Metal pieces",
-    "quantity" : "3"
+		"objectName" : "Metal Pieces",
+    "quantity" : "3",
+    "type" : "CraftableItem"
 	},
 
 	{
 		"objectName" : "Stone",
-    "quantity" : "2"
+    "quantity" : "2",
+    "type" : "CraftableItem"
 	}
 
 	],

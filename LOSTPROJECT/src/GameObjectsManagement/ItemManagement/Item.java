@@ -19,7 +19,7 @@ public class Item extends GameObject{
 	private double weight;
 	private int renewalTime,quantity;
 	private boolean renewable;	
-	private boolean visible;	
+	private boolean visible;
 	private ArrayList<String> actionList;
 
 

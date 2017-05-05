@@ -1,18 +1,34 @@
 {
-  "objectName" : "Grass",
-  "objectId" : "223",
-  "type" : "CraftableItem",
-  "description" : "Grass can help with many things",
-  "weight" : "1.0",
-  "renewalTime" : "2",
-  "renewable" : "true",
+  "objectName" : "Axe",
+  "type" : "Tool",
+  "objectId" : "23",
+  "description" : "An axe which can cut through every big object...",
+  "weight" : "6.0",
+  "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take","drop", "craft"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Stone",
+    "quantity" : "3",
+    "type" : "CraftableItem"
+	},
+
+	{
+		"objectName" : "Wood",
+    "quantity" : "2",
+    "type" : "CraftableItem"
+	}
+
+	],
 
   "craftableItemList" : [
 
 	{
-		"objectName" : "Sail"
+		"objectName" : "Wood",
+    "type" : "CraftableItem",
+    "quantity" : "1"
 	}
 
 	]

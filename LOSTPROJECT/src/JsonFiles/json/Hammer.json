@@ -1,20 +1,24 @@
 {
-  "objectName" : "Wood",
+  "objectName" : "Hammer",
   "objectId" : "23",
-  "type" : "CraftableItem",
+  "type" : "Tool",
   "description" : "Useful basic material for crafting objects.",
-  "weight" : "3.0",
+  "weight" : "4.0",
   "renewable" : "false",
   "visible" : "false",
   "actionList" : ["take", "drop", "craft"],
   "requiredItemList" : [
 
 	{
-		"objectName" : "Tree"
+		"objectName" : "Tree",
+    "type" : "CraftableItem",
+    "quantity" : "2"
 	},
 
 	{
-		"objectName" : "Axe"
+		"objectName" : "Axe",
+    "type" : "Tool",
+    "quantity" : "1"
 	}
 
 	],
@@ -22,24 +26,16 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Spear"
+		"objectName" : "Spear",
+    "type" : "Tool",
+    "quantity" : "1"
 	},
 
 	{
-		"objectName" : "Axe"
+		"objectName" : "Axe",
+    "quantity" : "Tool",
+    "type" : "Tool"
 	},
-
-	{
-		"objectName" : "Hammer"
-	},
-
-	{
-		"objectName" : "Torch"
-	},
-
-	{
-		"objectName" : "Boat"
-	}
 
 	]
 

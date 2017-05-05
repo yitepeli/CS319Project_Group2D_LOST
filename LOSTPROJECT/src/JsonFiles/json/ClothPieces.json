@@ -10,7 +10,9 @@
   "requiredItemsList" : [
 
 	{
-		"objectName" : "Corps"
+		"objectName" : "Corps",
+    "type" : "Item",
+    "quantity" : "4"
 	},
 
 	],
@@ -18,11 +20,15 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Bandage"
+		"objectName" : "Bandage",
+    "type" : "BoostingItem",
+    "quantity" : "1"
 	},
 
 	{
-		"objectName" : "Armor"
+		"objectName" : "Armor",
+    "type" : "BoostingItem",
+    "quantity" : "1"
 	}
 
 	],

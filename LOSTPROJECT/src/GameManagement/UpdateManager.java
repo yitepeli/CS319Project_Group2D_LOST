@@ -65,7 +65,6 @@ public class UpdateManager {
                 }
 
 
-
                 if (area.getAreaType() == findInitialArea(initialArea)) {
                     positionOfUser = area;
                 } //arranging initial position of user (linked list)
@@ -87,7 +86,6 @@ public class UpdateManager {
                 if (area.getRightNeighbour() != null) {
                     area = area.getRightNeighbour();
                 }
-
             }
             if (base.hasDownNeighbour())
                 area = base.getDownNeighbour(); // down column

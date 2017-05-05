@@ -11,11 +11,13 @@
   {
     "objectName" : "Stone pieces",
     "quantity" : "5",
+    "type" : "Food"
   },
 
   {
     "objectName" : "Rope",
-    "quantity" : "3"
+    "quantity" : "3",
+    "type" : "CraftableItem"
   }
 
   ]

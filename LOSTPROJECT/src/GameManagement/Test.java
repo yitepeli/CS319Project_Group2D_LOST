@@ -51,9 +51,6 @@ public class Test {
         characters.forEach(e->System.out.println(e.getName()));
 
 
-
-
-
     }
 
 

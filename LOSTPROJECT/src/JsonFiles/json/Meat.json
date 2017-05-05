@@ -7,16 +7,11 @@
   "renewable" : "false",
   "visible" : "false",
   "actionList" : ["take","drop", "craft"],
-  "requiredItemList" : [
-    {
-      "objectName" : "Fire",
-      "quantity" : "1"
-    }
-  ],
   "craftableItemList" : [
 	   {
 		     "objectName" : "Cooked Meat",
-         "quantity" : "1"
+         "quantity" : "1",
+         "type" :"Food"
 	   }
 	],
 }

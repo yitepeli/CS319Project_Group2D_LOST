@@ -10,7 +10,8 @@
     "storedItemList" : [
       {
         "objectName" : "Meat",
-        "quantity" : "5"
+        "quantity" : "5",
+        "type" : "Food"
       }
     ]
   }

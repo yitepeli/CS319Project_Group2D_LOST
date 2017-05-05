@@ -24,7 +24,7 @@ public class RecordDatastore extends ParentDatastore implements CloudStorageDao<
                 .acquiredById(entity.getLong(Constants.OBJECT_ID))
                 .accomplishedStoryEvent(entity.getString(Constants.ACCOMPLISHED_STORY_EVENT))
                 .description(entity.getString(Constants.DESCRIPTION))
-                .accomplishmentDay((int)entity.getLong(Constants.ACCOMPLISHED_GAME_TIME))
+                .gameTime(entity.getDouble(Constants.ACCOMPLISHED_GAME_TIME))
                 .isAccomplished(entity.getBoolean(Constants.IS_ACCOMPLISHED))
                 .build();
     }

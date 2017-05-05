@@ -16,6 +16,8 @@ import GameObjectsManagement.CharacterManagement.*;
 import GameObjectsManagement.CharacterManagement.Character;
 import GameObjectsManagement.ItemManagement.*;
 import DatabaseManagement.DatabaseManager;
+import GameObjectsManagement.ObjectManagement.Record;
+import com.sun.org.apache.regexp.internal.RE;
 
 import java.awt.image.BufferedImage;
 import java.util.*;
@@ -37,6 +39,32 @@ public class GameEngine {
 	public static boolean isUserExists(){
 		return DatabaseManager.isUserExists();
 	}
+
+
+	public void enterUserName(String name){
+		player.setName(name);
+	}
+
+	public void save(boolean isSoundActive,int panelOption){
+
+		databaseManager.recordSettings(isSoundActive,panelOption);
+
+		Record record = new Record.Builder()
+				.acquiredBy(player.getName())
+				.acquiredById(player.getCloudId())
+				.gameTime(player.getGameTime())
+				.description("Not accomplished yet!")
+				.isAccomplished(false)
+				.accomplishedStoryEvent("")
+				.build();
+		databaseManager.processData(record, DatabaseManager.WriteAction.WRITE_RECORD);
+	}
+
+	public List<Record> getRecords(){
+		return databaseManager.listRecords();
+	}
+
+
 
 
 	public void createGameEnvironment(boolean isNewGame){
@@ -184,10 +212,12 @@ public class GameEngine {
 				
 				//if character dies, player gets all of its items
 				if(character.getHealth() <= 0){
-					ArrayList<Item> characterItems = character.getInventory().getStoredItems();
-					for(int i=0; i<characterItems.size(); i++)
-						player.addItem(characterItems.get(i).getName());	
-					
+					if(character.getInventory() != null){
+						ArrayList<Item> characterItems = character.getInventory().getStoredItems();
+						for(int i=0; i<characterItems.size(); i++)
+							player.addItem(characterItems.get(i).getName());
+					}
+					//remove from area
 					return "You killed " + character.getName();
 				}
 				

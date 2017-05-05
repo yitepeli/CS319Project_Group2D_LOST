@@ -11,12 +11,10 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Shelter"
-	},
-
-	{
-		"objectName" : "Fire"
+		"objectName" : "Shelter",
+    "type" : "Tool"
 	}
+
 
 	]
 

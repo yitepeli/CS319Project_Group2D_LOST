@@ -11,16 +11,17 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Sword"
+		"objectName" : "Sword",
+    "type" : "Tool",
+    "quantity" : "1"
 	},
 
 	{
-		"objectName" : "Armor"
-	},
-
-	{
-		"objectName" : "Nails"
+		"objectName" : "Armor",
+    "type" : "Tool",
+    "quantity" : "1"
 	}
+
 
 	]
 

@@ -11,7 +11,9 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Water"
+		"objectName" : "Water",
+    "type" : "Food",
+    "quantity" : "2"
 	}
 
 	]

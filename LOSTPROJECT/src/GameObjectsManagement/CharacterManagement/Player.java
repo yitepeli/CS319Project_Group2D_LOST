@@ -6,6 +6,7 @@ package GameObjectsManagement.CharacterManagement;
 import java.util.ArrayList;
 
 import GameObjectsManagement.ItemManagement.*;
+import GameObjectsManagement.ObjectManagement.Record;
 
 /**
  * @author Yasin
@@ -19,10 +20,12 @@ public class Player extends AggresiveCharacter {
 	private int thirst;
 	private int hunger;
 	private String currentArea;
+	private Record userRecord;
+    private double gameTime;
 
 	public Player() {
-		setEnergy(60);
-		setHealth(60);
+		setEnergy(100);
+		setHealth(100);
 		setAttack(15);
 		setDefense(10);
 		this.thirst=0;
@@ -50,6 +53,12 @@ public class Player extends AggresiveCharacter {
 		if(this.hasItem("Fire") && this.hasItem("Raw Meat"))
 			return true;
 		return false;
+	}
+	public void updateGameTime(double incAmount){
+		this.gameTime += incAmount;
+	}
+	public double getGameTime(){
+		return gameTime;
 	}
 	
 	public boolean boilWater(){
@@ -113,6 +122,14 @@ public class Player extends AggresiveCharacter {
 	 */
 	public void updateHunger(int hungerAmount) {
 		this.hunger += hunger;
+	}
+
+	public void setRecord(Record record){
+		this.userRecord = record;
+	}
+
+	public Record getUserRecord(){
+		return userRecord;
 	}
 
 

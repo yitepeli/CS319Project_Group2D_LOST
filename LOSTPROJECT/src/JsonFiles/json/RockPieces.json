@@ -10,7 +10,9 @@
   "requiredItemsList" : [
 
 	{
-		"objectName" : "Rock"
+		"objectName" : "Rock",
+    "type" :"CraftableItem",
+    "quantity" : "1"
 	}
 
 	],
@@ -18,7 +20,9 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Knife"
+		"objectName" : "Knife",
+    "type" : "Tool",
+    "quantity" : "1"
 	}
 
 	]

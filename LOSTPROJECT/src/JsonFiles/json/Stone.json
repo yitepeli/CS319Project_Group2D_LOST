@@ -12,33 +12,16 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Knife"
+		"objectName" : "Knife",
+    "quantity" : "1",
+    "type" : "Tool"
 	},
 
 	{
-		"objectName" : "Axe"
-	},
-
-	{
-		"objectName" : "Hammer"
-	},
-
-	{
-		"objectName" : "Sword"
-	},
-
-	{
-		"objectName" : "Shelter"
-	},
-
-	{
-		"objectName" : "Stone Pieces"
-	},
-
-	{
-		"objectName" : "Armor"
+		"objectName" : "Axe",
+    "quantity" : "1",
+    "type" : "Too"
 	}
-
 	]
 
 }

@@ -18,6 +18,9 @@ import GameObjectsManagement.CharacterManagement.Character;
 
 /**
  * Author: Onur Sönmez
+ * Github: @sonmezonur
+ * Description: Local storage management with gson library that applies json-pojo mapping.
+ *              Also small data like settings, user id will be stored in util.prefs
  */
 public class LocalStorageDao {
 
@@ -69,6 +72,12 @@ public class LocalStorageDao {
         return new Result(itemList,characterList);
     }
 
+    /**
+     * Directly converts class name into class, because they are in convenient form
+     * @param: className which will be converted to class
+     * @return Class<?> returns any class that matches with the className
+     */
+
     public Class<?> typeToClass(String className){
 
         Class<?> cls = null;
@@ -80,6 +89,12 @@ public class LocalStorageDao {
         return cls;
     }
 
+    /**
+     * Directly converts class name into class, because they are in convenient form
+     * @param: jsonName String name of json 
+     * @param: type String Type of object that will be mapped into root object from json
+     * @return GameObject 
+     */
     public GameObject readJSONElement(String jsonName,String type){
 
         Object gameObject = null;
@@ -99,6 +114,11 @@ public class LocalStorageDao {
      * userRoot -> ${user.home}/.java/.userPrefs
      */
 
+    /**
+     * Util.prefs that record data in above location for operation systems
+     * @param: uniqueId String 
+     * @param: cloudId long 
+     */
     public void recordUserUniqueId(String userUniqueId,long cloudId){
         userPrefs.put(Constants.USER_PREFS,userUniqueId);//putting user unique id into user preferences package
         userPrefs.putLong(Constants.USER_ID,cloudId);
@@ -124,6 +144,5 @@ public class LocalStorageDao {
     public long getUserId(){
         return userPrefs.getLong(Constants.USER_ID,0);
     }
-
 
 }

@@ -9,11 +9,13 @@
     "storedItemList" : [
       {
         "objectName" : "Message",
-        "quantity" : "1"
+        "quantity" : "1",
+        "type" : "Item"
       },
       {
         "objectName" : "Meat",
-        "quantity" : "1"
+        "quantity" : "1",
+        "type" : "Food"
       }
     ]
   }
