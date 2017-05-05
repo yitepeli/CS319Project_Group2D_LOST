@@ -166,6 +166,8 @@ public class GUIManager extends JFrame {
 		cards.show(contentPane, "game");
 	}
 	public void goMain(String result){
+		if(gamePanel.newGame.isGameOver())
+			isGameExist=false;
 		mainPanel = new mainPanel(isGameExist,isGameLoaded);
 		contentPane.add(mainPanel, "main");
 		cards.show(contentPane, "main");

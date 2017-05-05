@@ -55,6 +55,8 @@ public class gamePanel extends JPanel {
 	private ArrayList<Character> charList;
 	private String textResult;
 	private boolean isNameDefined;
+	private boolean inFight;
+	private boolean inEvent;
 	/**
 	 * Create the panel.
 	 */
@@ -62,6 +64,8 @@ public class gamePanel extends JPanel {
 	private PopUpFrame mapFrame;
 
 	public gamePanel(GameEngine game, String s) {
+		inFight=false;
+		inEvent=false;
 		isNameDefined=true;
 		textResult=s;
 		this.newGame=game;
@@ -252,8 +256,11 @@ public class gamePanel extends JPanel {
 			        	else if(isFromArea==true){
 			        		if(areaChosen==0){
 			        			if(textArea.getText().equals("0")){
-			        				textResult = areaDescription+"You took the item \""+currentObjectName+"\" and put it in your bag.\n";
-				        			textPane.setText(textResult);
+			        				//if(newGame.take(currentObjectName))
+			        					textResult = areaDescription+"You took the item \""+currentObjectName+"\" and put it in your bag.\n";
+			        				//else
+			        					//textResult = areaDescription+"You cannot take the item";
+			        				textPane.setText(textResult);
 			        			}
 				        		else{
 				        			textResult = areaDescription+"It is not a valid choice.";
@@ -264,28 +271,35 @@ public class gamePanel extends JPanel {
 				        		currentObjectName ="";
 			        		}
 			        		else if(areaChosen==1){
+			        			inFight=true;
 			        			if(textArea.getText().equals("0")){
 			        				//fightResult="";
 			        				String result="";
+			        				String total="Fight report: \n";
 		        					while(!result.equals("You wounded  " + currentObjectName + "!\n" + "You got killed...") &&
 			        						!result.equals("You killed " + currentObjectName) &&
 			        						!result.equals("You missed your shot! " + currentObjectName + " did not get any damage!\n"
 			        								+ "You got killed...")
 			        								&& !result.equals("Dead man cannot fight")){
 			        					result = newGame.fight(currentObjectName);
+			        					total+=result;
 			        					
 			        					System.out.println(result);
-			        					textResult = areaDescription+result;
-					        			textPane.setText(textResult);
+			        					
 					        			
 			        				}
+		        					textResult = areaDescription+total;
+				        			textPane.setText(textResult);
 			        				if(newGame.isGameOver()){
 			        					textResult = areaDescription+result+"\n Oyun Bitti. Kaybettiniz.";
-			        					if(newGame.isGameOver())
-			        						System.out.println("bitti");
+			        					if(newGame.isGameOver()){
+			        						JOptionPane.showMessageDialog(null,"Game is over");
+			        						 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(saveBtn.getParent());
+							        			textPane.setText(textResult);
+			        						 mainFrame.goMain(textResult);	
+			        					}
 			        					else
-			        						System.out.println("devam");
-					        			textPane.setText(textResult);
+						        			textPane.setText(textResult);
 			        				}
 
 			        			}
@@ -382,7 +396,7 @@ public class gamePanel extends JPanel {
 			        	}
 		        	}
 		        	else{
-		        		if(!textArea.getText().equals("")){
+		        		if(textArea.getText().equals("")){
 		        			textResult = "Please enter a name to start the game:\n";
 		        			textPane.setText(textResult);
 		        		}else if(!currentObjectName.equals("")){
@@ -391,7 +405,7 @@ public class gamePanel extends JPanel {
 		        			currentObjectName="";
 		        		}
 		        		else{
-		        			newGame.getPlayer().setName(textArea.getText());
+		        			//newGame.getPlayer().setName(textArea.getText());
 		        			isNameDefined=true;
 		        			textResult = areaDescription;
 		        			textPane.setText("Your name is defined succesfully.\n"+textResult);
@@ -400,9 +414,12 @@ public class gamePanel extends JPanel {
 
 
 
-		        	setVisible(true);
-		        	GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(textArea.getParent());
-					mainFrame.updateGamePanel(newGame,textResult);
+		        	//setVisible(true);
+		        	if(!newGame.isGameOver()){
+			        	GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(textArea.getParent());
+						mainFrame.updateGamePanel(newGame,textResult);
+		        		
+		        	}
 		        }
 		    }
 

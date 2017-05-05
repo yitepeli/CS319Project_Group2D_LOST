@@ -21,6 +21,7 @@ public class Character extends GameObject {
 	 * 
 	 */
 	public Character() {
+		inventory  = new Inventory();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -34,6 +35,13 @@ public class Character extends GameObject {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Character(int id, String name, String description, int health, int defense) {
+		super(id, name, description);
+		this.health = health;
+		this.defense = defense;
+		inventory = new Inventory();
+	}
+
 	/**
 	 * @return the health
 	 */
@@ -108,6 +116,11 @@ public class Character extends GameObject {
 	
 	public boolean hasItem(String itemName){
 		return inventory.hasItem(itemName);
+	}
+
+	public double getEscapeChance() {
+		// TODO Auto-generated method stub
+		return 0.1;
 	}
 
 }
