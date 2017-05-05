@@ -1,1 +1,2 @@
 Axe.json
+Armor.json

@@ -1,0 +1,9 @@
+{
+  "objectName":"Dog",
+  "type" : "AggresiveCharacter",
+  "objectId" : "102",
+  "description" : "A tinny dog that attacks strangers in ",
+  "health" : "20",
+  "attack" : "30",
+  "defense" : "21"
+}

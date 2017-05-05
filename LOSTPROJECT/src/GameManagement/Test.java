@@ -17,7 +17,7 @@ public class Test {
         System.out.println(GameEngine.isUserExists());
         GameEngine gameEngine = new GameEngine();
         gameEngine.createGameEnvironment(false);//is new game
-
+        System.out.println(gameEngine.getPlayer().getCloudId());
         Area area = gameEngine.getPositionOfUser();
 
         System.out.println(area.getInventory() == null);

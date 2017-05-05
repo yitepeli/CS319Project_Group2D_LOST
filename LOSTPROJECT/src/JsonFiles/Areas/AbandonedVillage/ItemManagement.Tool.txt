@@ -1,2 +1,3 @@
 Spear.json
 Axe.json
+Sword.json

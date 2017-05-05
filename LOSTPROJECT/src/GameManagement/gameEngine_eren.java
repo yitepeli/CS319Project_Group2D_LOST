@@ -1,7 +1,7 @@
 package GameManagement;
 /*
 ** GameEngine Class
-** asdasd
+
 ** GameEngine class is where all of game operations are carried out.
 ** 
 **
@@ -12,14 +12,16 @@ package GameManagement;
 */
 
 import GameObjectsManagement.AreaManagement.*;
-import GameObjectsManagement.CharacterManagement.*;
+import GameObjectsManagement.EventManagement.*;
 import GameObjectsManagement.CharacterManagement.Character;
+import GameObjectsManagement.CharacterManagement.*;
+
 import GameObjectsManagement.ItemManagement.*;
+
 import DatabaseManagement.DatabaseManager;
 
-import java.awt.image.BufferedImage;
 import java.util.*;
-
+import javax.swing.*;
 
 public class GameEngine {
 
@@ -28,45 +30,35 @@ public class GameEngine {
 	private UpdateManager updateManager;
 	private Area positionOfUser;
 	private Player player;
-
+	private RadioTower radioTower; 
+	private SailingAway sailingAway; 
+	private OldWiseMan oldWiseMan; 
+	private DragonLiar dragonLiar; 
+	private ArrayList<Event> eventList;
+	private boolean isEntered;
+	
 	public GameEngine(){
-
-	}
-
-
-	public static boolean isUserExists(){
-		return DatabaseManager.isUserExists();
-	}
-
-	private Item readItem(String itemName, String type){
-		return null;
+		String uniqueID = UUID.randomUUID().toString();
+		databaseManager = new DatabaseManager(uniqueID);
+		updateManager = new UpdateManager();
+		mapManager = new MapManager();
+		radioTower = new RadioTower();
+		sailingAway = new SailingAway();
+		oldWiseMan = new OldWiseMan();
+		dragonLiar = new DragonLiar();
+		eventList.add(radioTower);
+		eventList.add(sailingAway);
+		eventList.add(oldWiseMan);
+		eventList.add(dragonLiar);
 	}
 
 
 	public void createGameEnvironment(boolean isNewGame){
 
-		DatabaseManager.initUserStaticId(isNewGame);
+		updateManager.createGameEnvironment(isNewGame,databaseManager);//creating areas
+		positionOfUser = updateManager.getPositionOfUser();//initial position of user
 
-		databaseManager = new DatabaseManager();
-		updateManager = new UpdateManager();
-		mapManager = new MapManager();
-
-		if(!isNewGame){
-			long userId = databaseManager.getUserId();//accessing user preferences and getting user id..
-			player = (Player)databaseManager.readData(userId,DatabaseManager.ReadAction.READ_PLAYER);//cloud based data!
-			player.setCloudId(userId);
-		}
-		else{
-			player = new Player();//passing default values
-			player.setCurrentPosition("Forest1");
-			databaseManager.processData(player, DatabaseManager.WriteAction.WRITE_PLAYER);//creating new player instance in persistency layer
-			databaseManager.createUserLocal(player.getCloudId());//creating user local in prefs
-		}
-		updateManager.createGameEnvironment(isNewGame,databaseManager,player.getCurrentPositionOfUser());
-		positionOfUser = updateManager.getPositionOfUser();
-		mapManager.processMap(positionOfUser);
 	}
-
 
 	public void navigate(String direction){
 
@@ -84,72 +76,74 @@ public class GameEngine {
 		else if(direction.equals("down")){
 			positionOfUser = positionOfUser.getDownNeighbour();
 		}
+		
 		String currentAreaName = positionOfUser.getAreaType().getAreaName();
 		player.setCurrentPosition(currentAreaName);
 		databaseManager.setWorkingArea(currentAreaName);
-		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);//update player data
-		mapManager.processMap(positionOfUser);//updating map
+		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);
+		mapManager.processMapp(positionOfUser);//updating map
 	}
 
-	//Crafting methods
-	/*
-	public HashMap<String, Integer> getCraftableItems(String itemName){
-
-
-		//player should have the item in its inventory before attempting to craft it
-		assert this.player.hasItem(itemName, 1);
-		
-		ArrayList<Item> craftableItemList = ((CraftableItem)this.player.getItem(itemName)).getCraftableItemsList();
-		HashMap<String, Integer> map = new HashMap<String, Integer>;
-
-		for(Item item : craftableItemList)
-			map.put(item.getName(), item.getQuantity());
-
-		return map;
-	}
-	*/
-	public ArrayList<Item> getCraftableItems(String itemName){
-		return ((CraftableItem)this.player.getItem(itemName)).getCraftableItemsList();
-	}
-
-
-	public boolean craft(String itemName, int amount, String type){
-		CraftableItem item = (CraftableItem)this.readItem(itemName, type);
-		assert item != null;
-
-		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
-		
-		assert requiredItemsList != null;
-		for(Item tmpItem : requiredItemsList)
-			if(!this.player.hasItem(tmpItem.getName(), tmpItem.getQuantity()))
-				return false;
-
-		player.craft(item, amount);
-
-		return true;		
-	}
 	
-	
-	public String fight(String characterName){
-		Character character=null;
-		for(int i=0;i<getPositionOfUser().getCharacterList().size();i++){
-			if(getPositionOfUser().getCharacterList().get(i).getName().equals(characterName))
-				character = getPositionOfUser().getCharacterList().get(i);
+	public ArrayList<String> getCraftableItems(String itemName){
+		
+		CraftableItem item = (CraftableItem)player.getInventory().getItem(itemName);
+		ArrayList<String> itemListString = new ArrayList<String>();
+		ArrayList<Item> itemListObject = item.getCraftableItemsList();
+			
+		if(player.hasItem(itemName)){
+			
+			for(int i=0; i<itemListObject.size(); i++)
+				itemListString.add(itemListObject.get(i).getName());
 		}
+			return itemListString;	
+	}
+	
+	public ArrayList<String> getRequiredItems(String itemName){
+		          
+		CraftableItem item = (CraftableItem)player.getInventory().getItem(itemName);
+		ArrayList<String> itemListString = new ArrayList<>();
+		ArrayList<Item> itemListObject = item.getRequiredItemsList();
+			
+		for(int i=0; i<itemListObject.size(); i++)
+			itemListString.add(itemListObject.get(i).getName());
+		
+		return itemListString;	
+	}
+	
+	public boolean craft(String craftedItemName){
+		
+		ArrayList<String> requiredItems = getRequiredItems(craftedItemName);
+		
+		for(int i=0; i<requiredItems.size(); i++)
+			if(!player.hasItem(requiredItems.get(i)))
+				return false;
+		
+		player.craft(craftedItemName);
+		player.updateHourCount(5.5);
+		return true;
+		
+	}
+	
+	
+	public String fight(Character character){
+		
 		//just in case
 		if(player.getHealth() <= 0 || character.getHealth() <= 0)
 			return "Dead man cannot fight";
 	
 		else{			
 			Random randomGen = new Random();
-			int missedShotPlayer = randomGen.nextInt(1+(int)((1-character.getEscapeChance())*10))+1; //character's chance of escape from attack
-			int missedShotCharacter = randomGen.nextInt(1+(int)((1-player.getEscapeChance())*10))+1; //player's chance of escape from attack
+			int missedShotPlayer = randomGen.nextInt(1+(int)(1-character.getEscapeChance())*10)+1; //character's chance of escape from attack
+			int missedShotCharacter = randomGen.nextInt(1+(int)(1-player.getEscapeChance())*10)+1; //player's chance of escape from attack
 			
 			if(missedShotPlayer == 1){							
 				if(character instanceof AggresiveCharacter){			
-					if(missedShotCharacter == 1)
+					if(missedShotCharacter == 1){
+						player.updateHourCount(4);
 						return "You missed your shot! " + character.getName() + " did not get any damage!\n"
 								+ character.getName() + "missed its shot! You did not get any damage!";
+					}
 					
 					else{
 						if(player.getDefense() == ((AggresiveCharacter)character).getAttack())
@@ -161,17 +155,23 @@ public class GameEngine {
 						if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
 							player.updateHealth(-((AggresiveCharacter)character).getAttack());		
 						
-						if(player.getHealth() > 0)
+						if(player.getHealth() > 0){
+							player.updateHourCount(4);
 							return "You missed your shot! " + character.getName() + " did not get any damage!\n"
-									+ "You got wounded!";				
-						else
+									+ "You got wounded!";	
+						}
+						else{
+							player.updateHourCount(4);
 							return "You missed your shot! " + character.getName() + " did not get any damage!\n"
-									+ "You got killed...";			
+									+ "You got killed...";	
+						}
 						}
 					}	
 				
-				else
+				else{
+					player.updateHourCount(4);
 					return "You missed your shot! " + character.getName() + " did not get any damage!";
+				}
 				}
 			
 			else{			
@@ -188,8 +188,9 @@ public class GameEngine {
 				if(character.getHealth() <= 0){
 					ArrayList<Item> characterItems = character.getInventory().getStoredItems();
 					for(int i=0; i<characterItems.size(); i++)
-						player.addItem(characterItems.get(i));	
+						player.addItem(characterItems.get(i).getName());	
 					
+					player.updateHourCount(4);
 					return "You killed " + character.getName();
 				}
 				
@@ -209,19 +210,25 @@ public class GameEngine {
 							if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
 								player.updateHealth(-((AggresiveCharacter)character).getAttack());		
 							
-							if(player.getHealth() > 0)
+							if(player.getHealth() > 0){
+								player.updateHourCount(4);
 								return "You wounded  " + character.getName() + "!\n" + "You got wounded!";	
+							}
 							
-							else
-								return "You wounded  " + character.getName() + "!\n" + "You got killed...";	
+							else{
+								player.updateHourCount(4);
+								return "You wounded  " + character.getName() + "!\n" + "You got killed...";
+							}
 						}
 					}	
 				
-					else
+					else{
+						player.updateHourCount(4);
 						return "You wounded  " + character.getName() + "!\n";
+					}
 				}
 			}					
-		}	
+		}			
 	}
 
 	
@@ -231,18 +238,24 @@ public class GameEngine {
 		
 	}
 	
-	public boolean makeCampfire(){	
+	public boolean makeCampfire(){
+		
+		if(!positionOfUser.isCampFireExists() && player.hasItem("Fire") && player.hasItem("Wood")){
+			positionOfUser.setCampFireExists(true);
+			return true;
+		}
+		
 		return false;
 	}
 	
 	public boolean cookMeat(){
 		
-		return false;
+		return player.cookMeat();
 	}
 	
 	public boolean boilWater(){
 		
-		return false;
+		return player.boilWater();
 		
 	}
 	
@@ -259,11 +272,17 @@ public class GameEngine {
 	}
 	
 	public boolean buildShelter(){
+		
+		if(!positionOfUser.isShelterExists() && player.hasItem("Wood") && player.hasItem("Branch")
+				&& player.hasItem("Stone") && player.hasItem("Rope")){
+			positionOfUser.setShelterExists(true);
+			return true;
+		}
+		
 		return false;		
 		
 	}
 
-	
 	public boolean isGameOver(){
 		
 		if(player.getHealth() <= 0)
@@ -279,29 +298,50 @@ public class GameEngine {
 	public Area getPositionOfUser(){
 		return positionOfUser;
 	}
-
-
-
-	public BufferedImage getMap(){
-		return mapManager.getProcessedMap();
-	}
-
-
-	public Player getPlayer() {
-		return player;
-	}
-
-
-	public boolean isLeftAvailable(){return positionOfUser.hasLeftNeighbour(); }
-	public boolean isRightAvailable(){return positionOfUser.hasRightNeighbour(); }
-	public boolean isUpAvailable(){return positionOfUser.hasUpNeighbour();}
-	public boolean isDownAvailable(){return positionOfUser.hasDownNeighbour();}
 	
-/*	public String enterEvent(String eventName){
+	public boolean isEventCompleted(){
 		
-		if(eventName.equals("Old Wise Man"))
-			oldWiseMan.playStory(positionOfUser, player);
-		
-	}*/
+		if(isEntered){
+			for(Event e: eventList)
+				if(e.playStory(positionOfUser, player))
+					return true;
+		}
 	
+		return false;			
+	}
+	
+	public String enterEvent(String eventName){
+		
+		if(eventName.equals("Radio Tower")){
+			if(radioTower.checkRequirements(player))
+				return "You entered Radio Tower story event" + radioTower.getDescription();			
+			else
+				return radioTower.getRequirements();
+		}
+		
+		if(eventName.equals("Sailing Away")){
+			if(sailingAway.checkRequirements(player))
+				return "You entered Sailing Away story event" + sailingAway.getDescription();		
+			else
+				return sailingAway.getRequirements();
+		}
+		
+		if(eventName.equals("Dragon Liar")){
+			if(radioTower.checkRequirements(player))
+				return "You entered Dragon Liar story event" + dragonLiar.getDescription();
+			else
+				return dragonLiar.getRequirements();		
+		}
+		
+		if(eventName.equals("Old Wise Man")){
+			if(radioTower.checkRequirements(player))
+				return "You entered Old Wise Man story event" + oldWiseMan.getDescription();
+			else
+				return oldWiseMan.getRequirements();
+		}
+		
+		return "You did not enter in any story event";		
+	}
 }
+	
+

@@ -5,6 +5,7 @@ package GameManagement;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -29,7 +30,7 @@ public class UpdateManager {
      * Creating linked-list for areas according to given format of multidimensional array and arranging neighbours.
      */
 
-    public void createGameEnvironment(boolean isNewGame, DatabaseManager databaseManager){
+    public void createGameEnvironment(boolean isNewGame, DatabaseManager databaseManager,String initialArea){
 
         AreaType[][] areaTypes = new AreaType[][]{
                 {AreaType.Mountain1,AreaType.Iceland1,AreaType.Iceland2},
@@ -64,9 +65,11 @@ public class UpdateManager {
                 }
 
 
-                if (area.getAreaType() == AreaType.Forest1) {
-                        positionOfUser = area;
+
+                if (area.getAreaType() == findInitialArea(initialArea)) {
+                    positionOfUser = area;
                 } //arranging initial position of user (linked list)
+
 
                 System.out.println(area.getAreaType().getAreaName());
 
@@ -89,6 +92,17 @@ public class UpdateManager {
             if (base.hasDownNeighbour())
                 area = base.getDownNeighbour(); // down column
         }
+    }
+
+    private AreaType findInitialArea(String areaName){
+
+        for(AreaType areaType : AreaType.values()){
+
+            if(areaType.getAreaName().equals(areaName)){
+                return areaType;
+            }
+        }
+        return null;
     }
 
 

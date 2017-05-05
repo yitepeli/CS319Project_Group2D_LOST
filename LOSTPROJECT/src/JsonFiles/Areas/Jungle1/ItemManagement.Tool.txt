@@ -1,2 +1,2 @@
 Spear.json
-Axe.json
+Torch.json
