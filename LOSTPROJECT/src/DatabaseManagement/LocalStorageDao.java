@@ -1,7 +1,6 @@
 package DatabaseManagement;
 
-import GameObjectsManagement.CharacterManagement.AggresiveCharacter;
-import com.google.api.client.json.Json;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.*;
@@ -16,7 +15,6 @@ import GameObjectsManagement.ItemManagement.Item;
 
 import GameObjectsManagement.ObjectManagement.*;
 import GameObjectsManagement.CharacterManagement.Character;
-import GameObjectsManagement.CharacterManagement.AggresiveCharacter;
 
 /**
  * Author: Onur Sönmez
@@ -49,16 +47,13 @@ public class LocalStorageDao {
 
         for (File file: folder.listFiles()) {
             String className = file.getName().replace(".txt","");
-            Class<?> cls;//class names are in convenient class name form, so directly convert name to Class!
             try {
-                cls = Class.forName(Constants.GAME_ROOT + className);
-                //@return BoostingItem, CraftableItem, Item, Character, AggressiveCharacter
                 Stream<String> stream = Files.lines(Paths.get(file.getAbsolutePath()));
 
                 stream.filter(e->!e.equals("")).forEach(e->{//Override predicate
                     Object object = null;
                     try{
-                        object = gson.fromJson(new FileReader(path + "json/" + e),cls);//map json object into root object
+                        object = gson.fromJson(new FileReader(path + "json/" + e),typeToClass(Constants.GAME_ROOT + className));//map json object into root object
                     }catch (IOException exception){ exception.printStackTrace();}
 
                     if(object instanceof Item) {
@@ -67,7 +62,6 @@ public class LocalStorageDao {
                     if(object instanceof Character)
                         characterList.add((Character)object);
                 });
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -77,29 +71,21 @@ public class LocalStorageDao {
 
     public Class<?> typeToClass(String className){
 
-        System.out.println(className);
         Class<?> cls = null;
-
         try {
             cls = Class.forName(className);
         }
         catch (ClassNotFoundException e){
-            System.out.println("Class not found!");
-
         }
         return cls;
-
     }
 
-    public GameObject readJSONElement(String jsonName,Class<?> cls){
-
+    public GameObject readJSONElement(String jsonName,String type){
 
         Object gameObject = null;
-        System.out.println("Inside the readJson! " + jsonName.replaceAll("\\s",""));
-        System.out.println(jsonName);
+
         try{
-            System.out.println(jsonName);
-            gameObject = gson.fromJson(path + "json/" + jsonName.replaceAll("\\s","") + ".json",cls);
+            gameObject = gson.fromJson(new FileReader( path +"json/" + jsonName.replaceAll("\\s","") + ".json"),typeToClass(type));
         }catch (Exception e){ e.printStackTrace();}
         return (GameObject) gameObject;
     }

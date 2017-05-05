@@ -47,7 +47,7 @@ public class MapManager {
      * @param Area Current position of player
      */
 
-    public void processMapp(Area curPosition){//No need to resolve pixels every time!
+    public void processMap(Area curPosition){//No need to resolve pixels every time!
         int[][] rp = darkenMap(redPixels, curPosition, "red");
         int[][] gp = darkenMap(greenPixels, curPosition, "green");
         int[][] bp = darkenMap(bluePixels, curPosition, "blue");

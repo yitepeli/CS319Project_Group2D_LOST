@@ -94,7 +94,7 @@ public class DatabaseManager {
 
             itemList.forEach(e->{
                 threadpool.submit(()->{
-                    AreaDatastore.WriteAction.WRITE_CHARACTER.writeDataIntoCloud(e);
+                    AreaDatastore.WriteAction.WRITE_ITEM.writeDataIntoCloud(e);
                 });
             });
         }
@@ -103,11 +103,17 @@ public class DatabaseManager {
             List<Item> cloudList = areaDAO.listItemsInArea();
 
             cloudList.forEach(e-> {
-                System.out.println("Obaaa");
-                itemList.add((Item)localStorageDao.readJSONElement(e.getName(),localStorageDao.typeToClass(Constants.ITEM_ROOT + e.getType())));
+                itemList.add((Item)localStorageDao.readJSONElement(e.getName(),Constants.ITEM_ROOT + e.getType()));
             });
         }
         return itemList;
+    }
+
+
+    public Item readJSONElement(String objectName,String type){
+
+        return (Item)localStorageDao.readJSONElement(objectName,Constants.ITEM_ROOT + type);
+
     }
 
     public List<Record> listRecords(){
@@ -235,8 +241,15 @@ public class DatabaseManager {
 
     public enum ConnectionStatus{ CONNECTED, DISCONNECTED }
 
-    public static void initUserStaticId(){
+    public static void initUserStaticId(boolean isNewGame){
 
+        if(isNewGame){
+            uniqueId = UUID.randomUUID().toString();
+        }
+        else{
+            uniqueId = LocalStorageDao.getUserUniqueId();
+        }
+/*
         String userId = localStorageDao.getUserUniqueId();
 
         switch (userId){
@@ -247,7 +260,7 @@ public class DatabaseManager {
             default:
                 uniqueId = userId;
                 break;//user exist
-        }
+        }*/
     }
 
     public void createUserLocal(long id){ localStorageDao.recordUserUniqueId(uniqueId,id);}

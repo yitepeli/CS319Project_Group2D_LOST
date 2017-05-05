@@ -41,25 +41,26 @@ public class GameEngine {
 
 	public void createGameEnvironment(boolean isNewGame){
 
-		DatabaseManager.initUserStaticId();
+		DatabaseManager.initUserStaticId(isNewGame);
 
 		databaseManager = new DatabaseManager();
 		updateManager = new UpdateManager();
 		mapManager = new MapManager();
-		updateManager.createGameEnvironment(isNewGame,databaseManager);//creating areas
-		positionOfUser = updateManager.getPositionOfUser();//initial position of user
-
 
 		if(!isNewGame){
 			long userId = databaseManager.getUserId();//accessing user preferences and getting user id..
 			player = (Player)databaseManager.readData(userId,DatabaseManager.ReadAction.READ_PLAYER);//cloud based data!
+			player.setCloudId(userId);
 		}
 		else{
 			player = new Player();//passing default values
-			player.setCurrentPosition(positionOfUser.getAreaType().getAreaName());
+			player.setCurrentPosition("Forest1");
 			databaseManager.processData(player, DatabaseManager.WriteAction.WRITE_PLAYER);//creating new player instance in persistency layer
 			databaseManager.createUserLocal(player.getCloudId());//creating user local in prefs
 		}
+		updateManager.createGameEnvironment(isNewGame,databaseManager,player.getCurrentPositionOfUser());
+		positionOfUser = updateManager.getPositionOfUser();
+		mapManager.processMap(positionOfUser);
 	}
 
 
@@ -83,7 +84,7 @@ public class GameEngine {
 		player.setCurrentPosition(currentAreaName);
 		databaseManager.setWorkingArea(currentAreaName);
 		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);//update player data
-		mapManager.processMapp(positionOfUser);//updating map
+		mapManager.processMap(positionOfUser);//updating map
 	}
 
 	
