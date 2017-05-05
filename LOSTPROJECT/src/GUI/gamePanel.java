@@ -281,12 +281,11 @@ public class gamePanel extends JPanel {
 			        						!result.equals("You missed your shot! " + currentObjectName + " did not get any damage!\n"
 			        								+ "You got killed...")
 			        								&& !result.equals("Dead man cannot fight")){
-<<<<<<< Updated upstream
-			        					result = newGame.fight(currentObjectName);
+		        						result = newGame.fight(currentObjectName);
 			        					total+=result;
-=======
+
 			        				//	result = newGame.fight(currentObjectName);
->>>>>>> Stashed changes
+
 			        					
 			        					System.out.println(result);
 			        					
