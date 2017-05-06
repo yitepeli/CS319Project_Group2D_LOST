@@ -114,7 +114,7 @@ public class Character extends GameObject {
 		if(this.health+health>100)
 			this.health=100;
 		else if(this.health+health<0)
-			this.health +=0;
+			this.health =0;
 		else
 			this.health+=health;
 	}
