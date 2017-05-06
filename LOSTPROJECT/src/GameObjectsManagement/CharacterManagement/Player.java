@@ -107,6 +107,8 @@ public class Player extends AggresiveCharacter {
 			this.energy = 0;
 		else if(energy > 100)
 			this.energy = 100;
+		else
+			this.energy = energy;
 	}
 
 	/**
@@ -119,23 +121,32 @@ public class Player extends AggresiveCharacter {
 	/**
 	 * @param thirst the thirst to set
 	 */
-	public void updateThirst(int thirst) {
-		if(!(thirst < 0 || thirst > 100))
-			this.thirst += thirst;
+	public void setThirst(int thirst) {
+		if(thirst < 0)
+			this.thirst = 0;
+		else if(thirst > 100)
+			this.thirst = 100;
+		else
+			this.thirst = thirst;
 	}
 
 	/**
 	 * @return the hunger
 	 */
 	public int getHunger() {
-		return hunger;
+		return this.hunger;
 	}
 
 	/**
 	 * @param hunger the hunger to set
 	 */
-	public void updateHunger(int hungerAmount) {
-		this.hunger += hunger;
+	public void setHunger(int hungerAmount) {
+		if(hunger < 0)
+			this.hunger = 0;
+		else if(hunger > 100)
+			this.hunger = 100;
+		else
+			this.hunger = hunger;
 	}
 
 	public void setRecord(Record record){
