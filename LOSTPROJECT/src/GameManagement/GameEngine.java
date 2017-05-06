@@ -156,19 +156,13 @@ public class GameEngine {
 
 
 	public boolean craft(String itemName, int amount, String type, boolean isArea){
-		ArrayList<Item> requiredItemsList = this.readItem(itemName, type).getRequiredItemsList();
-		/*
-		if(this.readItem(itemName, type).getType().equals("CraftableItem"))
-			requiredItemsList = (CraftableItem)this.readItem(itemName, type);
-		else if(this.readItem(itemName, type).getType().equals("Tool"))
-			Tool item = (Tool)this.readItem(itemName, type);
-
-		assert item != null;
-
-
-		 = item.getRequiredItemsList();
-		*/
-		 
+		ArrayList<Item> requiredItemsList = new ArrayList<Item>();	
+		
+		if(type.equals("CraftableItem"))
+			requiredItemsList = ((CraftableItem)this.readItem(itemName, type)).getRequiredItemsList();
+		else if(type.equals("Tool"))
+			requiredItemsList = ((Tool)this.readItem(itemName, type)).getRequiredItemsList();
+		
 		assert requiredItemsList != null;
 		for(Item tmpItem : requiredItemsList)
 			if(!this.player.hasItem(tmpItem.getName(), tmpItem.getQuantity()))

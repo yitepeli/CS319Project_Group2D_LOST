@@ -7,7 +7,7 @@
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take","drop", "use"],
-  "requiredItemsList" : [
+  "requiredItemList" : [
 
   {
     "objectName" : "Stone Pieces"
