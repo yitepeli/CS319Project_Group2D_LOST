@@ -16,7 +16,7 @@ public class Character extends GameObject {
 	protected int defense;
 	private SoundEffect sound;
 	private Inventory inventory;
-
+	private double escapeChance;
 
 	/**
 	 * 
@@ -49,6 +49,7 @@ public class Character extends GameObject {
 	public int getHealth() {
 		return health;
 	}
+
 	/**
 	 * @param health the health to set
 	 */
@@ -123,8 +124,7 @@ public class Character extends GameObject {
 	}
 
 	public double getEscapeChance() {
-		// TODO Auto-generated method stub
-		return 0.1;
+		return this.escapeChance;
 	}
 
 }

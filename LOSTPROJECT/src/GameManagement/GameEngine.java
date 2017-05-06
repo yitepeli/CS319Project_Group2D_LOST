@@ -30,9 +30,22 @@ public class GameEngine {
 	private UpdateManager updateManager;
 	private Area positionOfUser;
 	private Player player;
+	private RadioTower radioTower; 
+	private SailingAway sailingAway; 
+	private OldWiseMan oldWiseMan; 
+	private DragonLiar dragonLiar; 
+	private ArrayList<Event> eventList;
+	private boolean isEntered;
 
 	public GameEngine(){
-
+		radioTower = new RadioTower();
+		sailingAway = new SailingAway();
+		oldWiseMan = new OldWiseMan();
+		dragonLiar = new DragonLiar();
+		eventList.add(radioTower);
+		eventList.add(sailingAway);
+		eventList.add(oldWiseMan);
+		eventList.add(dragonLiar);
 	}
 
 	public void dropItem(String itemName){
@@ -49,7 +62,7 @@ public class GameEngine {
 			return false;
 
 		assert this.player.hasItem(itemName, 1);
-		
+
 		this.positionOfUser.removeItem(item);
 		return true;
 	}
@@ -186,100 +199,101 @@ public class GameEngine {
 	
 	
 	public String fight(String characterName){
-		Character character=null;
-		for(int i=0;i<getPositionOfUser().getCharacterList().size();i++){
+		Character character = null;
+
+		for(int i = 0; i < getPositionOfUser().getCharacterList().size(); i++){
 			if(getPositionOfUser().getCharacterList().get(i).getName().equals(characterName))
 				character = getPositionOfUser().getCharacterList().get(i);
 		}
-		//just in case
-		if(player.getHealth() <= 0 || character.getHealth() <= 0)
-			return "Dead man cannot fight";
-	
-		else{			
-			Random randomGen = new Random();
-			int missedShotPlayer = randomGen.nextInt(1+(int)((1-character.getEscapeChance())*10))+1; //character's chance of escape from attack
-			int missedShotCharacter = randomGen.nextInt(1+(int)((1-player.getEscapeChance())*10))+1; //player's chance of escape from attack
-			
-			if(missedShotPlayer == 1){							
-				if(character instanceof AggresiveCharacter){			
-					if(missedShotCharacter == 1)
-						return "You missed your shot! " + character.getName() + " did not get any damage!\n"
-								+ character.getName() + "missed its shot! You did not get any damage!";
+
+		//health of the characters should not be below zero!
+		assert (player.getHealth() <= 0 || character.getHealth() <= 0);
+		assert character != null;
+
+		Random randomGen = new Random();
+		int missedShotPlayer = randomGen.nextInt(1+(int)((1-character.getEscapeChance())*10))+1; //character's chance of escape from attack
+		int missedShotCharacter = randomGen.nextInt(1+(int)((1-player.getEscapeChance())*10))+1; //player's chance of escape from attack
+		
+
+		if(missedShotPlayer == 1){							
+			if(character instanceof AggresiveCharacter){			
+				if(missedShotCharacter == 1)
+					return "You missed your shot! " + character.getName() + " did not get any damage!\n"
+							+ character.getName() + "missed its shot! You did not get any damage!";
+				
+				else{
+					if(player.getDefense() == ((AggresiveCharacter)character).getAttack())
+						player.updateHealth(-10);
 					
-					else{
+					if(player.getDefense() > ((AggresiveCharacter)character).getAttack())
+						player.updateHealth(-Math.abs((((AggresiveCharacter)character).getAttack()-player.getDefense()))/2);
+					
+					if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
+						player.updateHealth(-((AggresiveCharacter)character).getAttack());		
+					
+					if(player.getHealth() > 0)
+						return "You missed your shot! " + character.getName() + " did not get any damage!\n"
+								+ "You got wounded!";				
+					else
+						return "You missed your shot! " + character.getName() + " did not get any damage!\n"
+								+ "You got killed...";			
+					}
+				}	
+			
+			else
+				return "You missed your shot! " + character.getName() + " did not get any damage!";
+			}
+			
+		else{			
+			if(player.getAttack() == character.getDefense())
+				character.updateHealth(-10);
+			
+			if(player.getAttack() < character.getDefense())
+				character.updateHealth(-Math.abs((player.getAttack()-character.getDefense()))/2);
+			
+			if(player.getAttack() > character.getDefense())
+				character.updateHealth(-player.getAttack());
+			
+			//if character dies, player gets all of its items
+			if(character.getHealth() <= 0){
+				if(character.getInventory() != null){
+					ArrayList<Item> characterItems = character.getInventory().getStoredItems();
+					for(int i=0; i<characterItems.size(); i++)
+						positionOfUser.addItem(characterItems.get(i));
+				}
+				//remove from area
+				getPositionOfUser().getCharacterList().remove(character);
+				return "You killed " + character.getName();
+			}
+			
+			else{			
+				if(character instanceof AggresiveCharacter){						
+					if(missedShotCharacter == 1)
+						return "You wounded  " + character.getName() + "!\n"
+						+ character.getName() + "missed its shot! You did not get any damage!";
+					
+					else{						
 						if(player.getDefense() == ((AggresiveCharacter)character).getAttack())
 							player.updateHealth(-10);
 						
-						if(player.getDefense() > ((AggresiveCharacter)character).getAttack())
+						else if(player.getDefense() > ((AggresiveCharacter)character).getAttack())
 							player.updateHealth(-Math.abs((((AggresiveCharacter)character).getAttack()-player.getDefense()))/2);
 						
-						if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
+						else if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
 							player.updateHealth(-((AggresiveCharacter)character).getAttack());		
 						
-						if(player.getHealth() > 0)
-							return "You missed your shot! " + character.getName() + " did not get any damage!\n"
-									+ "You got wounded!";				
-						else
-							return "You missed your shot! " + character.getName() + " did not get any damage!\n"
-									+ "You got killed...";			
-						}
-					}	
-				
-				else
-					return "You missed your shot! " + character.getName() + " did not get any damage!";
-				}
-			
-			else{			
-				if(player.getAttack() == character.getDefense())
-					character.updateHealth(-10);
-				
-				if(player.getAttack() < character.getDefense())
-					character.updateHealth(-Math.abs((player.getAttack()-character.getDefense()))/2);
-				
-				if(player.getAttack() > character.getDefense())
-					character.updateHealth(-player.getAttack());
-				
-				//if character dies, player gets all of its items
-				if(character.getHealth() <= 0){
-					if(character.getInventory() != null){
-						ArrayList<Item> characterItems = character.getInventory().getStoredItems();
-						for(int i=0; i<characterItems.size(); i++)
-							player.addItem(characterItems.get(i));
-					}
-					//remove from area
-
-					return "You killed " + character.getName();
-				}
-				
-				else{			
-					if(character instanceof AggresiveCharacter){						
-						if(missedShotCharacter == 1)
-							return "You wounded  " + character.getName() + "!\n"
-							+ character.getName() + "missed its shot! You did not get any damage!";
+						else if(player.getHealth() > 0)
+							return "You wounded  " + character.getName() + "!\n" + "You got wounded!";	
 						
-						else{						
-							if(player.getDefense() == ((AggresiveCharacter)character).getAttack())
-								player.updateHealth(-10);
-							
-							if(player.getDefense() > ((AggresiveCharacter)character).getAttack())
-								player.updateHealth(-Math.abs((((AggresiveCharacter)character).getAttack()-player.getDefense()))/2);
-							
-							if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
-								player.updateHealth(-((AggresiveCharacter)character).getAttack());		
-							
-							if(player.getHealth() > 0)
-								return "You wounded  " + character.getName() + "!\n" + "You got wounded!";	
-							
-							else
-								return "You wounded  " + character.getName() + "!\n" + "You got killed...";	
-						}
-					}	
-				
-					else
-						return "You wounded  " + character.getName() + "!\n";
-				}
-			}					
-		}	
+						else
+							return "You wounded  " + character.getName() + "!\n" + "You got killed...";	
+					}
+				}	
+			
+				else
+					return "You wounded  " + character.getName() + "!\n";
+			}
+		}						
 	}
 
 	
@@ -355,11 +369,37 @@ public class GameEngine {
 	public boolean isUpAvailable(){return positionOfUser.hasUpNeighbour();}
 	public boolean isDownAvailable(){return positionOfUser.hasDownNeighbour();}
 	
-/*	public String enterEvent(String eventName){
+	public String enterEvent(String eventName){
 		
-		if(eventName.equals("Old Wise Man"))
-			oldWiseMan.playStory(positionOfUser, player);
+		if(eventName.equals("Radio Tower")){
+			if(radioTower.checkRequirements(player))
+				return "You entered Radio Tower story event" + radioTower.getDescription();			
+			else
+				return radioTower.getRequirements();
+		}
 		
-	}*/
+		if(eventName.equals("Sailing Away")){
+			if(sailingAway.checkRequirements(player))
+				return "You entered Sailing Away story event" + sailingAway.getDescription();		
+			else
+				return sailingAway.getRequirements();
+		}
+		
+		if(eventName.equals("Dragon Liar")){
+			if(radioTower.checkRequirements(player))
+				return "You entered Dragon Liar story event" + dragonLiar.getDescription();
+			else
+				return dragonLiar.getRequirements();		
+		}
+		
+		if(eventName.equals("Old Wise Man")){
+			if(radioTower.checkRequirements(player))
+				return "You entered Old Wise Man story event" + oldWiseMan.getDescription();
+			else
+				return oldWiseMan.getRequirements();
+		}
+		
+		return "You did not enter in any story event";		
+	}
 	
 }
