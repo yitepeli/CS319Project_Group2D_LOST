@@ -70,6 +70,13 @@ public class Player extends AggresiveCharacter {
 		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
 		assert requiredItemsList != null;
 
+		//remove the items in requiredItemList from the player's inventory
+		for(Item tmpItem : requiredItemsList)
+			for(int i = 0; i < tmpItem.getQuantity(); i++)
+				this.removeItem(tmpItem);
+
+
+
 		boolean check = true;
 		int j = 0;
 		while(check && j < amount){
@@ -79,12 +86,13 @@ public class Player extends AggresiveCharacter {
 		if(!check){
 			for(int i = 0; i < j; i++)
 				this.removeItem(item);
-			return false;
-		}
 
-		for(Item tmpItem : requiredItemsList)
-			for(int i = 0; i < tmpItem.getQuantity(); i++)
-				this.removeItem(tmpItem);
+			for(Item tmpItem : requiredItemsList)
+				for(int i = 0; i < tmpItem.getQuantity(); i++)
+					this.addItem(tmpItem);
+				
+			return false;
+		}		
 
 		assert this.hasItem(item.getName(), amount);
 
