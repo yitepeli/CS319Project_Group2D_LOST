@@ -47,7 +47,7 @@ public class Player extends AggresiveCharacter {
 		this.hunger = hunger;
 	}
 
-	private void setAttack(int i) {
+	public void setAttack(int i) {
 		this.attack =i;
 		
 	}
@@ -67,7 +67,7 @@ public class Player extends AggresiveCharacter {
 		return gameTime;
 	}
 
-	private void setDefense(int i) {
+	public void setDefense(int i) {
 		this.defense = i;
 		
 	}
@@ -136,6 +136,7 @@ public class Player extends AggresiveCharacter {
 	public Record getUserRecord(){
 		return userRecord;
 	}
+
 
 
 	public void setCurrentPosition(String areaName){
@@ -214,5 +215,6 @@ public class Player extends AggresiveCharacter {
 		else
 			this.health=i;
 	}
+
 
 }

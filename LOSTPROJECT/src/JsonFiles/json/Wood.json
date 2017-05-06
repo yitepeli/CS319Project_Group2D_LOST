@@ -53,8 +53,15 @@
 		"objectName" : "Boat",
 		"quantity" : "1",
 		"type" : "Tool"
-	}
+	},
+	  {
+		  "objectName" : "Knife",
+		  "quantity" : "1",
+		  "type" : "Tool"
+	  }
 
-	]
+
+
+  ]
 
 }

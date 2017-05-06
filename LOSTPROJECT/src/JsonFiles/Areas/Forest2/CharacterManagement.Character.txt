@@ -1,3 +1,5 @@
 Pig.json
 Rabbit.json
 Rabbit.json
+Squirrel.json
+Squirrel.json

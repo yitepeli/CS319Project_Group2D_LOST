@@ -1,7 +1,7 @@
 {
   "objectName" : "Sail",
   "type" : "CraftableItem",
-  "objecId" : "27",
+  "objectId" : "27",
   "description" : "This will be helpful for building boat!",
   "weight" : "8.0",
   "renewable" : "false",
@@ -11,14 +11,14 @@
 
 	{
 		"objectName" : "Sail Machine",
-"type" : "CraftableItem",
+        "type" : "CraftableItem",
 		"quantity" : "1"
 
 	},
 
 	{
 		"objectName" : "Grass",
-"type" : "CraftableItem",
+        "type" : "CraftableItem",
 		"quantity" : 4
 	}
   ]

@@ -1,6 +1,6 @@
 {
   "objectName" : "Sail Machine",
-  "objecId" : "27",
+  "objecrId" : "27",
   "type" : "CraftableItem",
   "description" : "This will be helpful for crafting sail!",
   "weight" : "7.0",
@@ -11,7 +11,7 @@
 
   	{
   		"objectName": "Sail",
-"type" : "CraftableItem",
+        "type" : "CraftableItem",
 		"quantity" : "1"
 
   	}
