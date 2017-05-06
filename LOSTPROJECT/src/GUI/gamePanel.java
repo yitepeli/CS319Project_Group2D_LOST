@@ -1,5 +1,10 @@
 package GUI;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 
@@ -40,6 +45,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,6 +94,9 @@ public class gamePanel extends JPanel {
 				isNameDefined=false;
 				textResult = "Please enter your name: \n";
 		}*/
+		
+		
+	    
 
 		areaItems = newGame.getPositionOfUser().getInventory().getStoredItems();
 		charList = newGame.getPositionOfUser().getCharacterList();
@@ -391,6 +402,28 @@ public class gamePanel extends JPanel {
 			        		else if(areaChosen==1){
 			        			if(textArea.getText().equals("0")){
 				        			inFight=true;
+				        			File f = new File(userDir + "/src/Sound/Animal Sound Effects/"+currentObjectName+".wav");
+				        			if(f!=null){
+				        				AudioInputStream audioIn;
+					        			try {
+					        				audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+					        				Clip clip = AudioSystem.getClip();
+					        			    clip.open(audioIn);
+					        			    clip.start();
+					        			} catch (MalformedURLException e1) {
+					        				// TODO Auto-generated catch block
+					        				e1.printStackTrace();
+					        			} catch (UnsupportedAudioFileException e1) {
+					        				// TODO Auto-generated catch block
+					        				e1.printStackTrace();
+					        			} catch (IOException e1) {
+					        				// TODO Auto-generated catch block
+					        				e1.printStackTrace();
+					        			} catch (LineUnavailableException e1) {
+					        				// TODO Auto-generated catch block
+					        				e1.printStackTrace();
+					        			}  
+				        			}
 			        				//fightResult="";
 			        				String result="";
 			        				String total="Fight report: \n";
