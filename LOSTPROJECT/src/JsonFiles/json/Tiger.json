@@ -1,6 +1,7 @@
 {
   "objectName":"Tiger",
   "type" : "AggresiveCharacter",
+  "escapeChance" : "0.8",
   "objectId" : "112",
   "description" : "Take it easy tiger! Looks like real tiger comes behind you, watch your back...",
   "health" : "110",

@@ -9,13 +9,9 @@
   "actionList" : ["take","drop", "craft"],
 
   "craftableItemList" : [
-
 	{
 		"objectName" : "Shelter",
-    "type" : "Tool"
+        "type" : "Tool"
 	}
-
-
-	]
-
+  ]
 }

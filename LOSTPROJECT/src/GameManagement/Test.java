@@ -16,7 +16,7 @@ public class Test {
 
         System.out.println(GameEngine.isUserExists());
         GameEngine gameEngine = new GameEngine();
-        gameEngine.createGameEnvironment(false);//is new game
+        gameEngine.createGameEnvironment(true);//is new game
         System.out.println(gameEngine.getPlayer().getCloudId());
         Area area = gameEngine.getPositionOfUser();
 
@@ -49,6 +49,15 @@ public class Test {
 
         System.out.println("Characters in " + area.getAreaType().getAreaName());
         characters.forEach(e->System.out.println(e.getName()));
+
+
+        gameEngine.craft("Wood",2,"CraftableItem");
+        System.out.println(gameEngine.getPlayer().getInventory().console_listItems());
+
+       gameEngine.save(true,1);
+
+       gameEngine.getRecords().forEach(e->System.out.println(e.getAccomplishedStoryEvent()));
+
 
 
     }

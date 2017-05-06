@@ -1,6 +1,7 @@
 {
   "objectName":"Wolf",
   "type" : "AggresiveCharacter",
+  "escapeChance" : "0.6",
   "objectId" : "120",
   "description" : "Wolf!",
   "health" : "110",

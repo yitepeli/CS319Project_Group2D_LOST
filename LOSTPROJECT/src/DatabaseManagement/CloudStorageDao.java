@@ -5,8 +5,6 @@ package DatabaseManagement;
  * Created by onursonmez on 22/04/2017.
  * Description: Generic interface which applies all object types to work on cloud.
  */
-
-import com.google.cloud.datastore.KeyFactory;
 import java.util.List;
 
 public interface CloudStorageDao<T> {

@@ -52,9 +52,6 @@ public class LocalStorageDao {
             String className = file.getName().replace(".txt","");
             try {
                 Stream<String> stream = Files.lines(Paths.get(file.getAbsolutePath()));
-
-
-
                 stream.filter(e->!e.equals("")).forEach(e->{//Override predicate
                     Object object = null;
                     System.out.println("Printing...");
@@ -95,7 +92,7 @@ public class LocalStorageDao {
     }
 
     /**
-     * Directly converts class name into class, because they are in convenient form
+     * Applies object mapping for json object
      * @param: jsonName String name of json 
      * @param: type String Type of object that will be mapped into root object from json
      * @return GameObject 
@@ -111,16 +108,7 @@ public class LocalStorageDao {
     }
 
     /**
-     * For Windows
-     * systemRoot -> HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Prefs
-     * userRoot -> HKEY_CURRENT_USER\Software\JavaSoft\Prefs.
-     * For Unix
-     * systemRoot -> /etc/.java
-     * userRoot -> ${user.home}/.java/.userPrefs
-     */
-
-    /**
-     * Util.prefs that record data in above location for operation systems
+     * Util.prefs that record data in user,system root
      * @param: uniqueId String 
      * @param: cloudId long 
      */
@@ -128,11 +116,20 @@ public class LocalStorageDao {
         userPrefs.put(Constants.USER_PREFS,userUniqueId);//putting user unique id into user preferences package
         userPrefs.putLong(Constants.USER_ID,cloudId);
     }
+    /**
+     * Static user id accessor
+     * @return String
+     */
 
     public static String getUserUniqueId(){
         return userPrefs.get(Constants.USER_PREFS,Constants.INVALID_USER);
     }
 
+    /**
+     * Records system preferences
+     * @oaram isSoundActive
+     * @param panelOption
+     */
     public void recordSettings(boolean isSoundActive, int panelOption){
         systemPrefs.putBoolean(Constants.SYSTEM_PREFS_SOUND,isSoundActive);
         systemPrefs.putInt(Constants.SYSTEM_PREFS_PANEL,panelOption);

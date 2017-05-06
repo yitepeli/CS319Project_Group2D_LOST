@@ -2,6 +2,7 @@
   "objectName":"Bird",
   "type" : "Character",
   "objectId" : "110",
+  "escapeChance" : "0.7",
   "description" : "Birds take advantage of their capabilities! Never easy to hunt flying animal... ",
   "health" : "10",
   "defense" : "30",

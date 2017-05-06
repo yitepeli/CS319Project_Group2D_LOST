@@ -6,6 +6,6 @@ import GameObjectsManagement.CharacterManagement.*;
 
 public abstract class Event extends GameObject {
 
-	 public abstract String playStory(Area a, Player p);
+	 public abstract boolean playStory(Area a, Player p);
 	 
 }

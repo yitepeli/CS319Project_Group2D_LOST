@@ -1,6 +1,7 @@
 {
   "objectName":"Fish",
   "type" : "Character",
+  "escapeChance" : "0.7",
   "objectId" : "35",
   "description" : "A Fresh Fish from the sea. Mmmm looks delicious ",
   "health" : "17",

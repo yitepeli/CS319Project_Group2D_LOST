@@ -1,6 +1,7 @@
 {
   "objectName":"Panda",
   "type" : "AggresiveCharacter",
+  "escapeChance" : "0.5",
   "objectId" : "107",
   "description" : "Why anone wants to attack Panda...This is panda, do not be stupid :) They are cute, alone and harmless",
   "health" : "50",

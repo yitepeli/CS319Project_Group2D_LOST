@@ -17,8 +17,7 @@ import GameObjectsManagement.CharacterManagement.Character;
 import GameObjectsManagement.ItemManagement.*;
 import DatabaseManagement.DatabaseManager;
 import GameObjectsManagement.ObjectManagement.Record;
-import com.sun.org.apache.regexp.internal.RE;
-
+import GameObjectsManagement.EventManagement.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 
@@ -30,22 +29,22 @@ public class GameEngine {
 	private UpdateManager updateManager;
 	private Area positionOfUser;
 	private Player player;
-	private RadioTower radioTower; 
-	private SailingAway sailingAway; 
-	private OldWiseMan oldWiseMan; 
-	private DragonLiar dragonLiar; 
+	//private RadioTower radioTower;
+	//private SailingAway sailingAway;
+//	private OldWiseMan oldWiseMan;
+//	private DragonLiar dragonLiar;
 	private ArrayList<Event> eventList;
 	private boolean isEntered;
 
 	public GameEngine(){
-		radioTower = new RadioTower();
-		sailingAway = new SailingAway();
-		oldWiseMan = new OldWiseMan();
-		dragonLiar = new DragonLiar();
-		eventList.add(radioTower);
-		eventList.add(sailingAway);
-		eventList.add(oldWiseMan);
-		eventList.add(dragonLiar);
+	//	radioTower = new RadioTower();
+	//	sailingAway = new SailingAway();
+	//	oldWiseMan = new OldWiseMan();
+	//	dragonLiar = new DragonLiar();
+//		eventList.add(radioTower);
+//		eventList.add(sailingAway);
+//		eventList.add(oldWiseMan);
+//		eventList.add(dragonLiar);
 	}
 
 	public void dropItem(String itemName){
@@ -73,7 +72,7 @@ public class GameEngine {
 	}
 
 	private Item readItem(String itemName, String type){
-		return null;
+		return databaseManager.readItem(itemName,type);
 	}
 
 
@@ -116,16 +115,12 @@ public class GameEngine {
 				positionOfUser = positionOfUser.getUpNeighbour();
 				break;
 		}
-
-
 		String currentAreaName = positionOfUser.getAreaType().getAreaName();
 		player.setCurrentPosition(currentAreaName);
 		databaseManager.setWorkingArea(currentAreaName);
 		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);//update player data
 		mapManager.processMap(positionOfUser);//updating map
 	}
-
-
 
 
 	public void createGameEnvironment(boolean isNewGame){
@@ -152,30 +147,11 @@ public class GameEngine {
 		mapManager.processMap(positionOfUser);
 
 		player.addItem(databaseManager.readItem("Tree","CraftableItem"));
-		System.out.println("Adding axe");
 		player.addItem(databaseManager.readItem("Axe","Tool"));
 		player.addItem(databaseManager.readItem("Wood","CraftableItem"));
 	}
 
 
-
-	//Crafting methods
-	/*
-	public HashMap<String, Integer> getCraftableItems(String itemName){
-
-
-		//player should have the item in its inventory before attempting to craft it
-		assert this.player.hasItem(itemName, 1);
-		
-		ArrayList<Item> craftableItemList = ((CraftableItem)this.player.getItem(itemName)).getCraftableItemsList();
-		HashMap<String, Integer> map = new HashMap<String, Integer>;
-
-		for(Item item : craftableItemList)
-			map.put(item.getName(), item.getQuantity());
-
-		return map;
-	}
-	*/
 	public ArrayList<Item> getCraftableItems(String itemName){
 		return ((CraftableItem)this.player.getItem(itemName)).getCraftableItemsList();
 	}
@@ -184,6 +160,7 @@ public class GameEngine {
 	public boolean craft(String itemName, int amount, String type){
 		CraftableItem item = (CraftableItem)this.readItem(itemName, type);
 		assert item != null;
+
 
 		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
 		
@@ -220,7 +197,6 @@ public class GameEngine {
 				if(missedShotCharacter == 1)
 					return "You missed your shot! " + character.getName() + " did not get any damage!\n"
 							+ character.getName() + "missed its shot! You did not get any damage!";
-				
 				else{
 					if(player.getDefense() == ((AggresiveCharacter)character).getAttack())
 						player.updateHealth(-10);
@@ -283,8 +259,7 @@ public class GameEngine {
 							player.updateHealth(-((AggresiveCharacter)character).getAttack());		
 						
 						else if(player.getHealth() > 0)
-							return "You wounded  " + character.getName() + "!\n" + "You got wounded!";	
-						
+							return "You wounded  " + character.getName() + "!\n" + "You got wounded!";
 						else
 							return "You wounded  " + character.getName() + "!\n" + "You got killed...";	
 					}
@@ -293,7 +268,8 @@ public class GameEngine {
 				else
 					return "You wounded  " + character.getName() + "!\n";
 			}
-		}						
+		}
+		return "";
 	}
 
 	
@@ -369,7 +345,7 @@ public class GameEngine {
 	public boolean isUpAvailable(){return positionOfUser.hasUpNeighbour();}
 	public boolean isDownAvailable(){return positionOfUser.hasDownNeighbour();}
 	
-	public String enterEvent(String eventName){
+/*	public String enterEvent(String eventName){
 		
 		if(eventName.equals("Radio Tower")){
 			if(radioTower.checkRequirements(player))
@@ -400,6 +376,6 @@ public class GameEngine {
 		}
 		
 		return "You did not enter in any story event";		
-	}
+	}*/
 	
 }

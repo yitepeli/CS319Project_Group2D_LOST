@@ -1,6 +1,7 @@
 {
   "objectName":"Penguin",
   "type" : "Animal",
+  "escapeChance" : "0.5",
   "objectId" : "109",
   "description" : "Pengiuns are rare animals of iceland! Can easily catch.",
   "health" : "40",

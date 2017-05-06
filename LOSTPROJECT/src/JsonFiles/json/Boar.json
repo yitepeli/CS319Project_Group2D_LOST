@@ -1,6 +1,7 @@
 {
   "objectName":"Boar",
   "type" : "AggresiveCharacter",
+  "escapeChance" : "0.1",
   "objectId" : "122",
   "description" : "Boar! Aggresive animal that attacks all strangers in the island...  ",
   "health" : "90",

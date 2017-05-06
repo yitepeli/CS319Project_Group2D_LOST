@@ -12,7 +12,9 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Wood"
+		"objectName" : "Wood",
+        "quantity" : "3",
+        "type" : "CraftableItem"
 	}
 
 	]

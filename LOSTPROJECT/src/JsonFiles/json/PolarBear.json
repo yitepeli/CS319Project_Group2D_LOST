@@ -2,10 +2,11 @@
   "objectName":"Polar Bear",
   "type" : "AggresiveCharacter",
   "objectId" : "102",
+  "escapeChance" : "0.7",
   "description" : "Wildest animal of iceland! Better not to come any closer :)",
   "health" : "100",
   "attack" : "68",
-  "defense" : "21",
+  "defense" : "99",
   "inventory" : {
     "storedItemList" : [
       {

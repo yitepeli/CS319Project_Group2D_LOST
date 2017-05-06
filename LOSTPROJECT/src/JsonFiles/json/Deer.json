@@ -2,6 +2,7 @@
   "objectName":"Deer",
   "type" : "Character",
   "objectId" : "100",
+  "escapeChance" : "0.6",
   "type" : "Character",
   "description" : "Deer is a harmless animal which is sponging around the area! They are rare animals and easy to hunt.",
   "health" : "30",
