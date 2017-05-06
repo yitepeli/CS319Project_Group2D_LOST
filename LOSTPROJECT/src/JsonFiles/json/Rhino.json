@@ -1,6 +1,7 @@
 {
   "objectName":"Rhino",
   "type" : "AggresiveCharacter",
+  "escapeChance" : "0.2",
   "objectId" : "113",
   "description" : "Rhino! No explanation enough for demontrating the wilderness of rhino! This monster is completely unbeatable!",
   "health" : "200",

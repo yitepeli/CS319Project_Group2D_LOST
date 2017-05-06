@@ -2,6 +2,7 @@
   "objectName":"Pig",
   "type" : "Character",
   "objectId" : "104",
+  "escapeChance" : "0.2",
   "description" : "Pigs are not attacking human but their endurance should not be underestimated!!",
   "health" : "70",
   "defense" : "45",

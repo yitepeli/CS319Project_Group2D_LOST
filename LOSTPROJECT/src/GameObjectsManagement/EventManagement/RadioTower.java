@@ -25,7 +25,7 @@ public class RadioTower extends Event {
 	
 	public boolean checkRequirements(Player p){
 		
-		if(p.getHealth() >= 60 && p.getDayCount() >= 8 && p.hasItem("Fur"))
+		if(p.getHealth() >= 60 && p.getGameTime() >= 8 && p.hasItem("Bear Skin",1))
 			return true;
 			
 		return false;
@@ -34,7 +34,7 @@ public class RadioTower extends Event {
 	
 	public boolean playStory(Area a, Player p){
 				
-		if(a.getAreaType().getAreaName().equals(areaName) && a.getInventory().hasItem("Radio Tower") && p.hasItem("Radiotelephone"))
+		if(a.getAreaType().getAreaName().equals(areaName) && a.getInventory().hasItem("Radio Tower",1) && p.hasItem("Radiotelephone",1))
 			return true;
 				
 		return false;

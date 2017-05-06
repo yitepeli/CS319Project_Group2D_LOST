@@ -2,6 +2,7 @@
   "objectName":"Squirrel",
   "type" : "Character",
   "objectId" : "115",
+  "escapeChance" : "0.7",
   "description" : "Squirrel!",
   "health" : "10",
   "defense" : "30",

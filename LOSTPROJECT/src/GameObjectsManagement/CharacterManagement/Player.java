@@ -29,11 +29,8 @@ public class Player extends AggresiveCharacter {
 		setHealth(100);
 		setAttack(15);
 		setDefense(10);
-		this.thirst=0;
-		this.hunger=0;
 		updateThirst(15);
 		updateHunger(15);
-
 	}
 	
 	public Player(String name) {

@@ -2,6 +2,7 @@
   "objectName":"Bull",
   "objectId" : "122",
   "type" : "AggresiveCharacter",
+  "escapeChance" : "0.2",
   "description" : "Bull!",
   "health" : "110",
   "defense" : "200",

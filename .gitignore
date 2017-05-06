@@ -52,3 +52,5 @@ LOSTPROJECT/.metadata/.log
 LOSTPROJECT/src/test/TESTS_HERE.txt
 
 *.java
+
+LOSTPROJECT/src/GUI/gamePanel.java

@@ -23,7 +23,7 @@ public class OldWiseMan extends Event{
 
 	public boolean checkRequirements(Player p){
 
-		if(p.getDayCount() < 10)
+		if(p.getGameTime() < 10)
 			return false;
 		
 		return true;
@@ -32,8 +32,9 @@ public class OldWiseMan extends Event{
 
 	public boolean playStory(Area a, Player p){
 		
-		if(a.getInventory().hasItem("Polar Bear Meat") && a.getInventory().hasItem("Corpse")) 
+		if(a.getInventory().hasItem("Polar Bear Meat",1) && a.getInventory().hasItem("Corpse",1))
 			return true;
+		return false;
 		
 	}
 }

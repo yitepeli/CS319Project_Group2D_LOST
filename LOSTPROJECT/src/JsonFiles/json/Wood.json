@@ -7,7 +7,7 @@
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take", "drop", "craft"],
-  "requiredItemsList" : [
+  "requiredItemList" : [
 
 	{
 		"objectName" : "Tree",
@@ -28,19 +28,19 @@
 	{
 		"objectName" : "Spear",
 		"quantity" : "1",
-    "type" : "Tool"
+   		 "type" : "Tool"
 	},
 
 	{
 		"objectName" : "Axe",
 		"quantity" : "1",
-    "type" : "Tool"
+    	"type" : "Tool"
 	},
 
 	{
 		"objectName" : "Hammer",
 		"quantity" : "1",
-    "type" : "Tool"
+    	"type" : "Tool"
 	},
 
 	{
