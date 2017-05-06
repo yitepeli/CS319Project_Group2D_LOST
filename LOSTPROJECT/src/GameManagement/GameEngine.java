@@ -156,16 +156,19 @@ public class GameEngine {
 
 
 	public boolean craft(String itemName, int amount, String type, boolean isArea){
+		ArrayList<Item> requiredItemsList = this.readItem(itemName, type).getRequiredItemsList();
+		/*
 		if(this.readItem(itemName, type).getType().equals("CraftableItem"))
-			CraftableItem item = (CraftableItem)this.readItem(itemName, type);
+			requiredItemsList = (CraftableItem)this.readItem(itemName, type);
 		else if(this.readItem(itemName, type).getType().equals("Tool"))
 			Tool item = (Tool)this.readItem(itemName, type);
 
 		assert item != null;
 
 
-		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
-		
+		 = item.getRequiredItemsList();
+		*/
+		 
 		assert requiredItemsList != null;
 		for(Item tmpItem : requiredItemsList)
 			if(!this.player.hasItem(tmpItem.getName(), tmpItem.getQuantity()))
@@ -180,13 +183,13 @@ public class GameEngine {
 		boolean check = true;
 		int j = 0;
 		while(check && j < amount){
-			check = this.player.addItem(item);
+			check = this.player.addItem(this.readItem(itemName, type));
 			j++;
 		}
 
 		if(!check){
 			for(int i = 0; i < j; i++)
-				this.player.removeItem(item);
+				this.player.removeItem(this.readItem(itemName, type));
 
 			for(Item tmpItem : requiredItemsList)
 				if(!tmpItem.getType().equals("Tool"))
@@ -196,7 +199,7 @@ public class GameEngine {
 			return false;
 		}		
 
-		assert this.player.hasItem(item.getName(), amount);
+		assert this.player.hasItem(this.readItem(itemName, type).getName(), amount);
 
 		return true;
 	}
