@@ -37,7 +37,7 @@ public class GameEngine {
 	private boolean isEntered;
 
 	public GameEngine(){
-		databaseManager = new DatabaseManager();
+		databaseManager = new DatabaseManager(); //Yasin aldi bunu buraya
 	//	radioTower = new RadioTower();
 	//	sailingAway = new SailingAway();
 	//	oldWiseMan = new OldWiseMan();

@@ -98,6 +98,7 @@ public class GUIManager extends JFrame {
 			isGameLoaded=false;
 		result="";
 		isGameExist=false;
+		if(isGameLoaded)
 		//newGame = new GameEngine();
 		//newGame.createGameEnvironment(true);
 		setName("mainFrame");
@@ -117,7 +118,7 @@ public class GUIManager extends JFrame {
 		helpPanel = new HelpPanel();
 		settingsPanel = new SettingsPanel(this);
 		//gamePanel = new gamePanel(null);
-		recordsPanel = new recordsPanel();
+		recordsPanel = new recordsPanel(game.getRecords());
 		creditsPanel = new creditsPanel();
 		contentPane.add(mainPanel, "main");
 		contentPane.add(settingsPanel, "settings");
@@ -175,7 +176,9 @@ public class GUIManager extends JFrame {
 	
 	public void getNewGame(){
 		isGameExist=true;
-		gamePanel = new gamePanel(null,"");
+		game.createGameEnvironment(true);
+		gamePanel = new gamePanel(game,"Please enter your name: \n");
+		gamePanel.setNameDefined(false);
 		contentPane.add(gamePanel, "game");
 		cards.show(contentPane, "game");
 	}
