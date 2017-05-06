@@ -36,7 +36,6 @@ public class Constants {
     public final static String ITEM_TYPE = "itemType";
     public final static String GAME_ROOT = "GameObjectsManagement.";
     public final static String CHARACTER_ROOT = "GameObjectsManagement.CharacterManagement.";
-    public final static String CLOUD_ID = "cloudId";
     public final static String ITEM_ROOT = "GameObjectsManagement.ItemManagement.";
     public final static Class< AggresiveCharacter> AggresiveCharacter = GameObjectsManagement.CharacterManagement.AggresiveCharacter.class;
     public final static Class< Character> Character = GameObjectsManagement.CharacterManagement.Character.class;

@@ -3,7 +3,6 @@ package GameManagement;
 /**
  * Created by onursonmez on 02/05/2017.
  */
-import DatabaseManagement.DatabaseManager;
 import GameObjectsManagement.AreaManagement.Area;
 import GameObjectsManagement.ItemManagement.Item;
 import GameObjectsManagement.CharacterManagement.Character;
@@ -17,21 +16,8 @@ public class Test {
 
         System.out.println(GameEngine.isUserExists());
         GameEngine gameEngine = new GameEngine();
-        gameEngine.createGameEnvironment(false);//is new game
-        System.out.print("Forest1!");
-
-        gameEngine.getPositionOfUser().getInventory().getStoredItems().forEach(e->System.out.println(e.getName()));
-
-        gameEngine.getPositionOfUser().getInventory().getStoredItems().forEach(e->{
-            System.out.println(e.getCloudId());
-            System.out.println("lalalal");
-            gameEngine.getDatabaseManager().clearData(e.getCloudId(), DatabaseManager.DeleteAction.DELETE_ITEM_FROM_AREA);
-        });
-        System.out.println("Not deleted!");
-
-
-
-       /* System.out.println(gameEngine.getPlayer().getCloudId());
+        gameEngine.createGameEnvironment(true);//is new game
+        System.out.println(gameEngine.getPlayer().getCloudId());
         Area area = gameEngine.getPositionOfUser();
 
         System.out.println(area.getInventory() == null);
@@ -42,7 +28,7 @@ public class Test {
 
         System.out.println("Items in " + area.getAreaType().getAreaName());
         itemList.forEach(e->System.out.println(e.getName()));/*Printing all items in  area!*/
-/*
+
         System.out.println();
 
         System.out.println("Characters in " + area.getAreaType().getAreaName());
@@ -59,7 +45,7 @@ public class Test {
         System.out.println("Items in " + area.getAreaType().getAreaName());
         itemList.forEach(e->System.out.println(e.getName()));/*Printing all items in  area!*/
 
-      /*  System.out.println();
+        System.out.println();
 
         System.out.println("Characters in " + area.getAreaType().getAreaName());
         characters.forEach(e->System.out.println(e.getName()));
@@ -70,7 +56,7 @@ public class Test {
 
        gameEngine.save(true,1);
 
-       gameEngine.getRecords().forEach(e->System.out.println(e.getAccomplishedStoryEvent()));*/
+       gameEngine.getRecords().forEach(e->System.out.println(e.getAccomplishedStoryEvent()));
 
 
 

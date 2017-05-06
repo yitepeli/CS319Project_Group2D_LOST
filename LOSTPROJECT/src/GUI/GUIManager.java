@@ -91,14 +91,15 @@ public class GUIManager extends JFrame {
 	 * Create the frame.
 	 */
 	public GUIManager() {
-		if(GameEngine.isUserExists())
+		game = new GameEngine();
+		if(game.isUserExists())
 			isGameLoaded=true;
 		else
 			isGameLoaded=false;
 		result="";
 		isGameExist=false;
 		if(isGameLoaded)
-			game = new GameEngine();
+		//newGame = new GameEngine();
 		//newGame.createGameEnvironment(true);
 		setName("mainFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,13 +118,13 @@ public class GUIManager extends JFrame {
 		helpPanel = new HelpPanel();
 		settingsPanel = new SettingsPanel(this);
 		//gamePanel = new gamePanel(null);
-		//recordsPanel = new recordsPanel(GameEngine.getRecords());
+		recordsPanel = new recordsPanel(game.getRecords());
 		creditsPanel = new creditsPanel();
 		contentPane.add(mainPanel, "main");
 		contentPane.add(settingsPanel, "settings");
 		//contentPane.add(gamePanel, "game");
 		contentPane.add(helpPanel, "help");
-		//contentPane.add(recordsPanel, "records");
+		contentPane.add(recordsPanel, "records");
 		contentPane.add(creditsPanel, "credits");
 		//gamePanel.setSize();
 		

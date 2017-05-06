@@ -766,8 +766,8 @@ public class gamePanel extends JPanel {
 			JLabel tempChar = new JLabel();
 			tempChar.setName(charList.get(i).getName());
 			String iconString = "/images/"+charList.get(i).getName().replaceAll("\\s","").toLowerCase()+"Icon.png";
-			System.out.println(userDir);
-			tempChar.setIcon(new ImageIcon(new ImageIcon(userDir + iconString).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+			//System.out.println(iconString);
+			tempChar.setIcon(new ImageIcon((new ImageIcon(gamePanel.class.getResource(iconString))).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 			tempChar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
