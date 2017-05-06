@@ -1,6 +1,7 @@
 {
   "objectName" : "Radio Tower",
   "objecId" : "0",
+  "type" : "CraftableItem",
   "description" : "A working radio tower. All you need is a radiotelephone to send your signal",
   "weight" : "40.0",
   "renewable" : "false",

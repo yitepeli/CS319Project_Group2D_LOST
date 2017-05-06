@@ -1,6 +1,6 @@
 {
   "objectName" : "Moss",
-  "type" : "Item",
+  "type" : "CraftableItem",
   "objectId" : "234",
   "description" : "Well it is a bit disgusting but one can use moss to make something useful.",
   "weight" : "0.5",
