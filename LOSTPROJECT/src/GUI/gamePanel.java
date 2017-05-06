@@ -79,12 +79,12 @@ public class gamePanel extends JPanel {
 		areaChosen = -1; //0 is item, 1 is character, 2 is special event
 		playerItemChosen = -1; //0 Boosting, 1 is Craftable, 2 is none
 		//popFrame.setVisible(false);
-		if(newGame==null){
+		/*if(newGame==null){
 			newGame = new GameEngine();
 				newGame.createGameEnvironment(true);
 				isNameDefined=false;
 				textResult = "Please enter your name: \n";
-		}
+		}*/
 
 		areaItems = newGame.getPositionOfUser().getInventory().getStoredItems();
 		charList = newGame.getPositionOfUser().getCharacterList();
@@ -217,10 +217,69 @@ public class gamePanel extends JPanel {
 
 		JPanel headRightPanel = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) headRightPanel.getLayout();
-		//panel_7.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		flowLayout_1.setAlignment(FlowLayout.RIGHT);
 		headPanel.add(headRightPanel);
 
+		JButton campFire = new JButton("");
+		campFire.setBorderPainted(false);
+		campFire.setContentAreaFilled(false);
+		campFire.setCursor(cursor);
+		campFire.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 
+			}
+		});
+		campFire.setIcon(new ImageIcon(userDir + "/src/GUI/campfire.png"));
+		headRightPanel.add(campFire);
+
+		JButton cook = new JButton("");
+		cook.setBorderPainted(false);
+		cook.setContentAreaFilled(false);
+		cook.setCursor(cursor);
+		cook.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 
+			}
+		});
+		cook.setIcon(new ImageIcon(userDir + "/src/GUI/cook.png"));
+		headRightPanel.add(cook);
+
+		JButton boil = new JButton("");
+		boil.setBorderPainted(false);
+		boil.setContentAreaFilled(false);
+		boil.setCursor(cursor);
+		boil.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 
+			}
+		});
+		boil.setIcon(new ImageIcon(userDir + "/src/GUI/boil.png"));
+		headRightPanel.add(boil);
+
+		JButton shelter = new JButton("");
+		shelter.setBorderPainted(false);
+		shelter.setContentAreaFilled(false);
+		shelter.setCursor(cursor);
+		shelter.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 
+			}
+		});
+		shelter.setIcon(new ImageIcon(userDir + "/src/GUI/shelter.png"));
+		headRightPanel.add(shelter);
+
+		JButton rest = new JButton("");
+		rest.setBorderPainted(false);
+		rest.setContentAreaFilled(false);
+		rest.setCursor(cursor);
+		rest.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 
+			}
+		});
+		rest.setIcon(new ImageIcon(userDir + "/src/GUI/rest.png"));
+		headRightPanel.add(rest);
+		
 		JLabel timeLabel = new JLabel(""+newGame.getPlayer().getGameTime());
 		timeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		timeLabel.setFocusable(false);
@@ -662,7 +721,7 @@ public class gamePanel extends JPanel {
 		areaSpecialPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		areaSpecialPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		areaCharsAndSpecialPanel.add(areaSpecialPanel);
-		for(int i = 0; i< eventList.size();i++){
+		/*for(int i = 0; i< eventList.size();i++){
 			JLabel tempItem = new JLabel(eventList.get(i).getName());
 			tempItem.setName((String)special[i]);
 			int a=i;
@@ -681,7 +740,7 @@ public class gamePanel extends JPanel {
 				}
 			});
 			areaSpecialPanel.add(tempItem);
-		}
+		}*/
 
 
 		//--------------------------------------------------------------------------------------------------------------------------------
@@ -781,6 +840,10 @@ public class gamePanel extends JPanel {
 			}
 		});
 
+	}
+
+	public void setNameDefined(boolean isNameDefined) {
+		this.isNameDefined = isNameDefined;
 	}
 
 }

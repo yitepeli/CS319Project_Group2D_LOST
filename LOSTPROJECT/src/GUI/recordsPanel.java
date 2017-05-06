@@ -17,15 +17,21 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
+
+import GameObjectsManagement.ObjectManagement.Record;
+
 import java.awt.CardLayout;
+import java.util.List;
 
 public class recordsPanel extends JPanel {
 	private JTable table;
+	private List<Record> data;
 
 	/**
 	 * Create the panel.
 	 */
-	public recordsPanel() {
+	public recordsPanel(List<Record> records) {
+		data = records;
 		setForeground(new Color(255, 255, 255));
 		setBackground(new Color(0, 0, 0));
 		setLayout(new BorderLayout(0, 0));
@@ -48,7 +54,7 @@ public class recordsPanel extends JPanel {
                 "Score",
                 "Time",
                 "Last Event",};
-		Object[][] data = {
+		Object[][] datas = {
 				{"Yasin", new Integer(102), "16.48", "Dragon"},
 				{"Yasin", new Integer(98), "17.48", "OldWiseMan"},
 				{"Yasin", new Integer(88), "17.53", "RadioTelephone"},
@@ -57,7 +63,7 @@ public class recordsPanel extends JPanel {
 				{"Yasin", new Integer(78), "21.21", "Dragon"},
 				{"Yasin", new Integer(76), "30.05", "Dragon"}
 		};
-		table = new JTable(data, columnNames);
+		table = new JTable(datas, columnNames);
 		panel.add(table.getTableHeader(), BorderLayout.PAGE_START);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(table);
