@@ -119,7 +119,7 @@ public class GameEngine {
 		String currentAreaName = positionOfUser.getAreaType().getAreaName();
 		player.setCurrentPosition(currentAreaName);
 		databaseManager.setWorkingArea(currentAreaName);
-		databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);//update player data
+		//databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);//update player data
 		mapManager.processMap(positionOfUser);//updating map
 	}
 
@@ -140,7 +140,7 @@ public class GameEngine {
 		else{
 			player = new Player();//passing default values
 			player.setCurrentPosition("Forest1");
-			databaseManager.processData(player, DatabaseManager.WriteAction.WRITE_PLAYER);//creating new player instance in persistency layer
+			//databaseManager.processData(player, DatabaseManager.WriteAction.WRITE_PLAYER);//creating new player instance in persistency layer
 			databaseManager.createUserLocal(player.getCloudId());//creating user local in prefs
 		}
 		updateManager.createGameEnvironment(isNewGame,databaseManager,player.getCurrentPositionOfUser());
@@ -269,7 +269,7 @@ public class GameEngine {
 						else if(player.getDefense() < ((AggresiveCharacter)character).getAttack())
 							player.updateHealth(-((AggresiveCharacter)character).getAttack());		
 						
-						else if(player.getHealth() > 0)
+						if(player.getHealth() > 0)
 							return "You wounded  " + character.getName() + "!\n" + "You got wounded!";
 						else
 							return "You wounded  " + character.getName() + "!\n" + "You got killed...";	
@@ -279,7 +279,6 @@ public class GameEngine {
 					return "You wounded  " + character.getName() + "!\n";
 			}
 		}
-		return "";
 	}
 
 	public void use(String itemName){
