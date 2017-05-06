@@ -45,10 +45,48 @@ public class GameEngine {
 	
 	}
 
+	public void update(double time){
+		int pday = int(player.getGameTime());
+		this.player.updateTime(time);
+		int cday = int(player.getGameTime());
+
+		if( (cday - pday) == 1){
+			this.player.getInventory().update(cday);
+
+			//getting to the the left up point in the map
+			Area tmp = this.positionOfUser;
+			Area tp;
+			while(tmp.getLeftNeighbour() != null){
+				tmp = tmp.getLeftNeighbour();
+			}
+
+			while(tmp.getUpNeighbour() != null){
+				tmp = tmp.getUpNeighbour();
+			}
+
+			//accessing each area and updating the environment
+			while(tmp != null){
+				tp = tmp;
+				while(tp != null){
+					tp.getInventory().update();
+					tp = tp.getRightNeighbour();
+				}
+				tmp = tmp.getDownNeighbour();
+			}
+		}
+
+	}
+
+	/**
+	*Drop item method drops 
+	*/
 	public void dropItem(String itemName){
 		Item item = this.player.getItem(itemName);
 		this.player.removeItem(item);
 		this.positionOfUser.addItem(item); 
+
+		//time
+		this.update(0.15);
 
 		assert this.positionOfUser.hasItem(itemName, 1);
 	}
@@ -61,6 +99,9 @@ public class GameEngine {
 		assert this.player.hasItem(itemName, 1);
 
 		this.positionOfUser.removeItem(item);
+
+		//time
+		this.player.update(0.15);
 		return true;
 	}
 
@@ -118,6 +159,9 @@ public class GameEngine {
 		databaseManager.setWorkingArea(currentAreaName);
 		//databaseManager.processData(player,DatabaseManager.WriteAction.WRITE_PLAYER);//update player data
 		mapManager.processMap(positionOfUser);//updating map
+
+		//time
+		this.update(0.8);
 	}
 
 
@@ -195,6 +239,9 @@ public class GameEngine {
 
 		assert this.player.hasItem(this.readItem(itemName, type).getName(), amount);
 
+		//time
+		this.update(0.3);
+
 		return true;
 	}
 	
@@ -215,6 +262,8 @@ public class GameEngine {
 		int missedShotPlayer = randomGen.nextInt(1+(int)((1-character.getEscapeChance())*10))+1; //character's chance of escape from attack
 		int missedShotCharacter = randomGen.nextInt(1+(int)((1-player.getEscapeChance())*10))+1; //player's chance of escape from attack
 		
+		//time
+		this.update(0.05);
 
 		if(missedShotPlayer == 1){							
 			if(character instanceof AggresiveCharacter){			
@@ -298,6 +347,10 @@ public class GameEngine {
 		assert this.player.hasItem(itemName, 1);
 		Item item = this.player.getItem(itemName);		
 		assert item != null;
+
+		//time
+		this.update(0.2);
+
 		if(this.player.getItem(itemName).getType().equals("Food"))
 			this.eat(item);
 		else if(this.player.getItem(itemName) instanceof BoostingItem)
@@ -311,12 +364,18 @@ public class GameEngine {
 		this.player.setHealth(this.player.getHealth() + item.getHealthPoints());
 
 		this.player.removeItem(item);
+
+		//time
+		this.update(0.2);
 	}
 
 	private void equip(Item fitem){
 		BoostingItem item = (BoostingItem)fitem;
 		this.player.updateDefense(item.getDefensePointBonus());
 		this.player.updateAttack(item.getAttackPointBonus());
+
+		//time
+		this.update(0.2);
 	}
 	
 	public boolean isCampfireLit(){		
@@ -326,12 +385,20 @@ public class GameEngine {
 	public boolean makeCampfire(){	
 		assert !positionOfUser.isCampFireExists();
 
-		//if(this.craft("Campfire", 1, "CraftableItem", true)){
+		if(this.player.hasItem("Wood", 2) && this.player.hasItem("Branch", 2) && this.player.hasItem("Rock", 2)){
+			for(int i = 0; i < 2; i++){
+				this.player.removeItem(this.player.getItem("Wood"));
+				this.player.removeItem(this.player.getItem("Branch"));
+				this.player.removeItem(this.player.getItem("Rock"));
+			}
 			this.positionOfUser.setCampFireExists(true);
 			return true;
-		//}
 
-		//return false;
+			//time
+			this.update(0.4);
+		}
+
+		return false;
 	}
 	
 	public boolean cookMeat(){
@@ -341,6 +408,9 @@ public class GameEngine {
 			this.player.removeItem(this.player.getItem("Meat"));
 			this.player.addItem(this.readItem("CookedMeat", "Food"));
 			return true;
+
+			//time
+			this.update(0.2);
 		}
 		return false;
 	}
@@ -352,12 +422,17 @@ public class GameEngine {
 			this.player.removeItem(this.player.getItem("Dirty Water"));
 			this.player.addItem(this.readItem("Water", "Food"));
 			return true;
+
+			//time
+			this.update(0.2);
 		}
 
 		return false;		
 	}
 	
 	public void rest(int duration){
+
+		this.update(duration / 10.0);
 		int restAmount = 10;
 
 		if(this.positionOfUser.isShelterExists())
@@ -373,8 +448,17 @@ public class GameEngine {
 	public boolean buildShelter(){
 		assert !positionOfUser.isShelterExists();
 
-		if(this.craft("Shelter", 1, "CraftableItem", true)){
+		if(this.player.hasItem("Wood", 2) && this.player.hasItem("Branch", 2) && this.player.hasItem("Stone", 2)){
+			for(int i = 0; i < 2; i++){
+				this.player.removeItem(this.player.getItem("Wood"));
+				this.player.removeItem(this.player.getItem("Branch"));
+				this.player.removeItem(this.player.getItem("Stone"));
+			}
 			this.positionOfUser.setShelterExists(true);
+
+			//time
+			this.update(0.4);
+
 			return true;
 		}
 

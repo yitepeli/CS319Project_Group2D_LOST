@@ -1,4 +1,3 @@
-
 /*
 ** Inventory Class
 
@@ -152,6 +151,12 @@ public class Inventory{
 			result = result + item.toString() + "\n";
 
 		return result;
+	}
+
+	public void update(int gameDay){
+		for(Item item : this.storedItemList)
+			if(gameDay % item.getRenewalTime() == 0)
+				this.addItem(item);
 	}
 }
 
