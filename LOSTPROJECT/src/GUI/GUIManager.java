@@ -233,7 +233,7 @@ public class GUIManager extends JFrame {
 	public void loadGame() {
 		game.createGameEnvironment(false);
 		setComingFromLoad(true);
-		isGameExist=true;
+		isGameExist=false;
 		gamePanel = new gamePanel(game,"");
 		contentPane.add(gamePanel, "game");
 		cards.show(contentPane, "game");

@@ -87,7 +87,7 @@ public class mainPanel extends JPanel {
 				
 			}
 		});
-		if(!game.isUserExists())
+		if(!isGameExist)
 			continueBtn.setVisible(false);
 			
 		add(continueBtn);

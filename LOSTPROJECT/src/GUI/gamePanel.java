@@ -138,6 +138,7 @@ public class gamePanel extends JPanel {
 					 popFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				 }
 				 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(settingsBtn.getParent());
+				 popFrame.setSize(new Dimension(800,900));
 				 popFrame.setContentPane(new SettingsPanel(mainFrame));
 				 popFrame.setVisible(true);
 			}
@@ -156,6 +157,7 @@ public class gamePanel extends JPanel {
 					 popFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				 }
 
+				 popFrame.setSize(new Dimension(800,900));
 				 popFrame.setContentPane(new HelpPanel());
 				 popFrame.setVisible(true);
 			}
@@ -274,8 +276,8 @@ public class gamePanel extends JPanel {
 				        		currentObjectName ="";
 			        		}
 			        		else if(areaChosen==1){
-			        			inFight=true;
 			        			if(textArea.getText().equals("0")){
+				        			inFight=true;
 			        				//fightResult="";
 			        				String result="";
 			        				String total="Fight report: \n";
@@ -352,7 +354,7 @@ public class gamePanel extends JPanel {
 				        				textPane.setText(textResult);
 					        		}
 					        		else if(textArea.getText().equals("2")){
-					        			textResult = "Use";
+					        			textResult = areaDescription+"Eat";
 					        			textPane.setText(textResult);
 					        		}
 			        				currentObjectName="";
@@ -371,12 +373,12 @@ public class gamePanel extends JPanel {
 					        			for(int i = 0 ; i < size; i++){
 					        				s += (i + 1) + ". "+craftableItemList.get(i).getName() + " (" + craftableItemList.get(i).getQuantity() + ")\n";
 					        			}
-					        			textResult = s;
+					        			textResult = areaDescription+s;
 					        			textPane.setText(textResult);
 					        			order++;
 					        		}
 					        		else{
-					        			textResult = "Invalid input";
+					        			textResult = areaDescription + "Invalid input";
 					        			textPane.setText(textResult);
 					        			order=0;
 					        			currentObjectName="";
@@ -385,12 +387,10 @@ public class gamePanel extends JPanel {
 			        			}
 			        			else if(playerItemChosen == 2){
 			        				if(textArea.getText().equals("1")){
-			        					textResult = "Info";
-					        			textPane.setText(textResult);
-			        				}
-					        		else if(textArea.getText().equals("2")){
-					        			textResult = "Drop";
-					        			textPane.setText(textResult);
+			        					newGame.dropItem(currentObjectName);
+				        				textResult = areaDescription+"You drop the item \""+currentObjectName+"\""+"\n";
+				        				doesNeedUpdate=true;
+				        				textPane.setText(textResult);
 					        		}
 					        		order=0;
 			        				currentObjectName="";
@@ -431,6 +431,7 @@ public class gamePanel extends JPanel {
 		        			isNameDefined=true;
 		        			textResult = areaDescription;
 		        			textPane.setText("Your name is defined succesfully.\n"+textResult);
+		        			textArea.setText("");
 		        		}
 		        	}
 
@@ -526,9 +527,12 @@ public class gamePanel extends JPanel {
 					currentObjectName = tempItem.getName();
 					String s = areaDescription+pitem.getDescription()+". Choose(Option number) an interaction for " + tempItem.getName()+":\n";
 					ArrayList<String> interactions = pitem.getInteractions();
+					playerItemChosen=2;
 					for(int j=1; j<interactions.size();j++){
 						if(interactions.get(j).equals("craft"))
 							playerItemChosen=1;
+						if(interactions.get(j).equals("eat"))
+							playerItemChosen=0;
 						s+=j+") "+interactions.get(j)+"\n";
 					}
 					textResult = s;
