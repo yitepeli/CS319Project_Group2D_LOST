@@ -6,11 +6,11 @@
   "weight" : "6.0",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take","drop", "craft"],
+  "actionList" : ["take","drop", "use"],
   "requiredItemList" : [
 	{
-		"objectName" : "Stone",
-        "quantity" : "3",
+		"objectName" : "Rock",
+        "quantity" : "1",
         "type" : "CraftableItem"
 	},
 	{
@@ -18,14 +18,7 @@
         "quantity" : "2",
         "type" : "CraftableItem"
 	}
-  ],
-
-  "craftableItemList" : [
-	{
-		"objectName" : "Wood",
-        "type" : "CraftableItem",
-        "quantity" : "1"
-	}
   ]
+
 
 }
