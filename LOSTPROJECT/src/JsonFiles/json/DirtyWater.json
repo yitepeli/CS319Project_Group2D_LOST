@@ -1,21 +1,13 @@
 {
   "objectName" : "Dirty Water",
-  "type" : "CraftableItem",
+  "type" : "Food",
   "objetcId" : "23",
   "description" : "It is a dirty water! You have to boil it!",
   "weight" : "0.2",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take", "drop", "craft"],
-
-  "craftableItemList" : [
-
-	{
-		"objectName" : "Water",
-    "type" : "Food",
-    "quantity" : "2"
-	}
-
-	]
+  "actionList" : ["take", "drop", "use"],
+  "thirstPoint" : 10,
+  "healthPoint" : "-5"
 
 }

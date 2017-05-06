@@ -35,7 +35,7 @@ public class mainPanel extends JPanel {
 		game = new GameEngine();
 
 		image = null;
-		System.out.println(GameEngine.isUserExists());
+		//System.out.println(GameEngine.isUserExists());
 
 		String userDirectory = System.getProperty("user.dir");
 		String path=userDirectory+"/src/GUI/bg.jpg";

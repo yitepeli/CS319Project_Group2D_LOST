@@ -92,10 +92,10 @@ public class GUIManager extends JFrame {
 	 */
 	public GUIManager() {
 		
-		if(GameEngine.isUserExists())
+		/*if(GameEngine.isUserExists())
 			isGameLoaded=true;
 		else
-			isGameLoaded=false;
+			isGameLoaded=false;*/
 		game = new GameEngine();
 		result="";
 		isGameExist=false;

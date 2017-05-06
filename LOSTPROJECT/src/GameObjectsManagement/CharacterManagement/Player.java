@@ -76,7 +76,7 @@ public class Player extends AggresiveCharacter {
 
 		//remove the items in requiredItemList from the player's inventory
 		for(Item tmpItem : requiredItemsList)
-			if(!(tmpItem instanceof Tool))
+			if(!tmpItem.getType().equals("Tool"))
 				for(int i = 0; i < tmpItem.getQuantity(); i++)
 					this.removeItem(tmpItem);
 

@@ -29,23 +29,21 @@ public class GameEngine {
 	private UpdateManager updateManager;
 	private Area positionOfUser;
 	private Player player;
-	//private RadioTower radioTower;
-	//private SailingAway sailingAway;
-//	private OldWiseMan oldWiseMan;
-//	private DragonLiar dragonLiar;
+	private RadioTower radioTower;
+	private SailingAway sailingAway;
+	private OldWiseMan oldWiseMan;
+	private DragonLiar dragonLiar;
 	private ArrayList<Event> eventList;
 	private boolean isEntered;
+	private ArrayList<Boolean> isCompleted;
 
 	public GameEngine(){
 		databaseManager = new DatabaseManager(); //Yasin aldi bunu buraya
-	//	radioTower = new RadioTower();
-	//	sailingAway = new SailingAway();
-	//	oldWiseMan = new OldWiseMan();
-	//	dragonLiar = new DragonLiar();
-//		eventList.add(radioTower);
-//		eventList.add(sailingAway);
-//		eventList.add(oldWiseMan);
-//		eventList.add(dragonLiar);
+		radioTower = new RadioTower();
+		sailingAway = new SailingAway();
+		oldWiseMan = new OldWiseMan();
+		dragonLiar = new DragonLiar();
+
 	}
 
 	public void dropItem(String itemName){
@@ -405,12 +403,28 @@ public class GameEngine {
 	/**
 	 * @return the eventList
 	 */
-	public ArrayList<Event> getEventList() {
-		return eventList;
+	public String getEvent() {
+		String areaName= this.getPositionOfUser().getAreaType().getAreaName();
+		if(areaName.equals("Forest1")){
+			return "Old Wise Man";
+		}
+		else if(areaName.equals("Beach")){
+			return "Sailing Away";
+			
+		}
+		else if(areaName.equals("Iceland1")){
+			return "Radio Tower";
+			
+		}
+		else if(areaName.equals("VolcanoZone2")){
+			return "Dragon Liar";
+			
+		}
+		return "";
 	}
 
 	
-/*	public String enterEvent(String eventName){
+	public String enterEvent(String eventName){
 		
 		if(eventName.equals("Radio Tower")){
 			if(radioTower.checkRequirements(player))
@@ -441,6 +455,7 @@ public class GameEngine {
 		}
 		
 		return "You did not enter in any story event";		
-	}*/
+	}
+
 	
 }

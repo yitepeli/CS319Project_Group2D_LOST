@@ -66,7 +66,7 @@ public class gamePanel extends JPanel {
 	private boolean isNameDefined;
 	private boolean inFight;
 	private boolean inEvent;
-	ArrayList<Event> eventList;
+	private String event;
 	/**
 	 * Create the panel.
 	 */
@@ -100,7 +100,7 @@ public class gamePanel extends JPanel {
 
 		areaItems = newGame.getPositionOfUser().getInventory().getStoredItems();
 		charList = newGame.getPositionOfUser().getCharacterList();
-		eventList = newGame.getEventList();
+		event = newGame.getEvent();
 		System.out.println(newGame.getPositionOfUser().getName());
 
 		areaDescription = "You are currently in the area " +newGame.getPositionOfUser().getAreaType().getAreaName()+"\nYou can collect the items or fight with animals!!!\n\n";
@@ -779,9 +779,9 @@ public class gamePanel extends JPanel {
 		for(int i = 0; i< charList.size();i++){
 			JLabel tempChar = new JLabel();
 			tempChar.setName(charList.get(i).getName());
-			String iconString = "/images/"+charList.get(i).getName().replaceAll("\\s","").toLowerCase()+"Icon.png";
-			//System.out.println(iconString);
-			tempChar.setIcon(new ImageIcon((new ImageIcon(gamePanel.class.getResource(iconString))).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+			String iconString = "src/images/"+charList.get(i).getName().replaceAll("\\s","").toLowerCase()+"Icon.png";
+			System.out.println(iconString);
+			tempChar.setIcon(new ImageIcon((new ImageIcon(iconString)).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 			tempChar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -831,28 +831,23 @@ public class gamePanel extends JPanel {
 		areaSpecialPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		areaSpecialPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		areaCharsAndSpecialPanel.add(areaSpecialPanel);
-		/*for(int i = 0; i< eventList.size();i++){
-			JLabel tempItem = new JLabel(eventList.get(i).getName());
-			tempItem.setName((String)special[i]);
-			int a=i;
-			//tempItem.setIcon(new ImageIcon(((ImageIcon)areaItems[i][1]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
-			tempItem.addMouseListener(new MouseAdapter() {
+			JLabel eventItem = new JLabel(event);
+			eventItem.setName(event);
+			eventItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					areaChosen = 2;
 					order = 0;
 					isFromArea = true;
-					System.out.println(tempItem.getName());
-					currentObjectName = tempItem.getName();
-					textResult = areaDescription+charList.get(a).getDescription()+"/nChoose for " + tempItem.getName()+":\n1) Go into special Event\n";
+					currentObjectName = event;
+					textResult = areaDescription+newGame.enterEvent(event);
 					textPane.setText(textResult );
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
 			});
-			areaSpecialPanel.add(tempItem);
-		}*/
-
-
+			areaSpecialPanel.add(eventItem);
+		
+		
 		//--------------------------------------------------------------------------------------------------------------------------------
 		//Direction Panel
 

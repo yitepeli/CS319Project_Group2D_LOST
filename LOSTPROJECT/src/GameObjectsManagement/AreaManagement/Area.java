@@ -4,7 +4,7 @@ package GameObjectsManagement.AreaManagement;
 import GameObjectsManagement.ObjectManagement.*;
 import GameObjectsManagement.ItemManagement.*;
 import GameObjectsManagement.CharacterManagement.Character;
-
+import GameObjectsManagement.EventManagement.Event;
 
 import java.util.*;
 /**
@@ -154,6 +154,11 @@ public class Area extends GameObject {//will be updated!
     public ArrayList<Character> getCharacterList(){
         return characterList;
     }
+
+	public ArrayList<Event> getEventList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
     

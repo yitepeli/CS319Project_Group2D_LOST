@@ -96,12 +96,12 @@ public class DatabaseManager {
 
         if(isNewGame){
             characterList= localStorageDao.parseJSONFiles(workingArea).getCharacterList();
-
+/*
             characterList.forEach(e->{
                 threadpool.submit(()->{//assigns future task for cloud processing!
                     AreaDatastore.WriteAction.WRITE_CHARACTER.writeDataIntoCloud(e);
                 });
-            });
+            });*/
         }
         else{
             characterList = areaDAO.listCharactersInArea();
@@ -121,12 +121,12 @@ public class DatabaseManager {
 
         if(isNewGame){
             itemList= localStorageDao.parseJSONFiles(workingArea).getItemList();
-
+/*
             itemList.forEach(e->{
                 threadpool.submit(()->{//Assigns future task for cloud processing, it will not wait until this line execute!
                     AreaDatastore.WriteAction.WRITE_ITEM.writeDataIntoCloud(e);
                 });
-            });
+            });*/
         }
         else{
             itemList = new ArrayList<>();
