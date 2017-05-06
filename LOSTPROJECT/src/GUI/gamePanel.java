@@ -337,8 +337,7 @@ public class gamePanel extends JPanel {
 				 textPane.setText(textResult);
 			}
 		});
-		if(!newGame.getPositionOfUser().isShelterExists())
-			rest.setVisible(false);
+
 		rest.setIcon(new ImageIcon(userDir + "/src/GUI/rest.png"));
 		headRightPanel.add(rest);
 		
@@ -402,28 +401,7 @@ public class gamePanel extends JPanel {
 			        		else if(areaChosen==1){
 			        			if(textArea.getText().equals("0")){
 				        			inFight=true;
-				        			File f = new File(userDir + "/src/Sound/Animal Sound Effects/"+currentObjectName+".wav");
-				        			if(f!=null){
-				        				AudioInputStream audioIn;
-					        			try {
-					        				audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
-					        				Clip clip = AudioSystem.getClip();
-					        			    clip.open(audioIn);
-					        			    clip.start();
-					        			} catch (MalformedURLException e1) {
-					        				// TODO Auto-generated catch block
-					        				e1.printStackTrace();
-					        			} catch (UnsupportedAudioFileException e1) {
-					        				// TODO Auto-generated catch block
-					        				e1.printStackTrace();
-					        			} catch (IOException e1) {
-					        				// TODO Auto-generated catch block
-					        				e1.printStackTrace();
-					        			} catch (LineUnavailableException e1) {
-					        				// TODO Auto-generated catch block
-					        				e1.printStackTrace();
-					        			}  
-				        			}
+				        			
 			        				//fightResult="";
 			        				String result="";
 			        				String total="Fight report: \n";
@@ -549,13 +527,13 @@ public class gamePanel extends JPanel {
 
 			        			Item item = craftableItemList.get(index - 1);
 
-			        			boolean crafted = newGame.craft(item.getName(), item.getQuantity(), item.getType());
+			        			boolean crafted = newGame.craft(item.getName(), item.getQuantity(), item.getType(),false);
 
 			        			if(crafted){
-			        				String txt = item.getName() + "crafted succesfully!";
-			        				textPane.setText(txt);
+			        				textResult = areaDescription +item.getName() + "crafted succesfully!";
+			        				textPane.setText(textResult);
 			        				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(saveBtn.getParent());
-			        				mainFrame.updateGamePanel(newGame, txt);
+			        				mainFrame.updateGamePanel(newGame, textResult);
 			        			}
 			        			else
 			        				textPane.setText(item.getName() + "could not be crafted!");
@@ -793,11 +771,34 @@ public class gamePanel extends JPanel {
 			tempChar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					
 					areaChosen = 1;
 					order = 0;
 					isFromArea = true;
 					System.out.println(tempChar.getName());
 					currentObjectName = tempChar.getName();
+					File f = new File(userDir + "/src/Sound/Animal Sound Effects/"+currentObjectName+".wav");
+        			if(f!=null){	
+        				AudioInputStream audioIn;
+	        			try {
+	        				audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+	        				Clip clip = AudioSystem.getClip();
+	        			    clip.open(audioIn);
+	        			    clip.start();
+	        			} catch (MalformedURLException e1) {
+	        				// TODO Auto-generated catch block
+	        				e1.printStackTrace();
+	        			} catch (UnsupportedAudioFileException e1) {
+	        				// TODO Auto-generated catch block
+	        				e1.printStackTrace();
+	        			} catch (IOException e1) {
+	        				// TODO Auto-generated catch block
+	        				e1.printStackTrace();
+	        			} catch (LineUnavailableException e1) {
+	        				// TODO Auto-generated catch block
+	        				e1.printStackTrace();
+	        			}  
+        			}
 					String s = areaDescription+"Choose(Option number) an interaction for " + tempChar.getName()+":\n0) Fight\n1) Run away";
 					textResult = s;
 					textPane.setText(textResult);

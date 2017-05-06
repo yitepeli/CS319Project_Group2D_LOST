@@ -289,7 +289,7 @@ public class GameEngine {
 
 		this.player.setHunger(this.player.getHunger() + item.getHungerPoints());
 		this.player.setThirst(this.player.getThirst() + item.getThirstPoints());
-		this.player.setHealth(this.player.getHelath() + item.getHealthPoints());
+		this.player.setHealth(this.player.getHealth() + item.getHealthPoints());
 	}
 	
 
@@ -302,7 +302,7 @@ public class GameEngine {
 		assert !positionOfUser.isCampFireExists();
 
 		if(this.craft("Campfire", 1, "CraftableItem", true)){
-			this.positionOfUser.setCampfireExists(true);
+			this.positionOfUser.setCampFireExists(true);
 			return true;
 		}
 

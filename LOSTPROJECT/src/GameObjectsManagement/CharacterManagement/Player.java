@@ -29,15 +29,15 @@ public class Player extends AggresiveCharacter {
 		setHealth(100);
 		setAttack(15);
 		setDefense(10);
-		updateThirst(15);
-		updateHunger(15);
+		this.thirst=15;
+		this.hunger=15;
 	}
 	
 	public Player(String name) {
 		this.setName(name);
 		setEnergy(60);
-		updateThirst(15);
-		updateHunger(15);
+		this.thirst=15;
+		this.hunger=15;
 	}
 	
 	public Player(int id, String name, String description, int health,
@@ -45,7 +45,6 @@ public class Player extends AggresiveCharacter {
 		this.energy = energy;
 		this.thirst = thirst;
 		this.hunger = hunger;
-		// TODO Auto-generated constructor stub
 	}
 
 	public boolean cookMeat(){
@@ -81,6 +80,7 @@ public class Player extends AggresiveCharacter {
 		int j = 0;
 		while(check && j < amount){
 			check = this.addItem(item);
+			j++;
 		}
 
 		if(!check){
@@ -232,6 +232,15 @@ public class Player extends AggresiveCharacter {
 		public Player build(){
 			return new Player(this);
 		}
+	}
+
+	public void setHealth(int i) {
+		if(i<0)
+			this.health = 0;
+		else if(i>100)
+			this.health=100;
+		else
+			this.health=i;
 	}
 
 }
