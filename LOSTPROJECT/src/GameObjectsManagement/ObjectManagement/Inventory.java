@@ -103,6 +103,10 @@ public class Inventory{
 	public double getCurrentCapacity(){
 		return this.currentCapacity;
 	}
+	
+	public double getMaxCapacity(){
+		return this.maxCapacity;
+	}
 
 	//Private methods
 	private int getCount(String itemName){

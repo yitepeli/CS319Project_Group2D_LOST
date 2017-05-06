@@ -37,6 +37,7 @@ public class GameEngine {
 	private boolean isEntered;
 
 	public GameEngine(){
+		databaseManager = new DatabaseManager(); //Yasin aldi bunu buraya
 	//	radioTower = new RadioTower();
 	//	sailingAway = new SailingAway();
 	//	oldWiseMan = new OldWiseMan();
@@ -127,7 +128,7 @@ public class GameEngine {
 
 		DatabaseManager.initUserStaticId(isNewGame);
 
-		databaseManager = new DatabaseManager();
+		//databaseManager = new DatabaseManager();
 		updateManager = new UpdateManager();
 		mapManager = new MapManager();
 
@@ -377,6 +378,14 @@ public class GameEngine {
 	public boolean isRightAvailable(){return positionOfUser.hasRightNeighbour(); }
 	public boolean isUpAvailable(){return positionOfUser.hasUpNeighbour();}
 	public boolean isDownAvailable(){return positionOfUser.hasDownNeighbour();}
+
+	/**
+	 * @return the eventList
+	 */
+	public ArrayList<Event> getEventList() {
+		return eventList;
+	}
+
 	
 /*	public String enterEvent(String eventName){
 		

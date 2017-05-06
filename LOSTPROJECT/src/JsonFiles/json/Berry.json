@@ -1,6 +1,6 @@
 {
-  "objectName" : "Berry",
   "objectId" : "39",
+  "objectName" : "Berry",
   "type" : "Food",
   "description" : "Yummy Berries",
   "weight" : "1.0",
@@ -9,5 +9,4 @@
   "visible" : "true",
   "actionList" : ["take","drop", "eat"],
   "hungerPoints" : "4"
-
 }

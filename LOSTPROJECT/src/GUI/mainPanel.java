@@ -27,10 +27,12 @@ import GameManagement.GameEngine;
 
 public class mainPanel extends JPanel {
 	Image image;
+	GameEngine game;
 	/**
 	 * Create the panel.
 	 */
 	public mainPanel(boolean isGameExist,boolean isGameSaved) {
+		game = new GameEngine();
 
 		image = null;
 		System.out.println(GameEngine.isUserExists());
@@ -123,7 +125,7 @@ public class mainPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(newGameBtn.getParent());
-				mainFrame.updateGamePanel(null, "");
+				mainFrame.loadGame();
 			}
 		});
 		if(!isGameSaved)

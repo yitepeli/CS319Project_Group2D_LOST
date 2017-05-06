@@ -1,5 +1,10 @@
 package GUI;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 
@@ -30,6 +35,7 @@ import javax.swing.border.LineBorder;
 import GameManagement.GameEngine;
 import GameObjectsManagement.ItemManagement.*;
 import GameObjectsManagement.CharacterManagement.Character;
+import GameObjectsManagement.EventManagement.Event;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -39,6 +45,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +66,7 @@ public class gamePanel extends JPanel {
 	private boolean isNameDefined;
 	private boolean inFight;
 	private boolean inEvent;
+	ArrayList<Event> eventList;
 	/**
 	 * Create the panel.
 	 */
@@ -64,6 +74,7 @@ public class gamePanel extends JPanel {
 	private PopUpFrame mapFrame;
 
 	public gamePanel(GameEngine game, String s) {
+		JTextPane textPane = new JTextPane();;
 		inFight=false;
 		inEvent=false;
 		isNameDefined=true;
@@ -77,19 +88,24 @@ public class gamePanel extends JPanel {
 		areaChosen = -1; //0 is item, 1 is character, 2 is special event
 		playerItemChosen = -1; //0 Boosting, 1 is Craftable, 2 is none
 		//popFrame.setVisible(false);
-		if(newGame==null){
+		/*if(newGame==null){
 			newGame = new GameEngine();
-			newGame.createGameEnvironment(true);
-			isNameDefined=false;
-			textResult = "Please enter your name: \n";
-		}
+				newGame.createGameEnvironment(true);
+				isNameDefined=false;
+				textResult = "Please enter your name: \n";
+		}*/
+		
+		
+	    
 
 		areaItems = newGame.getPositionOfUser().getInventory().getStoredItems();
 		charList = newGame.getPositionOfUser().getCharacterList();
+		eventList = newGame.getEventList();
 		System.out.println(newGame.getPositionOfUser().getName());
 
 		areaDescription = "You are currently in the area " +newGame.getPositionOfUser().getAreaType().getAreaName()+"\nYou can collect the items or fight with animals!!!\n\n";
-		
+		if(textResult=="")
+			textResult=areaDescription;
 		
 		ArrayList<Item> playerItems = newGame.getPlayer().getInventory().getStoredItems();
 		Object[] characters = {
@@ -136,8 +152,9 @@ public class gamePanel extends JPanel {
 					 popFrame = new PopUpFrame();
 					 popFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				 }
-
-				 popFrame.setContentPane(new SettingsPanel());
+				 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(settingsBtn.getParent());
+				 popFrame.setSize(new Dimension(800,900));
+				 popFrame.setContentPane(new SettingsPanel(mainFrame));
 				 popFrame.setVisible(true);
 			}
 		});
@@ -155,6 +172,7 @@ public class gamePanel extends JPanel {
 					 popFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				 }
 
+				 popFrame.setSize(new Dimension(800,900));
 				 popFrame.setContentPane(new HelpPanel());
 				 popFrame.setVisible(true);
 			}
@@ -182,7 +200,8 @@ public class gamePanel extends JPanel {
 		saveBtn.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
 				 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(saveBtn.getParent());
-				 mainFrame.goMain(textResult);	
+				 newGame.save(mainFrame.isSoundActive(), mainFrame.getSizeOption());
+				 //mainFrame.goMain(textResult);	
 			}
 		});
 		headLeftPanel.add(saveBtn);
@@ -210,11 +229,120 @@ public class gamePanel extends JPanel {
 
 		JPanel headRightPanel = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) headRightPanel.getLayout();
-		//panel_7.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		flowLayout_1.setAlignment(FlowLayout.RIGHT);
 		headPanel.add(headRightPanel);
 
-		JLabel timeLabel = new JLabel("12:11");
+		JButton campFire = new JButton("");
+		campFire.setBorderPainted(false);
+		campFire.setContentAreaFilled(false);
+		campFire.setCursor(cursor);
+		campFire.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 boolean b = newGame.makeCampfire();
+				 if(b){
+					 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(campFire.getParent());
+					 mainFrame.updateGamePanel(newGame,areaDescription);
+				 }
+					
+				 else{
+					 textResult = areaDescription+"You don't have enought item to make fire";
+					 textPane.setText(textResult);
+				 }
+			}
+		});
+		if(newGame.isCampfireLit())
+			campFire.setVisible(false);
+		campFire.setIcon(new ImageIcon(userDir + "/src/GUI/campfire.png"));
+		headRightPanel.add(campFire);
+
+		JButton cook = new JButton("");
+		cook.setBorderPainted(false);
+		cook.setContentAreaFilled(false);
+		cook.setCursor(cursor);
+		cook.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 boolean b = newGame.cookMeat();
+				 if(b){
+					 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(cook.getParent());
+					 mainFrame.updateGamePanel(newGame,areaDescription);
+				 }
+					
+				 else{
+					 textResult = areaDescription+"You don't have enought item to cook meat";
+					 textPane.setText(textResult);
+				 }
+					 
+			}
+		});
+		if(!newGame.isCampfireLit())
+			cook.setVisible(false);
+		cook.setIcon(new ImageIcon(userDir + "/src/GUI/cook.png"));
+		headRightPanel.add(cook);
+
+		JButton boil = new JButton("");
+		boil.setBorderPainted(false);
+		boil.setContentAreaFilled(false);
+		boil.setCursor(cursor);
+		boil.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 boolean b = newGame.boilWater();
+				 if(b){
+					 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(boil.getParent());
+					 mainFrame.updateGamePanel(newGame,areaDescription);
+				 }
+					
+				 else{
+					 textResult = areaDescription+"You don't have enought item to boil water";
+					 textPane.setText(textResult);
+				 }
+			}
+		});
+		if(!newGame.isCampfireLit())
+			boil.setVisible(false);
+		boil.setIcon(new ImageIcon(userDir + "/src/GUI/boil.png"));
+		headRightPanel.add(boil);
+
+		JButton shelter = new JButton("");
+		shelter.setBorderPainted(false);
+		shelter.setContentAreaFilled(false);
+		shelter.setCursor(cursor);
+		shelter.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 boolean b = newGame.buildShelter();
+				 if(b){
+					 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(shelter.getParent());
+					 mainFrame.updateGamePanel(newGame,areaDescription);
+				 }
+					
+				 else{
+					 textResult = areaDescription+"You don't have enought item to build shelter";
+					 textPane.setText(textResult);
+				 }
+			}
+		});
+		if(newGame.getPositionOfUser().isShelterExists())
+			shelter.setVisible(false);
+		
+		shelter.setIcon(new ImageIcon(userDir + "/src/GUI/shelter.png"));
+		headRightPanel.add(shelter);
+
+		JButton rest = new JButton("");
+		rest.setBorderPainted(false);
+		rest.setContentAreaFilled(false);
+		rest.setCursor(cursor);
+		rest.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 newGame.rest(4);
+				 textResult = areaDescription+"You had rest and gained energy";
+				 textPane.setText(textResult);
+			}
+		});
+		if(!newGame.getPositionOfUser().isShelterExists())
+			rest.setVisible(false);
+		rest.setIcon(new ImageIcon(userDir + "/src/GUI/rest.png"));
+		headRightPanel.add(rest);
+		
+		JLabel timeLabel = new JLabel(""+newGame.getPlayer().getGameTime());
 		timeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		timeLabel.setFocusable(false);
 		timeLabel.setIcon(new ImageIcon(userDir + "/src/GUI/time.png"));
@@ -231,7 +359,7 @@ public class gamePanel extends JPanel {
 		midPanel.add(midLeftPanel);
 		midLeftPanel.setLayout(new BorderLayout(0, 0));
 
-		JTextPane textPane = new JTextPane();
+		
 		textPane.setText(textResult);
 		textPane.setEditable(false);
 		textPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
@@ -244,6 +372,7 @@ public class gamePanel extends JPanel {
 		    @Override
 		    public void keyPressed(KeyEvent e){
 		        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+		        	boolean doesNeedUpdate=false;
 		        	e.consume();
 		        	if(isNameDefined){
 		        		if(currentObjectName==""){
@@ -253,10 +382,13 @@ public class gamePanel extends JPanel {
 			        	else if(isFromArea==true){
 			        		if(areaChosen==0){
 			        			if(textArea.getText().equals("0")){
-			        				//if(newGame.take(currentObjectName))
+			        				if(newGame.takeItem(currentObjectName)){
 			        					textResult = areaDescription+"You took the item \""+currentObjectName+"\" and put it in your bag.\n";
-			        				//else
-			        					//textResult = areaDescription+"You cannot take the item";
+			        					doesNeedUpdate=true;
+			        				}
+			        					
+			        				else
+			        					textResult = areaDescription+"You cannot take the item because your inventory has reached its capacity.";
 			        				textPane.setText(textResult);
 			        			}
 				        		else{
@@ -268,8 +400,30 @@ public class gamePanel extends JPanel {
 				        		currentObjectName ="";
 			        		}
 			        		else if(areaChosen==1){
-			        			inFight=true;
 			        			if(textArea.getText().equals("0")){
+				        			inFight=true;
+				        			File f = new File(userDir + "/src/Sound/Animal Sound Effects/"+currentObjectName+".wav");
+				        			if(f!=null){
+				        				AudioInputStream audioIn;
+					        			try {
+					        				audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+					        				Clip clip = AudioSystem.getClip();
+					        			    clip.open(audioIn);
+					        			    clip.start();
+					        			} catch (MalformedURLException e1) {
+					        				// TODO Auto-generated catch block
+					        				e1.printStackTrace();
+					        			} catch (UnsupportedAudioFileException e1) {
+					        				// TODO Auto-generated catch block
+					        				e1.printStackTrace();
+					        			} catch (IOException e1) {
+					        				// TODO Auto-generated catch block
+					        				e1.printStackTrace();
+					        			} catch (LineUnavailableException e1) {
+					        				// TODO Auto-generated catch block
+					        				e1.printStackTrace();
+					        			}  
+				        			}
 			        				//fightResult="";
 			        				String result="";
 			        				String total="Fight report: \n";
@@ -290,6 +444,7 @@ public class gamePanel extends JPanel {
 			        				}
 		        					textResult = areaDescription+total;
 				        			textPane.setText(textResult);
+				        			doesNeedUpdate=true;
 			        				if(newGame.isGameOver()){
 			        					textResult = areaDescription+result+"\n Oyun Bitti. Kaybettiniz.";
 			        					if(newGame.isGameOver()){
@@ -301,6 +456,7 @@ public class gamePanel extends JPanel {
 			        					else
 						        			textPane.setText(textResult);
 			        				}
+			        				
 
 			        			}
 			        			else if(textArea.getText().equals("1")){
@@ -338,61 +494,55 @@ public class gamePanel extends JPanel {
 			        		if(order==0){
 			        			if(playerItemChosen == 0){
 			        				if(textArea.getText().equals("1")){
-			        					textResult = "Info";
-					        			textPane.setText(textResult);
-			        				}
-					        		else if(textArea.getText().equals("2")){
-					        			textResult = "Drop";
-					        			textPane.setText(textResult);
+			        					newGame.dropItem(currentObjectName);
+				        				textResult = areaDescription+"You drop the item \""+currentObjectName+"\""+"\n";
+				        				doesNeedUpdate=true;
+				        				textPane.setText(textResult);
 					        		}
-					        		else if(textArea.getText().equals("3")){
-					        			textResult = "Use";
+					        		else if(textArea.getText().equals("2")){
+					        			textResult = areaDescription+"Eat";
 					        			textPane.setText(textResult);
 					        		}
 			        				currentObjectName="";
 			        			}
 			        			else if(playerItemChosen == 1){
-			        				if(textArea.getText().equals("1")){
-			        					textResult = "Info";
-					        			textPane.setText(textResult);
-					        			currentObjectName="";
-			        				}
+					        		if(textArea.getText().equals("1")){
+					        			newGame.dropItem(currentObjectName);
+				        				textResult = areaDescription+"You drop the item \""+currentObjectName+"\""+"\n";
+				        				doesNeedUpdate=true;
+				        				textPane.setText(textResult);
+					        		}
 					        		else if(textArea.getText().equals("2")){
-					        			textResult = "Drop";
+					        			ArrayList<Item> craftableItemList = newGame.getCraftableItems(currentObjectName);
+					        			String s = areaDescription+"Choose the item which you want to craft\n";
+					        			int size = craftableItemList.size();
+					        			for(int i = 0 ; i < size; i++){
+					        				s += (i + 1) + ". "+craftableItemList.get(i).getName() + " (" + craftableItemList.get(i).getQuantity() + ")\n";
+					        			}
+					        			textResult = areaDescription+s;
 					        			textPane.setText(textResult);
+					        			order++;
+					        		}
+					        		else{
+					        			textResult = areaDescription + "Invalid input";
+					        			textPane.setText(textResult);
+					        			order=0;
 					        			currentObjectName="";
 					        		}
-					        		else if(textArea.getText().equals("3")){
-					        			textResult = "Craft";
-					        			textPane.setText(textResult);
-				        				order++;
-					        		}
+					        			
 			        			}
 			        			else if(playerItemChosen == 2){
 			        				if(textArea.getText().equals("1")){
-			        					textResult = "Info";
-					        			textPane.setText(textResult);
-			        				}
-					        		else if(textArea.getText().equals("2")){
-					        			textResult = "Drop";
-					        			textPane.setText(textResult);
+			        					newGame.dropItem(currentObjectName);
+				        				textResult = areaDescription+"You drop the item \""+currentObjectName+"\""+"\n";
+				        				doesNeedUpdate=true;
+				        				textPane.setText(textResult);
 					        		}
 					        		order=0;
 			        				currentObjectName="";
 			        			}
 			        		}
-			        		else if(order==1 && playerItemChosen ==2){
-			        			ArrayList<Item> craftableItemList = newGame.getCraftableItems(currentObjectName);
-			        			String s = areaDescription+"Choose the item which you want to craft\n";
-			        			int size = craftableItemList.size();
-			        			for(int i = 0 ; i < size; i++){
-			        				s += (i + 1) + ". "+craftableItemList.get(i).getName() + " (" + craftableItemList.get(i).getQuantity() + ")\n";
-			        			}
-			        			textResult = s;
-			        			textPane.setText(textResult);
-			        			order++;
-			        		}
-			        		else if(order==2){
+			        		else if(order==1 && playerItemChosen ==1){
 			        			int index = Integer.parseInt(textArea.getText());
 			        			ArrayList<Item> craftableItemList = newGame.getCraftableItems(currentObjectName);
 			        			assert (index > 0) && (index <= craftableItemList.size());
@@ -409,7 +559,6 @@ public class gamePanel extends JPanel {
 			        			}
 			        			else
 			        				textPane.setText(item.getName() + "could not be crafted!");
-
 			        		}
 			        		textArea.setText("");
 			        	}
@@ -424,17 +573,18 @@ public class gamePanel extends JPanel {
 		        			currentObjectName="";
 		        		}
 		        		else{
-		        			//newGame.getPlayer().setName(textArea.getText());
+		        			newGame.getPlayer().setName(textArea.getText());
 		        			isNameDefined=true;
 		        			textResult = areaDescription;
 		        			textPane.setText("Your name is defined succesfully.\n"+textResult);
+		        			textArea.setText("");
 		        		}
 		        	}
 
 
 
 		        	//setVisible(true);
-		        	if(!newGame.isGameOver()){
+		        	if(!newGame.isGameOver()&&doesNeedUpdate){
 			        	GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(textArea.getParent());
 						mainFrame.updateGamePanel(newGame,textResult);
 		        		
@@ -501,18 +651,28 @@ public class gamePanel extends JPanel {
 		thirstLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statBarPanel.add(thirstLabel);
 
+		
+		//-------------------------------------------------------------------------------------------------------------------------
+		//Player inventory capacity
+		JPanel playerCapacityPanel = new JPanel();
+		playerCapacityPanel.setLayout(new BoxLayout(playerCapacityPanel, BoxLayout.Y_AXIS));
+		playerCapacityPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		JLabel capacityLabel = new JLabel("Capacity: "+newGame.getPlayer().getInventory().getCurrentCapacity()+"/"+newGame.getPlayer().getInventory().getMaxCapacity());
+		playerCapacityPanel.add(capacityLabel);
+		capacityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		playerPanel.add(playerCapacityPanel);
 		//--------------------------------------------------------------------------------------------------------------------------------
 		//Player Items Panel
 
 		JPanel playerItemsPanel = new JPanel();
 		playerItemsPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		playerPanel.add(playerItemsPanel);
-		playerItemsPanel.setLayout(new GridLayout(0, 2, 0, 0));
+		playerItemsPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		for(int i = 0; i< playerItems.size();i++){
-			JLabel tempItem = new JLabel(playerItems.get(i).getName());
+			JLabel tempItem = new JLabel();
 			tempItem.setName(playerItems.get(i).getName());
 			Item pitem = playerItems.get(i);
-			String iconString = userDir + "/src/images/"+areaItems.get(i).getName().toLowerCase()+".png";
+			String iconString = userDir + "/src/images/"+playerItems.get(i).getName().toLowerCase()+".png";
 			tempItem.setIcon(new ImageIcon((new ImageIcon(iconString)).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
@@ -521,6 +681,19 @@ public class gamePanel extends JPanel {
 					order=0;
 					System.out.println(tempItem.getName());
 					currentObjectName = tempItem.getName();
+					String s = areaDescription+pitem.getDescription()+". Choose(Option number) an interaction for " + tempItem.getName()+":\n";
+					ArrayList<String> interactions = pitem.getInteractions();
+					playerItemChosen=2;
+					for(int j=1; j<interactions.size();j++){
+						if(interactions.get(j).equals("craft"))
+							playerItemChosen=1;
+						if(interactions.get(j).equals("eat"))
+							playerItemChosen=0;
+						s+=j+") "+interactions.get(j)+"\n";
+					}
+					textResult = s;
+					textPane.setText(textResult);
+					
 					/*if(newGame.getPlayer().getInventory().getItem(tempItem.getName()). instanceof BoostingItem){
 						textPane.setText("Choose for " + tempItem.getName()+"\n1. Information\n2.Drop\n3.Use" );
 						playerItemChosen = 0;
@@ -612,11 +785,11 @@ public class gamePanel extends JPanel {
 		areaCharsAndSpecialPanel.add(areaCharsPanel);
 
 		for(int i = 0; i< charList.size();i++){
-			JLabel tempChar = new JLabel(charList.get(i).getName());
+			JLabel tempChar = new JLabel();
 			tempChar.setName(charList.get(i).getName());
-			//String iconString = "/images/"+charList.get(i).getName().toLowerCase()+".png";
+			String iconString = "/images/"+charList.get(i).getName().replaceAll("\\s","").toLowerCase()+"Icon.png";
 			//System.out.println(iconString);
-			//tempItem.setIcon(new ImageIcon((new ImageIcon(gamePanel.class.getResource(iconString))).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+			tempChar.setIcon(new ImageIcon((new ImageIcon(gamePanel.class.getResource(iconString))).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 			tempChar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -642,9 +815,10 @@ public class gamePanel extends JPanel {
 		areaSpecialPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		areaSpecialPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		areaCharsAndSpecialPanel.add(areaSpecialPanel);
-		for(int i = 0; i< special.length;i++){
-			JLabel tempItem = new JLabel((String)special[i]);
+		/*for(int i = 0; i< eventList.size();i++){
+			JLabel tempItem = new JLabel(eventList.get(i).getName());
 			tempItem.setName((String)special[i]);
+			int a=i;
 			//tempItem.setIcon(new ImageIcon(((ImageIcon)areaItems[i][1]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
@@ -654,13 +828,13 @@ public class gamePanel extends JPanel {
 					isFromArea = true;
 					System.out.println(tempItem.getName());
 					currentObjectName = tempItem.getName();
-					textResult = areaDescription+"Choose for " + tempItem.getName()+"\n1) Description\n2) Go into special Event\n";
+					textResult = areaDescription+charList.get(a).getDescription()+"/nChoose for " + tempItem.getName()+":\n1) Go into special Event\n";
 					textPane.setText(textResult );
 					//List<String> interactionList = newGame.getInteractions(tempItem.getName(), true);
 				}
 			});
 			areaSpecialPanel.add(tempItem);
-		}
+		}*/
 
 
 		//--------------------------------------------------------------------------------------------------------------------------------
@@ -682,7 +856,7 @@ public class gamePanel extends JPanel {
 				newGame.navigate("up");
 				System.out.println("up");
 				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
-				mainFrame.updateGamePanel(newGame,textResult);
+				mainFrame.updateGamePanel(newGame,"");
 			}
 		});
 		if(!newGame.isUpAvailable()){
@@ -702,7 +876,7 @@ public class gamePanel extends JPanel {
 				newGame.navigate("down");
 				System.out.println("down");
 				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
-				mainFrame.updateGamePanel(newGame,textResult);
+				mainFrame.updateGamePanel(newGame,"");
 			}
 		});
 		if(!newGame.isDownAvailable()){
@@ -721,7 +895,7 @@ public class gamePanel extends JPanel {
 				newGame.navigate("left");
 				System.out.println("left");
 				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
-				mainFrame.updateGamePanel(newGame,textResult);
+				mainFrame.updateGamePanel(newGame,"");
 			}
 		});
 		if(!newGame.isLeftAvailable()){
@@ -740,7 +914,7 @@ public class gamePanel extends JPanel {
 				newGame.navigate("right");
 				System.out.println("right");
 				GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(helpBtn.getParent());
-				mainFrame.updateGamePanel(newGame,textResult);
+				mainFrame.updateGamePanel(newGame,"");
 				
 			}
 		});
@@ -760,6 +934,10 @@ public class gamePanel extends JPanel {
 			}
 		});
 
+	}
+
+	public void setNameDefined(boolean isNameDefined) {
+		this.isNameDefined = isNameDefined;
 	}
 
 }

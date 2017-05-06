@@ -12,7 +12,7 @@
       {
         "objectName" : "Meat",
         "quantity" : "4",
-        "type" : "Food"
+        "type" : "CraftableItem"
       }
     ]
   }
