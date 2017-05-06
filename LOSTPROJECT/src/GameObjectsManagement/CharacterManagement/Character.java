@@ -66,7 +66,7 @@ public class Character extends GameObject {
 	/**
 	 * @param defense the defense to set
 	 */
-	public void setDefense(int defense) {
+	public void updateDefense(int defense) {
 		this.defense = this.baseDefense + defense;
 
 		assert this.defense >= 0;

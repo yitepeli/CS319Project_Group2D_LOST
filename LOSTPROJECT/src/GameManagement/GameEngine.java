@@ -282,17 +282,29 @@ public class GameEngine {
 		return "";
 	}
 
-	
 	public void use(String itemName){
-		Food item = (Food)this.readItem(itemName, "Food");		
+		assert this.player.hasItem(itemName, 1);
+		Item item = this.player.getItem(itemName);		
 		assert item != null;
 
+		if(this.player.getItem(itemName) instanceof Food)
+			this.eat(item);
+		else if(this.player.getItem(itemName) instanceof BoostingItem)
+			this.equip(item)
+	}
+
+	private void eat(Item item){
 		this.player.setHunger(this.player.getHunger() + item.getHungerPoints());
 		this.player.setThirst(this.player.getThirst() + item.getThirstPoints());
 		this.player.setHealth(this.player.getHealth() + item.getHealthPoints());
-	}
-	
 
+		this.player.removeItem(item);
+	}
+
+	private void equip(Item item){
+		this.player.updateDefense(item.getDefensePointBonus());
+		this.player.updateAttack(item.getAttackPointBonus());
+	}
 	
 	public boolean isCampfireLit(){		
 		return positionOfUser.isCampFireExists();		
@@ -328,6 +340,10 @@ public class GameEngine {
 
 		player.setEnergy(player.getEnergy() + duration * restAmount);
 	}
+
+	public boolean isShelterExists(){
+		return this.positionOfUser.isShelterExists();
+	}
 	
 	public boolean buildShelter(){
 		assert !positionOfUser.isShelterExists();
@@ -341,11 +357,6 @@ public class GameEngine {
 		
 	}
 
-	public boolean isShelterExists(){
-		return this.positionOfUser.isShelterExists();
-	}
-
-	
 	public boolean isGameOver(){
 		
 		if(player.getHealth() <= 0)
