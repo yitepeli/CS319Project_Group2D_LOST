@@ -6,9 +6,11 @@ import GameObjectsManagement.CharacterManagement.*;
 public class RadioTower extends Event {
 	
 	private String areaName = "Iceland1";
+	private boolean isEntered;
 
 	public RadioTower(){
 		
+		setIsEntered(false);
 		setDescription("Welcome to Radio Tower story event. You need to accomplish several tasks to"
 				+ "complete this adventure and finally survive from the island. As you saw, the tower "
 				+ "needs to be repaired. Now you have to go and find metal wires to repair the tower. The cave might "
@@ -39,5 +41,15 @@ public class RadioTower extends Event {
 				
 		return false;
 		
+	}
+	
+	public void setIsEntered(boolean flag){
+		
+		isEntered = flag;
+	}
+	
+	public boolean isEntered(){
+		
+		return isEntered;
 	}
 }

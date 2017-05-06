@@ -34,7 +34,6 @@ public class GameEngine {
 	private OldWiseMan oldWiseMan;
 	private DragonLiar dragonLiar;
 	private ArrayList<Event> eventList;
-	private boolean isEntered;
 	private ArrayList<Boolean> isCompleted;
 
 	public GameEngine(){
@@ -43,7 +42,7 @@ public class GameEngine {
 		sailingAway = new SailingAway();
 		oldWiseMan = new OldWiseMan();
 		dragonLiar = new DragonLiar();
-
+	
 	}
 
 	public void dropItem(String itemName){
@@ -369,7 +368,7 @@ public class GameEngine {
 
 	public boolean isGameOver(){
 		
-		if(player.getHealth() <= 0)
+		if(player.getHealth() <= 0 || this.isEventCompleted())
 			return true;
 		
 		return false;
@@ -403,6 +402,24 @@ public class GameEngine {
 	/**
 	 * @return the eventList
 	 */
+	
+	public boolean isEventCompleted(){
+		
+		if(radioTower.isEntered() && radioTower.playStory(this.getPositionOfUser(), player))
+			return true;
+		
+		if(oldWiseMan.isEntered() && oldWiseMan.playStory(this.getPositionOfUser(), player))
+			return true;
+		
+		if(sailingAway.isEntered() && sailingAway.playStory(this.getPositionOfUser(), player))
+			return true;
+		
+		if(dragonLiar.isEntered() && dragonLiar.playStory(this.getPositionOfUser(), player))
+			return true;
+		
+		return false;
+		
+	}
 	public String getEvent() {
 		String areaName= this.getPositionOfUser().getAreaType().getAreaName();
 		if(areaName.equals("Forest1")){
@@ -423,33 +440,42 @@ public class GameEngine {
 		return "";
 	}
 
-	
+
 	public String enterEvent(String eventName){
 		
 		if(eventName.equals("Radio Tower")){
-			if(radioTower.checkRequirements(player))
-				return "You entered Radio Tower story event" + radioTower.getDescription();			
+			if(radioTower.checkRequirements(player)){
+				radioTower.setIsEntered(true);
+				return "You entered Radio Tower story event" + radioTower.getDescription();		
+			}
 			else
 				return radioTower.getRequirements();
 		}
 		
 		if(eventName.equals("Sailing Away")){
-			if(sailingAway.checkRequirements(player))
-				return "You entered Sailing Away story event" + sailingAway.getDescription();		
+			if(sailingAway.checkRequirements(player)){
+				sailingAway.setIsEntered(true);
+				return "You entered Sailing Away story event" + sailingAway.getDescription();
+			}					
 			else
 				return sailingAway.getRequirements();
 		}
 		
 		if(eventName.equals("Dragon Liar")){
-			if(radioTower.checkRequirements(player))
+			if(dragonLiar.checkRequirements(player)){
+				dragonLiar.setIsEntered(true);
 				return "You entered Dragon Liar story event" + dragonLiar.getDescription();
+			}
 			else
 				return dragonLiar.getRequirements();		
 		}
 		
 		if(eventName.equals("Old Wise Man")){
-			if(radioTower.checkRequirements(player))
+			if(oldWiseMan.checkRequirements(player)){
+				oldWiseMan.setIsEntered(true);
 				return "You entered Old Wise Man story event" + oldWiseMan.getDescription();
+			}
+				
 			else
 				return oldWiseMan.getRequirements();
 		}

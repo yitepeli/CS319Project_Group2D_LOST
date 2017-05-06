@@ -6,9 +6,11 @@ import GameObjectsManagement.CharacterManagement.*;
 public class OldWiseMan extends Event{
 	
 	private String areaName = "DarkForest1";
-
+	private boolean isEntered;
+	
 	public OldWiseMan(){
 		
+		setIsEntered(false);
 		setDescription("Welcome to Old Wise Man story event. You need to accomplish several tasks to"
 				+ "complete this adventure and finally survive from the island. Old wise man has not eaten proper"
 				+ "food recently. Your first task is to bring him a yummy polar bear meat. His other request is getting"
@@ -36,5 +38,15 @@ public class OldWiseMan extends Event{
 			return true;
 		return false;
 		
+	}
+	
+	public void setIsEntered(boolean flag){
+		
+		isEntered = flag;
+	}
+	
+	public boolean isEntered(){
+		
+		return isEntered;
 	}
 }
