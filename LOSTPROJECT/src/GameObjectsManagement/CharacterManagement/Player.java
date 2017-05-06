@@ -52,6 +52,7 @@ public class Player extends AggresiveCharacter {
 		
 		return false;
 	}
+
 	public void updateGameTime(double incAmount){
 		this.gameTime += incAmount;
 	}
@@ -65,17 +66,29 @@ public class Player extends AggresiveCharacter {
 		return false;
 	}
 	
-	public void craft(CraftableItem item, int amount){
+	public boolean craft(CraftableItem item, int amount){
 		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
+		assert requiredItemsList != null;
+
+		boolean check = true;
+		int j = 0;
+		while(check && j < amount){
+			check = this.addItem(item);
+		}
+
+		if(!check){
+			for(int i = 0; i < j; i++)
+				this.removeItem(item);
+			return false;
+		}
 
 		for(Item tmpItem : requiredItemsList)
 			for(int i = 0; i < tmpItem.getQuantity(); i++)
 				this.removeItem(tmpItem);
 
-		for(int i = 0; i < amount; i++)
-			this.addItem(item);
+		assert this.hasItem(item.getName(), amount);
 
-		assert this.getInventory().hasItem(item.getName(), 1);
+		return true;
 	}
 	
 	
@@ -83,20 +96,23 @@ public class Player extends AggresiveCharacter {
 	 * @return the energy
 	 */
 	public int getEnergy() {
-		return energy;
+		return this.energy;
 	}
 
 	/**
 	 * @param energy the energy to set
 	 */
 	public void setEnergy(int energy) {
-		this.energy = energy;
+		if(energy < 0)
+			this.energy = 0;
+		else if(energy > 100)
+			this.energy = 100;
 	}
 
 	/**
 	 * @return the thirst
 	 */
-	public int getThirst() {
+	public int getThirst(){ 
 		return thirst;
 	}
 
@@ -104,7 +120,8 @@ public class Player extends AggresiveCharacter {
 	 * @param thirst the thirst to set
 	 */
 	public void updateThirst(int thirst) {
-		this.thirst += thirst;
+		if(!(thirst < 0 || thirst > 100))
+			this.thirst += thirst;
 	}
 
 	/**

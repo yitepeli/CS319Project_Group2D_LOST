@@ -14,6 +14,7 @@ public class Character extends GameObject {
 	
 	protected int health;
 	protected int defense;
+	protected int baseDefense;
 	private SoundEffect sound;
 	private Inventory inventory;
 	private double escapeChance;
@@ -40,6 +41,7 @@ public class Character extends GameObject {
 		super(id, name, description);
 		this.health = health;
 		this.defense = defense;
+		this.baseDefense = defense;
 		inventory = new Inventory();
 	}
 
@@ -53,9 +55,6 @@ public class Character extends GameObject {
 	/**
 	 * @param health the health to set
 	 */
-	public void setHealth(int health) {
-		this.health = health;
-	}
 	
 	
 	/**
@@ -68,7 +67,10 @@ public class Character extends GameObject {
 	 * @param defense the defense to set
 	 */
 	public void setDefense(int defense) {
-		this.defense = defense;
+		this.defense = this.baseDefense + defense;
+
+		assert this.defense >= 0;
+		assert this.baseDefense <= defense;
 	}
 	
 	

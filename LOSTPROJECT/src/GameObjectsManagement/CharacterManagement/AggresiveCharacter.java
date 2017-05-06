@@ -10,12 +10,14 @@ package GameObjectsManagement.CharacterManagement;
 public class AggresiveCharacter extends Character {
 
 	protected int attack;
+	protected int baseAttack;
 	/**
 	 * 
 	 */
 	public AggresiveCharacter() {
 		super();
-		attack=10;
+		this.attack=10;
+		this.baseAttack = attack;
 	}
 
 	/**
@@ -40,7 +42,7 @@ public class AggresiveCharacter extends Character {
 	}
 	
 	public void setAttack(int attack){
-		this.attack+=attack;
+		this.attack = this.baseAttack + attack;
 	}
 
 }

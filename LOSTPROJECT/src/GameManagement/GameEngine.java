@@ -157,7 +157,7 @@ public class GameEngine {
 	}
 
 
-	public boolean craft(String itemName, int amount, String type){
+	public boolean craft(String itemName, int amount, String type, boolean isArea){
 		CraftableItem item = (CraftableItem)this.readItem(itemName, type);
 		assert item != null;
 
@@ -169,9 +169,19 @@ public class GameEngine {
 			if(!this.player.hasItem(tmpItem.getName(), tmpItem.getQuantity()))
 				return false;
 
-		player.craft(item, amount);
+		if(!isArea)
+			return player.craft(item, amount);		
+		else{
+			for(Item tmpItem : requiredItemsList)
+				for(int i = 0; i < tmpItem.getQuantity(); i++)
+					this.player.removeItem(tmpItem);
 
-		return true;		
+			this.positionOfUser.addItem(item);
+
+			assert this.positionOfUser.hasItem(item.getName(), 1);
+
+			return true;
+		}
 	}
 	
 	
@@ -263,8 +273,7 @@ public class GameEngine {
 						else
 							return "You wounded  " + character.getName() + "!\n" + "You got killed...";	
 					}
-				}	
-			
+				}			
 				else
 					return "You wounded  " + character.getName() + "!\n";
 			}
@@ -273,13 +282,29 @@ public class GameEngine {
 	}
 
 	
-	public boolean isCampfireLit(){
-		
-		return positionOfUser.isCampFireExists();
-		
+	public void use(String itemName){
+		Food item = (Food)this.readItem(itemName, "Food");		
+		assert item != null;
+
+		this.player.setHunger(this.player.getHunger() + item.getHungerPoints());
+		this.player.setThirst(this.player.getThirst() + item.getThirstPoints());
+		this.player.setHealth(this.player.getHelath() + item.getHealthPoints());
+	}
+	
+
+	
+	public boolean isCampfireLit(){		
+		return positionOfUser.isCampFireExists();		
 	}
 	
 	public boolean makeCampfire(){	
+		assert !positionOfUser.isCampFireExists();
+
+		if(this.craft("Campfire", 1, "CraftableItem", true)){
+			this.positionOfUser.setCampfireExists(true);
+			return true;
+		}
+
 		return false;
 	}
 	
@@ -295,20 +320,28 @@ public class GameEngine {
 	}
 	
 	public void rest(int duration){
-		
-		if(duration == 1)
-			player.setEnergy(player.getEnergy()+10);
-		
-		if(duration == 4)
-			player.setEnergy(player.getEnergy()+40);
-			
-		if(duration == 8)
-			player.setEnergy(player.getEnergy()+80);
+		int restAmount = 10;
+
+		if(this.positionOfUser.isShelterExists())
+			restAmount = restAmount + 5;
+
+		player.setEnergy(player.getEnergy() + duration * restAmount);
 	}
 	
 	public boolean buildShelter(){
+		assert !positionOfUser.isShelterExists();
+
+		if(this.craft("Shelter", 1, "CraftableItem", true)){
+			this.positionOfUser.setShelterExists(true);
+			return true;
+		}
+
 		return false;		
 		
+	}
+
+	public boolean isShelterExists(){
+		return this.positionOfUser.isShelterExists();
 	}
 
 	
