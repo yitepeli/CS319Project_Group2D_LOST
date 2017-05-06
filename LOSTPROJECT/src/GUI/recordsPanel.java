@@ -32,6 +32,9 @@ public class recordsPanel extends JPanel {
 	 */
 	public recordsPanel(List<Record> records) {
 		data = records;
+		for(int i=0; i<data.size();i++){
+			data.get(i).setName("player"+i);
+		}
 		setForeground(new Color(255, 255, 255));
 		setBackground(new Color(0, 0, 0));
 		setLayout(new BorderLayout(0, 0));
@@ -50,19 +53,19 @@ public class recordsPanel extends JPanel {
 		panel.setBackground(new Color(0, 0, 0));
 		add(panel, BorderLayout.CENTER);
 		
-		String[] columnNames = {"Name",
-                "Score",
-                "Time",
-                "Last Event",};
-		Object[][] datas = {
-				{"Yasin", new Integer(102), "16.48", "Dragon"},
-				{"Yasin", new Integer(98), "17.48", "OldWiseMan"},
-				{"Yasin", new Integer(88), "17.53", "RadioTelephone"},
-				{"Yasin", new Integer(87), "17.12", "Dragon"},
-				{"Yasin", new Integer(84), "26.32", "Radio"},
-				{"Yasin", new Integer(78), "21.21", "Dragon"},
-				{"Yasin", new Integer(76), "30.05", "Dragon"}
-		};
+		String[] columnNames = {"Player Name",
+                "Description",
+                "Game Time",
+                "Accomplished Event",
+                "Is Accomplished"};
+		Object[][] datas = new Object[20][20];
+		for(int i =0; i<data.size();i++){
+				datas[i][0]=data.get(i).getName();
+				datas[i][1]=data.get(i).getDescription();
+				datas[i][2]=data.get(i).getAccomplishmentDay();
+				datas[i][3]=data.get(i).getAccomplishedStoryEvent();
+				datas[i][4]=data.get(i).isAccomplished();
+		}
 		table = new JTable(datas, columnNames);
 		panel.add(table.getTableHeader(), BorderLayout.PAGE_START);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
