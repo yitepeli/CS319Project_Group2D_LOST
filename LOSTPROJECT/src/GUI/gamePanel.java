@@ -378,7 +378,7 @@ public class gamePanel extends JPanel {
 			        		textResult = areaDescription+"You didn't choose anything";
 			        		textPane.setText(textResult);
 			        	}
-			        	else if(isFromArea==true){
+			        	else if(isFromArea==true ||inFight){
 			        		if(areaChosen==0){
 			        			if(textArea.getText().equals("0")){
 			        				if(newGame.takeItem(currentObjectName)){
@@ -398,14 +398,14 @@ public class gamePanel extends JPanel {
 
 				        		currentObjectName ="";
 			        		}
-			        		else if(areaChosen==1){
+			        		else if(areaChosen==1||inFight){
 			        			if(textArea.getText().equals("0")){
 				        			inFight=true;
 				        			
 			        				//fightResult="";
 			        				String result="";
 			        				String total="Fight report: \n";
-		        					while(!result.equals("You wounded  " + currentObjectName + "!\n" + "You got killed...") &&
+		        					if(!result.equals("You wounded  " + currentObjectName + "!\n" + "You got killed...") &&
 			        						!result.equals("You killed " + currentObjectName) &&
 			        						!result.equals("You missed your shot! " + currentObjectName + " did not get any damage!\n"
 			        								+ "You got killed...")
@@ -413,16 +413,23 @@ public class gamePanel extends JPanel {
 		        						result = newGame.fight(currentObjectName);
 			        					total+=result;
 
-			        				//	result = newGame.fight(currentObjectName);
-
-			        					
-			        					System.out.println(result);
-			        					
-					        			
-			        				}
-		        					textResult = areaDescription+total;
-				        			textPane.setText(textResult);
-				        			doesNeedUpdate=true;
+			        					if(!result.equals("You wounded  " + currentObjectName + "!\n" + "You got killed...") &&
+				        						!result.equals("You killed " + currentObjectName) &&
+				        						!result.equals("You missed your shot! " + currentObjectName + " did not get any damage!\n"
+				        								+ "You got killed...")
+				        								&& !result.equals("Dead man cannot fight")){
+			        						textResult = areaDescription+result+"\nChoose(Option number) an interaction for " + currentObjectName+":\n0) Fight\n1) Run away";
+						        			textPane.setText(textResult);
+						        			doesNeedUpdate=false;
+				        					System.out.println(result);
+			        					}
+			        					else{
+			        						textResult = areaDescription+result;
+						        			textPane.setText(textResult);
+			        						doesNeedUpdate=true;
+			        						currentObjectName ="";
+			        					}
+		        					}	
 			        				if(newGame.isGameOver()){
 			        					textResult = areaDescription+result+"\n Oyun Bitti. Kaybettiniz.";
 			        					if(newGame.isGameOver()){
@@ -434,19 +441,22 @@ public class gamePanel extends JPanel {
 			        					else
 						        			textPane.setText(textResult);
 			        				}
-			        				
 
 			        			}
+			        			
+			        			
 			        			else if(textArea.getText().equals("1")){
 			        				textResult = areaDescription+"You run away from the animal...";
 				        			textPane.setText(textResult);
+				        			currentObjectName ="";
 			        			}
 			        			else{
 			        				textResult = areaDescription+"Invalid input";
 				        			textPane.setText(textResult);
+				        			currentObjectName ="";
 			        			}
 
-				        		currentObjectName ="";
+				        		
 			        		}
 			        		else if(areaChosen==2){
 			        			if(order==0){
@@ -478,8 +488,10 @@ public class gamePanel extends JPanel {
 				        				textPane.setText(textResult);
 					        		}
 					        		else if(textArea.getText().equals("2")){
-					        			textResult = areaDescription+"Eat";
+					        			newGame.use(currentObjectName);
+				        				textResult = areaDescription+"You used the item \""+currentObjectName+"\""+"\n";
 					        			textPane.setText(textResult);
+					        			doesNeedUpdate=true;
 					        		}
 			        				currentObjectName="";
 			        			}
@@ -655,6 +667,7 @@ public class gamePanel extends JPanel {
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					inFight=false;
 					isFromArea = false;
 					order=0;
 					System.out.println(tempItem.getName());
@@ -665,7 +678,7 @@ public class gamePanel extends JPanel {
 					for(int j=1; j<interactions.size();j++){
 						if(interactions.get(j).equals("craft"))
 							playerItemChosen=1;
-						if(interactions.get(j).equals("eat"))
+						if(interactions.get(j).equals("use"))
 							playerItemChosen=0;
 						s+=j+") "+interactions.get(j)+"\n";
 					}
@@ -727,6 +740,7 @@ public class gamePanel extends JPanel {
 			tempItem.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					inFight=false;
 					areaChosen = 0;
 					order = 0;
 					isFromArea = true;
@@ -771,6 +785,7 @@ public class gamePanel extends JPanel {
 			tempChar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					inFight=false;
 					
 					areaChosen = 1;
 					order = 0;
@@ -778,7 +793,7 @@ public class gamePanel extends JPanel {
 					System.out.println(tempChar.getName());
 					currentObjectName = tempChar.getName();
 					File f = new File(userDir + "/src/Sound/Animal Sound Effects/"+currentObjectName+".wav");
-        			if(f!=null){	
+        			if(f.exists()){	
         				AudioInputStream audioIn;
 	        			try {
 	        				audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());

@@ -7,7 +7,7 @@
   "renewable" : "true",
   "renewalTime": "3",
   "visible" : "true",
-  "actionList" : ["take","drop", "eat"],
+  "actionList" : ["take","drop", "use"],
   "thirstPoints" : "15"
 
 }

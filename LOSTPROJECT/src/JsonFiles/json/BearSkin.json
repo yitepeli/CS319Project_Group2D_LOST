@@ -7,7 +7,7 @@
   "renewableTime" : "0",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take","drop"],
+  "actionList" : ["take","drop", "use"],
   "attackPointBonus" : 0,
   "defensePointBonus" : 25
 }

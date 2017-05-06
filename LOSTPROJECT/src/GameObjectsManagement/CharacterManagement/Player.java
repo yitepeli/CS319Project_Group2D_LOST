@@ -33,6 +33,11 @@ public class Player extends AggresiveCharacter {
 		this.hunger=15;
 	}
 	
+
+
+
+
+
 	public Player(String name) {
 		this.setName(name);
 		setEnergy(60);
@@ -51,6 +56,12 @@ public class Player extends AggresiveCharacter {
 		
 		return false;
 	}
+	
+	private void setAttack(int i) {
+		this.attack =i;
+		
+	}
+
 
 	public void updateGameTime(double incAmount){
 		this.gameTime += incAmount;
@@ -63,6 +74,11 @@ public class Player extends AggresiveCharacter {
 		
 		
 		return false;
+	}
+	
+	private void setDefense(int i) {
+		this.defense = i;
+		
 	}
 	
 	public boolean craft(CraftableItem item, int amount){
@@ -151,12 +167,12 @@ public class Player extends AggresiveCharacter {
 	 * @param hunger the hunger to set
 	 */
 	public void setHunger(int hungerAmount) {
-		if(hunger < 0)
+		if(hungerAmount < 0)
 			this.hunger = 0;
-		else if(hunger > 100)
+		else if(hungerAmount > 100)
 			this.hunger = 100;
 		else
-			this.hunger = hunger;
+			this.hunger = hungerAmount;
 	}
 
 	public void setRecord(Record record){

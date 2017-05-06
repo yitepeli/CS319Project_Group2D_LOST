@@ -6,6 +6,6 @@
   "weight" : "0.5",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take", "drop", "eat"],
+  "actionList" : ["take", "drop", "use"],
   "healthPoints" : "50"
 }

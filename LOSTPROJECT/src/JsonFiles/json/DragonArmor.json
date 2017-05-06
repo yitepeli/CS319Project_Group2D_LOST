@@ -6,7 +6,7 @@
   "weight" : "30.0",
   "renewable" : "false",
   "visible" : "false",
-  "actionList" : ["take"],
+  "actionList" : ["take","drop", "use"],
   "attackPointBonus" : 10,
   "defensePointBonus" : 50
 }

@@ -41,7 +41,7 @@ public class AggresiveCharacter extends Character {
 		return attack;
 	}
 	
-	public void setAttack(int attack){
+	public void updateAttack(int attack){
 		this.attack = this.baseAttack + attack;
 
 		assert this.attack >= 0;

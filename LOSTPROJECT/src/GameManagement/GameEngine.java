@@ -290,18 +290,20 @@ public class GameEngine {
 		if(this.player.getItem(itemName) instanceof Food)
 			this.eat(item);
 		else if(this.player.getItem(itemName) instanceof BoostingItem)
-			this.equip(item)
+			this.equip(item);
 	}
 
-	private void eat(Item item){
-		this.player.setHunger(this.player.getHunger() + item.getHungerPoints());
-		this.player.setThirst(this.player.getThirst() + item.getThirstPoints());
+	private void eat(Item fitem){
+		Food item = (Food)fitem;
+		this.player.setHunger(this.player.getHunger() - item.getHungerPoints());
+		this.player.setThirst(this.player.getThirst() - item.getThirstPoints());
 		this.player.setHealth(this.player.getHealth() + item.getHealthPoints());
 
 		this.player.removeItem(item);
 	}
 
-	private void equip(Item item){
+	private void equip(Item fitem){
+		BoostingItem item = (BoostingItem)fitem;
 		this.player.updateDefense(item.getDefensePointBonus());
 		this.player.updateAttack(item.getAttackPointBonus());
 	}

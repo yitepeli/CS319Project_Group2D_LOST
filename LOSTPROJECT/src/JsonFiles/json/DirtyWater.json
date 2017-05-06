@@ -3,7 +3,7 @@
   "type" : "CraftableItem",
   "objetcId" : "23",
   "description" : "It is a dirty water! You have to boil it!",
-  "weight" : "3.0",
+  "weight" : "0.2",
   "renewable" : "false",
   "visible" : "true",
   "actionList" : ["take", "drop", "craft"],
