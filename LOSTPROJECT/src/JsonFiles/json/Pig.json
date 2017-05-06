@@ -7,11 +7,28 @@
   "health" : "70",
   "defense" : "45",
   "inventory": {
-    "storedItemList" : [
+  "storedItemList" : [
       {
-        "objectName" : "Meat",
-        "quantity" : "5"
-      }
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"]
+	   },	
+	   {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"]
+	   }
+
     ]
   }
 }

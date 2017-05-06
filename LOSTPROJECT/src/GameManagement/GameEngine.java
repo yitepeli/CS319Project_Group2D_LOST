@@ -285,15 +285,14 @@ public class GameEngine {
 		assert this.player.hasItem(itemName, 1);
 		Item item = this.player.getItem(itemName);		
 		assert item != null;
-
-		if(this.player.getItem(itemName) instanceof Food)
+		if(this.player.getItem(itemName).getType().equals("Food"))
 			this.eat(item);
 		else if(this.player.getItem(itemName) instanceof BoostingItem)
 			this.equip(item);
 	}
 
-	private void eat(Item fitem){
-		Food item = (Food)fitem;
+	private void eat(Item sitem){
+		Food item = (Food) this.readItem(sitem.getName(), "Food");
 		this.player.setHunger(this.player.getHunger() - item.getHungerPoints());
 		this.player.setThirst(this.player.getThirst() - item.getThirstPoints());
 		this.player.setHealth(this.player.getHealth() + item.getHealthPoints());
