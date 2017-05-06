@@ -35,7 +35,7 @@ public class SettingsPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SettingsPanel() {
+	public SettingsPanel(GUIManager gui) {
 
 		String userDir = System.getProperty("user.dir");
 		setBackground(Color.BLACK);
@@ -82,6 +82,8 @@ public class SettingsPanel extends JPanel {
 					soundBtn.setIcon(new ImageIcon(userDir + "/src/GUI/speaker1.png"));
 					isMuted=false;
 				}
+				//GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(soundBtn.getParent());
+				gui.setSoundActive(!isMuted);
 			}
 		});
 		
@@ -104,14 +106,16 @@ public class SettingsPanel extends JPanel {
 		        JComboBox combo = (JComboBox) event.getSource();
 		        String selectedSize = (String) combo.getSelectedItem();
 
-	        	JFrame mainFrame= (JFrame) SwingUtilities.getRoot(SizeComboBox.getParent());
+	        	//GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(SizeComboBox.getParent());
 		        if (selectedSize.equals("800-600")) {
-		        	mainFrame.setSize(new Dimension(800,600));
+		        	gui.setSizeOption(0);
+		        	gui.setSize(new Dimension(800,600));
 		        } else if (selectedSize.equals("1200-900")) {
-		        	mainFrame.setSize(new Dimension(1200,900));
+		        	gui.setSizeOption(1);
+		        	gui.setSize(new Dimension(1200,900));
 		        }
 		        else
-		        	mainFrame.setSize(new Dimension(800,600));
+		        	gui.setSize(new Dimension(800,600));
 		    }
 		});
 		add(SizeComboBox);

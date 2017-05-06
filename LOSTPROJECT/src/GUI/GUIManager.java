@@ -59,9 +59,16 @@ public class GUIManager extends JFrame {
 	private creditsPanel creditsPanel;
 	private boolean isGameExist;
 	private boolean isGameLoaded;
+	GameEngine game;
+
+
 
 
 	private String result;
+	private int sizeOption;
+	private boolean comingFromLoad;
+
+
 
 
 	/**
@@ -84,14 +91,21 @@ public class GUIManager extends JFrame {
 	 * Create the frame.
 	 */
 	public GUIManager() {
+		game = new GameEngine();
+		if(game.isUserExists())
 			isGameLoaded=true;
+		else
+			isGameLoaded=false;
 		result="";
 		isGameExist=false;
 		//newGame = new GameEngine();
 		//newGame.createGameEnvironment(true);
 		setName("mainFrame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		if(sizeOption==0)
+			setBounds(100, 100, 800, 600);
+		else
+			setBounds(100,100,1200,900);
 		setMinimumSize(new Dimension(800,600));
 		contentPane = new JPanel();
 		cards = new CardLayout(0, 0);
@@ -101,7 +115,7 @@ public class GUIManager extends JFrame {
 		
 		mainPanel = new mainPanel(false,isGameLoaded);
 		helpPanel = new HelpPanel();
-		settingsPanel = new SettingsPanel();
+		settingsPanel = new SettingsPanel(this);
 		//gamePanel = new gamePanel(null);
 		recordsPanel = new recordsPanel();
 		creditsPanel = new creditsPanel();
@@ -201,6 +215,42 @@ public class GUIManager extends JFrame {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public int getSizeOption() {
+		return sizeOption;
+	}
+	
+	public void setSizeOption(int i) {
+		sizeOption = i;
+		
+	}
+	
+	public void setGameLoaded(boolean isGameLoaded) {
+		this.isGameLoaded = isGameLoaded;
+	}
+
+	public void loadGame() {
+		game.createGameEnvironment(false);
+		setComingFromLoad(true);
+		isGameExist=true;
+		gamePanel = new gamePanel(game,"");
+		contentPane.add(gamePanel, "game");
+		cards.show(contentPane, "game");
+	}
+
+	/**
+	 * @return the comingFromLoad
+	 */
+	public boolean isComingFromLoad() {
+		return comingFromLoad;
+	}
+
+	/**
+	 * @param comingFromLoad the comingFromLoad to set
+	 */
+	public void setComingFromLoad(boolean comingFromLoad) {
+		this.comingFromLoad = comingFromLoad;
 	}
 	
 	
