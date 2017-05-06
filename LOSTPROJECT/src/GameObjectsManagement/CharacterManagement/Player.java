@@ -70,7 +70,8 @@ public class Player extends AggresiveCharacter {
 		
 	}
 	
-	public boolean craft(CraftableItem item, int amount){
+	/*
+	public boolean craft(Item item, int amount){
 		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
 		assert requiredItemsList != null;
 
@@ -105,7 +106,7 @@ public class Player extends AggresiveCharacter {
 
 		return true;
 	}
-	
+	*/
 	
 	/**
 	 * @return the energy

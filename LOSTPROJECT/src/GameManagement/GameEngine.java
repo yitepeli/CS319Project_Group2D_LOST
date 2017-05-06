@@ -156,7 +156,11 @@ public class GameEngine {
 
 
 	public boolean craft(String itemName, int amount, String type, boolean isArea){
-		CraftableItem item = (CraftableItem)this.readItem(itemName, type);
+		if(this.readItem(itemName, type).getType().equals("CraftableItem"))
+			CraftableItem item = (CraftableItem)this.readItem(itemName, type);
+		else if(this.readItem(itemName, type).getType().equals("Tool"))
+			Tool item = (Tool)this.readItem(itemName, type);
+
 		assert item != null;
 
 
@@ -167,19 +171,34 @@ public class GameEngine {
 			if(!this.player.hasItem(tmpItem.getName(), tmpItem.getQuantity()))
 				return false;
 
-		if(!isArea)
-			return player.craft(item, amount);		
-		else{
-			for(Item tmpItem : requiredItemsList)
+		//remove the items in requiredItemList from the player's inventory
+		for(Item tmpItem : requiredItemsList)
+			if(!tmpItem.getType().equals("Tool"))
 				for(int i = 0; i < tmpItem.getQuantity(); i++)
 					this.player.removeItem(tmpItem);
 
-			this.positionOfUser.addItem(item);
-
-			assert this.positionOfUser.hasItem(item.getName(), 1);
-
-			return true;
+		boolean check = true;
+		int j = 0;
+		while(check && j < amount){
+			check = this.player.addItem(item);
+			j++;
 		}
+
+		if(!check){
+			for(int i = 0; i < j; i++)
+				this.player.removeItem(item);
+
+			for(Item tmpItem : requiredItemsList)
+				if(!tmpItem.getType().equals("Tool"))
+					for(int i = 0; i < tmpItem.getQuantity(); i++)
+						this.player.addItem(tmpItem);
+				
+			return false;
+		}		
+
+		assert this.player.hasItem(item.getName(), amount);
+
+		return true;
 	}
 	
 	
