@@ -1,0 +1,42 @@
+{
+  "objectName" : "Stone",
+  "type" : "CraftableItem",
+  "objectId" : "1212",
+  "description" : "It is a stone.",
+  "weight" : "5.0",
+  "renewalTime": "3",
+  "renewable" : "true",
+  "actionList" : ["take","drop", "craft"],
+
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Knife",
+    "quantity" : "1",
+    "type" : "Tool"
+	},
+{
+		"objectName" : "Stone Pieces",
+    "quantity" : "3",
+    "type" : "CraftableItem"
+	},
+{
+		"objectName" : "Sword",
+    "quantity" : "1",
+    "type" : "Tool"
+	},
+
+	{
+		"objectName" : "Axe",
+    "quantity" : "1",
+    "type" : "Tool"
+	},
+    {
+      "objectName" : "Knife",
+      "quantity" : "1",
+      "type" : "Tool"
+
+    }
+	]
+
+}

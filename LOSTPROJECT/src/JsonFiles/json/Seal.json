@@ -1,0 +1,47 @@
+{
+  "objectName":"Seal",
+  "type" : "AggresiveCharacter",
+  "escapeChance" : "0.3",
+  "objectId" : "108",
+  "description" : "Do not believe the illusions, these animals are stronger than what they are seen. Better do not close",
+  "health" : "90",
+  "attack" : "40",
+  "defense" : "30",
+  "inventory" : {
+    "storedItemList" : [
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "objectName" : "Stone Pieces",
+  "type" : "CraftableItem",
+  "objectId" : "23",
+  "description" : "Little but many stone pieces. It may help on something.",
+  "weight" : "5.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take","drop", "craft"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Stone",
+        	"quantity" : "1",
+        	"type" : "CraftableItem"
+	}
+
+	],
+
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Spear",
+        	"quantity" : "1",
+        	"type" : "Tool"
+	}
+	]
+
+}

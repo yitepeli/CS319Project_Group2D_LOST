@@ -1,0 +1,27 @@
+{
+  "objectName" : "Sword",
+  "type" : "Tool",
+  "objectId" : "31",
+  "description" : "Self-explanatory, it is just a sword to fight with island's dangers.",
+  "weight" : "15.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take","drop", "use"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Stone",
+    		"type" : "CraftableItem",
+    		"quantity" : "2"
+	},
+
+	{
+		"objectName" : "Metal pieces",
+    		"type" : "CraftableItem",
+    		"quantity" : "2"
+	}
+
+	],
+
+  "attackPointBonus" : 40
+}

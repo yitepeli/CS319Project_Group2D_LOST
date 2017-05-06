@@ -1,0 +1,13 @@
+{
+  "objectName" : "Bear Skin",
+  "type" : "BoostingItem",
+  "objectId" : "125",
+  "description" : "It is needed to complete the event Is There Anybody Out There?",
+  "weight" : "25.0",
+  "renewableTime" : "0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take","drop", "use"],
+  "attackPointBonus" : 0,
+  "defensePointBonus" : 15
+}

@@ -1,0 +1,25 @@
+{
+  "objectName":"Crab",
+  "type" : "Character",
+  "objectId" : "106",
+  "escapeChance" : "0.7",
+  "description" : "According to the legend stories about LOST island, these crabs are most delicious meal in the world! Do not skip this taste and take a trial...:) ",
+  "health" : "17",
+  "defense" : "9",
+  "inventory" :{
+    "storedItemList" : [
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   }
+    ]
+  }
+
+}

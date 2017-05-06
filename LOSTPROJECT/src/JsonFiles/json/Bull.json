@@ -1,0 +1,80 @@
+{
+  "objectName":"Bull",
+  "objectId" : "122",
+  "type" : "AggresiveCharacter",
+  "escapeChance" : "0.2",
+  "description" : "Bull!",
+  "health" : "110",
+  "defense" : "200",
+  "attack" : "50",
+  "inventory" : {
+    "storedItemList" : [
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },	
+	   {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },
+	   {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },	
+	   {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },
+	   {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },	
+	   {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   }
+    ]
+  }
+}

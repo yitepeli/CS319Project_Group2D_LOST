@@ -1,0 +1,10 @@
+{
+  "objectName":"Dog",
+  "type" : "AggresiveCharacter",
+  "escapeChance" : "0.5",
+  "objectId" : "102",
+  "description" : "A tinny dog that attacks strangers in ",
+  "health" : "12",
+  "attack" : "12",
+  "defense" : "8"
+}

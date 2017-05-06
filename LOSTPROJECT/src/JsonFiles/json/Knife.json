@@ -1,0 +1,27 @@
+{
+  "objectName" : "Knife",
+  "type" : "Tool",
+  "objecId" : "36",
+  "description" : "It is just a knife for cutting things.",
+  "weight" : "6.0",
+  "renewable" : "false",
+  "visible" : "false",
+  "actionList" : ["take", "drop", "use"],
+  "requiredItemList" : [
+
+  {
+    "objectName" : "Stone",
+    "quantity" : "4",
+    "type" : "CraftableItem"
+  },
+
+  {
+    "objectName" : "Wood",
+    "quantity" : "3",
+    "type" : "CraftableItem"
+  }
+
+  ],
+
+  "attackPointBonus" : 20
+}

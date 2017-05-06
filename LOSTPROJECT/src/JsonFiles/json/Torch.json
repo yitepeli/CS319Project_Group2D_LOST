@@ -1,0 +1,27 @@
+{
+  "objectName" : "Torch",
+  "type" : "Tool",
+  "objectId" : "32",
+  "description" : "Keeps you away from dangerous animals, gives defense points",
+  "weight" : "3.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take", "drop", "use"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Wood",
+    		"quantity" : "1",
+      		"type" : "CraftableItem"
+	},
+	{
+		"objectName" : "Rock",
+    		"quantity" : "1",
+      		"type" : "CraftableItem"
+	}
+
+	],
+
+  "attackPointBonus" : 0,
+  "defensePointBonus" : 10
+}

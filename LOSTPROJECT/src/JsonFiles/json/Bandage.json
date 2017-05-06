@@ -1,0 +1,12 @@
+{
+  "objectName" : "Bandage",
+  "objectId" : "33",
+  "type" : "Food",
+  "description" : "Heals your wounds",
+  "weight" : "2.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take", "drop", "use"],
+  "healthPoints" : "15"
+
+}

@@ -1,0 +1,18 @@
+{
+  "objectName" : "Wrecked Boat",
+  "type" : "CraftableItem",
+  "objectId" : "230",
+  "description" : "You can restore and keep away from island with Wrecked Boat!",
+  "weight" : "3.0",
+  "renewable" : "false",
+  "visible" : "false",
+  "actionList" : ["take", "drop", "craft"],
+  "craftableItemList" : [
+	{
+		"objectName" : "Boat",
+    		"quantity" : "1",
+    		"type" :"CraftableItem"
+	}
+  ]
+
+}

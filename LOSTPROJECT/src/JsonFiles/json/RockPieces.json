@@ -1,0 +1,30 @@
+{
+  "objectName" : "Rock Pieces",
+  "type" : "CraftableItem",
+  "objectId" : "232",
+  "description" : "Many little rock pieces.",
+  "weight" : "4.0",
+  "renewable" : "false",
+  "visible" : "false",
+  "actionList" : ["take","drop", "craft"],
+  "requiredItemsList" : [
+
+	{
+		"objectName" : "Rock",
+    "type" :"CraftableItem",
+    "quantity" : "1"
+	}
+
+	],
+
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Knife",
+    "type" : "Tool",
+    "quantity" : "1"
+	}
+
+	]
+
+}

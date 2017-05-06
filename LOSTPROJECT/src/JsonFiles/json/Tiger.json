@@ -1,0 +1,47 @@
+{
+  "objectName":"Tiger",
+  "type" : "AggresiveCharacter",
+  "escapeChance" : "0.8",
+  "objectId" : "112",
+  "description" : "Take it easy tiger! Looks like real tiger comes behind you, watch your back...",
+  "health" : "110",
+  "attack" : "40",
+  "defense" : "35",
+  "inventory": {
+    "storedItemList": [
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   }
+    ]
+  }
+}

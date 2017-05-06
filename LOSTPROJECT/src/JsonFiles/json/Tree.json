@@ -1,0 +1,21 @@
+{
+  "objectName" : "Tree",
+  "type" : "CraftableItem",
+  "objectId" : "23",
+  "description" : "It is a tiny but useful tree.",
+  "weight" : "20.0",
+  "renewalTime" : "2",
+  "renewable" : "true",
+  "actionList" : ["take","drop", "craft"],
+
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Wood",
+        	"quantity" : "3",
+        	"type" : "CraftableItem"
+	}
+
+	]
+
+}

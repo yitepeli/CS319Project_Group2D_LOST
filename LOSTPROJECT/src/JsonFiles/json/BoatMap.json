@@ -1,0 +1,9 @@
+{
+  "objectName" : "Boat Map",
+  "type" : "Item",
+  "objectId" : "20",
+  "description" : "This map will show you the exit route from the island!",
+  "weight" : "2.0",
+  "renewable" : "false",
+  "actionList" : ["take", "drop"]
+}

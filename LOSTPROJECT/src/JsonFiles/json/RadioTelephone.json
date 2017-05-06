@@ -1,0 +1,10 @@
+{
+  "objectName" : "Radiotelephone",
+  "type" : "Item",
+  "objectId" : "26",
+  "description" : "This will enable you to send signal to outside world! If you know the correct channel...",
+  "weight" : "5.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take", "drop"]
+}

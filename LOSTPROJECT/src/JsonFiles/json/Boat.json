@@ -1,0 +1,31 @@
+{
+  "objectName" : "Boat",
+  "type" : "CraftableItem",
+  "objectId" : "23",
+  "description" : "Useful basic material for crafting objects.",
+  "weight" : "3.0",
+  "renewable" : "false",
+  "actionList" : ["take", "drop"],
+  "requiredItemList" : [
+
+	{
+		"objectName" : "Wrecked Boat",
+    		"quantity" : "1",
+    		"type" :"CraftableItem"
+	},
+
+	{
+		"objectName" : "Wood",
+    		"quantity" : "5",
+      		"type" : "CraftableItem"
+	},
+
+	{
+		"objectName" : "Hammer",
+    		"quantity" : "1",
+      		"type" : "Tool"
+	}
+
+	]
+
+}

@@ -1,0 +1,10 @@
+{
+  "objectName" : "Medicine",
+  "type" : "Food",
+  "objectId" : "34",
+  "description" : "Medicine, heals you.",
+  "weight" : "0.5",
+  "renewable" : "false",
+  "actionList" : ["take", "drop", "use"],
+  "healthPoints" : "50"
+}

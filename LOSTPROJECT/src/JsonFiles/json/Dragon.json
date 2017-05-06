@@ -1,0 +1,9 @@
+{
+  "objectName":"Dragon",
+  "type" : "AggresiveCharacter",
+  "objectId" : "0",
+  "description" : "A wild dragon which is impossible to control without dark diamond!",
+  "health" : "200",
+  "attack" : "250",
+  "defense" : "250"
+}

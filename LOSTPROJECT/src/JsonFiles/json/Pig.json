@@ -1,0 +1,34 @@
+{
+  "objectName":"Pig",
+  "type" : "Character",
+  "objectId" : "104",
+  "escapeChance" : "0.2",
+  "description" : "Pigs are not attacking human but their endurance should not be underestimated!!",
+  "health" : "70",
+  "defense" : "45",
+  "inventory": {
+  "storedItemList" : [
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"]
+	   },	
+	   {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"]
+	   }
+
+    ]
+  }
+}

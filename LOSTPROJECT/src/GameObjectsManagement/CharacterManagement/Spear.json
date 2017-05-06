@@ -1,0 +1,23 @@
+{
+  "objectName" : "Spear",
+  "type" : "Tool",
+  "objectId" : "36",
+  "description" : "Hmmm. It is the most powerful thing I have ever seen in this island.",
+  "weight" : "12.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take","drop", "use"],
+  "requiredItemList" : [
+
+  {
+    "objectName" : "Stone Pieces"
+  },
+
+  {
+    "objectName" : "Wood"
+  }
+
+  ],
+
+  "attackPointBonus" : "25"
+}

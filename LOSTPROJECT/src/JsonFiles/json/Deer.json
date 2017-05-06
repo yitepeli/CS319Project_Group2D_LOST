@@ -1,0 +1,58 @@
+{
+  "objectName":"Deer",
+  "type" : "Character",
+  "objectId" : "100",
+  "escapeChance" : "0.6",
+  "type" : "Character",
+  "description" : "Deer is a harmless animal which is sponging around the area! They are rare animals and easy to hunt.",
+  "health" : "30",
+  "defense" : "5",
+  "inventory" : {
+    "storedItemList":[
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   },
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   }
+    ]
+  }
+}

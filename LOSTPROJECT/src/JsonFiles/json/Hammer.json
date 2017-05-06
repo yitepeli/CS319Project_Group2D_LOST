@@ -1,0 +1,26 @@
+{
+  "objectName" : "Hammer",
+  "objectId" : "23",
+  "type" : "Tool",
+  "description" : "Useful basic material for crafting objects.",
+  "weight" : "4.0",
+  "renewable" : "false",
+  "actionList" : ["take", "drop", "use"],
+  "attackPointBonus" : 10,
+  "requiredItemList" : [
+
+	{
+		"objectName" : "Wood",
+        	"type" : "CraftableItem",
+        	"quantity" : "2"
+	},
+
+	{
+		"objectName" : "Rock",
+        	"type" : "CraftableItem",
+        	"quantity" : "2"
+	}
+
+	]
+
+}

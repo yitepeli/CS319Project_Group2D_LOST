@@ -1,0 +1,24 @@
+{
+  "objectName" : "Radio Tower",
+  "objecId" : "0",
+  "type" : "CraftableItem",
+  "description" : "A working radio tower. All you need is a radiotelephone to send your signal",
+  "weight" : "40.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "requiredItemList" : [
+  	{
+  		"objectName" : "Broken Radio Tower",
+        	"quantity" : "1",
+        	"type" : "CraftableItem"
+  	},
+
+	  {
+  		"objectName" : "Metal Wires",
+        	"quantity" : "5",
+        	"type" : "CraftableItem"
+  	}
+
+	]
+ 
+}

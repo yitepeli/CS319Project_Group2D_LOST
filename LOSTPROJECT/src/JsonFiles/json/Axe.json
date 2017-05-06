@@ -1,0 +1,24 @@
+{
+  "objectName" : "Axe",
+  "type" : "Tool",
+  "objectId" : "23",
+  "description" : "An axe which can cut through every big object...",
+  "weight" : "3.0",
+  "renewable" : "false",
+  "actionList" : ["take","drop", "use"],
+  "attackPointBonus" : 15,
+  "requiredItemList" : [
+	{
+		"objectName" : "Rock",
+        	"quantity" : "1",
+        	"type" : "CraftableItem"
+	},
+	{
+		"objectName" : "Wood",
+        	"quantity" : "2",
+        	"type" : "CraftableItem"
+	}
+  ]
+
+
+}

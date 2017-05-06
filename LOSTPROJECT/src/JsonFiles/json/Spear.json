@@ -1,0 +1,22 @@
+{
+  "objectName" : "Spear",
+  "type" : "Tool",
+  "objectId" : "23",
+  "description" : "An axe which can cut through every big object...",
+  "weight" : "4.0",
+  "renewable" : "false",
+  "actionList" : ["take","drop", "use"],
+  "attackPointBonus" : 25,
+  "requiredItemList" : [
+	{
+		"objectName" : "Wood",
+        	"quantity" : "2",
+        	"type" : "CraftableItem"
+	},
+	{
+		"objectName" : "Stone",
+        	"quantity" : "1",
+        	"type" : "CraftableItem"
+	}
+  ]
+}

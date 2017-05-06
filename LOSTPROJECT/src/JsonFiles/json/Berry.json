@@ -1,0 +1,11 @@
+{
+  "objectId" : "39",
+  "objectName" : "Berry",
+  "type" : "Food",
+  "description" : "Yummy Berries",
+  "weight" : "1.0",
+  "renewalTime": "3",
+  "renewable" : "true",
+  "actionList" : ["take","drop", "use"],
+  "hungerPoints" : "4"
+}

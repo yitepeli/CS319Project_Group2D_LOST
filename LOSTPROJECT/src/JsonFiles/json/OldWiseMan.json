@@ -1,0 +1,8 @@
+{
+  "objectName":"Old Wise Man",
+  "type" : "Character",
+  "objectId" : "0",
+  "description" : "An old wise man who has been living in island for many many many years. He knows how to survive from island!",
+  "health" : "100",
+  "defense" : "100"
+}

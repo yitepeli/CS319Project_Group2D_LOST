@@ -1,0 +1,20 @@
+{
+  "objectName" : "Sail Machine",
+  "objecrId" : "27",
+  "type" : "CraftableItem",
+  "description" : "This will be helpful for crafting sail!",
+  "weight" : "7.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take", "drop", "craft"],	
+  "craftableItemList" : [
+
+  	{
+  		"objectName": "Sail",
+        "type" : "CraftableItem",
+		"quantity" : "1"
+
+  	}
+
+  ]
+}

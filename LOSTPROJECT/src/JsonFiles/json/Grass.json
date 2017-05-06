@@ -1,0 +1,22 @@
+{
+  "objectName" : "Grass",
+  "objectId" : "223",
+  "type" : "CraftableItem",
+  "description" : "Grass can help with many things",
+  "weight" : "1.0",
+  "renewalTime" : "2",
+  "renewable" : "true",
+  "visible" : "true",
+  "actionList" : ["take","drop", "craft"],
+
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Sail",
+   		 "type" : "CraftableItem",
+    		"quantity" : "1"
+	}
+
+	]
+
+}

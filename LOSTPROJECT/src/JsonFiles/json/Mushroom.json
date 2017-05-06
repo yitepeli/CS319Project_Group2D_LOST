@@ -1,0 +1,13 @@
+{
+  "objectName" : "Mushroom",
+  "type" : "Food",
+  "objectId" : "35",
+  "description" : "Yummy forest mushroom",
+  "weight" : "1.0",
+  "renewable" : "true",
+  "renewalTime": "3",
+  "visible" : "true",
+  "actionList" : ["take", "drop", "use"],
+  "hungerPoints" : "5"
+
+}

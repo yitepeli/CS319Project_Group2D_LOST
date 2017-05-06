@@ -1,0 +1,34 @@
+{
+  "objectName" : "Metal Pieces",
+  "type" : "CraftableItem",
+  "objectId" : "23",
+  "description" : "Little but many metal pieces. I may survive with these.",
+  "weight" : "7.0",
+  "renewable" : "false",
+  "visible" : "true",
+  "actionList" : ["take","drop", "craft"],
+
+  "craftableItemList" : [
+
+	{
+		"objectName" : "Sword",
+    		"type" : "Tool",
+    		"quantity" : "1"
+	},
+
+	{
+		"objectName" : "Knife",
+    		"type" : "Tool",
+    		"quantity" : "1"
+	},
+
+	{
+		"objectName" : "Armor",
+    		"type" : "Tool",
+    		"quantity" : "1"
+	}
+
+
+	]
+
+}

@@ -1,0 +1,9 @@
+{
+  "objectName" : "Branch",
+  "type" : "Item",
+  "objectId" : "213",
+  "description" : "Branches from trees, might help with something.",
+  "weight" : "1.0",
+  "renewable" : "false",
+  "actionList" : ["take","drop"]
+}

@@ -1,0 +1,25 @@
+{
+  "objectName":"Bird",
+  "type" : "Character",
+  "objectId" : "110",
+  "escapeChance" : "0.7",
+  "description" : "Birds take advantage of their capabilities! Never easy to hunt flying animal... ",
+  "health" : "10",
+  "defense" : "30",
+  "inventory":{
+    "storedItemList" : [
+      {
+  		"objectName" : "Meat",
+  		"type" : "Food",
+  		"objectId" : "23",
+  		"description" : "It is a meat but you cannot eat it since it is raw and contaminated.",
+  		"weight" : "7.0",
+  		"renewable" : "false",
+  		"visible" : "false",
+  		"actionList" : ["take","drop","use"],
+  		"hungerPoints" : "5"
+	   }	
+	   
+    ]
+  }
+}

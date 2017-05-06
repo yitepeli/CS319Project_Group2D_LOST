@@ -1,0 +1,10 @@
+{
+  "objectName" : "Meat",
+  "type" : "Food",
+  "objectId" : "23",
+  "description" : "It is a raw meat. Maybe you should cook it a little bit. Or maybe not!",
+  "weight" : "2.0",
+  "renewable" : "false",
+  "actionList" : ["take","drop","use"],
+  "hungerPoints" : "5"
+}

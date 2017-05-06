@@ -1,0 +1,27 @@
+{
+  "objectName" : "Cloth Pieces",
+  "objectId" : "243",
+  "type" : "CraftableItem",
+  "description" : "From the dead people. They can make you alive.",
+  "weight" : "2.7",
+  "renewable" : "false",
+  "visible" : "false",
+  "actionList" : ["take","drop", "craft"],
+  "requiredItemsList" : [
+	{
+		"objectName" : "Corpse",
+    		"type" : "CraftableItem",
+    		"quantity" : "1"
+	}
+
+	],
+
+  "craftableItemList" : [
+	{
+		"objectName" : "Armor",
+    		"type" : "BoostingItem",
+    		"quantity" : "1"
+	}
+
+	]
+}
