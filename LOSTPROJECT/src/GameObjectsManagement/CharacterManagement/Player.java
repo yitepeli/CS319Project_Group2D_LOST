@@ -52,11 +52,6 @@ public class Player extends AggresiveCharacter {
 		this.hunger = hunger;
 	}
 
-	public boolean cookMeat(){
-		
-		return false;
-	}
-	
 	private void setAttack(int i) {
 		this.attack =i;
 		
@@ -69,13 +64,7 @@ public class Player extends AggresiveCharacter {
 	public double getGameTime(){
 		return gameTime;
 	}
-	
-	public boolean boilWater(){
-		
-		
-		return false;
-	}
-	
+
 	private void setDefense(int i) {
 		this.defense = i;
 		

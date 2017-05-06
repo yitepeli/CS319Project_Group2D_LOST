@@ -323,14 +323,25 @@ public class GameEngine {
 	}
 	
 	public boolean cookMeat(){
-		
-		return false;
+		assert this.positionOfUser.isCampFireExists();
+
+		if(this.player.hasItem("Meat", 1)){
+			this.player.removeItem(this.player.getItem("Meat"));
+			this.player.addItem(this.readItem("CookedMeat", "Food"));
+			return true;
+		}
 	}
 	
 	public boolean boilWater(){
-		
-		return false;
-		
+		assert this.positionOfUser.isCampFireExists();
+
+		if(this.player.hasItem("Dirty Water", 1)){
+			this.player.removeItem(this.player.getItem("Dirty Water"));
+			this.player.addItem(this.readItem("Water", "Food"));
+			return true;
+		}
+
+		return false;		
 	}
 	
 	public void rest(int duration){
