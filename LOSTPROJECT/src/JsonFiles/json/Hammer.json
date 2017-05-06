@@ -5,36 +5,20 @@
   "description" : "Useful basic material for crafting objects.",
   "weight" : "4.0",
   "renewable" : "false",
-  "visible" : "false",
-  "actionList" : ["take", "drop", "craft"],
+  "actionList" : ["take", "drop", "use"],
+  "attackPointBonus" : 10,
   "requiredItemList" : [
 
 	{
-		"objectName" : "Tree",
-        "type" : "CraftableItem",
-        "quantity" : "2"
+		"objectName" : "Wood",
+        	"type" : "CraftableItem",
+        	"quantity" : "2"
 	},
 
 	{
-		"objectName" : "Axe",
-        "type" : "Tool",
-        "quantity" : "1"
-	}
-
-	],
-
-  "craftableItemList" : [
-
-	{
-		"objectName" : "Spear",
-        "type" : "Tool",
-        "quantity" : "1"
-	},
-
-	{
-		"objectName" : "Axe",
-        "quantity" : "3",
-        "type" : "Tool"
+		"objectName" : "Rock",
+        	"type" : "CraftableItem",
+        	"quantity" : "2"
 	}
 
 	]

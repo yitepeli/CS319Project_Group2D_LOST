@@ -12,14 +12,20 @@
 
 	{
 		"objectName" : "Sword",
-    "type" : "Tool",
-    "quantity" : "1"
+    		"type" : "Tool",
+    		"quantity" : "1"
+	},
+
+	{
+		"objectName" : "Knife",
+    		"type" : "Tool",
+    		"quantity" : "1"
 	},
 
 	{
 		"objectName" : "Armor",
-    "type" : "Tool",
-    "quantity" : "1"
+    	"type" : "Tool",
+    	"quantity" : "1"
 	}
 
 

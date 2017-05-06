@@ -3,3 +3,10 @@ Stone.json
 Tree.json
 Tree.json
 Branch.json
+MetalPieces.json
+MetalPieces.json
+MetalPieces.json
+Stone.json
+Stone.json
+Stone.json
+Stone.json
