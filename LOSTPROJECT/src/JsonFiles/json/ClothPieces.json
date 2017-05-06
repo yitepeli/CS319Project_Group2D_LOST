@@ -11,9 +11,9 @@
 
 	{
 		"objectName" : "Corps",
-    "type" : "Item",
-    "quantity" : "4"
-	},
+      "type" : "Item",
+      "quantity" : "4"
+	  }
 
 	],
 
@@ -31,6 +31,6 @@
     "quantity" : "1"
 	}
 
-	],
+	]
 
 }

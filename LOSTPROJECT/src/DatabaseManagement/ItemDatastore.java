@@ -33,6 +33,7 @@ public class ItemDatastore implements CloudStorageDao<Item>{
                         entity.getString(Constants.OBJECT_NAME),
                         entity.getString(Constants.DESCRIPTION));
         item.setType(entity.getString(Constants.ITEM_TYPE));
+        item.setCloudId(entity.getKey().getId());//setting cloud id back!
         return item;
     }
 

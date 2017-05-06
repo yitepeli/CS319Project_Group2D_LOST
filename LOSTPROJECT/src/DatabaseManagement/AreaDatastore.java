@@ -67,6 +67,7 @@ public class AreaDatastore extends ParentDatastore{
             character.setType(entity.getString(Constants.CHARACTER_TYPE));
             character.setDefense((int)entity.getLong(Constants.DEFENSE));
             character.setHealth((int)entity.getLong(Constants.HEALTH));
+            character.setCloudId(entity.getKey().getId());
             return character;
         }
         //insert here

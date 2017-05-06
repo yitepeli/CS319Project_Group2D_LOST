@@ -185,14 +185,21 @@ public class Player extends AggresiveCharacter {
 		health = builder.health;
 		thirst = builder.thirst;
 		objectName = builder.userName;
+		cloudId = builder.cloudId;
 	}
 
 	public static class Builder{
 		private String curArea,userName;
 		private int energy, health, hunger, attack, defense,thirst;
+		private long cloudId;
 
 		public Builder energy(int energy){
 			this.energy = energy;
+			return this;
+		}
+
+		public Builder cloudId(long cloudId){
+			this.cloudId = cloudId;
 			return this;
 		}
 

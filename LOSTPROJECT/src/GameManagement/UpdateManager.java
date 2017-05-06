@@ -82,6 +82,7 @@ public class UpdateManager {
                 area.setInventory(areaInventory);
                 area.setCharacterList(new ArrayList<>(characterList));
 
+
                 if (area.getRightNeighbour() != null) {
                     area = area.getRightNeighbour();
                 }

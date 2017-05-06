@@ -37,7 +37,7 @@ public class GameEngine {
 	private boolean isEntered;
 
 	public GameEngine(){
-		databaseManager = new DatabaseManager(); //Yasin aldi bunu buraya
+
 	//	radioTower = new RadioTower();
 	//	sailingAway = new SailingAway();
 	//	oldWiseMan = new OldWiseMan();
@@ -52,8 +52,11 @@ public class GameEngine {
 		Item item = this.player.getItem(itemName);
 		this.player.removeItem(item);
 		this.positionOfUser.addItem(item);
-
 		assert this.positionOfUser.hasItem(itemName, 1);
+
+		databaseManager.clearData(item.getCloudId(),DatabaseManager.DeleteAction.DELETE_ITEM_FROM_PLAYER);//delete from area
+		item.setOnCloud(false);//not on cloud yet
+		databaseManager.processData(item, DatabaseManager.WriteAction.WRITE_ITEM_INTO_AREA);//add into player inventory
 	}
 
 	public boolean takeItem(String itemName){
@@ -62,8 +65,11 @@ public class GameEngine {
 			return false;
 
 		assert this.player.hasItem(itemName, 1);
-
 		this.positionOfUser.removeItem(item);
+
+		databaseManager.clearData(item.getCloudId(),DatabaseManager.DeleteAction.DELETE_ITEM_FROM_AREA);//delete from area
+		item.setOnCloud(false);//not on cloud yet
+		databaseManager.processData(item, DatabaseManager.WriteAction.WRITE_ITEM_INTO_PLAYER);//add into player inventory
 		return true;
 	}
 
@@ -76,10 +82,6 @@ public class GameEngine {
 		return databaseManager.readItem(itemName,type);
 	}
 
-
-	public void enterUserName(String name){
-		player.setName(name);
-	}
 
 	public void save(boolean isSoundActive,int panelOption){
 
@@ -96,7 +98,7 @@ public class GameEngine {
 		databaseManager.processData(record, DatabaseManager.WriteAction.WRITE_RECORD);
 	}
 
-	public List<Record> getRecords(){
+	public  List<Record> getRecords(){
 		return databaseManager.listRecords();
 	}
 
@@ -127,8 +129,8 @@ public class GameEngine {
 	public void createGameEnvironment(boolean isNewGame){
 
 		DatabaseManager.initUserStaticId(isNewGame);
+		databaseManager = new DatabaseManager();
 
-		//databaseManager = new DatabaseManager();
 		updateManager = new UpdateManager();
 		mapManager = new MapManager();
 
@@ -146,10 +148,13 @@ public class GameEngine {
 		updateManager.createGameEnvironment(isNewGame,databaseManager,player.getCurrentPositionOfUser());
 		positionOfUser = updateManager.getPositionOfUser();
 		mapManager.processMap(positionOfUser);
+		initPlayerInventory();
+	}
 
-		player.addItem(databaseManager.readItem("Tree","CraftableItem"));
-		player.addItem(databaseManager.readItem("Axe","Tool"));
-		player.addItem(databaseManager.readItem("Wood","CraftableItem"));
+	private void initPlayerInventory(){
+		Item initialItem = databaseManager.readItem("Axe","Tool");
+		player.addItem(initialItem);
+		databaseManager.processData(initialItem, DatabaseManager.WriteAction.WRITE_ITEM_INTO_PLAYER);//adding item into player inventory
 	}
 
 
@@ -170,6 +175,7 @@ public class GameEngine {
 			if(!this.player.hasItem(tmpItem.getName(), tmpItem.getQuantity()))
 				return false;
 
+<<<<<<< Updated upstream
 		if(!isArea)
 			return player.craft(item, amount);		
 		else{
@@ -180,6 +186,11 @@ public class GameEngine {
 			this.positionOfUser.addItem(item);
 
 			assert this.positionOfUser.hasItem(item.getName(), 1);
+=======
+		player.craft(item, amount);
+		//databaseManager.processData(item, DatabaseManager.WriteAction.WRITE_ITEM_INTO_PLAYER);//adding into player inventory
+		//databaseManager.clearData(item.getCloudId(),DatabaseManager.DeleteAction.DELETE_ITEM_FROM_PLAYER);//removing from area inventory
+>>>>>>> Stashed changes
 
 			return true;
 		}

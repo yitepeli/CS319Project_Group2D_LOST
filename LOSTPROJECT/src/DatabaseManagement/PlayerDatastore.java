@@ -53,6 +53,7 @@ public class PlayerDatastore extends ParentDatastore{
                     .health((int)entity.getLong(Constants.HEALTH))
                     .hunger((int)entity.getLong(Constants.HUNGER))
                     .thirst((int)entity.getLong(Constants.THIRST))
+                    .cloudId(entity.getKey().getId())//setting cloud id!
                     .build();
         }
 
