@@ -54,10 +54,10 @@ public class Player extends AggresiveCharacter {
 
 
 	public void updateTime(double incAmount){
-		this.setThirst(this.getThirst() + incAmount * 3);
-		this.setHunger(this.getHunger() + incAmount * 5);
+		this.setThirst(this.getThirst() + (int)incAmount * 3);
+		this.setHunger(this.getHunger() + (int)incAmount * 5);
 
-		this.setEnergy(this.getEnergy() - incAmount * 5);
+		this.setEnergy(this.getEnergy() - (int)incAmount * 5);
 		if(this.getHunger() >= 90 || this.getThirst() >= 90)
 			this.setHealth(this.getHealth() - 2);
 		

@@ -46,35 +46,7 @@ public class GameEngine {
 	}
 
 	public void update(double time){
-		int pday = int(player.getGameTime());
 		this.player.updateTime(time);
-		int cday = int(player.getGameTime());
-
-		if( (cday - pday) == 1){
-			this.player.getInventory().update(cday);
-
-			//getting to the the left up point in the map
-			Area tmp = this.positionOfUser;
-			Area tp;
-			while(tmp.getLeftNeighbour() != null){
-				tmp = tmp.getLeftNeighbour();
-			}
-
-			while(tmp.getUpNeighbour() != null){
-				tmp = tmp.getUpNeighbour();
-			}
-
-			//accessing each area and updating the environment
-			while(tmp != null){
-				tp = tmp;
-				while(tp != null){
-					tp.getInventory().update();
-					tp = tp.getRightNeighbour();
-				}
-				tmp = tmp.getDownNeighbour();
-			}
-		}
-
 	}
 
 	/**
@@ -101,7 +73,7 @@ public class GameEngine {
 		this.positionOfUser.removeItem(item);
 
 		//time
-		this.player.update(0.15);
+		this.player.updateTime(0.15);
 		return true;
 	}
 
@@ -161,7 +133,7 @@ public class GameEngine {
 		mapManager.processMap(positionOfUser);//updating map
 
 		//time
-		this.update(0.8);
+		this.update(0.4);
 	}
 
 
@@ -392,10 +364,11 @@ public class GameEngine {
 				this.player.removeItem(this.player.getItem("Rock"));
 			}
 			this.positionOfUser.setCampFireExists(true);
+			this.update(0.4);
 			return true;
 
 			//time
-			this.update(0.4);
+
 		}
 
 		return false;
@@ -407,10 +380,11 @@ public class GameEngine {
 		if(this.player.hasItem("Meat", 1)){
 			this.player.removeItem(this.player.getItem("Meat"));
 			this.player.addItem(this.readItem("CookedMeat", "Food"));
+			this.update(0.2);
 			return true;
 
 			//time
-			this.update(0.2);
+
 		}
 		return false;
 	}
@@ -421,10 +395,11 @@ public class GameEngine {
 		if(this.player.hasItem("Dirty Water", 1)){
 			this.player.removeItem(this.player.getItem("Dirty Water"));
 			this.player.addItem(this.readItem("Water", "Food"));
-			return true;
-
 			//time
 			this.update(0.2);
+			return true;
+
+
 		}
 
 		return false;		
