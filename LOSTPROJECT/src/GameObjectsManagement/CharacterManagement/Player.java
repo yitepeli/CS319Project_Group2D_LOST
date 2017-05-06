@@ -32,11 +32,6 @@ public class Player extends AggresiveCharacter {
 		this.thirst=15;
 		this.hunger=15;
 	}
-	
-
-
-
-
 
 	public Player(String name) {
 		this.setName(name);
@@ -58,7 +53,14 @@ public class Player extends AggresiveCharacter {
 	}
 
 
-	public void updateGameTime(double incAmount){
+	public void updateTime(double incAmount){
+		this.setThirst(this.getThirst() + (int)incAmount * 3);
+		this.setHunger(this.getHunger() + (int)incAmount * 5);
+
+		this.setEnergy(this.getEnergy() - (int)incAmount * 5);
+		if(this.getHunger() >= 90 || this.getThirst() >= 90)
+			this.setHealth(this.getHealth() - 2);
+		
 		this.gameTime += incAmount;
 	}
 	public double getGameTime(){
@@ -69,44 +71,6 @@ public class Player extends AggresiveCharacter {
 		this.defense = i;
 		
 	}
-	
-	/*
-	public boolean craft(Item item, int amount){
-		ArrayList<Item> requiredItemsList = item.getRequiredItemsList();
-		assert requiredItemsList != null;
-
-		//remove the items in requiredItemList from the player's inventory
-		for(Item tmpItem : requiredItemsList)
-			if(!tmpItem.getType().equals("Tool"))
-				for(int i = 0; i < tmpItem.getQuantity(); i++)
-					this.removeItem(tmpItem);
-
-
-
-		boolean check = true;
-		int j = 0;
-		while(check && j < amount){
-			check = this.addItem(item);
-			j++;
-		}
-
-		if(!check){
-			for(int i = 0; i < j; i++)
-				this.removeItem(item);
-
-			for(Item tmpItem : requiredItemsList)
-				if(!(tmpItem instanceof Tool))
-					for(int i = 0; i < tmpItem.getQuantity(); i++)
-						this.addItem(tmpItem);
-				
-			return false;
-		}		
-
-		assert this.hasItem(item.getName(), amount);
-
-		return true;
-	}
-	*/
 	
 	/**
 	 * @return the energy

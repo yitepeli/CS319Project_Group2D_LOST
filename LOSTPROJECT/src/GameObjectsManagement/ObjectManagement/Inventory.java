@@ -1,4 +1,3 @@
-
 /*
 ** Inventory Class
 
@@ -152,6 +151,21 @@ public class Inventory{
 			result = result + item.toString() + "\n";
 
 		return result;
+	}
+
+	public void update(int gameDay){
+		for(Item item : this.storedItemList)
+			if(item.getRenewalTime() != 0 && gameDay % item.getRenewalTime() == 0)
+				this.addItem(item);
+
+		//removing extra items
+
+		for(Item item : storedItemList ){
+			int s = (this.getCount(item.getName()) / 2)-1;
+			for(int i = 0; i < s; i++){
+				this.removeItem(item);
+			}
+		}
 	}
 }
 

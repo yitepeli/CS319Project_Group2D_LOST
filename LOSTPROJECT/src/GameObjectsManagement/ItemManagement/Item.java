@@ -68,7 +68,7 @@ public class Item extends GameObject{
 		return this.renewable;
 	}
 
-	public int getRenewableTime(){
+	public int getRenewalTime(){
 		return this.renewalTime;
 	}
 
