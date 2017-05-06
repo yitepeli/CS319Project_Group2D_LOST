@@ -311,12 +311,12 @@ public class GameEngine {
 	public boolean makeCampfire(){	
 		assert !positionOfUser.isCampFireExists();
 
-		if(this.craft("Campfire", 1, "CraftableItem", true)){
+		//if(this.craft("Campfire", 1, "CraftableItem", true)){
 			this.positionOfUser.setCampFireExists(true);
 			return true;
-		}
+		//}
 
-		return false;
+		//return false;
 	}
 	
 	public boolean cookMeat(){
