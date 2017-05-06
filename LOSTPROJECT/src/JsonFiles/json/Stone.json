@@ -30,7 +30,13 @@
 		"objectName" : "Axe",
     "quantity" : "1",
     "type" : "Tool"
-	}
+	},
+    {
+      "objectName" : "Knife",
+      "quantity" : "1",
+      "type" : "Tool"
+
+    }
 	]
 
 }

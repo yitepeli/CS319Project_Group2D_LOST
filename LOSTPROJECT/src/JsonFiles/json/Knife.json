@@ -7,7 +7,7 @@
   "renewable" : "false",
   "visible" : "false",
   "actionList" : ["take", "drop", "use"],
-  "requiredItemsList" : [
+  "requiredItemList" : [
 
   {
     "objectName" : "Stone",
@@ -16,7 +16,7 @@
   },
 
   {
-    "objectName" : "Metal pieces",
+    "objectName" : "Wood",
     "quantity" : "3",
     "type" : "CraftableItem"
   }

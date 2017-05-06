@@ -129,4 +129,12 @@ public class Character extends GameObject {
 		return this.escapeChance;
 	}
 
+	public void setDefense(int defense){
+		this.defense = defense;
+	}
+
+	public void setHealth(int health){
+		this.health = health;
+	}
+
 }

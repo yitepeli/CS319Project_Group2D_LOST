@@ -51,14 +51,14 @@ public class Test {
         characters.forEach(e->System.out.println(e.getName()));
 
 
-        gameEngine.craft("Wood",2,"CraftableItem");
+      /*  gameEngine.craft("Wood",2,"CraftableItem");
         System.out.println(gameEngine.getPlayer().getInventory().console_listItems());
 
        gameEngine.save(true,1);
 
        gameEngine.getRecords().forEach(e->System.out.println(e.getAccomplishedStoryEvent()));
 
-
+*/
 
     }
 
