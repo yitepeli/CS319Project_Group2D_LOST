@@ -10,11 +10,14 @@
   "requiredItemsList" : [
 
 	{
-		"objectName" : "Wood"
+		"objectName" : "Wood",
+    		"quantity" : "1",
+      		"type" : "CraftableItem"
 	},
-
 	{
-		"objectName" : "Fire"
+		"objectName" : "Rock",
+    		"quantity" : "1",
+      		"type" : "CraftableItem"
 	}
 
 	],

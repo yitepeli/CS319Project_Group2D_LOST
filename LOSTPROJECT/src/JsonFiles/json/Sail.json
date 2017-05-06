@@ -11,12 +11,15 @@
 
 	{
 		"objectName" : "Sail Machine",
+"type" : "CraftableItem",
 		"quantity" : "1"
+
 	},
 
 	{
-		"objectName" : "Grass"
-		"quantity" : 1
+		"objectName" : "Grass",
+"type" : "CraftableItem",
+		"quantity" : 4
 	}
   ]
 }

@@ -3,7 +3,7 @@
   "type" : "Tool",
   "objecId" : "36",
   "description" : "It is just a knife for cutting things.",
-  "weight" : "5.0",
+  "weight" : "6.0",
   "renewable" : "false",
   "visible" : "false",
   "actionList" : ["take", "drop", "use"],
@@ -23,5 +23,5 @@
 
   ],
 
-  "attackPointBonus" : 15
+  "attackPointBonus" : 20
 }

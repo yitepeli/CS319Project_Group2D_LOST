@@ -1,17 +1,9 @@
 {
   "objectName" : "Branch",
-  "type" : "CraftableItem",
+  "type" : "Item",
   "objectId" : "213",
   "description" : "Branches from trees, might help with something.",
   "weight" : "1.0",
   "renewable" : "false",
-  "visible" : "true",
-  "actionList" : ["take","drop", "craft"],
-
-  "craftableItemList" : [
-	{
-		"objectName" : "Shelter",
-        "type" : "Tool"
-	}
-  ]
+  "actionList" : ["take","drop"]
 }

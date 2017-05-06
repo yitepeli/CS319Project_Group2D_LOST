@@ -10,23 +10,18 @@
   "requiredItemsList" : [
 
 	{
-		"objectName" : "Stone"
+		"objectName" : "Stone",
+    		"type" : "CraftableItem",
+    		"quantity" : "2"
 	},
 
 	{
-		"objectName" : "Stone"
-	},
-
-	{
-		"objectName" : "Metal pieces"
-	},
-
-	{
-		"objectName" : "Metal pieces"
+		"objectName" : "Metal pieces",
+    		"type" : "CraftableItem",
+    		"quantity" : "2"
 	}
 
 	],
 
-  "attackPointBonus" : 40,
-  "defensePointBonus" : 0
+  "attackPointBonus" : 40
 }

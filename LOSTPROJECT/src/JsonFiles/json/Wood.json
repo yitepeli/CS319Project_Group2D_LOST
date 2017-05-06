@@ -11,14 +11,14 @@
 
 	{
 		"objectName" : "Tree",
-    "quantity" : "1",
-    "type" :"CraftableItem"
+    		"quantity" : "1",
+    		"type" :"CraftableItem"
 	},
 
 	{
 		"objectName" : "Axe",
-    	"quantity" : "1",
-      "type" : "Tool"
+    		"quantity" : "1",
+      		"type" : "Tool"
 	}
 
 	],
@@ -40,17 +40,19 @@
 	{
 		"objectName" : "Hammer",
 		"quantity" : "1",
-    	"type" : "Tool"
+    		"type" : "Tool"
 	},
 
 	{
 		"objectName" : "Torch",
-		"quantity" : "1"
+		"quantity" : "1",
+		"type" : "Tool"
 	},
 
 	{
 		"objectName" : "Boat",
-		"quantity" : "1"
+		"quantity" : "1",
+		"type" : "Tool"
 	}
 
 	]

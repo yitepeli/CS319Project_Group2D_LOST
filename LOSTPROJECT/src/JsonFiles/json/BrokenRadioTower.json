@@ -3,14 +3,15 @@
   "type" : "CraftableItem",
   "objecId" : "10000",
   "description" : "A broken radio tower rotting on the iced area... Your goal is to fix the tower and send a signal to outside world. Maybe someone responds...",
-  "weight" : "40.0",
+  "weight" : "20.0",
   "renewable" : "false",
-  "visible" : "true",
-  "actionList" : ["craft"],
+  "actionList" : ["take","drop", "craft"],
   "craftableItemList" : [
 
 	{
-		"objectName" : "Radio Tower"
+		"objectName" : "Radio Tower",
+        	"quantity" : "1",
+        	"type" : "CraftableItem"
 	}
 
 	]

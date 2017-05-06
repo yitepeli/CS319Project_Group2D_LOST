@@ -2,17 +2,28 @@
   "objectName" : "Rock",
   "type" : "CraftableItem",
   "objectId" : "12122",
-  "description" : "It is a rock.",
-  "weight" : "8.0",
+  "description" : "It is a rock. Nothing more!",
+  "weight" : "1.0",
   "renewalTime": "3",
   "renewable" : "true",
-  "visible" : "true",
   "actionList" : ["take","drop", "craft"],
 
   "craftableItemList" : [
 
 	{
-		"objectName" : "Rock Pieces"
+		"objectName" : "Axe",
+        	"quantity" : "1",
+        	"type" : "Tool"
+	},
+	{
+		"objectName" : "Hammer",
+        	"quantity" : "1",
+        	"type" : "Tool"
+	},
+	{
+		"objectName" : "Torch",
+        	"quantity" : "1",
+        	"type" : "Tool"
 	}
 
 	]

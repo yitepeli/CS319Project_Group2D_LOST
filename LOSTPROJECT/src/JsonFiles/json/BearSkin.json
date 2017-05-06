@@ -9,5 +9,5 @@
   "visible" : "true",
   "actionList" : ["take","drop", "use"],
   "attackPointBonus" : 0,
-  "defensePointBonus" : 25
+  "defensePointBonus" : 15
 }

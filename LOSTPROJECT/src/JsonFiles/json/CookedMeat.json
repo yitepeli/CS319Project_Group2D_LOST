@@ -3,9 +3,8 @@
   "type" : "Food",
   "objectId" : "156",
   "description" : "It is an delicious warm meat",
-  "weight" : "5.0",
+  "weight" : "2.0",
   "renewable" : "false",
-  "visible" : "false",
   "actionList" : ["take","drop", "use"],
   "hungerPoints" : 15
 }

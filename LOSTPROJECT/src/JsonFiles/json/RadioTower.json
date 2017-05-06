@@ -7,14 +7,17 @@
   "renewable" : "false",
   "visible" : "true",
   "requiredItemList" : [
-
   	{
-  		"objectName" : "Broken Radio Tower"
+  		"objectName" : "Broken Radio Tower",
+        	"quantity" : "1",
+        	"type" : "CraftableItem"
   	},
 
-    {
-      "objectName" : "Metal Wires"
-    }
+	  {
+  		"objectName" : "Metal Wires",
+        	"quantity" : "5",
+        	"type" : "CraftableItem"
+  	}
 
 	]
  

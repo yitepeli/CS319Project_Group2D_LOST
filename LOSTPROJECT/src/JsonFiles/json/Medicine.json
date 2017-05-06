@@ -5,7 +5,6 @@
   "description" : "Medicine, heals you.",
   "weight" : "0.5",
   "renewable" : "false",
-  "visible" : "true",
   "actionList" : ["take", "drop", "use"],
   "healthPoints" : "50"
 }

@@ -7,19 +7,12 @@
   "renewable" : "false",
   "visible" : "false",
   "actionList" : ["take", "drop", "craft"],
-  "requiredItemsList" : [
-
+  "craftableItemList" : [
 	{
-		"objectName" : "Tree",
-        "quantity" : "20"
-	},
-
-	{
-		"objectName" : "Axe",
-        "quantity" : "1"
+		"objectName" : "Boat",
+    		"quantity" : "1",
+    		"type" :"CraftableItem"
 	}
-
-	],
-	"craftableItemList" : []
+  ]
 
 }

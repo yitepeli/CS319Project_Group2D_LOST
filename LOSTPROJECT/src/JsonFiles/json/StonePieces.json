@@ -10,7 +10,9 @@
   "requiredItemsList" : [
 
 	{
-		"objectName" : "Stone"
+		"objectName" : "Stone",
+        	"quantity" : "1",
+        	"type" : "CraftableItem"
 	}
 
 	],
@@ -18,13 +20,10 @@
   "craftableItemList" : [
 
 	{
-		"objectName" : "Spear"
-	},
-
-	{
-		"objectName" : "Fishing Rod"
+		"objectName" : "Spear",
+        	"quantity" : "1",
+        	"type" : "Tool"
 	}
-
-	],
+	]
 
 }

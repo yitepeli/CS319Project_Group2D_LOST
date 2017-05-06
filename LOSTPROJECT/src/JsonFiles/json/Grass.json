@@ -13,8 +13,8 @@
 
 	{
 		"objectName" : "Sail",
-    "type" : "CraftableItem",
-    "quantity" : "1"
+   		 "type" : "CraftableItem",
+    		"quantity" : "1"
 	}
 
 	]

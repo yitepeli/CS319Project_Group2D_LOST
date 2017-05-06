@@ -1,0 +1,17 @@
+{
+  "objectName" : "Corpse",
+  "objectId" : "243",
+  "type" : "CraftableItem",
+  "description" : "A smelling rotten body. What are you planning to do with it?",
+  "weight" : "20",
+  "renewable" : "false",
+  "actionList" : ["take","drop", "craft"],
+  
+  "craftableItemList" : [
+	{
+		"objectName" : "Cloth Pieces",
+    		"type" : "CraftableItem",
+   		"quantity" : "2"
+	}
+  ]
+}

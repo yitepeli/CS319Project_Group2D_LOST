@@ -10,7 +10,9 @@
   "craftableItemList" : [
 
   	{
-  		"objectName": "Sail"
+  		"objectName": "Sail",
+"type" : "CraftableItem",
+		"quantity" : "1"
 
   	}
 

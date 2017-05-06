@@ -6,7 +6,6 @@
   "weight" : "1.0",
   "renewalTime": "3",
   "renewable" : "true",
-  "visible" : "true",
   "actionList" : ["take","drop", "use"],
   "hungerPoints" : "4"
 }

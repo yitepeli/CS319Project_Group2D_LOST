@@ -8,29 +8,20 @@
   "visible" : "false",
   "actionList" : ["take","drop", "craft"],
   "requiredItemsList" : [
-
 	{
-		"objectName" : "Corps",
-    "type" : "Item",
-    "quantity" : "4"
-	},
-
-	],
-
-  "craftableItemList" : [
-
-	{
-		"objectName" : "Bandage",
-    "type" : "BoostingItem",
-    "quantity" : "1"
-	},
-
-	{
-		"objectName" : "Armor",
-    "type" : "BoostingItem",
-    "quantity" : "1"
+		"objectName" : "Corpse",
+    		"type" : "CraftableItem",
+    		"quantity" : "1"
 	}
 
 	],
 
+  "craftableItemList" : [
+	{
+		"objectName" : "Armor",
+    		"type" : "BoostingItem",
+    		"quantity" : "1"
+	}
+
+	]
 }

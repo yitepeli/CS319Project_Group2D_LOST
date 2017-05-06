@@ -3,9 +3,8 @@
   "type": "BoostingItem",
   "objectId" : "21",
   "description" : "A special strong armor resistant to dragon fire",
-  "weight" : "30.0",
+  "weight" : "20.0",
   "renewable" : "false",
-  "visible" : "false",
   "actionList" : ["take","drop", "use"],
   "attackPointBonus" : 10,
   "defensePointBonus" : 50
