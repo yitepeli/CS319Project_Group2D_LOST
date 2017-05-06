@@ -51,7 +51,7 @@ public class GameEngine {
 	public void dropItem(String itemName){
 		Item item = this.player.getItem(itemName);
 		this.player.removeItem(item);
-		this.positionOfUser.addItem(item);
+		this.positionOfUser.addItem(item); 
 
 		assert this.positionOfUser.hasItem(itemName, 1);
 	}
@@ -329,6 +329,7 @@ public class GameEngine {
 			this.player.addItem(this.readItem("CookedMeat", "Food"));
 			return true;
 		}
+		return false;
 	}
 	
 	public boolean boilWater(){
