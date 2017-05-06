@@ -71,8 +71,9 @@ public class Player extends AggresiveCharacter {
 
 		//remove the items in requiredItemList from the player's inventory
 		for(Item tmpItem : requiredItemsList)
-			for(int i = 0; i < tmpItem.getQuantity(); i++)
-				this.removeItem(tmpItem);
+			if(!(tmpItem instanceof Tool))
+				for(int i = 0; i < tmpItem.getQuantity(); i++)
+					this.removeItem(tmpItem);
 
 
 
@@ -88,8 +89,9 @@ public class Player extends AggresiveCharacter {
 				this.removeItem(item);
 
 			for(Item tmpItem : requiredItemsList)
-				for(int i = 0; i < tmpItem.getQuantity(); i++)
-					this.addItem(tmpItem);
+				if(!(tmpItem instanceof Tool))
+					for(int i = 0; i < tmpItem.getQuantity(); i++)
+						this.addItem(tmpItem);
 				
 			return false;
 		}		
