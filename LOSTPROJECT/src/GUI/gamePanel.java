@@ -66,6 +66,7 @@ public class gamePanel extends JPanel {
 	private PopUpFrame mapFrame;
 
 	public gamePanel(GameEngine game, String s) {
+		JTextPane textPane = new JTextPane();;
 		inFight=false;
 		inEvent=false;
 		isNameDefined=true;
@@ -226,9 +227,20 @@ public class gamePanel extends JPanel {
 		campFire.setCursor(cursor);
 		campFire.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 
+				 boolean b = newGame.makeCampfire();
+				 if(b){
+					 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(campFire.getParent());
+					 mainFrame.updateGamePanel(newGame,areaDescription);
+				 }
+					
+				 else{
+					 textResult = areaDescription+"You don't have enought item to make fire";
+					 textPane.setText(textResult);
+				 }
 			}
 		});
+		if(newGame.isCampfireLit())
+			campFire.setVisible(false);
 		campFire.setIcon(new ImageIcon(userDir + "/src/GUI/campfire.png"));
 		headRightPanel.add(campFire);
 
@@ -238,9 +250,21 @@ public class gamePanel extends JPanel {
 		cook.setCursor(cursor);
 		cook.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 
+				 boolean b = newGame.cookMeat();
+				 if(b){
+					 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(cook.getParent());
+					 mainFrame.updateGamePanel(newGame,areaDescription);
+				 }
+					
+				 else{
+					 textResult = areaDescription+"You don't have enought item to cook meat";
+					 textPane.setText(textResult);
+				 }
+					 
 			}
 		});
+		if(!newGame.isCampfireLit())
+			cook.setVisible(false);
 		cook.setIcon(new ImageIcon(userDir + "/src/GUI/cook.png"));
 		headRightPanel.add(cook);
 
@@ -250,9 +274,20 @@ public class gamePanel extends JPanel {
 		boil.setCursor(cursor);
 		boil.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 
+				 boolean b = newGame.boilWater();
+				 if(b){
+					 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(boil.getParent());
+					 mainFrame.updateGamePanel(newGame,areaDescription);
+				 }
+					
+				 else{
+					 textResult = areaDescription+"You don't have enought item to boil water";
+					 textPane.setText(textResult);
+				 }
 			}
 		});
+		if(!newGame.isCampfireLit())
+			boil.setVisible(false);
 		boil.setIcon(new ImageIcon(userDir + "/src/GUI/boil.png"));
 		headRightPanel.add(boil);
 
@@ -262,9 +297,21 @@ public class gamePanel extends JPanel {
 		shelter.setCursor(cursor);
 		shelter.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 
+				 boolean b = newGame.buildShelter();
+				 if(b){
+					 GUIManager mainFrame= (GUIManager) SwingUtilities.getRoot(shelter.getParent());
+					 mainFrame.updateGamePanel(newGame,areaDescription);
+				 }
+					
+				 else{
+					 textResult = areaDescription+"You don't have enought item to build shelter";
+					 textPane.setText(textResult);
+				 }
 			}
 		});
+		if(newGame.getPositionOfUser().isShelterExists())
+			shelter.setVisible(false);
+		
 		shelter.setIcon(new ImageIcon(userDir + "/src/GUI/shelter.png"));
 		headRightPanel.add(shelter);
 
@@ -274,9 +321,13 @@ public class gamePanel extends JPanel {
 		rest.setCursor(cursor);
 		rest.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
-				 
+				 newGame.rest(4);
+				 textResult = areaDescription+"You had rest and gained energy";
+				 textPane.setText(textResult);
 			}
 		});
+		if(!newGame.getPositionOfUser().isShelterExists())
+			rest.setVisible(false);
 		rest.setIcon(new ImageIcon(userDir + "/src/GUI/rest.png"));
 		headRightPanel.add(rest);
 		
@@ -297,7 +348,7 @@ public class gamePanel extends JPanel {
 		midPanel.add(midLeftPanel);
 		midLeftPanel.setLayout(new BorderLayout(0, 0));
 
-		JTextPane textPane = new JTextPane();
+		
 		textPane.setText(textResult);
 		textPane.setEditable(false);
 		textPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
@@ -326,7 +377,7 @@ public class gamePanel extends JPanel {
 			        				}
 			        					
 			        				else
-			        					textResult = areaDescription+"You cannot take the item";
+			        					textResult = areaDescription+"You cannot take the item because your inventory has reached its capacity.";
 			        				textPane.setText(textResult);
 			        			}
 				        		else{
@@ -489,7 +540,7 @@ public class gamePanel extends JPanel {
 		        			currentObjectName="";
 		        		}
 		        		else{
-		        			//newGame.getPlayer().setName(textArea.getText());
+		        			newGame.getPlayer().setName(textArea.getText());
 		        			isNameDefined=true;
 		        			textResult = areaDescription;
 		        			textPane.setText("Your name is defined succesfully.\n"+textResult);
@@ -567,13 +618,23 @@ public class gamePanel extends JPanel {
 		thirstLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statBarPanel.add(thirstLabel);
 
+		
+		//-------------------------------------------------------------------------------------------------------------------------
+		//Player inventory capacity
+		JPanel playerCapacityPanel = new JPanel();
+		playerCapacityPanel.setLayout(new BoxLayout(playerCapacityPanel, BoxLayout.Y_AXIS));
+		playerCapacityPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		JLabel capacityLabel = new JLabel("Capacity: "+newGame.getPlayer().getInventory().getCurrentCapacity()+"/"+newGame.getPlayer().getInventory().getMaxCapacity());
+		playerCapacityPanel.add(capacityLabel);
+		capacityLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		playerPanel.add(playerCapacityPanel);
 		//--------------------------------------------------------------------------------------------------------------------------------
 		//Player Items Panel
 
 		JPanel playerItemsPanel = new JPanel();
 		playerItemsPanel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		playerPanel.add(playerItemsPanel);
-		playerItemsPanel.setLayout(new GridLayout(0, 2, 0, 0));
+		playerItemsPanel.setLayout(new GridLayout(0, 3, 0, 0));
 		for(int i = 0; i< playerItems.size();i++){
 			JLabel tempItem = new JLabel();
 			tempItem.setName(playerItems.get(i).getName());
