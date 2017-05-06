@@ -1,10 +1,17 @@
 {
   "objectName" : "Metal wires",
-  "type" : "Item",
-  "objectId" : "30",
+  "objecId" : "0",
+  "type" : "craftableItem",
   "description" : "Radio tower's missing pieces!",
   "weight" : "12.0",
   "renewable" : "false",
   "visible" : "true",
-  "actionList" : ["take", "drop"]
+  "actionList" : ["take", "drop", "craft"],
+  "craftableItemList" : [
+	{
+		"objectName" : "Radio Tower"
+	}
+
+  ]
+
 }
